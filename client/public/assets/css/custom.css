@@ -1,0 +1,805 @@
+body,
+html {
+  font-size: 18px;
+  /* background: #e5e5e5; */
+}
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+* {
+  /* font-family: "Poppins", sans-serif; */
+  font-family: "Roboto", sans-serif;
+}
+
+p {
+  font-family: "Poppins", sans-serif;
+}
+
+/************************************
+                Globals
+*************************************/
+
+* {
+  font-family: "Poppins", sans-serif;
+  font-family: "Roboto", sans-serif;
+}
+
+section h1 {
+  color: black;
+  /* font-size: 54px; */
+  font-family: "Roboto";
+  font-weight: bolder;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+section h1 hr {
+  width: 75%;
+  height: 6px;
+  border-radius: 4px;
+  background: linear-gradient(#2b32b2, #1488cc);
+}
+
+/************************************
+                Hero Section
+*************************************/
+
+.enterLocation {
+  border-radius: 20px;
+  background: linear-gradient(#f8a51e, #f8a51e);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+}
+.enterLocation select {
+  font-size: 1.11rem;
+  font-weight: bold;
+  font-style: italic;
+  border: none;
+  outline: none;
+  margin-right: 10px;
+  background: transparent;
+}
+.enterLocation select:focus {
+  background: transparentz;
+  box-shadow: none;
+}
+.enterLocation button {
+  font-size: 1.11rem;
+  font-weight: bold;
+  position: relative;
+}
+.enterLocation button::before {
+  content: "";
+  width: 2px;
+  height: 60%;
+  background: #555;
+  position: absolute;
+  top: auto;
+  bottom: auto;
+  left: -2px;
+}
+
+.hero-headings-inner {
+  font-family: Poppins;
+  font-weight: 600;
+  text-align: center;
+  /* font-weight: bolder; */
+  /* text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
+}
+
+.hero-headings-inner:nth-child(even) {
+  font-weight: 900;
+}
+
+.hero-headings-inner:nth-child(2) {
+  /* border-bottom: 8px solid #ffa412; */
+  position: relative;
+  text-transform: uppercase;
+  /* border-radius: 20px; */
+}
+.hero-headings-inner:nth-child(2) .border {
+  position: absolute;
+  width: 100%;
+  height: 12px;
+  bottom: 16%;
+  background: #ffa412;
+  z-index: -1;
+}
+
+.hero-headings-inner:nth-child(4) {
+  position: relative;
+}
+.hero-headings-inner:nth-child(2):before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -150%;
+  width: 68px;
+  height: 68px;
+  background: url("../img/hero-logos/ice_cream.png") no-repeat center
+    center/cover;
+}
+.hero-headings-inner:nth-child(2):after {
+  content: "";
+  position: absolute;
+  right: -5%;
+  top: -125%;
+  width: 68px;
+  height: 68px;
+  background: url("../img/hero-logos/question.png") no-repeat center
+    center/cover;
+}
+
+.hero-headings-inner:nth-child(4):before {
+  content: "";
+  position: absolute;
+  left: 10%;
+  top: 0;
+  width: 88px;
+  height: 88px;
+  background: url("../img/hero-logos/wallet.png") no-repeat center center/cover;
+}
+.hero-headings-inner:nth-child(4):after {
+  content: "";
+  position: absolute;
+  right: 2%;
+  top: 35%;
+  width: 88px;
+  height: 88px;
+  background: url("../img/hero-logos/money.png") no-repeat center center/cover;
+}
+
+#hero .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.hero-search-form input {
+  padding: 5px;
+  margin-right: 25px;
+  border-radius: 16px;
+  border: 1px solid #495468;
+  outline: none;
+  text-align: center;
+}
+
+.hero-search-form button {
+  padding: 3.5px 8px;
+  border-radius: 50%;
+  font-size: 1.02em;
+}
+/************************************
+              How Tt Works
+*************************************/
+
+/************************************
+            Advisory Solutions
+*************************************/
+
+.queryForm-title {
+  letter-spacing: 2px;
+}
+.queryForm-subtitle {
+  font-size: 0.8em;
+}
+
+.timing-label {
+  text-align: center;
+  /* box-shadow: -2px -2px 4px 2px rgba(255, 255, 255, 0.25) inset,
+    2px 2px 4px 2px rgba(0, 0, 0, 0.25) inset; */
+  box-shadow: -1px -1px 2px 1px rgba(255, 255, 255, 0.25) inset,
+    1px 1px 2px 1px rgba(0, 0, 0, 0.25) inset;
+  border-radius: 20px;
+  flex: 1;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  font-size: 0.9rem;
+}
+.timing:checked + .timing-label {
+  background: lightgreen;
+}
+
+.postQuery input,
+.postQuery input:focus {
+  /* box-shadow: -2px -2px 4px 2px rgba(255, 255, 255, 0.25) inset,
+    2px 2px 4px 2px rgba(0, 0, 0, 0.25) inset; */
+  box-shadow: -1px -1px 2px 1px rgba(255, 255, 255, 0.25) inset,
+    1px 1px 2px 1px rgba(0, 0, 0, 0.25) inset;
+  border-radius: 20px;
+  font-size: 1rem;
+}
+.prefer-call-div {
+  font-size: 0.8rem;
+}
+#querySubmit,
+#hero-get-started {
+  width: 50%;
+  margin: 0 auto;
+  border-radius: 20px;
+  font-size: 1rem;
+  background: #f8a51e;
+  transition: linear 0.2s;
+}
+#hero-get-started {
+  margin: 0;
+}
+#querySubmit:hover,
+#hero-get-started:hover {
+  border: 1px solid #f8a51e;
+  background: none;
+  color: black;
+}
+
+.alternateButtons div a,
+.sol-button {
+  display: flex;
+  /* grid-template-columns: 1fr auto; */
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px -2px 4px rgba(255, 255, 255, 0.75),
+    0px 2px 4px rgba(43, 50, 178, 0.5), 0px 2px 2px rgba(0, 0, 0, 0.25);
+  /* box-shadow: 0px 4px 4px 2px rgba(0, 0, 0, 0.25); */
+  color: #000;
+  background: white;
+  border-radius: 40px;
+  /* transform: matrix(-1, 0, 0, 1, 0, 0); */
+  border: none;
+  /* height: 65px; */
+  height: 65px;
+  max-height: 65px;
+}
+.alternateButtons div a i,
+.sol-button i {
+  font-weight: bolder;
+  font-size: 1.4em;
+  width: 10%;
+}
+.alternateButtons div a div,
+.sol-button div {
+  font-weight: bolder;
+  /* font-size: 1.4em; */
+  text-align: center;
+  width: 90%;
+}
+.ab-fs-3 {
+  font-size: 0.55em;
+}
+.ab-fs-2 {
+  font-size: 0.6em;
+}
+.ab-fs-1 {
+  font-size: 0.78em;
+}
+
+.alternateButtons > div > a:hover {
+  background: linear-gradient(#1488cc, #2b32b2);
+}
+
+/************************************
+                Initiatives
+*************************************/
+
+.initiatives {
+  position: relative;
+}
+.initiatives > div > img {
+  box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.25);
+  border: 0.5px solid rgba(0, 0, 0, 0.5);
+}
+.initiatives .seperator {
+  position: absolute;
+  left: 50%;
+  width: 4px;
+  height: 108%;
+  top: -8%;
+  background: #0d4caa;
+  transform: translateX(-50%);
+}
+
+/************************************
+                Figures
+*************************************/
+
+#figures {
+  background: linear-gradient(rgba(75, 30, 147, 0.8), rgba(43, 50, 178, 1));
+}
+.figure-amt {
+  letter-spacing: 4px;
+}
+.figure-text {
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/************************************
+          End to End Solutions
+*************************************/
+
+.ete-sol-text {
+  font-size: 1.4em;
+}
+
+/************************************
+              Newsletter
+*************************************/
+
+#newsletter {
+  background: linear-gradient(#114488, #2b32b2);
+  border-radius: 20px 100px 20px 20px;
+  position: relative;
+}
+.newsletter-form-border {
+  border: 2px solid black;
+  z-index: -1;
+  position: absolute;
+  top: 0px;
+  left: 0;
+  transform-origin: bottom right;
+  transform: rotate(1.47deg);
+  width: 100%;
+  height: 100%;
+  border-radius: 20px 100px 20px 20px;
+}
+.newsletter-form {
+  position: relative;
+}
+.newsletter-form img {
+  position: absolute;
+  top: -34px;
+  right: -30px;
+
+  width: 140px;
+}
+
+.newsletter-form .input-group {
+  padding: 5px;
+  border-radius: 100px;
+  background: orange;
+}
+.newsletter-form .input-group input {
+  border-radius: 100px;
+  background: transparent;
+  border: none;
+  color: black;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+.newsletter-form input::placeholder {
+  color: #222;
+  font-weight: bold;
+}
+.newsletter-form input:focus {
+  outline: none;
+  box-shadow: none;
+}
+.newsletter-form button {
+  border-radius: 100px;
+  color: #000;
+  background: white;
+  font-size: 0.6rem;
+}
+
+.newsletter-form button:hover,
+.newsletter-form button:focus {
+  background: none;
+}
+
+/************************************
+                Footer
+*************************************/
+/* footer hr.footer-left-hr {
+  margin-bottom: 4rem;
+} */
+
+.reach-us .details li i {
+  font-size: 1.1em;
+  margin-right: 10px;
+}
+.reach-us .socials li i {
+  font-size: 1.5em;
+  /* margin-right: 41px; */
+}
+.footer-left-hr {
+  width: 50%;
+  height: 4px;
+  border-radius: 4px;
+  background: linear-gradient(#2b32b2, #1488cc);
+}
+.footer-right-hr {
+  width: 50%;
+  height: 4px;
+  border-radius: 4px;
+  background: linear-gradient(#2b32b2, #1488cc);
+}
+footer a {
+  color: black;
+}
+footer a:hover {
+  color: black;
+  text-decoration: none;
+}
+
+/* solutions */
+
+button.sols-button,
+a.sols-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px -2px 4px rgba(255, 255, 255, 0.75),
+    0px 2px 4px rgba(43, 50, 178, 0.5), 0px 2px 2px rgba(0, 0, 0, 0.25);
+  color: #000;
+  background: white;
+  border-radius: 10px;
+  border: none;
+  background: #f8a51e;
+}
+button.sol-button i,
+a.sol-button i {
+  font-weight: bolder;
+  font-size: 1.4em;
+  width: 10%;
+}
+button.sols-button div,
+a.sols-button div {
+  font-weight: bold;
+  font-size: 0.65em;
+  text-align: center;
+  width: 85%;
+  margin-right: 5%;
+}
+a.sols-button {
+  width: auto;
+}
+/****************************************
+                Accordian
+*****************************************/
+
+/*******************************
+* Does not work properly if "in" is added after "collapse".
+* Get free snippets on bootpen.com
+*******************************/
+.panel-group .panel {
+  border-radius: 6px;
+  box-shadow: none;
+  border: 1px solid #a9a9a9;
+  margin: 0 10px;
+  height: auto;
+}
+
+.panel-default > .panel-heading {
+  padding: 0;
+  border-radius: 0;
+  color: #212121;
+  /* border: 1px solid #202020; */
+}
+
+.panel-title {
+  margin: 0;
+  height: 62px;
+}
+@media only screen and (max-width: 780px) {
+  .panel-title {
+    height: auto;
+  }
+}
+
+.panel-title > a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #000;
+  font-size: 1rem;
+  align-self: center;
+  height: 100%;
+}
+
+.panel-title > a > div {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-weight: bold;
+}
+.more-less {
+  color: #212121;
+  font-size: 1.4em;
+  font-weight: bold;
+}
+
+.panel-default > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #eeeeee;
+  padding: 10px;
+  font-size: 0.8rem;
+}
+
+/* advisors */
+
+.card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  border: 1px solid black;
+  border-radius: 15px;
+  /* overflow: hidden; */
+}
+/* .card img {
+  width: auto;
+  height: 100%;
+} */
+
+/* Advisors */
+.advisor div ul li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+/* .advisor div ul li * {
+  flex: 1;
+} */
+.advisor div ul li span {
+  /* text-align: right; */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.advisor button {
+  background: #2b32b2;
+  box-shadow: 0px -1.7377px 6.95082px rgba(187, 191, 255, 0.5),
+    0px 3.47541px 6.95082px rgba(0, 0, 0, 0.5);
+  border-radius: 8.68852px;
+}
+.advisor button:hover,
+.advisor button:focus {
+  background: #575dc9;
+  box-shadow: 0px -1.7377px 6.95082px rgba(187, 191, 255, 0.5),
+    0px 3.47541px 6.95082px rgba(0, 0, 0, 0.5);
+  border-radius: 8.68852px;
+}
+.advisor:hover {
+  box-shadow: 0px -1.7377px 6.95082px rgba(187, 191, 255, 0.5),
+    0px 3.47541px 6.95082px rgba(0, 0, 0, 0.5);
+}
+
+/*****************************************
+                  Modals
+******************************************/
+
+/* Login Popup! */
+/* .model-lg {
+  margin: 1rem 0;
+} */
+
+.login-popup,
+#advisor-form {
+  max-height: auto;
+  border-radius: 20px;
+  overflow: hidden;
+  background: white;
+}
+.login-popup > div:first-child,
+.login-popup > #user-advisor {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  padding: 10% 0;
+  height: 80vh;
+}
+.login-popup > div:first-child {
+  background: linear-gradient(179.99deg, #4776ec -60.94%, #4b1e93 99.99%);
+  color: white;
+  height: auto;
+}
+.login-popup > div:first-child > div {
+  justify-content: space-between;
+}
+.login-popup button:hover,
+.login-popup button:focus {
+  color: white;
+  background: linear-gradient(179.99deg, #4776ec -60.94%, #4b1e93 99.99%);
+}
+.login-popup button {
+  background: transparent;
+  width: 70%;
+  display: inline-block;
+  color: black;
+  padding: 14px;
+  border-radius: 10px;
+  border-color: black;
+}
+
+.login-popup > #user-advisor {
+  background: white;
+}
+
+.login-popup > #user-advisor::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  z-index: 0;
+  height: 1px;
+  background: black;
+}
+.seperator-text {
+  background: white;
+  padding: 0 10px;
+  z-index: 1;
+}
+#advisor-form,
+#user-form {
+  display: none;
+}
+#advisor-form button,
+#user-form button {
+  width: auto;
+  padding: 15px 25px;
+  margin-right: 15px;
+}
+
+.advisor_image {
+  width: 220px;
+  height: 220px;
+  background: url() no-repeat center center/cover;
+}
+
+/* book appointment popup */
+.book-apt-popup {
+  border-radius: 24px;
+  overflow: hidden;
+}
+.book-apt-popup > div {
+  padding: 40px 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.book-apt-popup > button {
+  background: #2b32b2;
+  border: none;
+  color: white;
+  padding: 15px;
+  border-radius: 0;
+}
+
+#js-editorcanvas {
+  width: 100%;
+  height: 600px;
+  display: block;
+}
+
+/* pages.css */
+.p-title {
+  padding-top: 90px;
+  /* background: url("https://www.advisorzaroorihai.com/Content/css/../images/registration_bg.jpg") */
+  /* center center/cover; */
+}
+
+.p-title-inner {
+  /* border-bottom: 0.1px solid #000; */
+  width: 100%;
+  height: auto;
+  /* margin-top: 70px; */
+  margin-bottom: 0px;
+  background: linear-gradient(#1488cc, #2b32b2);
+}
+
+.p-title-inner h1 {
+  color: white;
+}
+/* e-learning */
+
+.e-learning-img {
+  padding: 20px 0;
+  width: 100%;
+}
+.vid-icon {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  bottom: 0px;
+  right: 10px;
+}
+.e-learning-div .title,
+.e-learning-div h5 {
+  margin: 0px;
+  padding-top: 20px;
+  color: #fff;
+}
+
+.e-learning-div .bottom-title {
+  position: absolute;
+  bottom: 5px;
+  margin: 0px;
+  color: #000;
+}
+.e-learning-div {
+  color: white;
+  padding: 10px 15px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 20px -5px #000;
+  background: linear-gradient(to bottom, #6c4b99 70%, #fff 0%);
+}
+.pbDiv {
+  padding-bottom: 30px;
+}
+.e-learning-div .title,
+.e-learning-div h5 {
+  font-size: 1.2em;
+}
+
+/* .e-learning-a {
+  color: black;
+text-decoration: none;
+cursor: pointer;
+}
+.e-learning-a:hover {
+text-decoration: none;
+} */
+
+.e-learning-div .e-learning-a,
+a.e-learning-a {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+.e-learning-div .e-learning-a:hover,
+a.e-learning-a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.knowledge_base .modal-content {
+  padding: 25px;
+  font-size: 0.8rem;
+}
+.knowledge_base .modal-content a {
+  font-size: 1rem;
+}
+
+#user-advisor button a {
+  color: black;
+}
+#user-advisor button:hover a {
+  color: white;
+  text-decoration: none;
+}
+
+.feedback_form > div {
+  background: #f6f6f6;
+  padding: 20px 20px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+}
+
+.feedback_form input {
+  background: transparent;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid #aaa;
+  transition: 1s border ease-in;
+}
+.feedback_form input:focus {
+  background: transparent;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid #2b32b2;
+  box-shadow: none;
+}
+
+.feedback_form_title {
+  background: #f6f6f6;
+  padding: 20px 20px;
+  /* margin-bottom: 15px;  */
+  border-radius: 10px;
+}
+
+.advisor-filter-div {
+  display: none;
+}
+/* 
+.advisor-filter-div {
+  display: none;
+} */

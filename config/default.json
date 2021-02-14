@@ -1,0 +1,5 @@
+{
+  "name": "Advisor Zaroori Hai",
+  "jwt_secret": "jwt_acbm",
+  "resetPass": "acbm_resetpass"
+}
