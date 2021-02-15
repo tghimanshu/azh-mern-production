@@ -180,6 +180,35 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.post("/bulk", async (req, res) => {
+  const allClients = req.body.clients;
+  const doneIds = [];
+  for (let i = 0; i < allClients.length; i++) {
+    const { error } = clientValidate(allClients[i]);
+    if (error) return res.status(400).send(error.details);
+
+    if (await Client.findOne({ email: allClients[i].email }))
+      return res.status(400).send("Email Already Registered!");
+
+    if (await Client.findOne({ username: allClients[i].username }))
+      return res.status(400).send("Username Taken!");
+
+    req.body.password = await hash_password(allClients[i].password);
+
+    try {
+      const client = new Client(allClients[i]);
+
+      const result = await client.save();
+
+      doneIds.push(allClients[i].id);
+    } catch (error) {
+      console.log(error);
+      res.send("Witherror: " + doneIds.toString());
+    }
+  }
+  res.send(doneIds.toString());
+});
+
 router.post("/login", async (req, res) => {
   const client =
     req.body.email.indexOf("@") !== -1

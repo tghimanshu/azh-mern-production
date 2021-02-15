@@ -109,12 +109,7 @@ const Bookings = () => {
               <td>
                 {client.isApproved === "unapproved" && (
                   <button className="btn btn-info" disabled>
-                    See Recommended
-                  </button>
-                )}
-                {client.isApproved === "unapproved" && (
-                  <button className="btn btn-info" disabled>
-                    See Recommended
+                    Awaiting Recommendation
                   </button>
                 )}
                 {client.isApproved === "approved" && !client.madePayment && (
@@ -123,16 +118,18 @@ const Bookings = () => {
                     // onClick={() => handleSeeRecommendation(client.madePayment)}
                     onClick={() => displayRazorPay(client._id)}
                   >
-                    See Recommended
+                    Make Payment
                   </button>
                 )}
                 {client.isApproved === "approved" && client.madePayment && (
                   <button
                     className="btn btn-success"
-                    onClick={() => Swal.fire({
-			    icon:'success',
-			    html: client.recommendation
-		    })} 
+                    onClick={() =>
+                      Swal.fire({
+                        icon: "success",
+                        html: client.recommendation,
+                      })
+                    }
                   >
                     See Recommended
                   </button>
