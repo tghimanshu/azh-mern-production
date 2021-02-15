@@ -510,7 +510,7 @@ const adminValidate = (data) => {
 
 const clientValidate = (data) => {
   return Joi.object({
-    username: Joi.string().min(5).max(255).required(),
+    username: Joi.string().min(3).max(255).required(),
     name: Joi.string().min(5).max(255).required(),
     email: Joi.string().required().email(),
     contact: Joi.number().required(),
