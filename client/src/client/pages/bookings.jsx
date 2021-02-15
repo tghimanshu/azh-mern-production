@@ -56,7 +56,7 @@ const Bookings = () => {
       order_id: data.id,
       handler: async function (response) {
         try {
-          const { data } = await http.put("/booking/payment/" + b_id, {});
+          await http.put("/booking/payment/" + b_id, {});
         } catch (err) {
           console.log(err);
         }

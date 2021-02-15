@@ -28,7 +28,12 @@ function ELearning() {
         <div className="row">
           {elearnings.map((elearning) => (
             <div className="col-md-4 col-xs-12 pbDiv">
-              <a href={elearning.link} className="e-learning-a" target="_blank">
+              <a
+                href={elearning.link}
+                className="e-learning-a"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <div className="e-learning-div">
                   <div className="row">
                     <div className="col-7">

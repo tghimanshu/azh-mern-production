@@ -8,7 +8,7 @@ import {
   Form,
   Link as button,
 } from "react-bootstrap";
-import { successAlert } from "../../utils/alerts";
+import { dangerAlert, successAlert } from "../../utils/alerts";
 import StepsNav from "./steps_nav";
 
 const Personal = ({ history }) => {
@@ -101,7 +101,7 @@ const Personal = ({ history }) => {
               }}
               maxLength="100"
               type="text"
-              required="required"
+              required={true}
               className="form-control"
               placeholder="Enter Full Name"
               name="spouse-name"
@@ -119,7 +119,7 @@ const Personal = ({ history }) => {
               }}
               maxLength="100"
               type="date"
-              required="required"
+              required={true}
               className="form-control"
               placeholder="Date Of Birth"
               name="spouse-dob"
@@ -137,7 +137,7 @@ const Personal = ({ history }) => {
               }}
               maxLength="100"
               type="number"
-              required="required"
+              required={true}
               className="form-control"
               placeholder="Enter Telephone Number"
               name="spouse-number"
@@ -155,7 +155,7 @@ const Personal = ({ history }) => {
               }}
               maxLength="100"
               type="email"
-              required="required"
+              required={true}
               className="form-control"
               placeholder="Enter E-Mail"
               name="spouse-email"
@@ -174,7 +174,7 @@ const Personal = ({ history }) => {
                 set_pers_details(demo);
               }}
               type="text"
-              required="required"
+              required={true}
               className="form-control"
               placeholder="Enter Professional Details"
               name="spouse-prof-details"
@@ -212,7 +212,7 @@ const Personal = ({ history }) => {
                             }}
                             maxLength="100"
                             type="text"
-                            required="required"
+                            required={true}
                             className="form-control"
                             placeholder="Enter Full Name"
                             name="child-1-name"
@@ -230,7 +230,7 @@ const Personal = ({ history }) => {
                             }}
                             maxLength="100"
                             type="date"
-                            required="required"
+                            required={true}
                             className="form-control"
                             placeholder="Date Of Birth"
                             name="child-1-dob"
@@ -250,7 +250,7 @@ const Personal = ({ history }) => {
                             }}
                             maxLength="100"
                             type="number"
-                            required="required"
+                            required={true}
                             className="form-control"
                             placeholder="Enter Telephone Number"
                             name="child-1-number"
@@ -268,7 +268,7 @@ const Personal = ({ history }) => {
                             }}
                             maxLength="100"
                             type="email"
-                            required="required"
+                            required={true}
                             className="form-control"
                             placeholder="Enter E-Mail"
                             name="child-1-email"
@@ -287,7 +287,7 @@ const Personal = ({ history }) => {
                               set_pers_details(demo);
                             }}
                             type="text"
-                            required="required"
+                            required={true}
                             className="form-control"
                             placeholder="Enter Professional Details"
                             name="child-1-prof-details"
@@ -337,7 +337,7 @@ const Personal = ({ history }) => {
                 }}
                 maxLength="100"
                 type="text"
-                required="required"
+                required={true}
                 className="form-control"
                 placeholder="Enter Full Name"
                 name="self-name"
@@ -355,7 +355,7 @@ const Personal = ({ history }) => {
                 }}
                 maxLength="100"
                 type="date"
-                required="required"
+                required={true}
                 className="form-control"
                 placeholder="Date Of Birth"
                 name="self-dob"
@@ -373,7 +373,7 @@ const Personal = ({ history }) => {
                 }}
                 maxLength="100"
                 type="number"
-                required="required"
+                required={true}
                 className="form-control"
                 placeholder="Enter Telephone Number"
                 name="self-number"
@@ -391,7 +391,7 @@ const Personal = ({ history }) => {
                 }}
                 maxLength="100"
                 type="email"
-                required="required"
+                required={true}
                 className="form-control"
                 placeholder="Enter E-Mail"
                 name="self-email"
@@ -408,7 +408,7 @@ const Personal = ({ history }) => {
                   set_pers_details(demo);
                 }}
                 type="text"
-                required="required"
+                required={true}
                 className="form-control"
                 placeholder="Enter Profession Details"
                 name="self-prof-details"

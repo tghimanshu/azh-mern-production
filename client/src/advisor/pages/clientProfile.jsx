@@ -46,7 +46,7 @@ const ClientProfile = ({ match, history }) => {
 
   const handleSaveRec = async () => {
     try {
-      const res = await http.put("/booking/" + match.params.booking_id, {
+      await http.put("/booking/" + match.params.booking_id, {
         recommendation: recommendation,
       });
       setAlert(successAlert("Recommendation Saved!", setAlert));
@@ -58,9 +58,7 @@ const ClientProfile = ({ match, history }) => {
   const handleApprove = async () => {
     handleSaveRec();
     try {
-      const { data } = await http.get(
-        "/booking/approve/" + match.params.booking_id
-      );
+      await http.get("/booking/approve/" + match.params.booking_id);
       setAlert(successAlert("Recommendation Saved and Approved!", setAlert));
       history.push("/advisor/booking/");
     } catch (error) {

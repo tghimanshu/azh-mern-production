@@ -32,4 +32,4 @@ const verifyRoles = (roles) => {
   return false;
 };
 
-export { getRole, verifyRole, verifyRoles };
+export { getRole, verifyRole, verifyRoles, getToken };

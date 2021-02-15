@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import http from "../../utils/http";
-import { getRole } from "../../utils/jwt";
 
 const Bookings = () => {
   const [bookings, setBookings] = useState([]);
   useEffect(() => {
     const getClients = async () => {
-      const userJwt = getRole();
       const details = await http.get("/booking/");
       console.log(details.data);
       setBookings(details.data);
