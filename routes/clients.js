@@ -220,21 +220,15 @@ router.post("/login", async (req, res) => {
         });
 
   if (!client) return res.status(400).send("Invalid Username Or Password!");
-  if (req.body.password.length === 32) {
-    const pass = await bcrypt.compare(req.body.password, md5(client.password));
-    if (!pass) return res.status(400).send("Invalid Username Or Password!");
 
-    const token = client.generateAuthToken();
+  const pass = await bcrypt.compare(req.body.password, md5(client.password));
+  const pass2 = await bcrypt.compare(req.body.password, client.password);
+  if ((!pass2 || !pass) === false)
+    return res.status(400).send("Invalid Username Or Password!");
 
-    res.header("x-auth-token", token).send(token);
-  } else {
-    const pass = await bcrypt.compare(req.body.password, client.password);
-    if (!pass) return res.status(400).send("Invalid Username Or Password!");
+  const token = client.generateAuthToken();
 
-    const token = client.generateAuthToken();
-
-    res.header("x-auth-token", token).send(token);
-  }
+  res.header("x-auth-token", token).send(token);
 });
 
 router.put("/:id", async (req, res) => {

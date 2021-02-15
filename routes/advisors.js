@@ -106,7 +106,7 @@ router.get("/", async (req, res) => {
       "expertise",
       "experience",
       "profile_pic",
-	    "isApproved"
+      "isApproved",
     ]);
     res.send(advisors);
     res.end();
@@ -161,14 +161,14 @@ router.post("/login", async (req, res) => {
           username: req.body.email,
         });
   if (!advisor) return res.status(400).send("Invalid Username Or Password!");
-    const pass = await bcrypt.compare(req.body.password, md5(advisor.password));
-    // if (!pass) return res.status(400).send("Invalid Username Or Password!");
-    const pass2 = await bcrypt.compare(req.body.password, advisor.password);
-    if ((!pass2 || !pass) === false) return res.status(400).send("Invalid Username Or Password!");
+  const pass = await bcrypt.compare(req.body.password, md5(advisor.password));
+  const pass2 = await bcrypt.compare(req.body.password, advisor.password);
+  if ((!pass2 || !pass) === false)
+    return res.status(400).send("Invalid Username Or Password!");
 
-    const token = advisor.generateAuthToken();
+  const token = advisor.generateAuthToken();
 
-    res.header("x-auth-token", token).send(token);
+  res.header("x-auth-token", token).send(token);
 });
 
 router.put("/:id", advisorAuth, async (req, res) => {
