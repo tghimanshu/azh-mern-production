@@ -54,6 +54,7 @@ router.post("/login", async (req, res) => {
   if (!admin) return res.status(400).send("Invalid Username Or Password!");
 
   const pass = await bcrypt.compare(req.body.password, admin.password);
+  console.log(pass);
   if (!pass) return res.status(400).send("Invalid Username Or Password!");
 
   const token = admin.generateAuthToken();
