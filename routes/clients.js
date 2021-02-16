@@ -10,6 +10,7 @@ const config = require("config");
 const { Client, clientValidate, hash_password } = require("../models/schemas");
 const _ = require("lodash");
 const router = express.Router();
+const { clientForgotPassword, clientRegistration } = require("../mail");
 
 router.get("/sheet/:id", async (req, res) => {
   const clients = await Client.findById(req.params.id).select([
@@ -247,30 +248,18 @@ router.delete("/:id", async (req, res) => {
 });
 
 router.post("/forgot-password", async (req, res) => {
-  const client = await Client.findOne({ email: req.body.email });
-  if (!client)
-    return res.status(400).send("User Doesn't Exist, Please Register!");
-  const token = jwt.sign({ email: req.body.email }, config.get("resetPass"), {
-    expiresIn: "30m",
-  });
-  const mailData = {
-    from: "himnesh234@gmail.com",
-    to: req.body.email,
-    subject: "Reset Password.",
-    html: `<h1> Reset Password</h1>
-    <p> Please Follow the below link to reset your AZH password.</p>
-    <a href="http://localhost:3000/reset/client/${token}">Reset Password</a>`,
-  };
+  try {
+    const client = await Client.findOne({ email: req.body.email });
+    if (!client)
+      return res.status(400).send("User Doesn't Exist, Please Register!");
+    const token = jwt.sign({ email: req.body.email }, config.get("resetPass"), {
+      expiresIn: "30m",
+    });
 
-  transporter.sendMail(mailData, function (err, info) {
-    if (err) {
-      console.log(err);
-    }
-    if (info) {
-      console.log(info);
-    }
-  });
-  res.send("Reset Link Sent Successfully!");
+    clientForgotPassword(req.body.email, token);
+
+    res.send("Reset Link Sent Successfully!");
+  } catch (error) {}
 });
 
 router.post("/reset-password", async (req, res) => {

@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt");
 const md5 = require("md5");
 const _ = require("lodash");
 const config = require("config");
+const { advisorForgotPassword, advisorRegistration } = require("../mail");
 
 const advisorAuth = (req, res, next) => {
   if (!req.header("x-auth-token")) return res.status(401).send("Access Denied");
@@ -193,23 +194,9 @@ router.post("/forgot-password", async (req, res) => {
   const token = jwt.sign({ email: req.body.email }, config.get("resetPass"), {
     expiresIn: "30m",
   });
-  const mailData = {
-    from: "himnesh234@gmail.com",
-    to: req.body.email,
-    subject: "Reset Password.",
-    html: `<h1> Reset Password</h1>
-    <p> Please Follow the below link to reset your AZH password.</p>
-    <a href="http://localhost:3000/reset/advisor/${token}">Reset Password</a>`,
-  };
 
-  transporter.sendMail(mailData, function (err, info) {
-    if (err) {
-      console.log(err);
-    }
-    if (info) {
-      console.log(info);
-    }
-  });
+  advisorForgotPassword(req.body.email, token);
+
   res.send("Reset Link Sent Successfully!");
 });
 

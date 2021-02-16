@@ -88,7 +88,7 @@ const Personal = ({ history }) => {
   const HaveSpouse = () => {
     return (
       <React.Fragment>
-        <div className="row spouse">
+        <form className="row spouse">
           <h5 className="font-italic col-12">spouse</h5>
           <div className="form-group col-12 col-lg-8">
             <label className="spouse-name">Full Name</label>
@@ -181,7 +181,7 @@ const Personal = ({ history }) => {
               id="spouse-prof-details"
             />
           </div>
-        </div>
+        </form>
         {!havingChild && (
           <button className="btn btn-info" onClick={() => setHavingChild(true)}>
             You Have Childrens?
@@ -431,7 +431,7 @@ const Personal = ({ history }) => {
               to="/client/income"
               className="btn btn-fill btn-primary mx-2"
               onClick={StepOneSubmit}
-              type="button"
+              type="submit"
             >
               Save &amp; Next
             </button>

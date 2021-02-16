@@ -21,10 +21,10 @@ const ForgotPassword = ({ match }) => {
           </div>
         </section>
       </div>
-      <div className="container mt-4">
-        <div className="d-flex justify-content-center">
-          <div>
-            <label htmlFor="email"></label>
+      <div className="container mt-4 px-5">
+        <div className="">
+          <div className="form-group">
+            <label htmlFor="email" className="form-group-label"></label>
             <input
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -55,9 +55,10 @@ const ResetPssword = ({ match, history }) => {
     const user = jwtDecode(match.params.token);
     console.log(user);
     if (pass === cpass && pass.length > 6 && match.params.role === "client") {
-      const result = await http.post("/client/reset-password", {
+      const result = await http.post(`/${match.params.role}/reset-password`, {
         email: user.email,
         password: pass,
+        token: match.params.token,
       });
       console.log(result.data);
       Swal.fire({
@@ -85,8 +86,8 @@ const ResetPssword = ({ match, history }) => {
           </div>
         </section>
       </div>
-      <div className="container mt-4">
-        <div className="d-flex justify-content-center">
+      <div className="container mt-4 px-5">
+        <div className="">
           <div>
             {error}
             <label htmlFor="pass">Enter New Password:</label>
