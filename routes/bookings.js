@@ -118,6 +118,7 @@ router.put("/payment/:id", async (req, res) => {
     const booking = await Booking.findById(req.params.id);
     if (!booking) return res.status(404).send("Invalid Booking");
     booking.madePayment = true;
+    booking.order_id = req.body.order_id;
     booking.save();
     res.send("Payment Made");
   } catch (err) {

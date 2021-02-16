@@ -2,12 +2,13 @@ const express = require("express");
 const Razorpay = require("razorpay");
 const shortid = require("shortid");
 const crypto = require("crypto");
+const config = require("config");
 
 const router = express.Router();
 
 const razorpay = new Razorpay({
-  key_id: "rzp_test_z6sSh70PmD2OvR",
-  key_secret: "O9jKN11UJyyVxB8AYr1Hdm3N",
+  key_id: config.get("razorpayKey"),
+  key_secret: config.get("razorpaySecret"),
 });
 
 router.post("/", async (req, res) => {

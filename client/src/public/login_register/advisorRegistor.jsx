@@ -263,7 +263,7 @@ export const AdvisorRegistor = ({ history }) => {
         </label>
       </div>
       <ReCAPTCHA
-        sitekey="6LeqNj0aAAAAADzx2uK5jZP4lC1JYc9LEzmOKK0Z"
+        sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
         onChange={onCaptchaChange}
       />
       <button

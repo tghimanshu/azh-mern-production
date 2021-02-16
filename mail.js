@@ -60,7 +60,7 @@ const advisorForgotPassword = (email, token) => {
   }
 };
 
-// module.exports = transporter;w
+// module.exports = transporter;
 
 module.exports = {
   clientRegistration,

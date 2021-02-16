@@ -47,28 +47,29 @@ const Bookings = () => {
     const { data } = await http.post("/payment");
 
     const options = {
-      key: "rzp_test_z6sSh70PmD2OvR",
+      key: process.env.REACT_APP_RAZORPAY_CLIENT_KEY,
       amount: data.amount,
       currency: data.currency,
-      name: "Unlock Recommendation",
-      description: "Thank you for using our Service",
+      name: "Unlock your Recommendation",
+      description:
+        "Please Make the payment to see the Recommendation given by the Advisor",
       image: "",
       order_id: data.id,
       handler: async function (response) {
         try {
-          await http.put("/booking/payment/" + b_id, {});
+          await http.put("/booking/payment/" + b_id, { order_id: data.id });
         } catch (err) {
           console.log(err);
         }
-        alert(response.razorpay_payment_id);
-        alert(response.razorpay_order_id);
-        alert(response.razorpay_signature);
+        // alert(response.razorpay_payment_id);
+        // alert(response.razorpay_order_id);
+        // alert(response.razorpay_signature);
       },
-      prefill: {
-        name: "Gaurav Kumar",
-        email: "gaurav.kumar@example.com",
-        contact: "9999999999",
-      },
+      // prefill: {
+      //   name: "Gaurav Kumar",
+      //   email: "gaurav.kumar@example.com",
+      //   contact: "9999999999",
+      // },
       theme: {
         color: "#3399cc",
       },

@@ -436,6 +436,10 @@ const bookingSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  order_id: {
+    type: String,
+    default: "",
+  },
 });
 
 const adminSchema = new mongoose.Schema({
