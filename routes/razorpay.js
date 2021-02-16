@@ -13,7 +13,7 @@ const razorpay = new Razorpay({
 
 router.post("/", async (req, res) => {
   const payment_capture = 1;
-  const amount = 5;
+  const amount = 999;
   const currency = "INR";
   const receipt = shortid.generate();
   const options = {
