@@ -222,10 +222,10 @@ router.post("/login", async (req, res) => {
 
   if (!client) return res.status(400).send("Invalid Username Or Password!");
 
-  const pass = await bcrypt.compare(req.body.password, md5(client.password));
+  const pass = await bcrypt.compare(md5(req.body.password), client.password);
   const pass2 = await bcrypt.compare(req.body.password, client.password);
   console.log(pass, pass2);
-  if ((!pass2 || !pass) === false)
+  if (!(pass2 || pass))
     return res.status(400).send("Invalid Username Or Password!");
 
   const token = client.generateAuthToken();
