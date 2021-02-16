@@ -1,9 +1,4 @@
 {
   "name": "Advisor Zaroori Hai",
-  "jwt_secret": "",
-  "resetPass": "",
-  "razorpayKey": "",
-  "razorpaySecret": "",
-  "razorpayWebhookSecret": "",
   "mailing": true
 }
