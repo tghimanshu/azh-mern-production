@@ -164,7 +164,7 @@ router.post("/login", async (req, res) => {
   if (!advisor) return res.status(400).send("Invalid Username Or Password!");
   const pass = await bcrypt.compare(req.body.password, md5(advisor.password));
   const pass2 = await bcrypt.compare(req.body.password, advisor.password);
-  if ((!pass2 || !pass) === false)
+  if (!pass2 && !pass)
     return res.status(400).send("Invalid Username Or Password!");
 
   const token = advisor.generateAuthToken();
