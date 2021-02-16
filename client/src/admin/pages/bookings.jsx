@@ -6,12 +6,12 @@ const Bookings = () => {
   useEffect(() => {
     const getClients = async () => {
       const details = await http.get("/booking/");
-      console.log(details.data);
+      // console.log(details.data);
       setBookings(details.data);
     };
     getClients();
   }, []);
-  console.log(bookings);
+  // console.log(bookings);
   return (
     <table className="table table-striped">
       <thead>

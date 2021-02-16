@@ -60,10 +60,10 @@ const Advisors = ({ history }) => {
       try {
         const { data } = await http.get("/advisor");
 
-        setAdvisors(data.filter(adv => adv.isApproved === true));
+        setAdvisors(data.filter((adv) => adv.isApproved === true));
         setLoadingScreen(false);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     };
     getAdvisors();
@@ -125,7 +125,7 @@ const Advisors = ({ history }) => {
       });
       setShowModel(false);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       setShowModel(false);
     }
   };
@@ -158,7 +158,7 @@ const Advisors = ({ history }) => {
         status += data.expenses.monthly.groceries !== 0 ? 15 : 0;
         return status;
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     };
     const status = await getUser();

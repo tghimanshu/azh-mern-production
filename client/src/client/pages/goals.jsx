@@ -39,7 +39,7 @@ const Goal = ({ history }) => {
         const user = await http.get("/client/" + userJwt._id);
         setGoals(user.data.goals);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     };
     getUser();
@@ -54,7 +54,7 @@ const Goal = ({ history }) => {
       setalert(successAlert("Goals Added Successfully!", setalert));
       history.push("/client");
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       //   return <Redirect to="/login" />;
     }
   };

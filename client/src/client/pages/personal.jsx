@@ -63,7 +63,7 @@ const Personal = ({ history }) => {
         const user = await http.get("/client/" + userJwt._id);
         set_pers_details(user.data.personal_details);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     };
     getUser();
@@ -81,7 +81,7 @@ const Personal = ({ history }) => {
       );
       history.push("/client/investment");
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 

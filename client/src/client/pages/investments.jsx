@@ -51,7 +51,7 @@ const Investment = ({ history }) => {
         setInvestments(user.data.investments);
         setHaveInvestments(user.data.haveInvestments);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     };
     getUser();
@@ -67,7 +67,7 @@ const Investment = ({ history }) => {
       setalert(successAlert("Investments Added Successfully!", setalert));
       history.push("/client/insurance");
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       //   return <Redirect to="/login" />;
     }
   };

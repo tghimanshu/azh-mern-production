@@ -10,7 +10,7 @@ const ForgotPassword = ({ match }) => {
     const result = await http.post(`/${match.params.role}/forgot-password`, {
       email: email,
     });
-    console.log(result);
+    // console.log(result);
   };
   return (
     <>
@@ -53,14 +53,14 @@ const ResetPssword = ({ match, history }) => {
   const [cpass, setCPass] = useState("");
   const handleClick = async () => {
     const user = jwtDecode(match.params.token);
-    console.log(user);
+    // console.log(user);
     if (pass === cpass && pass.length > 6 && match.params.role === "client") {
       const result = await http.post(`/${match.params.role}/reset-password`, {
         email: user.email,
         password: pass,
         token: match.params.token,
       });
-      console.log(result.data);
+      // console.log(result.data);
       Swal.fire({
         icon: "success",
         title: "Yay...",

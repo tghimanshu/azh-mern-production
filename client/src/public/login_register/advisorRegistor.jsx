@@ -53,7 +53,7 @@ export const AdvisorRegistor = ({ history }) => {
         password: pass,
         profile_pic: profilePic,
       });
-      console.log(result);
+      // console.log(result);
       seterror(
         successAlert("Registration SuccessFul, Please Login!", seterror)
       );
@@ -86,10 +86,10 @@ export const AdvisorRegistor = ({ history }) => {
         },
       };
       const { data } = await http.post("/advisor/upload", formData, config);
-      console.log(data);
+      // console.log(data);
       setprofilePic(data);
     } catch (error) {
-      console.log("Upload Error!");
+      // console.log("Upload Error!");
     }
   };
 

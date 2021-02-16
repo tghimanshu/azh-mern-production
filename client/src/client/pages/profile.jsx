@@ -63,7 +63,7 @@ function Profile() {
         status += data.expenses.monthly.groceries !== 0 ? 15 : 0;
         setCompletionState(status);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     };
     getUser();

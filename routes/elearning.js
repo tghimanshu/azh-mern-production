@@ -8,21 +8,21 @@ const jwt = require("jsonwebtoken");
 const adminAuth = (req, res, next) => {
   if (!req.header("x-auth-token")) return res.status(401).send("Access Denied");
   try {
-    console.log("object");
+    // console.log("object");
     const decoded = jwt.verify(
       req.header("x-auth-token"),
       config.get("jwt_secret")
     );
-    console.log(decoded);
+    // console.log(decoded);
     if (decoded.role === "admin") {
-      console.log(req.header("x-auth-token"));
+      // console.log(req.header("x-auth-token"));
 
       next();
     } else {
       new Error("User Not A Advisor");
     }
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(401).send("Access Denied!");
   }
 };

@@ -13,7 +13,7 @@ const Sidebar = () => {
         const user = await http.get("/advisor/" + userJwt._id);
         Setusername(user.data.username);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     };
     getUser();

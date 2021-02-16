@@ -42,7 +42,7 @@ function Profile() {
         const user = await http.get("/advisor/" + userJwt._id);
         setUser(user.data);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     };
     getUser();

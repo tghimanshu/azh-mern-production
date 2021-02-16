@@ -36,10 +36,10 @@ const Expense = ({ history }) => {
       try {
         const userJwt = getRole();
         const user = await http.get("/client/" + userJwt._id);
-        console.log(userJwt._id);
+        // console.log(userJwt._id);
         setExpenses(user.data.expenses);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     };
     getUser();
@@ -48,14 +48,14 @@ const Expense = ({ history }) => {
     e.preventDefault();
     try {
       const res = getRole();
-      console.log(res);
+      // console.log(res);
       const user = await http.get("/client/" + res._id);
       user.expenses = expenses;
       await http.put("/client/" + res._id, user);
       setalert(successAlert("Expeses Details Updated Successfully!", setalert));
       history.push("/client/goal");
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       //   return <Redirect to="/login" />;
     }
   };

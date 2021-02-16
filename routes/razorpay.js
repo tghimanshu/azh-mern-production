@@ -23,7 +23,7 @@ router.post("/", async (req, res) => {
     payment_capture,
   };
   const response = await razorpay.orders.create(options);
-  console.log(response);
+  // console.log(response);
   res.send({
     id: response.id,
     amount: response.amount,
@@ -34,18 +34,18 @@ router.post("/", async (req, res) => {
 router.post("/verification", (req, res) => {
   const secret = "12345678";
 
-  console.log(req.body);
+  // console.log(req.body);
 
   const shasum = crypto.createHmac("sha256", secret);
   shasum.update(JSON.stringify(req.body));
   const digest = shasum.digest("hex");
 
-  console.log(digest, req.headers["x-razorpay-signature"]);
+  // console.log(digest, req.headers["x-razorpay-signature"]);
 
   if (digest === req.headers["x-razorpay-signature"]) {
-    console.log("request is legit");
+    // console.log("request is legit");
     // process it
-    console.log("approved payment");
+    // console.log("approved payment");
   } else {
     // pass it
   }

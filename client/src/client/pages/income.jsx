@@ -24,10 +24,10 @@ const Income = ({ history }) => {
         if (jwt === null) new Error("No Token Found!");
         const userJwt = getRole();
         const user = await http.get("/client/" + userJwt._id);
-        console.log(userJwt._id);
+        // console.log(userJwt._id);
         setIncome(user.data.income);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     };
     getUser();
@@ -42,7 +42,7 @@ const Income = ({ history }) => {
       setalert(successAlert("Income Details Updated Successfully!", setalert));
       history.push("/client/expense");
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       //   return <Redirect to="/login" />;
     }
   };

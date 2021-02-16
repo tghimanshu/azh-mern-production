@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function AdvisorySolutions() {
   return (
     <section
@@ -17,7 +19,7 @@ function AdvisorySolutions() {
             <p className="mb-4 pb-4 mt-0 queryForm-subtitle">
               POST YOUR QUERY HERE
             </p>
-            <form className="postQuery" action="index.php" method="POST">
+            <form className="postQuery" action="/" method="POST">
               <input type="hidden" name="post_your_query" value="your_query" />
               <input
                 required
@@ -110,10 +112,7 @@ function AdvisorySolutions() {
           <div className="col-12 col-lg-6"></div>
           <div className="col-12 col-lg-6"></div>
           <div className="col-12 mb-4 mb-lg-0 col-lg-6">
-            <a
-              href="page.php?name=pms"
-              className="btn btn-lg btn-primary btn-block"
-            >
+            <Link to="/page/pms" className="btn btn-lg btn-primary btn-block">
               <div className="ab-fs-3">
                 PORTFOLIO
                 <br />
@@ -122,24 +121,21 @@ function AdvisorySolutions() {
                 SERVICES(PMS)
               </div>
               <i className="ri-arrow-right-s-line"></i>
-            </a>
+            </Link>
           </div>
           <div className="col-12 mb-4 mb-lg-0 col-lg-6">
-            <a
-              href="page.php?name=insurance"
+            <Link
+              to="/page/insurance"
               className="btn btn-lg btn-primary btn-block"
             >
               <div className="ab-fs-1">INSURANCE</div>
               <i className="ri-arrow-right-s-line"></i>
-            </a>
+            </Link>
           </div>
           <div className="col-12 col-lg-6"></div>
           <div className="col-12 col-lg-6"></div>
           <div className="col-12 mb-4 mb-lg-0 col-lg-6">
-            <a
-              href="page.php?name=aif"
-              className="btn btn-lg btn-primary btn-block"
-            >
+            <Link to="/page/aif" className="btn btn-lg btn-primary btn-block">
               <div className="ab-fs-3">
                 ALTERNATIVE
                 <br />
@@ -148,43 +144,40 @@ function AdvisorySolutions() {
                 FUNDS (AIF)
               </div>
               <i className="ri-arrow-right-s-line"></i>
-            </a>
+            </Link>
           </div>
           <div className="col-12 mb-4 mb-lg-0 col-lg-6">
-            <a
-              href="page.php?name=loans"
-              className="btn btn-lg btn-primary btn-block"
-            >
+            <Link to="/page/loans" className="btn btn-lg btn-primary btn-block">
               <div className="ab-fs-1">LOANS</div>
               <i className="ri-arrow-right-s-line"></i>
-            </a>
+            </Link>
           </div>
           <div className="col-12 col-lg-6"></div>
           <div className="col-12 col-lg-6"></div>
           <div className="col-12 mb-4 mb-lg-0 col-lg-6">
-            <a href="/" className="btn btn-lg btn-primary btn-block">
+            <Link to="/" className="btn btn-lg btn-primary btn-block">
               <div className="ab-fs-2">
                 INESTMENT IN <br />
                 START UPS &amp; SME
               </div>
               <i className="ri-arrow-right-s-line"></i>
-            </a>
+            </Link>
           </div>
           <div className="col-12 mb-4 mb-lg-0 col-lg-6">
-            <a href="/" className="btn btn-lg btn-primary btn-block">
+            <Link to="/" className="btn btn-lg btn-primary btn-block">
               <div className="ab-fs-2">
                 FINANCIAL
                 <br />
                 PLANNING
               </div>
               <i className="ri-arrow-right-s-line"></i>
-            </a>
+            </Link>
           </div>
           <div className="col-12 col-lg-6"></div>
           <div className="col-12 col-lg-6"></div>
           <div className="col-12 mb-4 mb-lg-0 col-lg-6">
-            <a
-              href="page.php?name=real-estate"
+            <Link
+              to="/page/real-estate"
               className="btn btn-lg btn-primary btn-block"
             >
               <div className="ab-fs-2">
@@ -193,7 +186,7 @@ function AdvisorySolutions() {
                 PLANNING
               </div>
               <i className="ri-arrow-right-s-line"></i>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

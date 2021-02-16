@@ -18,7 +18,6 @@ const Admin = ({ history }) => {
       const user = getRole();
       if (user.role !== "admin") history.push("/adminLogin");
     } catch (error) {
-      console.log(error);
       history.push("/adminLogin");
     }
   }, [history]);

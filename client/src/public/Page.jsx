@@ -7,19 +7,19 @@ function Page({ match }) {
   const [page, setPage] = useState({});
   const [loadingScreen, setLoadingScreen] = useState(true);
   useEffect(() => {
-    console.log("started req");
+    // console.log("started req");
     const getData = async () => {
-      console.log("getting data");
+      // console.log("getting data");
       const { data } = await http.get("/page/" + match.params.slug);
-      console.log("recieved data");
+      // console.log("recieved data");
       setPage(data);
-      console.log("set data");
+      // console.log("set data");
       setLoadingScreen(false);
-      console.log("showed data");
+      // console.log("showed data");
     };
     getData();
   }, [match.params.slug]);
-  console.log(process.env);
+  // console.log(process.env);
   return (
     <Fragment>
       {loadingScreen && <LoadingScreen />}

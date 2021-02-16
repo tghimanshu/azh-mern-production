@@ -36,7 +36,7 @@ const Step1 = (props) => {
         const user = await http.get("/client/" + userJwt._id);
         set_pers_details(user.data.personal_details);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     };
     getUser();
@@ -52,7 +52,7 @@ const Step1 = (props) => {
       await http.put("/client/" + res._id, user);
       props.nextStep();
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       //   return <Redirect to="/login" />;
     }
   };
@@ -489,10 +489,10 @@ const Step2 = (props) => {
         if (jwt === null) new Error("No Token Found!");
         const userJwt = jwtDecode(jwt);
         const user = await http.get("/client/" + userJwt._id);
-        console.log(userJwt._id);
+        // console.log(userJwt._id);
         setIncome(user.data.income);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     };
     getUser();
@@ -508,7 +508,7 @@ const Step2 = (props) => {
       await http.put("/client/" + res._id, user);
       props.nextStep();
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       //   return <Redirect to="/login" />;
     }
   };
@@ -685,10 +685,10 @@ const Step3 = (props) => {
         if (jwt === null) new Error("No Token Found!");
         const userJwt = jwtDecode(jwt);
         const user = await http.get("/client/" + userJwt._id);
-        console.log(userJwt._id);
+        // console.log(userJwt._id);
         setExpenses(user.data.expenses);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     };
     getUser();
@@ -699,13 +699,13 @@ const Step3 = (props) => {
       const jwt = localStorage.getItem("auth-token");
       if (jwt === null) new Error("No Token Found!");
       const res = jwtDecode(jwt);
-      console.log(res);
+      // console.log(res);
       const user = await http.get("/client/" + res._id);
       user.expenses = expenses;
       await http.put("/client/" + res._id, user);
       props.nextStep();
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       //   return <Redirect to="/login" />;
     }
   };
@@ -1076,10 +1076,10 @@ const Step4 = (props) => {
         if (jwt === null) new Error("No Token Found!");
         const userJwt = jwtDecode(jwt);
         const user = await http.get("/client/" + userJwt._id);
-        console.log(userJwt._id);
+        // console.log(userJwt._id);
         setGoals(user.data.goals);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     };
     getUser();
@@ -1090,13 +1090,13 @@ const Step4 = (props) => {
       const jwt = localStorage.getItem("auth-token");
       if (jwt === null) new Error("No Token Found!");
       const res = jwtDecode(jwt);
-      console.log(res);
+      // console.log(res);
       const user = await http.get("/client/" + res._id);
       user.goals = goals;
       await http.put("/client/" + res._id, user);
       props.nextStep();
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       //   return <Redirect to="/login" />;
     }
   };

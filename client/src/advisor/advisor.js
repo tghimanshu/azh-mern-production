@@ -17,7 +17,7 @@ const Advisor = ({ history }) => {
       const user = getRole();
       if (user.role !== "advisor") history.push("/login");
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       history.push("/login");
     }
   }, [history]);

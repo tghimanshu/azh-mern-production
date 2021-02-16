@@ -11,7 +11,7 @@ router.get("/:id", async (req, res) => {
     const booking = await Booking.findById(req.params.id);
     res.send(booking);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 });
 
@@ -23,7 +23,7 @@ router.get("/client/:id", async (req, res) => {
     );
     res.send(bookings);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 });
 
@@ -64,7 +64,7 @@ router.post("/", async (req, res) => {
     const result = await booking.save();
     res.send(result);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(400).send(error);
   }
 });
@@ -97,7 +97,7 @@ router.get("/:status/:id", async (req, res) => {
         res.send("Something went wrong");
     }
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 });
 
@@ -109,7 +109,7 @@ router.put("/:id", async (req, res) => {
     booking.save();
     res.send("Recommendation Saved");
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 });
 
@@ -122,7 +122,7 @@ router.put("/payment/:id", async (req, res) => {
     booking.save();
     res.send("Payment Made");
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 });
 

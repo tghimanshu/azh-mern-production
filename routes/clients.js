@@ -168,16 +168,16 @@ router.post("/", async (req, res) => {
 
     transporter.sendMail(mailData, function (err, info) {
       if (err) {
-        console.log(err);
+        // console.log(err);
       }
       if (info) {
-        console.log(info);
+        // console.log(info);
       }
     });
 
     res.send(result);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 });
 
@@ -203,7 +203,7 @@ router.post("/bulk", async (req, res) => {
 
       doneIds.push(allClients[i].id);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       res.send("Witherror: " + doneIds.toString());
     }
   }
@@ -273,7 +273,7 @@ router.post("/reset-password", async (req, res) => {
     const result = await client.save();
     if (result) res.send(result);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 });
 

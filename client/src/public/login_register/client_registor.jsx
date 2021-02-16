@@ -52,7 +52,7 @@ export const ClientRegistor = ({ history }) => {
         behavior: "smooth",
       });
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       if (typeof error.response.data === "string") {
         seterror(dangerAlert(error.response.data));
       } else {

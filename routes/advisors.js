@@ -10,21 +10,21 @@ const { advisorForgotPassword, advisorRegistration } = require("../mail");
 const advisorAuth = (req, res, next) => {
   if (!req.header("x-auth-token")) return res.status(401).send("Access Denied");
   try {
-    console.log("object");
+    // console.log("object");
     const decoded = jwt.verify(
       req.header("x-auth-token"),
       config.get("jwt_secret")
     );
-    console.log(decoded);
+    // console.log(decoded);
     if (decoded.role === "advisor") {
-      console.log(req.header("x-auth-token"));
+      // console.log(req.header("x-auth-token"));
 
       next();
     } else {
       new Error("User Not A Advisor");
     }
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(401).send("Access Denied!");
   }
 };
@@ -147,7 +147,7 @@ router.post("/", async (req, res) => {
 
     res.send(result);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(400).send(error);
   }
 });
@@ -211,17 +211,17 @@ router.post("/reset-password", async (req, res) => {
     const result = await advisor.save();
     if (result) res.send(result);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 });
 
 router.get("/client/:id", advisorAuth, async (req, res) => {
   try {
     const client = await Client.findById(req.params.id);
-    console.log(client);
+    // console.log(client);
     res.send(client);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 });
 

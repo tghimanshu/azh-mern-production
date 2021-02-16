@@ -16,7 +16,7 @@ const ClientProfile = ({ match, history }) => {
         const { data } = await http.get("/advisor/client/" + match.params.id);
         setClient(data);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     };
     getUserData();
@@ -28,7 +28,7 @@ const ClientProfile = ({ match, history }) => {
         const { data } = await http.get("/booking/" + match.params.booking_id);
         setRecommendation(data.recommendation);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     };
     getRec();
@@ -51,7 +51,7 @@ const ClientProfile = ({ match, history }) => {
       });
       setAlert(successAlert("Recommendation Saved!", setAlert));
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -62,7 +62,7 @@ const ClientProfile = ({ match, history }) => {
       setAlert(successAlert("Recommendation Saved and Approved!", setAlert));
       history.push("/advisor/booking/");
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 

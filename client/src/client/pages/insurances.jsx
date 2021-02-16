@@ -51,7 +51,7 @@ const Insurances = ({ history }) => {
         setInsurances(user.data.insurances);
         setHaveInsurances(user.data.haveInsurances);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     };
     getUser();
@@ -67,7 +67,7 @@ const Insurances = ({ history }) => {
       setalert(successAlert("Investments Added Successfully!", setalert));
       history.push("/client/income");
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
   return (

@@ -22,7 +22,7 @@ const Client = ({ history }) => {
       const user = getRole();
       if (user.role !== "client") history.push("/login");
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       history.push("/login");
     }
   }, [history]);

@@ -24,19 +24,19 @@ const Bookings = () => {
       temp[inx] = data;
       setAdvisor(temp);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
   const disApproveBooking = async (advisor) => {
     try {
       const { data } = await http.get("/booking/unapprove/" + advisor._id);
-      console.log(data);
+      // console.log(data);
       const inx = bookings.indexOf(advisor);
       const temp = [...bookings];
       temp[inx] = data;
       setAdvisor(temp);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 

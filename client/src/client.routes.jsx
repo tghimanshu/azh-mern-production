@@ -20,9 +20,7 @@ const ClientRoutes = ({ history }) => {
   useEffect(() => {
     try {
       const user = getRole();
-      console.log(user);
     } catch (error) {
-      console.log(error);
       history.push("/login");
     }
   }, [history]);

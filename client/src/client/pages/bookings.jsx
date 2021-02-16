@@ -23,7 +23,7 @@ const Bookings = () => {
     const getClients = async () => {
       const userJwt = getRole();
       const details = await http.get("/booking/client/" + userJwt._id);
-      console.log(details.data);
+      // console.log(details.data);
       setBookings(details.data);
     };
     getClients();
@@ -59,7 +59,7 @@ const Bookings = () => {
         try {
           await http.put("/booking/payment/" + b_id, { order_id: data.id });
         } catch (err) {
-          console.log(err);
+          // console.log(err);
         }
         // alert(response.razorpay_payment_id);
         // alert(response.razorpay_order_id);

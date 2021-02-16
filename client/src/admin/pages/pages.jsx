@@ -11,7 +11,7 @@ const Pages = () => {
     };
     getClients();
   }, []);
-  console.log(clients);
+  // console.log(clients);
   return (
     <table className="table table-striped">
       <thead>
