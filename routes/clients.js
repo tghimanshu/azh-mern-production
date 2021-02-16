@@ -224,6 +224,7 @@ router.post("/login", async (req, res) => {
 
   const pass = await bcrypt.compare(req.body.password, md5(client.password));
   const pass2 = await bcrypt.compare(req.body.password, client.password);
+  console.log(pass, pass2);
   if ((!pass2 || !pass) === false)
     return res.status(400).send("Invalid Username Or Password!");
 
