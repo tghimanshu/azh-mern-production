@@ -1,3 +1,4 @@
+const https = require("https");
 const express = require("express");
 const path = require("path");
 const admin = require("./routes/admin");
@@ -8,7 +9,17 @@ const booking = require("./routes/bookings");
 const elearning = require("./routes/elearning");
 const payment = require("./routes/razorpay");
 const cors = require("cors");
+const fs = require("fs");
 const { config } = require("exceljs");
+if (process.env.NODE_ENV ==== "production") {
+  const privateKey = fs.readFileSync("/etc/nginx/ssl/privateKey.key", "utf8"); // key
+  const certificate = fs.readFileSync("/etc/nginx/ssl/crts/sslCert.crt", "utf8"); // certificate
+  // const ca = fs.readFileSync('/etc/letsencrypt/live/.com/chain.pem', 'utf8'); // chain
+  const credentials = {
+   key: privateKey,
+   cert: certificate
+};
+}
 
 const app = express();
 
@@ -38,4 +49,13 @@ app.get("/", (req, res) => {
 
 const port = 5000;
 //const port = process.env.PORT || 5000;
-app.listen(port, () => console.log(`Server Started at port ${port}....`));
+if (process.env.NODE_ENV === 'production') {
+  
+  const httpsServer = https.createServer(credentials, app);
+  
+  httpsServer.listen('8443', () => {
+      console.log('listening on https://advisorzaroorihai.com:8443');
+  });
+} else {
+  app.listen(port, () => console.log(`Server Started at port ${port}....`));
+}
