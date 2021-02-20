@@ -10,6 +10,7 @@ import Clients from "./pages/clients";
 import Advisors from "./pages/advisors";
 import Pages from "./pages/pages";
 import Bookings from "./pages/bookings";
+import ClientProfile from "./pages/clientProfile";
 import { getRole } from "../utils/jwt";
 
 const Admin = ({ history }) => {
@@ -31,6 +32,7 @@ const Admin = ({ history }) => {
           <Switch>
             {/* <Route exact path="/admin/" component={Profile} /> */}
             <Route exact path="/admin/advisors" component={Advisors} />
+            <Route exact path="/admin/client/:id" component={ClientProfile} />
             <Route exact path="/admin/clients" component={Clients} />
             <Route exact path="/admin/pages" component={Pages} />
             <Route exact path="/admin/bookings" component={Bookings} />

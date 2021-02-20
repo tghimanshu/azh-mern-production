@@ -69,7 +69,7 @@ const Expense = ({ history }) => {
           </Card.Title>
         </Card.Header>
         {alert}
-        <div className="panel-body row p-3">
+        <form className="panel-body row p-3">
           <h5 className="font-italic col-12">Monthly Cyclic Expenses</h5>
           <div className="form-group col-12 col-lg-6">
             <label className="exp-groceries">Groceries</label>
@@ -393,7 +393,7 @@ const Expense = ({ history }) => {
               Save &amp; Next
             </button>
           </div>
-        </div>
+        </form>
       </Card>
     </div>
   );

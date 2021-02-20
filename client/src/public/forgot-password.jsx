@@ -7,7 +7,7 @@ const ForgotPassword = ({ match }) => {
   const [email, setEmail] = useState("");
   const handleClick = async (e) => {
     // e.preventDefault();
-    const result = await http.post(`/${match.params.role}/forgot-password`, {
+    await http.post(`/${match.params.role}/forgot-password`, {
       email: email,
     });
     // console.log(result);
@@ -55,7 +55,7 @@ const ResetPssword = ({ match, history }) => {
     const user = jwtDecode(match.params.token);
     // console.log(user);
     if (pass === cpass && pass.length > 6 && match.params.role === "client") {
-      const result = await http.post(`/${match.params.role}/reset-password`, {
+      await http.post(`/${match.params.role}/reset-password`, {
         email: user.email,
         password: pass,
         token: match.params.token,

@@ -41,7 +41,7 @@ export const AdvisorRegistor = ({ history }) => {
       return seterror("Captcha Required!");
     }
     try {
-      const result = await http.post("/advisor/", {
+      await http.post("/advisor/", {
         username: username,
         name: name,
         email: email,

@@ -102,4 +102,13 @@ router.put("/advisors/approve/:id", adminAuth, async (req, res) => {
   }
 });
 
+router.get("/client/:id", adminAuth, async (req, res) => {
+  try {
+    const client = await Client.findById(req.params.id);
+    res.send(client);
+  } catch (error) {
+    // console.log(error);
+  }
+});
+
 module.exports = router;

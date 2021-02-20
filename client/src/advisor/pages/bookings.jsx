@@ -16,29 +16,29 @@ const Bookings = () => {
     getAdvisors();
   }, []);
 
-  const approveBooking = async (advisor) => {
-    try {
-      const { data } = await http.get("/booking/approve/" + advisor._id);
-      const inx = bookings.indexOf(advisor);
-      const temp = [...bookings];
-      temp[inx] = data;
-      setAdvisor(temp);
-    } catch (error) {
-      // console.log(error);
-    }
-  };
-  const disApproveBooking = async (advisor) => {
-    try {
-      const { data } = await http.get("/booking/unapprove/" + advisor._id);
-      // console.log(data);
-      const inx = bookings.indexOf(advisor);
-      const temp = [...bookings];
-      temp[inx] = data;
-      setAdvisor(temp);
-    } catch (error) {
-      // console.log(error);
-    }
-  };
+  // const approveBooking = async (advisor) => {
+  //   try {
+  //     const { data } = await http.get("/booking/approve/" + advisor._id);
+  //     const inx = bookings.indexOf(advisor);
+  //     const temp = [...bookings];
+  //     temp[inx] = data;
+  //     setAdvisor(temp);
+  //   } catch (error) {
+  //     // console.log(error);
+  //   }
+  // };
+  // const disApproveBooking = async (advisor) => {
+  //   try {
+  //     const { data } = await http.get("/booking/unapprove/" + advisor._id);
+  //     // console.log(data);
+  //     const inx = bookings.indexOf(advisor);
+  //     const temp = [...bookings];
+  //     temp[inx] = data;
+  //     setAdvisor(temp);
+  //   } catch (error) {
+  //     // console.log(error);
+  //   }
+  // };
 
   return (
     <table className="table table-striped">
@@ -68,49 +68,6 @@ const Bookings = () => {
               <td>{advisor.client_id.name}</td>
               <td>{date.toString()}</td>
               <td>{advisor.remarks}</td>
-              {advisor.isApproved === "pending" && (
-                <td className="d-flex justify-content-around">
-                  <h3
-                    onClick={(e) => approveBooking(advisor)}
-                    className="badge badge-success"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="feather feather-check align-middle"
-                    >
-                      <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                  </h3>
-                  <h3
-                    onClick={(e) => disApproveBooking(advisor)}
-                    className="badge badge-danger"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="feather feather-x align-middle"
-                    >
-                      <line x1="18" y1="6" x2="6" y2="18"></line>
-                      <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                  </h3>
-                </td>
-              )}
               {advisor.isApproved === "approved" && (
                 <td>
                   <div className="badge badge-success">Approved</div>

@@ -66,7 +66,7 @@ const Goal = ({ history }) => {
           <Card.Title className="font-weight-bold">Goals</Card.Title>
         </Card.Header>
         {alert}
-        <div className="panel-body p-3">
+        <form className="panel-body p-3">
           <Accordion defaultActiveKey="0">
             {goals.map((goal, i) => {
               return (
@@ -182,7 +182,7 @@ const Goal = ({ history }) => {
               </div>
             </Col>
           </div>
-        </div>
+        </form>
       </Card>
     </div>
   );

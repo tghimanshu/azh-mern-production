@@ -1,3 +1,4 @@
+require("dotenv").config();
 const https = require("https");
 const express = require("express");
 const path = require("path");
@@ -11,6 +12,7 @@ const payment = require("./routes/razorpay");
 const cors = require("cors");
 const fs = require("fs");
 const { config } = require("exceljs");
+
 
 const app = express();
 

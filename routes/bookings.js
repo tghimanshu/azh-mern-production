@@ -39,8 +39,8 @@ router.get("/advisor/:id", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const result = await Booking.find()
-      .populate("client_id", "name")
-      .populate("advisor_id", "name");
+      .populate("advisor_id", "name")
+      .populate("client_id", "name");
     res.send(result);
   } catch (error) {}
 });

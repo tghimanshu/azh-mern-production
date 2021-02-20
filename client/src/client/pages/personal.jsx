@@ -8,7 +8,7 @@ import {
   Form,
   Link as button,
 } from "react-bootstrap";
-import { dangerAlert, successAlert } from "../../utils/alerts";
+import { successAlert } from "../../utils/alerts";
 import StepsNav from "./steps_nav";
 
 const Personal = ({ history }) => {

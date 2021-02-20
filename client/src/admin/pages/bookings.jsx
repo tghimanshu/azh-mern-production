@@ -6,8 +6,7 @@ const Bookings = () => {
   useEffect(() => {
     const getClients = async () => {
       const details = await http.get("/booking/");
-      // console.log(details.data);
-      setBookings(details.data);
+      setBookings(details.data.filter((booking) => booking.client_id !== null));
     };
     getClients();
   }, []);

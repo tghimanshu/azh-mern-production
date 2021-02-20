@@ -92,7 +92,7 @@ const Insurances = ({ history }) => {
             </label>
           </div>
           {haveInsurances && (
-            <>
+            <form>
               <Accordion defaultActiveKey="0">
                 {insurances.map((goal, i) => {
                   return (
@@ -275,7 +275,7 @@ const Insurances = ({ history }) => {
                   </button>
                 </Col>
               </div>
-            </>
+            </form>
           )}
           <div className="d-flex justify-content-end my-3">
             <Link
