@@ -56,7 +56,7 @@ const Income = ({ history }) => {
           </Card.Title>
         </Card.Header>
         {alert}
-        <div className="panel-body row p-3">
+        <form className="panel-body row p-3">
           <div className="form-group col-12 col-lg-6">
             <label className="net-sal-self">Net Annual Salary - Self</label>
             <Form.Control
@@ -68,7 +68,7 @@ const Income = ({ history }) => {
               }}
               maxLength="100"
               type="number"
-              required="required"
+              required={true}
               className="form-control"
               placeholder="Enter Salary"
               name="net-sal-self"
@@ -86,7 +86,7 @@ const Income = ({ history }) => {
               }}
               maxLength="100"
               type="number"
-              required="required"
+              required={true}
               className="form-control"
               placeholder="Enter Salary"
               name="net-sal-spouse"
@@ -125,7 +125,7 @@ const Income = ({ history }) => {
               }}
               maxLength="100"
               type="number"
-              required="required"
+              required={true}
               className="form-control"
               placeholder="Enter Salary"
               name="net-rental"
@@ -162,7 +162,6 @@ const Income = ({ history }) => {
               }}
               maxLength="100"
               type="text"
-              required="required"
               className="form-control"
               placeholder="Enter Other Sources of Income Name and Amount"
               name="net-sal-others"
@@ -186,7 +185,7 @@ const Income = ({ history }) => {
               Save &amp; Next
             </button>
           </div>
-        </div>
+        </form>
       </Card>
     </div>
   );
