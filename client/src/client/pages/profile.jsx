@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
-import jwtDecode from "jwt-decode";
+import { Link } from "react-router-dom";
+// import jwtDecode from "jwt-decode";
 import http from "../../utils/http";
 import { getRole } from "../../utils/jwt";
 
 // react-bootstrap components
 import {
-  // Badge,
   Button,
   Card,
   Form,
-  // Navbar,
-  // Nav,
   Container,
   Row,
   Col,
@@ -75,20 +73,20 @@ function Profile() {
     setalert(successAlert("Profile Updated Successfully!", setalert));
   };
 
-  const generateSheet = async (e) => {
-    try {
-      const jwt = localStorage.getItem("auth-token");
-      if (jwt === null) new Error("No Token Found!");
-      const userJwt = jwtDecode(jwt);
-      await http.get("/client/sheet/" + userJwt._id);
-      setalert(
-        successAlert(
-          "Financial Planning Sheet Generated Successfully!",
-          setalert
-        )
-      );
-    } catch (error) {}
-  };
+  // const generateSheet = async (e) => {
+  //   try {
+  //     const jwt = localStorage.getItem("auth-token");
+  //     if (jwt === null) new Error("No Token Found!");
+  //     const userJwt = jwtDecode(jwt);
+  //     await http.get("/client/sheet/" + userJwt._id);
+  //     setalert(
+  //       successAlert(
+  //         "Financial Planning Sheet Generated Successfully!",
+  //         setalert
+  //       )
+  //     );
+  //   } catch (error) {}
+  // };
   return (
     <>
       <Container fluid>
@@ -275,14 +273,17 @@ function Profile() {
               </Card.Body>
               <hr></hr>
               <div className="button-container mb-3 mr-auto ml-auto">
-                <Button
+                {/* <Button
                   className="btn-success"
                   href="#pablo"
                   onClick={generateSheet}
                   variant="link"
                 >
                   Generate Sheet
-                </Button>
+                </Button> */}
+                <Link className="btn btn-success" to="/client/sheet">
+                  View Sheet
+                </Link>
               </div>
             </Card>
           </Col>

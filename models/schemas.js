@@ -42,7 +42,7 @@ const advisorSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  summary: String,
+  summary: { type: String, default: "" },
   experience: {
     type: Number,
     required: true,

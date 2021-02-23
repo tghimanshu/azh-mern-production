@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import jwtDecode from "jwt-decode";
+import ReactQuill from "react-quill";
 import http from "../../utils/http";
+import { dangerAlert, successAlert } from "../../utils/alerts";
+import "react-quill/dist/quill.snow.css";
 
 // react-bootstrap components
 import {
@@ -14,11 +17,10 @@ import {
   Row,
   Col,
 } from "react-bootstrap";
-import { dangerAlert, successAlert } from "../../utils/alerts";
-import config from "../../utils/config";
 
 function Profile() {
   const [alert, setalert] = useState("");
+  const [summary, setSummary] = useState("");
   const [user, setUser] = useState({
     isApproved: true,
     _id: "",
@@ -31,6 +33,7 @@ function Profile() {
     expertise: "",
     location: "",
     profile_pic: "",
+    summary: "",
   });
 
   useEffect(() => {
@@ -41,6 +44,7 @@ function Profile() {
         const userJwt = jwtDecode(jwt);
         const user = await http.get("/advisor/" + userJwt._id);
         setUser(user.data);
+        setSummary(user.data.summary ? user.data.summary : "");
       } catch (error) {
         // console.log(error);
       }
@@ -50,7 +54,7 @@ function Profile() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await http.put("/advisor/" + user._id, user);
+    await http.put("/advisor/" + user._id, { ...user, summary });
     setalert(successAlert("Profile Updated Successfully!", setalert));
   };
 
@@ -155,7 +159,7 @@ function Profile() {
                             setUser(demo);
                           }}
                           placeholder="SEBI Registration Number"
-                          type="number"
+                          type="text"
                         ></Form.Control>
                       </Form.Group>
                     </Col>
@@ -191,6 +195,12 @@ function Profile() {
                         ></Form.Control>
                       </Form.Group>
                     </Col>
+                    <Col md="12">
+                      <ReactQuill
+                        value={summary}
+                        onChange={(value) => setSummary(value)}
+                      />
+                    </Col>
                   </Row>
 
                   <Button
@@ -209,12 +219,6 @@ function Profile() {
             <Card className="card-user">
               <Card.Body>
                 <div className="text-center">
-                  <img
-                    className="img-fluid  mb-2"
-                    style={{ width: "120px", height: "120px" }}
-                    src={config.apiEndPoint + user.profile_pic}
-                    alt=""
-                  />
                   <a href="#pablo" onClick={(e) => e.preventDefault()}>
                     <h5 className="title text-dark font-weight-bold">
                       {user.name}

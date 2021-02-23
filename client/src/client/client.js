@@ -15,6 +15,7 @@ import Bookings from "./pages/bookings";
 import "./dashboard.script";
 import "./dashboard.css";
 import Insurances from "./pages/insurances";
+import Sheet from "./pages/sheet";
 
 const Client = ({ history }) => {
   useEffect(() => {
@@ -34,6 +35,7 @@ const Client = ({ history }) => {
         <Navbar />
         <main className="content">
           <Switch>
+            <Route path="/client/sheet" component={Sheet} />
             <Route path="/client/personal" component={Personal} />
             <Route path="/client/investment" component={Investment} />
             <Route path="/client/insurance" component={Insurances} />

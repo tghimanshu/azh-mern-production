@@ -1,38 +1,23 @@
 import React, { useEffect, useState } from "react";
 import http from "../../utils/http";
+import { getRole } from "../../utils/jwt";
 import { Col, Container, Row, Table } from "react-bootstrap";
-import ReactQuill from "react-quill";
-import { successAlert } from "../../utils/alerts";
-import "react-quill/dist/quill.snow.css";
 
-const ClientProfile = ({ match, history }) => {
-  const [alert, setAlert] = useState("");
-  const [recommendation, setRecommendation] = useState("");
-  const [showRecommendation, setShowRecommendation] = useState(false);
+const Sheet = ({ match, history }) => {
   const [client, setClient] = useState({});
+
   useEffect(() => {
-    const getUserData = async () => {
+    const getCLient = async () => {
       try {
-        const { data } = await http.get("/advisor/client/" + match.params.id);
+        const userJwt = getRole();
+        const { data } = await http.get("/client/" + userJwt._id);
         setClient(data);
       } catch (error) {
         // console.log(error);
       }
     };
-    getUserData();
-  }, [match]);
-
-  useEffect(() => {
-    const getRec = async () => {
-      try {
-        const { data } = await http.get("/booking/" + match.params.booking_id);
-        setRecommendation(data.recommendation);
-      } catch (error) {
-        // console.log(error);
-      }
-    };
-    getRec();
-  }, [match]);
+    getCLient();
+  }, []);
 
   function sum(obj) {
     var sum = 0;
@@ -43,28 +28,6 @@ const ClientProfile = ({ match, history }) => {
     }
     return sum;
   }
-
-  const handleSaveRec = async () => {
-    try {
-      await http.put("/booking/" + match.params.booking_id, {
-        recommendation: recommendation,
-      });
-      setAlert(successAlert("Recommendation Saved!", setAlert));
-    } catch (error) {
-      // console.log(error);
-    }
-  };
-
-  const handleApprove = async () => {
-    handleSaveRec();
-    try {
-      await http.get("/booking/approve/" + match.params.booking_id);
-      setAlert(successAlert("Recommendation Saved and Approved!", setAlert));
-      history.push("/advisor/booking/");
-    } catch (error) {
-      // console.log(error);
-    }
-  };
 
   const {
     personal_details: pd,
@@ -80,31 +43,6 @@ const ClientProfile = ({ match, history }) => {
     return (
       <Container>
         <Row>
-          <Col lg={12}>
-            {alert}
-            <button
-              className="btn btn-success pull-right"
-              onClick={() => setShowRecommendation(!showRecommendation)}
-            >
-              Write Recommendation
-            </button>
-            {showRecommendation && (
-              <div className="mt-3">
-                <ReactQuill
-                  value={recommendation}
-                  onChange={(value) => setRecommendation(value)}
-                />
-                <div className="d-flex justify-content-between mt-3">
-                  <button className="btn btn-info" onClick={handleSaveRec}>
-                    Save
-                  </button>
-                  <button className="btn btn-success" onClick={handleApprove}>
-                    Save &amp; Submit
-                  </button>
-                </div>
-              </div>
-            )}
-          </Col>
           <Col lg={12}>
             <div className="table-responsive">
               <h3>Personal Details</h3>
@@ -286,4 +224,4 @@ const ClientProfile = ({ match, history }) => {
   }
 };
 
-export default ClientProfile;
+export default Sheet;

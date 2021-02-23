@@ -72,8 +72,8 @@ export const ShareModal = (props) => {
         <div className="d-flex justify-content-around">
           <FacebookShareButton
             url="https://advisorzaroorihai.com"
-            quote="pagal"
-            hashtag="#programing joke"
+            quote="All your Advisory needs are few clicks away!"
+            hashtag="#advisorzaroorihai #advisory"
           >
             <button className="btn mb-1 btn-facebook">
               <i className="align-middle fab fa-facebook"></i> Facebook
@@ -81,9 +81,9 @@ export const ShareModal = (props) => {
           </FacebookShareButton>
 
           <TwitterShareButton
-            url="someurl"
-            quote="pagal"
-            hashtag="#programing joke"
+            url="https://advisorzaroorihai.com"
+            quote="All your Advisory needs are few clicks away!"
+            hashtag="#advisorzaroorihai #advisory"
           >
             <button className="btn mb-1 btn-twitter">
               <i className="align-middle fab fa-twitter"></i> Twitter
@@ -91,9 +91,9 @@ export const ShareModal = (props) => {
           </TwitterShareButton>
 
           <MailruShareButton
-            url="someurl"
-            quote="pagal"
-            hashtag="#programing joke"
+            url="https://advisorzaroorihai.com"
+            quote="All your Advisory needs are few clicks away!"
+            hashtag="#advisorzaroorihai #advisory"
           >
             <button className="btn mb-1 btn-google">
               <i className="align-middle fab fa-google"></i> Google

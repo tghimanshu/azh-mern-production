@@ -1,4 +1,7 @@
+client/.eslintcache
 azh-client/node_modules
 node_modules
 client/.env
+uploads/
+ssl
 .env
