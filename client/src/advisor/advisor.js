@@ -34,8 +34,8 @@ const Advisor = ({ history }) => {
               path="/advisor/:booking_id/:id"
               component={ClientProfile}
             />
-            <Route exact path="/advisor" component={Profile} />
             <Route exact path="/advisor/booking" component={Bookings} />
+            <Route exact path="/advisor" component={Profile} />
           </Switch>
         </main>
         <Footer />

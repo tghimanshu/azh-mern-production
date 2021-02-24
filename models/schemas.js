@@ -43,6 +43,7 @@ const advisorSchema = new mongoose.Schema({
     required: true,
   },
   summary: { type: String, default: "" },
+  blogs: Array,
   experience: {
     type: Number,
     required: true,

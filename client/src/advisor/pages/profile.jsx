@@ -19,6 +19,7 @@ import {
 } from "react-bootstrap";
 
 function Profile() {
+  const [haveBlogs, setHaveBlogs] = useState(false);
   const [alert, setalert] = useState("");
   const [summary, setSummary] = useState("");
   const [user, setUser] = useState({
@@ -35,6 +36,17 @@ function Profile() {
     profile_pic: "",
     summary: "",
   });
+  const [blogs, setBlogs] = useState([
+    {
+      url: "",
+      preview: {
+        title: "",
+        description: "",
+        image: "",
+        havePreview: false,
+      },
+    },
+  ]);
 
   useEffect(() => {
     const getUser = async () => {
@@ -45,6 +57,21 @@ function Profile() {
         const user = await http.get("/advisor/" + userJwt._id);
         setUser(user.data);
         setSummary(user.data.summary ? user.data.summary : "");
+        setBlogs(
+          user.data.blogs
+            ? user.data.blogs
+            : [
+                {
+                  url: "",
+                  preview: {
+                    title: "",
+                    description: "",
+                    image: "",
+                    havePreview: false,
+                  },
+                },
+              ]
+        );
       } catch (error) {
         // console.log(error);
       }
@@ -52,9 +79,35 @@ function Profile() {
     getUser();
   }, []);
 
+  const handleBlogChange = (e, i) => {
+    const demo = [...blogs];
+    demo[i].url = e.target.value;
+    setBlogs(demo);
+  };
+  const getBlogData = async (e, i) => {
+    try {
+      const { data } = await http.post("/helpers/getblog", {
+        url: e.target.value,
+      });
+      const demo = [...blogs];
+      demo[i].preview = { ...data, havePreview: true };
+      setBlogs(demo);
+    } catch (err) {
+      const demo = [...blogs];
+      demo[i].preview = {
+        title: "",
+        description: "",
+        image: "",
+        havePreview: false,
+      };
+      setBlogs(demo);
+      console.clear();
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await http.put("/advisor/" + user._id, { ...user, summary });
+    await http.put("/advisor/" + user._id, { ...user, summary, blogs });
     setalert(successAlert("Profile Updated Successfully!", setalert));
   };
 
@@ -201,12 +254,108 @@ function Profile() {
                         onChange={(value) => setSummary(value)}
                       />
                     </Col>
+                    <Col md="12" className="pt-2 pb-3">
+                      <Button
+                        variant="info"
+                        onClick={() => setHaveBlogs(!haveBlogs)}
+                      >
+                        Have Blogs?
+                      </Button>
+                      {haveBlogs && (
+                        <div className="pb-4 pt-4">
+                          <div className="myBlogs">
+                            {blogs.map((blog, i) => (
+                              <>
+                                <div className="d-flex my-2">
+                                  <Form.Control
+                                    placeholder="Enter Url"
+                                    value={blog.url}
+                                    onChange={(e) => handleBlogChange(e, i)}
+                                    onBlur={(e) => getBlogData(e, i)}
+                                  ></Form.Control>
+                                  <Button variant="danger">X</Button>
+                                </div>
+                                {blog.preview.havePreview && (
+                                  <Row
+                                    style={{
+                                      margin: 0,
+                                      padding: "10px",
+                                      background: "rgba(245,245,245)",
+                                    }}
+                                  >
+                                    <Col md="2">
+                                      <img
+                                        src={blog.preview.image}
+                                        alt={blog.preview.title}
+                                        style={{
+                                          width: "100%",
+                                          height: "auto",
+                                        }}
+                                      />
+                                    </Col>
+                                    <Col
+                                      md="10"
+                                      style={{
+                                        margin: 0,
+                                        padding: 0,
+                                        display: "flex",
+                                        position: "relative",
+                                        flexDirection: "column",
+                                        justifyContent: "space-evenly",
+                                      }}
+                                    >
+                                      <h4
+                                        style={{
+                                          textOverflow: "ellipsis",
+                                          whiteSpace: "nowrap",
+                                          overflow: "hidden",
+                                          margin: 0,
+                                        }}
+                                      >
+                                        {blog.preview.title}
+                                      </h4>
+                                      <p
+                                        style={{
+                                          textOverflow: "ellipsis",
+                                          whiteSpace: "nowrap",
+                                          overflow: "hidden",
+                                          margin: 0,
+                                        }}
+                                      >
+                                        {blog.preview.description}
+                                      </p>
+                                    </Col>
+                                  </Row>
+                                )}
+                              </>
+                            ))}
+                          </div>
+                          <Button
+                            variant="primary"
+                            onClick={() => {
+                              const demo = [...blogs];
+                              demo.push({
+                                url: "",
+                                preview: {
+                                  title: "",
+                                  description: "",
+                                  image: "",
+                                },
+                              });
+                              setBlogs(demo);
+                            }}
+                          >
+                            Add New
+                          </Button>
+                        </div>
+                      )}
+                    </Col>
                   </Row>
 
                   <Button
-                    className="btn-fill pull-right"
+                    className="btn-fill d-flex justify-content-end"
                     type="submit"
-                    variant="info"
+                    variant="success"
                   >
                     Update Profile
                   </Button>
