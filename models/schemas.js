@@ -44,6 +44,7 @@ const advisorSchema = new mongoose.Schema({
   },
   summary: { type: String, default: "" },
   blogs: Array,
+  socials: Array,
   experience: {
     type: Number,
     required: true,
