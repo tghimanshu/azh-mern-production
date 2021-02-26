@@ -135,6 +135,18 @@ function Profile() {
     }
   };
 
+  const handleBlogRemove = (index) => {
+    const demo = [...blogs];
+    demo.splice(index, 1);
+    setBlogs(demo);
+  };
+
+  const handleSocialRemove = (index) => {
+    const demo = [...socials];
+    demo.splice(index, 1);
+    setSocials(demo);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     await http.put("/advisor/" + user._id, {
@@ -320,7 +332,12 @@ function Profile() {
                                 value={social.url}
                                 onChange={(e) => handleSocialChange(e, i)}
                               ></Form.Control>
-                              <Button variant="danger">X</Button>
+                              <Button
+                                variant="danger"
+                                onClick={() => handleSocialRemove(i)}
+                              >
+                                X
+                              </Button>
                             </div>
                           ))}
                         </div>
@@ -360,7 +377,12 @@ function Profile() {
                                   onChange={(e) => handleBlogChange(e, i)}
                                   onBlur={(e) => getBlogData(e, i)}
                                 ></Form.Control>
-                                <Button variant="danger">X</Button>
+                                <Button
+                                  variant="danger"
+                                  onClick={() => handleBlogRemove(i)}
+                                >
+                                  X
+                                </Button>
                               </div>
                               {blog.preview.havePreview && (
                                 <Row
