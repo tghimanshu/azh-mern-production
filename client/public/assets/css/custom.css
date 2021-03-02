@@ -27,11 +27,6 @@ p {
                 Globals
 *************************************/
 
-* {
-  font-family: "Poppins", sans-serif;
-  font-family: "Roboto", sans-serif;
-}
-
 section h1 {
   color: black;
   /* font-size: 54px; */
@@ -52,13 +47,18 @@ section h1 hr {
                 Hero Section
 *************************************/
 
+.hero-title-blue {
+  color: #2b32b2;
+}
+
 .enterLocation {
   border-radius: 20px;
-  background: linear-gradient(#f8a51e, #f8a51e);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+  background-color: #fcfcfc;
+  box-shadow: -2px -2px 12px rgba(252, 252, 252, 0.5),
+    2px 2px 12px rgba(196, 196, 196, 0.5);
 }
 .enterLocation select {
-  font-size: 1.11rem;
+  font-size: 0.8rem;
   font-weight: bold;
   font-style: italic;
   border: none;
@@ -71,7 +71,7 @@ section h1 hr {
   box-shadow: none;
 }
 .enterLocation button {
-  font-size: 1.11rem;
+  font-size: 0.8rem;
   font-weight: bold;
   position: relative;
 }
@@ -85,190 +85,60 @@ section h1 hr {
   bottom: auto;
   left: -2px;
 }
-
-.hero-headings-inner {
-  font-family: Poppins;
-  font-weight: 600;
-  text-align: center;
-  /* font-weight: bolder; */
-  /* text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
-}
-
-.hero-headings-inner:nth-child(even) {
-  font-weight: 900;
-}
-
-.hero-headings-inner:nth-child(2) {
-  /* border-bottom: 8px solid #ffa412; */
-  position: relative;
-  text-transform: uppercase;
-  /* border-radius: 20px; */
-}
-.hero-headings-inner:nth-child(2) .border {
-  position: absolute;
-  width: 100%;
-  height: 12px;
-  bottom: 16%;
-  background: #ffa412;
-  z-index: -1;
-}
-
-.hero-headings-inner:nth-child(4) {
-  position: relative;
-}
-.hero-headings-inner:nth-child(2):before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: -150%;
-  width: 68px;
-  height: 68px;
-  background: url("../img/hero-logos/ice_cream.png") no-repeat center
-    center/cover;
-}
-.hero-headings-inner:nth-child(2):after {
-  content: "";
-  position: absolute;
-  right: -5%;
-  top: -125%;
-  width: 68px;
-  height: 68px;
-  background: url("../img/hero-logos/question.png") no-repeat center
-    center/cover;
-}
-
-.hero-headings-inner:nth-child(4):before {
-  content: "";
-  position: absolute;
-  left: 10%;
-  top: 0;
-  width: 88px;
-  height: 88px;
-  background: url("../img/hero-logos/wallet.png") no-repeat center center/cover;
-}
-.hero-headings-inner:nth-child(4):after {
-  content: "";
-  position: absolute;
-  right: 2%;
-  top: 35%;
-  width: 88px;
-  height: 88px;
-  background: url("../img/hero-logos/money.png") no-repeat center center/cover;
-}
-
-#hero .container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.hero-search-form input {
-  padding: 5px;
-  margin-right: 25px;
-  border-radius: 16px;
-  border: 1px solid #495468;
-  outline: none;
-  text-align: center;
-}
-
-.hero-search-form button {
-  padding: 3.5px 8px;
-  border-radius: 50%;
-  font-size: 1.02em;
-}
 /************************************
-              How Tt Works
+                WHY AZH
 *************************************/
+
+.section-center-title {
+  display: block;
+  text-align: center;
+  font-weight: 900;
+  margin-bottom: 2em;
+}
+#whyazh {
+  padding: 0;
+  margin: 0;
+}
+#whyazh h2 {
+  margin-top: 0.5em;
+  font-weight: bold;
+}
+
+.get-in-call a,
+.get-in-touch a {
+  display: block;
+  padding-left: 4em;
+  padding-right: 4em;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.get-in-call a {
+  padding-left: 6em;
+  padding-right: 6em;
+}
+
+.wantAdvisors {
+  position: relative;
+}
 
 /************************************
             Advisory Solutions
 *************************************/
-
-.queryForm-title {
-  letter-spacing: 2px;
-}
-.queryForm-subtitle {
-  font-size: 0.8em;
-}
-
-.timing-label {
-  text-align: center;
-  /* box-shadow: -2px -2px 4px 2px rgba(255, 255, 255, 0.25) inset,
-    2px 2px 4px 2px rgba(0, 0, 0, 0.25) inset; */
-  box-shadow: -1px -1px 2px 1px rgba(255, 255, 255, 0.25) inset,
-    1px 1px 2px 1px rgba(0, 0, 0, 0.25) inset;
-  border-radius: 20px;
-  flex: 1;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
-  font-size: 0.9rem;
-}
-.timing:checked + .timing-label {
-  background: lightgreen;
-}
-
-.postQuery input,
-.postQuery input:focus {
-  /* box-shadow: -2px -2px 4px 2px rgba(255, 255, 255, 0.25) inset,
-    2px 2px 4px 2px rgba(0, 0, 0, 0.25) inset; */
-  box-shadow: -1px -1px 2px 1px rgba(255, 255, 255, 0.25) inset,
-    1px 1px 2px 1px rgba(0, 0, 0, 0.25) inset;
-  border-radius: 20px;
-  font-size: 1rem;
-}
-.prefer-call-div {
-  font-size: 0.8rem;
-}
-#querySubmit,
 #hero-get-started {
   width: 50%;
   margin: 0 auto;
   border-radius: 20px;
   font-size: 1rem;
-  background: #f8a51e;
   transition: linear 0.2s;
 }
 #hero-get-started {
   margin: 0;
 }
-#querySubmit:hover,
 #hero-get-started:hover {
   border: 1px solid #f8a51e;
   background: none;
   color: black;
-}
-
-.alternateButtons div a,
-.sol-button {
-  display: flex;
-  /* grid-template-columns: 1fr auto; */
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0px -2px 4px rgba(255, 255, 255, 0.75),
-    0px 2px 4px rgba(43, 50, 178, 0.5), 0px 2px 2px rgba(0, 0, 0, 0.25);
-  /* box-shadow: 0px 4px 4px 2px rgba(0, 0, 0, 0.25); */
-  color: #000;
-  background: white;
-  border-radius: 40px;
-  /* transform: matrix(-1, 0, 0, 1, 0, 0); */
-  border: none;
-  /* height: 65px; */
-  height: 65px;
-  max-height: 65px;
-}
-.alternateButtons div a i,
-.sol-button i {
-  font-weight: bolder;
-  font-size: 1.4em;
-  width: 10%;
-}
-.alternateButtons div a div,
-.sol-button div {
-  font-weight: bolder;
-  /* font-size: 1.4em; */
-  text-align: center;
-  width: 90%;
 }
 .ab-fs-3 {
   font-size: 0.55em;
@@ -278,10 +148,6 @@ section h1 hr {
 }
 .ab-fs-1 {
   font-size: 0.78em;
-}
-
-.alternateButtons > div > a:hover {
-  background: linear-gradient(#1488cc, #2b32b2);
 }
 
 /************************************
@@ -310,7 +176,7 @@ section h1 hr {
 *************************************/
 
 #figures {
-  background: linear-gradient(rgba(75, 30, 147, 0.8), rgba(43, 50, 178, 1));
+  background: #2b32b2;
 }
 .figure-amt {
   letter-spacing: 4px;
@@ -320,6 +186,7 @@ section h1 hr {
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #e0e0e0;
 }
 
 /************************************
@@ -327,17 +194,22 @@ section h1 hr {
 *************************************/
 
 .ete-sol-text {
-  font-size: 1.4em;
+  font-size: 1.5em;
+  font-weight: bold;
 }
 
 /************************************
               Newsletter
 *************************************/
 
+#newsletter h3 {
+  color: white;
+}
 #newsletter {
-  background: linear-gradient(#114488, #2b32b2);
+  background: linear-gradient(90deg, #2b32b2 0%, #4b1e93 100%);
   border-radius: 20px 100px 20px 20px;
   position: relative;
+  color: white;
 }
 .newsletter-form-border {
   border: 2px solid black;
@@ -358,7 +230,6 @@ section h1 hr {
   position: absolute;
   top: -34px;
   right: -30px;
-
   width: 140px;
 }
 
@@ -398,9 +269,6 @@ section h1 hr {
 /************************************
                 Footer
 *************************************/
-/* footer hr.footer-left-hr {
-  margin-bottom: 4rem;
-} */
 
 .reach-us .details li i {
   font-size: 1.1em;
@@ -430,38 +298,6 @@ footer a:hover {
   text-decoration: none;
 }
 
-/* solutions */
-
-button.sols-button,
-a.sols-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0px -2px 4px rgba(255, 255, 255, 0.75),
-    0px 2px 4px rgba(43, 50, 178, 0.5), 0px 2px 2px rgba(0, 0, 0, 0.25);
-  color: #000;
-  background: white;
-  border-radius: 10px;
-  border: none;
-  background: #f8a51e;
-}
-button.sol-button i,
-a.sol-button i {
-  font-weight: bolder;
-  font-size: 1.4em;
-  width: 10%;
-}
-button.sols-button div,
-a.sols-button div {
-  font-weight: bold;
-  font-size: 0.65em;
-  text-align: center;
-  width: 85%;
-  margin-right: 5%;
-}
-a.sols-button {
-  width: auto;
-}
 /****************************************
                 Accordian
 *****************************************/
@@ -532,23 +368,15 @@ a.sols-button {
   grid-template-columns: auto 1fr;
   border: 1px solid black;
   border-radius: 15px;
-  /* overflow: hidden; */
 }
-/* .card img {
-  width: auto;
-  height: 100%;
-} */
 
 /* Advisors */
 .advisor div ul li {
   display: grid;
   grid-template-columns: auto 1fr;
 }
-/* .advisor div ul li * {
-  flex: 1;
-} */
+
 .advisor div ul li span {
-  /* text-align: right; */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -574,86 +402,6 @@ a.sols-button {
 /*****************************************
                   Modals
 ******************************************/
-
-/* Login Popup! */
-/* .model-lg {
-  margin: 1rem 0;
-} */
-
-.login-popup,
-#advisor-form {
-  max-height: auto;
-  border-radius: 20px;
-  overflow: hidden;
-  background: white;
-}
-.login-popup > div:first-child,
-.login-popup > #user-advisor {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-direction: column;
-  padding: 10% 0;
-  height: 80vh;
-}
-.login-popup > div:first-child {
-  background: linear-gradient(179.99deg, #4776ec -60.94%, #4b1e93 99.99%);
-  color: white;
-  height: auto;
-}
-.login-popup > div:first-child > div {
-  justify-content: space-between;
-}
-.login-popup button:hover,
-.login-popup button:focus {
-  color: white;
-  background: linear-gradient(179.99deg, #4776ec -60.94%, #4b1e93 99.99%);
-}
-.login-popup button {
-  background: transparent;
-  width: 70%;
-  display: inline-block;
-  color: black;
-  padding: 14px;
-  border-radius: 10px;
-  border-color: black;
-}
-
-.login-popup > #user-advisor {
-  background: white;
-}
-
-.login-popup > #user-advisor::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 100%;
-  z-index: 0;
-  height: 1px;
-  background: black;
-}
-.seperator-text {
-  background: white;
-  padding: 0 10px;
-  z-index: 1;
-}
-#advisor-form,
-#user-form {
-  display: none;
-}
-#advisor-form button,
-#user-form button {
-  width: auto;
-  padding: 15px 25px;
-  margin-right: 15px;
-}
-
-.advisor_image {
-  width: 220px;
-  height: 220px;
-  background: url() no-repeat center center/cover;
-}
 
 /* book appointment popup */
 .book-apt-popup {
@@ -682,15 +430,11 @@ a.sols-button {
 /* pages.css */
 .p-title {
   padding-top: 90px;
-  /* background: url("https://www.advisorzaroorihai.com/Content/css/../images/registration_bg.jpg") */
-  /* center center/cover; */
 }
 
 .p-title-inner {
-  /* border-bottom: 0.1px solid #000; */
   width: 100%;
   height: auto;
-  /* margin-top: 70px; */
   margin-bottom: 0px;
   background: linear-gradient(#1488cc, #2b32b2);
 }
@@ -739,15 +483,6 @@ a.sols-button {
   font-size: 1.2em;
 }
 
-/* .e-learning-a {
-  color: black;
-text-decoration: none;
-cursor: pointer;
-}
-.e-learning-a:hover {
-text-decoration: none;
-} */
-
 .e-learning-div .e-learning-a,
 a.e-learning-a {
   color: white;
@@ -768,47 +503,10 @@ a.e-learning-a:hover {
   font-size: 1rem;
 }
 
-#user-advisor button a {
-  color: black;
-}
-#user-advisor button:hover a {
-  color: white;
-  text-decoration: none;
-}
-
-.feedback_form > div {
-  background: #f6f6f6;
-  padding: 20px 20px;
-  margin-bottom: 15px;
-  border-radius: 10px;
-}
-
-.feedback_form input {
-  background: transparent;
-  outline: none;
-  border: none;
-  border-bottom: 2px solid #aaa;
-  transition: 1s border ease-in;
-}
-.feedback_form input:focus {
-  background: transparent;
-  outline: none;
-  border: none;
-  border-bottom: 2px solid #2b32b2;
-  box-shadow: none;
-}
-
-.feedback_form_title {
-  background: #f6f6f6;
-  padding: 20px 20px;
-  /* margin-bottom: 15px;  */
-  border-radius: 10px;
-}
-
 .advisor-filter-div {
   display: none;
 }
-/* 
-.advisor-filter-div {
-  display: none;
-} */
+
+/* *****************************
+      WANT ADVISOR 
+********************************/

@@ -1,27 +1,44 @@
+import { Col, Container, Form, Image, Row } from "react-bootstrap";
+
 function HeroSection() {
   return (
-    <section id="hero" className="d-flex align-items-center">
-      <div className="container mt-5">
-        <div className="row">
-          <div className="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
-            <h2 className="font-weight-bolder text-center text-lg-left hero-text">
-              Your Advisor is just
+    <section id="azhHero" className="mb-0 pb-0 mt-5 mt-md-0">
+      <Container>
+        <Row>
+          <Col lg={7} className="d-flex justify-content-center flex-column">
+            <h1>
+              Your
               <br />
-              clicks away
-            </h2>
-            <a
-              href="advisors.php"
-              className="btn btn-block btn-success mt-3"
-              id="hero-get-started"
-            >
-              Get Started
-            </a>
-          </div>
-          <div className="col-lg-6 order-1 order-lg-2 hero-img">
-            <img src="assets/img/hero-img.png" alt="img-fluid animated" />
-          </div>
-        </div>
-      </div>
+              <span className="hero-title-blue">
+                Registered Investment Advisor
+              </span>
+              <br />
+              Is a few clicks away
+            </h1>
+            <Form className="row mt-4 justify-content-center justify-content-lg-start">
+              <div className="col-6 enterLocation input-group m-0">
+                <select id="location" className="form-control form-control-lg">
+                  <option value="data">Enter Your Location</option>
+                  <option value="data2">data2</option>
+                </select>
+                <div className="input-group-btn">
+                  <button className="btn btn-lg btn-default" type="submit">
+                    GO
+                  </button>
+                </div>
+              </div>
+            </Form>
+            {/* <Button variant="success">THis is the texts</Button> */}
+          </Col>
+          <Col lg={5}>
+            <Image
+              src={process.env.PUBLIC_URL + "/assets/img/hero-img.png"}
+              alt="Hero Image"
+              fluid
+            />
+          </Col>
+        </Row>
+      </Container>
     </section>
   );
 }

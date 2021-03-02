@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import config from "../utils/config";
 import http from "../utils/http";
 import parse from "html-react-parser";
-import { BookingModal } from "../utils/model";
+// import { BookingModal } from "../utils/model";
 import { getRole } from "../utils/jwt";
 import Swal from "sweetalert2";
 import { Col, Row } from "react-bootstrap";

@@ -13,16 +13,16 @@ function Navbar(props) {
         </div>
         <nav className="nav-menu d-none d-lg-block">
           <ul>
-            <li className="<?php echo ($page_title == 'Advisors')?'active':''; ?>">
+            <li>
               <Link to="/advisors">Advisors</Link>
             </li>
-            <li className="<?php echo ($page_title == 'About Us')?'active':''; ?>">
+            <li>
               <Link to="/page/about-us">About Us</Link>
             </li>
-            <li className="<?php echo ($page_title == 'E-Learning')?'active':''; ?>">
+            <li>
               <Link to="/e-learning">E-Learning</Link>
             </li>
-            <li className="<?php echo ($page_title == 'Knowledge Base')?'active':''; ?>">
+            <li>
               <Link to="/knowledge-base">Knowledge Base</Link>
             </li>
             <li className="get-started">

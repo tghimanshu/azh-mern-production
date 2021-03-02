@@ -33,7 +33,11 @@ function Figures() {
               +
             </h1>
             <div className="figure-text">
-              <p>topics on various avenues covered</p>
+              <p>
+                topics on various
+                <br />
+                avenues covered
+              </p>
             </div>
           </div>
         </div>
