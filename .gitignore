@@ -2,7 +2,7 @@ client/.eslintcache
 client/node_modules
 server/node_modules
 client/.env
-server/uploads/
+#server/uploads/
 server/ssl
 server/.env
 client/.env
