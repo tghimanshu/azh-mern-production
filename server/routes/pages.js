@@ -9,7 +9,6 @@ const config = require("config");
 const adminAuth = (req, res, next) => {
   if (!req.header("x-auth-token")) return res.status(401).send("Access Denied");
   try {
-    // console.log("object");
     const decoded = jwt.verify(
       req.header("x-auth-token"),
       config.get("jwt_secret")
@@ -42,6 +41,9 @@ router.get("/:slug", async (req, res) => {
 
 router.post("/", adminAuth, async (req, res) => {
   req.body.content = req.body.content.replace('"', '\\"');
+  const availablePage = await Page.findOne({ slug: req.body.slug });
+  if (availablePage) return res.status(500).send("Page Already Exists");
+
   const page = new Page(_.pick(req.body, ["name", "slug", "content"]));
   const result = await page.save();
   res.send(result);
