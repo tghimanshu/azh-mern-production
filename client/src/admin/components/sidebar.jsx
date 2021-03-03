@@ -52,6 +52,12 @@ const Sidebar = () => {
               <span className="align-middle">Bookings</span>
             </Link>
           </li>
+          <li className="sidebar-item">
+            <Link to="/admin/pages" className="sidebar-link">
+              <i className="align-middle" data-feather="sliders"></i>{" "}
+              <span className="align-middle">Pages</span>
+            </Link>
+          </li>
         </ul>
         <div className="sidebar-bottom d-none d-lg-block">
           <div className="media">
