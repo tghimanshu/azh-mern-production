@@ -36,7 +36,7 @@ const Sidebar = () => {
           <li className="sidebar-item">
             <Link to="/advisor/booking" className="sidebar-link">
               <i className="align-middle" data-feather="sliders"></i>{" "}
-              <span className="align-middle">Bookings</span>
+              <span className="align-middle">Recommendations</span>
             </Link>
           </li>
         </ul>

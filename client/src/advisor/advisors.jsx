@@ -12,8 +12,6 @@ import config from "../utils/config";
 const Advisors = ({ history }) => {
   const [advisors, setAdvisors] = useState([]);
   const [appointment, setAppointment] = useState({
-    b_date: "",
-    b_time: "",
     adv_id: "",
     client_id: "",
     remarks: "",
@@ -34,8 +32,6 @@ const Advisors = ({ history }) => {
       setDisableBooking(true);
     } else if (user.role === "client") {
       setAppointment({
-        b_date: "",
-        b_time: "",
         adv_id: "",
         remarks: "",
         client_id: user._id,
@@ -79,28 +75,8 @@ const Advisors = ({ history }) => {
     getBookings();
   }, [showModel]);
 
-  const handleBDate = (e) =>
-    setAppointment({
-      b_date: e.target.value,
-      b_time: appointment.b_time,
-      adv_id: appointment.adv_id,
-      client_id: appointment.client_id,
-      remarks: appointment.remarks,
-    });
-
-  const handleBTime = (e) =>
-    setAppointment({
-      b_date: appointment.b_date,
-      b_time: e.target.value,
-      adv_id: appointment.adv_id,
-      client_id: appointment.client_id,
-      remarks: appointment.remarks,
-    });
-
   const handleBRemarks = (e) =>
     setAppointment({
-      b_date: appointment.b_date,
-      b_time: appointment.b_time,
       remarks: e.target.value,
       adv_id: appointment.adv_id,
       client_id: appointment.client_id,
@@ -108,17 +84,13 @@ const Advisors = ({ history }) => {
 
   const handleBSubmit = async (e) => {
     try {
-      const date = new Date(appointment.b_date + " " + appointment.b_time);
       await http.post("/booking/", {
         client_id: appointment.client_id,
         advisor_id: appointment.adv_id,
-        b_time: date,
         remarks: appointment.remarks,
         isApproved: "pending",
       });
       setAppointment({
-        b_date: "",
-        b_time: "",
         adv_id: "",
         remarks: "",
         client_id: appointment.client_id,
@@ -164,8 +136,6 @@ const Advisors = ({ history }) => {
     const status = await getUser();
     if (status > 60) {
       setAppointment({
-        b_date: appointment.b_date,
-        b_time: appointment.b_time,
         adv_id: id,
         remarks: appointment.remarks,
         client_id: appointment.client_id,
@@ -370,8 +340,6 @@ const Advisors = ({ history }) => {
       <BookingModal
         show={showModel}
         appointment={appointment}
-        handleBDate={handleBDate}
-        handleBTime={handleBTime}
         handleBRemarks={handleBRemarks}
         handleBSubmit={handleBSubmit}
         handleClose={handleClose}

@@ -57,7 +57,6 @@ router.post("/", async (req, res) => {
     const booking = new Booking({
       advisor_id: mongoose.Types.ObjectId(req.body.advisor_id),
       client_id: mongoose.Types.ObjectId(req.body.client_id),
-      booking_time: req.body.b_time,
       remarks: req.body.remarks,
       isApproved: req.body.isApproved,
     });

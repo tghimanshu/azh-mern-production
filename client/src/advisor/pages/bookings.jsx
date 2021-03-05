@@ -45,7 +45,6 @@ const Bookings = () => {
       <thead>
         <tr>
           <th>Client Name</th>
-          <th>Booking Time</th>
           <th>Remarks</th>
           <th>Actions</th>
           <th>See Profile</th>
@@ -53,7 +52,6 @@ const Bookings = () => {
       </thead>
       <tbody>
         {bookings.map((advisor) => {
-          let date = new Date(advisor.booking_time);
           return (
             <tr
               className={
@@ -66,7 +64,6 @@ const Bookings = () => {
               key={advisor._id}
             >
               <td>{advisor.client_id.name}</td>
-              <td>{date.toString()}</td>
               <td>{advisor.remarks}</td>
               {advisor.isApproved === "approved" && (
                 <td>
@@ -76,6 +73,11 @@ const Bookings = () => {
               {advisor.isApproved === "unapproved " && (
                 <td>
                   <div className="badge badge-danger">Unapproved</div>
+                </td>
+              )}
+              {advisor.isApproved === "pending" && (
+                <td>
+                  <div className="badge badge-warning">Pending</div>
                 </td>
               )}
               <td>

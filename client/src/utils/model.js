@@ -13,48 +13,32 @@ export const BookingModal = (props) => {
       aria-labelledby="exampleModalLabel"
       centered
     >
-      <Modal.Header closeButton>Make A Booking</Modal.Header>
+      <Modal.Header closeButton>Get Recommendation</Modal.Header>
       <Modal.Body>
         <div className="row">
-          <div className="col-md-6 form-group">
-            <h5 htmlFor="b_date">Date:</h5>
-            <input
-              type="date"
-              id="b_date"
-              className="form-control"
-              value={props.appointment.b_date}
-              onChange={props.handleBDate}
-            />
-          </div>
-          <div className="col-md-6">
-            <label htmlFor="b_time">Time:</label>
-            <input
-              type="time"
-              id="b_time"
-              className="form-control"
-              value={props.appointment.b_time}
-              onChange={props.handleBTime}
-            />
-          </div>
           <div className="col-md-12">
-            <label htmlFor="b_remarks">Remarks:</label>
-            <input
-              type="text"
+            <label htmlFor="b_remarks">
+              Extra Information you want to provide to Advisors:
+            </label>
+            <textarea
               id="b_remarks"
-              className="form-control"
+              rows={5}
+              className="form-control mb-2"
               value={props.appointment.remarks}
               onChange={props.handleBRemarks}
             />
           </div>
         </div>
+      </Modal.Body>
+      <Modal.Footer>
         <button
           className="btn btn-lg btn-info float-right clearfix"
           type="submit"
           onClick={props.handleBSubmit}
         >
-          Book My AppointMent
+          Get Recommendation
         </button>
-      </Modal.Body>
+      </Modal.Footer>
     </Modal>
   );
 };

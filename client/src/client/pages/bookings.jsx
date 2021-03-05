@@ -19,21 +19,15 @@ const loadScript = (src) => {
 
 const Bookings = () => {
   const [bookings, setBookings] = useState([]);
+  const getBookings = async () => {
+    const userJwt = getRole();
+    const details = await http.get("/booking/client/" + userJwt._id);
+    // console.log(details.data);
+    setBookings(details.data);
+  };
   useEffect(() => {
-    const getClients = async () => {
-      const userJwt = getRole();
-      const details = await http.get("/booking/client/" + userJwt._id);
-      // console.log(details.data);
-      setBookings(details.data);
-    };
-    getClients();
+    getBookings();
   }, []);
-
-  // const handleSeeRecommendation = (payment) => {
-  //   Swal.fire({
-  //     text: payment.toString(),
-  //   });
-  // };
 
   const displayRazorPay = async (b_id) => {
     const res = await loadScript(
@@ -58,6 +52,7 @@ const Bookings = () => {
       handler: async function (response) {
         try {
           await http.put("/booking/payment/" + b_id, { order_id: data.id });
+          getBookings();
         } catch (err) {
           // console.log(err);
         }
@@ -85,7 +80,7 @@ const Bookings = () => {
       <thead>
         <tr>
           <th>Advisor Name</th>
-          <th>Time</th>
+          <th>Remarks</th>
           <th>Status</th>
           <th>Recommendation</th>
         </tr>
@@ -95,7 +90,7 @@ const Bookings = () => {
           return (
             <tr key={client._id}>
               <td>{client.advisor_id.name}</td>
-              <td>{new Date(client.booking_time).toString()}</td>
+              <td>{client.remarks}</td>
               <td className="table-action">
                 {client.isApproved === "pending" && (
                   <div className="badge badge-warning">Pending</div>
