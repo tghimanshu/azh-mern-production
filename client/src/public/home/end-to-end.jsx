@@ -17,30 +17,7 @@ function EndToEnd() {
             attaining your goals.
           </p>
         </div>
-        <div className="col-12 col-lg-4">
-          <a
-            href="http://www.mercuryfinancial.co.in/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <img
-              src="assets/img/end-to-end/smallcase.png"
-              alt=""
-              className="img-fluid"
-            />
-          </a>
-          <a
-            href="http://www.mercuryfinancial.co.in/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <img
-              src="assets/img/end-to-end/mercury.png"
-              alt=""
-              className="img-fluid"
-            />
-          </a>
-        </div>
+        <div className="col-12 col-lg-4"></div>
       </div>
     </section>
   );
