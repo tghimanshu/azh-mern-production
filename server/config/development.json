@@ -1,3 +1,9 @@
 {
-  "name": "Advisor Zaroori Hai"
+  "name": "Advisor Zaroori Hai",
+  "mailingData": {
+    "host": "smtp.gmail.com",
+    "mail": "himnesh234@gmail.com",
+    "port": 465,
+    "cc": "himanshugohil234@gmail.com"
+  }
 }

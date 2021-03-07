@@ -159,21 +159,8 @@ router.post("/", async (req, res) => {
     const client = new Client(req.body);
 
     const result = await client.save();
-    const mailData = {
-      from: "himnesh234@gmail.com",
-      to: req.body.email,
-      subject: "Registered Successfully!",
-      text: "that was easy!",
-    };
 
-    transporter.sendMail(mailData, function (err, info) {
-      if (err) {
-        // console.log(err);
-      }
-      if (info) {
-        // console.log(info);
-      }
-    });
+    clientRegistration(req.body.name, req.body.email);
 
     res.send(result);
   } catch (error) {

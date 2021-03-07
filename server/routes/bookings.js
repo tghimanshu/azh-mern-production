@@ -1,8 +1,9 @@
 const bcrypt = require("bcrypt");
 const express = require("express");
 const mongoose = require("mongoose");
-const { Booking } = require("../models/schemas");
+const { Booking, Client, Advisor } = require("../models/schemas");
 const _ = require("lodash");
+const { advisorReccMadeMail, clientReccMadeMail } = require("../mail");
 
 const router = express.Router();
 
@@ -61,9 +62,18 @@ router.post("/", async (req, res) => {
       isApproved: req.body.isApproved,
     });
     const result = await booking.save();
+    const clientEmail = await Client.findById(req.body.client_id);
+    const advisorEmail = await Advisor.findById(req.body.advisor_id);
+    advisorReccMadeMail(
+      advisorEmail.name,
+      advisorEmail.email,
+      clientEmail.name
+    );
+    console.log("sending mail to client");
+    clientReccMadeMail(clientEmail.name, clientEmail.email, advisorEmail.name);
     res.send(result);
   } catch (error) {
-    // console.log(error);
+    console.log(error);
     res.status(400).send(error);
   }
 });

@@ -3,5 +3,6 @@
   "resetPass": "RESET_PASS_SECRET",
   "razorpayKey": "RAZORPAY_CLIENT_KEY",
   "razorpaySecret": "RAZORPAY_CLIENT_SECRET",
-  "razorpayWebhookSecret": "RAZORPAY_WEBHOOK_SECRET"
+  "razorpayWebhookSecret": "RAZORPAY_WEBHOOK_SECRET",
+  "mailPass": "MAIL_PASSWORD"
 }

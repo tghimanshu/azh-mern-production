@@ -129,21 +129,7 @@ router.post("/", async (req, res) => {
     const advisor = new Advisor(req.body);
 
     const result = advisor.save();
-    const mailData = {
-      from: "himnesh234@gmail.com",
-      to: req.body.email,
-      subject: "Registered Successfully!",
-      text: "that was easy!",
-    };
-
-    // transporter.sendMail(mailData, function (err, info) {
-    //   if (err) {
-    //     console.log(err);
-    //   }
-    //   if (info) {
-    //     console.log(info);
-    //   }
-    // });
+    advisorRegistration(req.body.name, req.body.email);
 
     res.send(result);
   } catch (error) {
