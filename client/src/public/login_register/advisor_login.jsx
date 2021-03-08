@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import http from "../../utils/http";
 import { Link } from "react-router-dom";
+import { dangerAlert } from "../../utils/alerts";
 
 export const AdvisorLogin = ({ history }) => {
   const [error, seterror] = useState("");
@@ -19,7 +20,7 @@ export const AdvisorLogin = ({ history }) => {
       history.push("/advisor");
     } catch (error) {
       const errors = error.response;
-      seterror(errors.data);
+      seterror(dangerAlert(errors.data));
       window.scrollTo({
         top: 0,
         behavior: "smooth",

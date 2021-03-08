@@ -57,7 +57,7 @@ section h1 hr {
   box-shadow: -2px -2px 12px rgba(252, 252, 252, 0.5),
     2px 2px 12px rgba(196, 196, 196, 0.5);
 }
-.enterLocation select {
+.enterLocation input {
   font-size: 0.8rem;
   font-weight: bold;
   font-style: italic;
@@ -66,7 +66,7 @@ section h1 hr {
   margin-right: 10px;
   background: transparent;
 }
-.enterLocation select:focus {
+.enterLocation input:focus {
   background: transparentz;
   box-shadow: none;
 }

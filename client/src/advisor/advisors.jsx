@@ -5,11 +5,12 @@ import { BookingModal, ShareModal } from "../utils/model";
 import { getRole } from "../utils/jwt";
 import Swal from "sweetalert2";
 import LoadingScreen from "../utils/loadingScreen";
-
-import "./advisors.css";
 import config from "../utils/config";
 
-const Advisors = ({ history }) => {
+import "./advisors.css";
+const queryString = require("query-string");
+
+const Advisors = ({ history, location }) => {
   const [advisors, setAdvisors] = useState([]);
   const [appointment, setAppointment] = useState({
     adv_id: "",
@@ -25,7 +26,6 @@ const Advisors = ({ history }) => {
   const [fav, setFav] = useState([]);
   const [bookings, setBookings] = useState([]);
   const [loadingScreen, setLoadingScreen] = useState(true);
-
   useEffect(() => {
     const user = getRole();
     if (user.role === "advisor") {
@@ -55,15 +55,25 @@ const Advisors = ({ history }) => {
     const getAdvisors = async () => {
       try {
         const { data } = await http.get("/advisor");
-
-        setAdvisors(data.filter((adv) => adv.isApproved === true));
+        if (location.search) {
+          const queries = queryString.parse(location.search);
+          setAdvisors(
+            data.filter(
+              (adv) =>
+                adv.isApproved === true &&
+                adv.location.includes(queries.location)
+            )
+          );
+        } else {
+          setAdvisors(data.filter((adv) => adv.isApproved === true));
+        }
         setLoadingScreen(false);
       } catch (error) {
         // console.log(error);
       }
     };
     getAdvisors();
-  }, [advisors]);
+  }, [advisors, location]);
 
   useEffect(() => {
     const getBookings = async () => {

@@ -6,10 +6,10 @@ import Initiative from "./Initiatives";
 import Figures from "./figures";
 import EndToEnd from "./end-to-end";
 import Newsletter from "./newsletter";
-function Home() {
+function Home(props) {
   return (
     <Fragment>
-      <HeroSection />
+      <HeroSection {...props} />
       <WhyAZH />
       <HowItWorks />
       <Initiative />

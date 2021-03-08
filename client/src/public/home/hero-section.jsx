@@ -1,6 +1,13 @@
+import { useState } from "react";
 import { Col, Container, Form, Image, Row } from "react-bootstrap";
 
-function HeroSection() {
+function HeroSection({ history }) {
+  const [location, setLocation] = useState("");
+
+  const handleLocationSubmit = (e) => {
+    e.preventDefault();
+    history.push("/advisors?location=" + location);
+  };
   return (
     <section id="azhHero" className="mb-0 pb-0 mt-5 mt-md-0">
       <Container>
@@ -15,12 +22,19 @@ function HeroSection() {
               <br />
               Is a few clicks away
             </h1>
-            <Form className="row mt-4 justify-content-center justify-content-lg-start">
+            <Form
+              className="row mt-4 justify-content-center justify-content-lg-start"
+              onSubmit={(e) => handleLocationSubmit(e)}
+            >
               <div className="col-6 enterLocation input-group m-0">
-                <select id="location" className="form-control form-control-lg">
-                  <option value="data">Enter Your Location</option>
-                  <option value="data2">data2</option>
-                </select>
+                <input
+                  id="location"
+                  className="form-control form-control-lg"
+                  placeholder="Enter Your Location..."
+                  required={true}
+                  onChange={(e) => setLocation(e.target.value)}
+                />
+
                 <div className="input-group-btn">
                   <button className="btn btn-lg btn-default" type="submit">
                     GO

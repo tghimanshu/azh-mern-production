@@ -9,15 +9,15 @@ function EndToEnd() {
         <hr className="m-0" />
       </h1>
       <div className="row justify-content-lg-between">
-        <div className="ete-sol-text ml-0 col-12 col-lg-6 p-4 mt-5">
-          <p>
+        <div className="ete-sol-text ml-0 col-12 col-lg-7 p-2 mt-2">
+          <p style={{ fontFamily: "Roboto, sans-serif" }}>
             Execute your trade journey journey with the finest in the industry.
             By providing end to end solutions with no hidden fees we strive to
             make your expereince holistic and seamless so you can focus on
             attaining your goals.
           </p>
         </div>
-        <div className="col-12 col-lg-4"></div>
+        <div className="col-12 col-lg"></div>
       </div>
     </section>
   );

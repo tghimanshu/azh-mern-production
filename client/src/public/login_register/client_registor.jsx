@@ -27,7 +27,7 @@ export const ClientRegistor = ({ history }) => {
         top: 0,
         behavior: "smooth",
       });
-      return seterror("Please Accept the Terms!");
+      return seterror(dangerAlert("Please Accept the Terms!"));
     }
     if (cp === false) {
       window.scrollTo({

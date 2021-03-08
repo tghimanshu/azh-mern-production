@@ -1,8 +1,9 @@
 {
   "name": "Advisor Zaroori Hai",
   "mailingData": {
-    "host": "smtp.gmail.com",
+    "host": "smtppro.zoho.com",
     "port": 465,
-    "mail": "himanshugohil234@gmail.com"
+    "mail": "support@advisorzaroorihai.com",
+    "cc": "support@advisorzaroorihai.com"
   }
 }
