@@ -69,7 +69,6 @@ router.post("/", async (req, res) => {
       advisorEmail.email,
       clientEmail.name
     );
-    console.log("sending mail to client");
     clientReccMadeMail(clientEmail.name, clientEmail.email, advisorEmail.name);
     res.send(result);
   } catch (error) {

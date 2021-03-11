@@ -19,7 +19,7 @@ export const ClientLogin = ({ history }) => {
       history.push("/client");
     } catch (error) {
       const errors = error.response;
-      // console.log(error);
+      console.log(errors);
       seterror(errors.data);
       window.scrollTo({
         top: 0,

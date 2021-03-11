@@ -32,7 +32,7 @@ const Pages = () => {
               <td>{client.name}</td>
               <td>{client.slug}</td>
               <td>
-                <Link to={"/editpage/" + client.slug}>
+                <Link to={"/admin/editpage/" + client.slug}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -78,6 +78,7 @@ const AddPage = ({ history, match }) => {
   const [error, setError] = useState("");
   const [title, setTitle] = useState("");
   const [slug, setSlug] = useState("");
+  const [content, setContent] = useState("");
   const [isEditing, setIsEditing] = useState({
     editing: false,
     id: "",
@@ -89,7 +90,7 @@ const AddPage = ({ history, match }) => {
           const { data } = await http.get("/page/" + match.params.slug);
           setTitle(data.name);
           setSlug(data.slug);
-          setContent(data.content);
+          setContent(data.content.toString());
           setIsEditing({
             editing: true,
             id: data._id,
@@ -100,7 +101,6 @@ const AddPage = ({ history, match }) => {
     }
   }, [match]);
 
-  const [content, setContent] = useState("");
   const handleAddPageSubmit = async (e) => {
     e.preventDefault();
     window.scroll({ top: 0, behavior: "smooth" });
@@ -151,7 +151,7 @@ const AddPage = ({ history, match }) => {
           className="mt-2"
           onClick={handleAddPageSubmit}
         >
-          Add Page
+          {isEditing ? "Update Page" : "Add Page"}
         </Button>
       </Form>
     </div>

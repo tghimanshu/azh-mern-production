@@ -76,13 +76,13 @@ function Footer() {
             <h4 className="font-weight-bold text-uppercase mb-4">ABOUT US</h4>
             <ul className="list-unstyled details">
               <li className="mt-2">
-                <a href="page.php?name=about-us">Solutions</a>
+                <a href="/page/about-us">Solutions</a>
               </li>
               <li className="mt-2">
-                <a href="page.php?name=about-us">Events</a>
+                <a href="/page/about-us">Events</a>
               </li>
               <li className="mt-2">
-                <a href="page.php?name=about-us">Company</a>
+                <a href="/page/about-us">Company</a>
               </li>
             </ul>
           </div>
@@ -92,16 +92,16 @@ function Footer() {
             </h4>
             <ul className="list-unstyled details">
               <li className="mt-2">
-                <a href="advisor-registration.php">Register - Advisor</a>
+                <a href="/login">Register - Advisor</a>
               </li>
               <li className="mt-2">
-                <a href="client-registration.php">Register - Client</a>
+                <a href="/login">Register - Client</a>
               </li>
               <li className="mt-2">
-                <a href="page.php?name=terms-conditions">Terms & Conditions</a>
+                <a href="/page/terms-conditions">Terms &amp; Conditions</a>
               </li>
               <li className="mt-2">
-                <a href="page.php?name=privacy-policy">Privacy Policy</a>
+                <a href="/page/privacy-policy">Privacy Policy</a>
               </li>
             </ul>
           </div>

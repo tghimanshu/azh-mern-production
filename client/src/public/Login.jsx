@@ -17,6 +17,9 @@ function Login(props) {
         case "client":
           props.history.push("/client");
           break;
+        case "admin":
+          props.history.push("/admin");
+          break;
         default:
           break;
       }

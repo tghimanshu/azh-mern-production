@@ -36,6 +36,10 @@ const Advisors = ({ history, location }) => {
         remarks: "",
         client_id: user._id,
       });
+      const favs = localStorage.getItem("favs");
+      if (favs !== null) {
+        setFav(favs.split(","));
+      }
     } else if (user.role !== "client") {
       Swal.fire({
         icon: "info",
@@ -43,11 +47,6 @@ const Advisors = ({ history, location }) => {
         confirmButtonText: "Login/Register",
       }).then((res) => res.isConfirmed && history.push("/login"));
       history.goBack();
-    }
-
-    const favs = localStorage.getItem("favs");
-    if (favs !== null) {
-      setFav(favs.split(","));
     }
   }, [history]);
 
@@ -61,7 +60,9 @@ const Advisors = ({ history, location }) => {
             data.filter(
               (adv) =>
                 adv.isApproved === true &&
-                adv.location.includes(queries.location)
+                adv.location
+                  .toLowerCase()
+                  .includes(queries.location.toLowerCase())
             )
           );
         } else {
@@ -73,7 +74,7 @@ const Advisors = ({ history, location }) => {
       }
     };
     getAdvisors();
-  }, [advisors, location]);
+  }, [location]);
 
   useEffect(() => {
     const getBookings = async () => {

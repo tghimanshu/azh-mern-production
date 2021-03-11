@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 import { getRole } from "../../utils/jwt";
 import { logout } from "../../utils/logout";
 
-const Sidebar = () => {
+const Sidebar = ({ routes, type }) => {
   const [username, Setusername] = useState("User");
   useEffect(() => {
     const getUser = async () => {
       try {
         const userJwt = getRole();
-        const user = await http.get("/advisor/" + userJwt._id);
+        const user = await http.get(`/${userJwt.role}/${userJwt._id}`);
         Setusername(user.data.username);
       } catch (error) {
         // console.log(error);
@@ -27,18 +27,18 @@ const Sidebar = () => {
 
         <ul className="sidebar-nav">
           <li className="sidebar-header">Main</li>
-          <li className="sidebar-item">
-            <Link to="/advisor" className="sidebar-link">
-              <i className="align-middle" data-feather="sliders"></i>{" "}
-              <span className="align-middle">Dashboard</span>
-            </Link>
-          </li>
-          <li className="sidebar-item">
-            <Link to="/advisor/booking" className="sidebar-link">
-              <i className="align-middle" data-feather="sliders"></i>{" "}
-              <span className="align-middle">Recommendations</span>
-            </Link>
-          </li>
+          {routes[type] &&
+            routes[type].map(
+              (route) =>
+                route.onMenu && (
+                  <li key={route.name} className="sidebar-item">
+                    <Link to={route.path} className="sidebar-link">
+                      <i className="align-middle" data-feather="sliders"></i>{" "}
+                      <span className="align-middle">{route.name}</span>
+                    </Link>
+                  </li>
+                )
+            )}
         </ul>
 
         <div className="sidebar-bottom d-none d-lg-block">

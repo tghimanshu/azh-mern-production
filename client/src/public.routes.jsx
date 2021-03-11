@@ -11,7 +11,7 @@ import Login from "./public/Login";
 import { ForgotPassword, ResetPssword } from "./public/forgot-password";
 import Advisors from "./advisor/advisors";
 import SingleAdvisor from "./advisor/single_advisor";
-import AdminLogin from "./admin/login";
+import AdminLogin from "./dashboards/adminLogin";
 
 const PublicRoutes = () => {
   return (

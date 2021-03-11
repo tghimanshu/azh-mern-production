@@ -26,8 +26,8 @@ function ELearning() {
       </div>
       <div className="container mt-5">
         <div className="row">
-          {elearnings.map((elearning) => (
-            <div className="col-md-4 col-xs-12 pbDiv">
+          {elearnings.map((elearning, i) => (
+            <div key={i} className="col-md-4 col-xs-12 pbDiv">
               <a
                 href={elearning.link}
                 className="e-learning-a"

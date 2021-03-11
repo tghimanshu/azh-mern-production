@@ -61,6 +61,9 @@ const advisorSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  recc_amt: {
+    type: Number,
+  },
   isApproved: {
     type: Boolean,
     default: false,
@@ -345,7 +348,7 @@ const clientValidate = (data) => {
     username: Joi.string().min(5).max(255).required(),
     name: Joi.string().min(3).max(255).required(),
     email: Joi.string().required().email(),
-    contact: Joi.number().required(),
+    contact: Joi.number().min(8).max(12).required(),
     password: Joi.string().min(5).max(255).required(),
   }).validate(data);
 };
@@ -359,7 +362,7 @@ const advisorValidate = (data) => {
       .regex(/[A-Za-z0-9_]/i),
     name: Joi.string().min(5).max(255).required(),
     location: Joi.string().min(5).max(255).required(),
-    contact: Joi.number().required(),
+    contact: Joi.number().min(8).max(12).required(),
     email: Joi.string().min(5).max(255).email().required(),
     password: Joi.string().min(5).max(255).required(),
     experience: Joi.number().required(),
