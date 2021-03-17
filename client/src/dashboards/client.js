@@ -43,6 +43,7 @@ const DashBoard = ({ history, location }) => {
                     );
                   })}
                   <Redirect from="/admin" to="/admin/advisors" />
+                  <Redirect to="/advisors" />
                 </Switch>
               )
           )}

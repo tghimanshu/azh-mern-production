@@ -30,7 +30,7 @@ function HeroSection({ history }) {
                 <input
                   id="location"
                   className="form-control form-control-lg"
-                  placeholder="Enter Your Location..."
+                  placeholder="Look For Advisors"
                   required={true}
                   onChange={(e) => setLocation(e.target.value)}
                 />
