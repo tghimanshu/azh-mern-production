@@ -11,10 +11,10 @@ function HowItWorks() {
         {/* <h1 className="section-center-title">I WANT AN ADVISOR FOR</h1> */}
         <div className="wantAdvisors">
           <div className="wa" id="wa-mf">
-            <Link to="/">MUTUAL FUNDS</Link>
+            <Link to="/page/mutual-fund">MUTUAL FUNDS</Link>
           </div>
           <div className="wa" id="wa-insurance">
-            <Link to="/">INSURANCE</Link>
+            <Link to="/page/insurance">INSURANCE</Link>
           </div>
           <div className="wa" id="wa-loans">
             <Link to="/page/loans">LOANS</Link>
@@ -27,19 +27,19 @@ function HowItWorks() {
             </Link>
           </div>
           <div className="wa" id="wa-fp">
-            <Link to="/page/fp">
+            <Link to="/advisors">
               <span>FINANCIAL</span>
               <span>PLANNING</span>
             </Link>
           </div>
           <div className="wa" id="wa-ep">
-            <Link to="/page/es">
+            <Link to="/advisors">
               <span>ESTATE</span>
               <span>PLANNING</span>
             </Link>
           </div>
           <div className="wa" id="wa-esm">
-            <Link to="/page/esm">
+            <Link to="/advisors">
               <span>EQUITY/STOCK</span>
               <span>MARKET</span>
             </Link>
