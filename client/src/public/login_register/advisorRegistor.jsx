@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 // import { Redirect } from "react-router-dom";
 import http from "../../utils/http";
 import { successAlert, dangerAlert } from "../../utils/alerts";
 import ReCAPTCHA from "react-google-recaptcha";
+import { CropModel } from "../../utils/model";
 
 export const AdvisorRegistor = ({ history }) => {
   const [error, seterror] = useState("");
@@ -20,9 +21,31 @@ export const AdvisorRegistor = ({ history }) => {
   const [isChecked, setisChecked] = useState(false);
   const [cp, setcp] = useState(false);
 
+  const [showCrop, setShowCrop] = useState(false);
+  const [crop, setCrop] = useState({ x: 0, y: 0 });
+  const [zoom, setZoom] = useState(1);
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
+  const [croppedImage, setCroppedImage] = useState(null);
+  const [ogImage, setOgImage] = useState(null);
+
+  const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
+    setCroppedAreaPixels(croppedAreaPixels);
+  }, []);
+
   function onCaptchaChange(value) {
     setcp(value);
   }
+
+  const handleClose = () => {
+    if (croppedImage === null) {
+      setprofilePic("");
+      setShowCrop(false);
+      setCroppedImage(null);
+    } else {
+      setprofilePic("");
+      setShowCrop(false);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -62,6 +85,7 @@ export const AdvisorRegistor = ({ history }) => {
         behavior: "smooth",
       });
     } catch (error) {
+      console.log(error);
       if (typeof error.response.data === "string") {
         seterror(dangerAlert(error.response.data));
       } else {
@@ -75,8 +99,7 @@ export const AdvisorRegistor = ({ history }) => {
     }
   };
 
-  const uploadImage = async (e) => {
-    const file = e.target.files[0];
+  const uploadImage = async (file) => {
     const formData = new FormData();
     formData.append("image", file);
     try {
@@ -86,13 +109,87 @@ export const AdvisorRegistor = ({ history }) => {
         },
       };
       const { data } = await http.post("/advisor/upload", formData, config);
-      // console.log(data);
+
       setprofilePic(data);
-    } catch (error) {
-      // console.log("Upload Error!");
-    }
+    } catch (error) {}
   };
 
+  function readFile(file) {
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.addEventListener("load", () => resolve(reader.result), false);
+      reader.readAsDataURL(file);
+    });
+  }
+
+  const cropImage = async (e) => {
+    try {
+      setShowCrop(true);
+      const file = e.target.files[0];
+      const imageDataUrl = await readFile(file);
+      setprofilePic(imageDataUrl);
+      setShowCrop(true);
+      setOgImage(file);
+    } catch (e) {}
+  };
+
+  const createImage = (url) =>
+    new Promise((resolve, reject) => {
+      const image = new Image();
+      image.addEventListener("load", () => resolve(image));
+      image.addEventListener("error", (error) => reject(error));
+      image.setAttribute("crossOrigin", "anonymous"); // needed to avoid cross-origin issues on CodeSandbox
+      image.src = url;
+    });
+
+  async function getCroppedImg(imageSrc, crop) {
+    const image = await createImage(imageSrc);
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+
+    canvas.width = 250;
+    canvas.height = 250;
+
+    // draw rotated image and store data.
+    ctx.drawImage(
+      image,
+      crop.x,
+      crop.y,
+      crop.width,
+      crop.height,
+      0,
+      0,
+      canvas.width,
+      canvas.height
+    );
+    // As Base64 string
+    return canvas.toDataURL("image/jpeg");
+  }
+
+  function dataURLtoFile(dataurl, filename) {
+    var arr = dataurl.split(","),
+      mime = arr[0].match(/:(.*?);/)[1],
+      bstr = atob(arr[1]),
+      n = bstr.length,
+      u8arr = new Uint8Array(n);
+
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+
+    return new File([u8arr], filename, { type: mime });
+  }
+
+  const handleUploadImage = async (e, ogImage) => {
+    try {
+      setShowCrop(false);
+      const croppedimg = await getCroppedImg(profilePic, croppedAreaPixels);
+      setCroppedImage(croppedimg);
+      uploadImage(dataURLtoFile(croppedimg, ogImage.name));
+    } catch (e) {
+      console.log(e);
+    }
+  };
   return (
     <form method="POST" className="container pt-3" onSubmit={handleSubmit}>
       {error}
@@ -106,7 +203,7 @@ export const AdvisorRegistor = ({ history }) => {
           type="text"
           name="adv-username"
           id="adv-username"
-          placeholder="Enter User Name Here!!"
+          placeholder="Enter User Name Here"
         />
       </div>
       <div className="form-group">
@@ -119,7 +216,7 @@ export const AdvisorRegistor = ({ history }) => {
           type="text"
           name="adv-name"
           id="adv-name"
-          placeholder="Enter Name Here!!"
+          placeholder="Enter Name Here"
         />
       </div>
       <div className="form-group">
@@ -132,7 +229,7 @@ export const AdvisorRegistor = ({ history }) => {
           type="text"
           name="adv-email"
           id="adv-email"
-          placeholder="Enter Email Here!!"
+          placeholder="Enter Email Here"
         />
       </div>
       <div className="form-group">
@@ -145,7 +242,7 @@ export const AdvisorRegistor = ({ history }) => {
           type="number"
           name="adv-contact"
           id="adv-contact"
-          placeholder="Enter Contact Here!!"
+          placeholder="Enter Contact Here"
         />
       </div>
       <div className="form-group">
@@ -158,7 +255,7 @@ export const AdvisorRegistor = ({ history }) => {
           type="number"
           name="adv-experience"
           id="adv-experience"
-          placeholder="Enter Experience!!"
+          placeholder="Enter Experience"
         />
       </div>
       <div className="form-group">
@@ -171,7 +268,7 @@ export const AdvisorRegistor = ({ history }) => {
           type="text"
           name="adv-reg_no"
           id="adv-reg_no"
-          placeholder="Enter SEBI Registration Number!!"
+          placeholder="Enter SEBI Registration Number"
         />
       </div>
       <div className="form-group">
@@ -184,7 +281,7 @@ export const AdvisorRegistor = ({ history }) => {
           type="text"
           name="adv-position"
           id="adv-position"
-          placeholder="Enter Your Expertise!!"
+          placeholder="Enter Your Expertise"
         />
       </div>
       <div className="form-group">
@@ -197,7 +294,7 @@ export const AdvisorRegistor = ({ history }) => {
           type="text"
           name="adv-location"
           id="adv-location"
-          placeholder="Enter Location!!"
+          placeholder="Enter Location"
         />
       </div>
       <div className="form-group">
@@ -209,7 +306,7 @@ export const AdvisorRegistor = ({ history }) => {
           className="form-control"
           type="password"
           name="adv-pass"
-          placeholder="Enter Password!!"
+          placeholder="Enter Password"
         />
       </div>
       <div className="form-group">
@@ -221,7 +318,7 @@ export const AdvisorRegistor = ({ history }) => {
           className="form-control"
           type="password"
           name="adv-cpass"
-          placeholder="Confirm Password!!"
+          placeholder="Confirm Password"
         />
       </div>
       <label htmlFor="adv-profile_pic">Profile_pic: </label>
@@ -229,7 +326,7 @@ export const AdvisorRegistor = ({ history }) => {
         <div className="input-group mb-3">
           <div className="custom-file">
             <input
-              onChange={uploadImage}
+              onChange={cropImage}
               type="file"
               className="custom-file-input"
               id="adv-inputGroupFile02"
@@ -241,6 +338,14 @@ export const AdvisorRegistor = ({ history }) => {
             </label>
           </div>
         </div>
+
+        {croppedImage && (
+          <img
+            src={croppedImage}
+            alt={croppedImage}
+            className="text-center mb-3"
+          />
+        )}
       </div>
       <div className="custom-control custom-checkbox">
         <input
@@ -273,6 +378,18 @@ export const AdvisorRegistor = ({ history }) => {
       >
         Register
       </button>
+      <CropModel
+        show={showCrop}
+        imageUrl={profilePic}
+        crop={crop}
+        zoom={zoom}
+        setCrop={setCrop}
+        setZoom={setZoom}
+        handleUploadImage={handleUploadImage}
+        onCropComplete={onCropComplete}
+        handleClose={handleClose}
+        ogImage={ogImage}
+      />
     </form>
   );
 };

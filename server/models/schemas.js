@@ -42,6 +42,7 @@ const advisorSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  noOfClients: { type: Number },
   summary: { type: String, default: "" },
   blogs: Array,
   socials: Array,
@@ -63,8 +64,41 @@ const advisorSchema = new mongoose.Schema({
   },
   recc_amt: {
     type: Number,
+    default: 999,
   },
+  recc_change: [
+    {
+      isApproved: {
+        type: String,
+        enum: ["pending", "approved", "rejected", "cancelled"],
+        defualt: "pending",
+      },
+      amount: Number,
+      date: {
+        type: Date,
+        default: Date.now(),
+      },
+    },
+  ],
+  balance: {
+    type: Number,
+    default: 0,
+  },
+
   isApproved: {
+    type: Boolean,
+    default: false,
+  },
+  feedbacks: [
+    {
+      client_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Client",
+      },
+      text: String,
+    },
+  ],
+  profileCompleted: {
     type: Boolean,
     default: false,
   },
@@ -271,6 +305,10 @@ const bookingSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
+  bookingAmt: {
+    type: Number,
+    required: true,
+  },
 });
 
 const adminSchema = new mongoose.Schema({
@@ -362,7 +400,7 @@ const advisorValidate = (data) => {
       .regex(/[A-Za-z0-9_]/i),
     name: Joi.string().min(5).max(255).required(),
     location: Joi.string().min(5).max(255).required(),
-    contact: Joi.number().min(8).max(12).required(),
+    contact: Joi.number().min(8).required(),
     email: Joi.string().min(5).max(255).email().required(),
     password: Joi.string().min(5).max(255).required(),
     experience: Joi.number().required(),

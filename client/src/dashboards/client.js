@@ -31,7 +31,7 @@ const DashBoard = ({ history, location }) => {
     <div className="wrapper">
       <Sidebar routes={routes} type={type} />
       <div className="main">
-        <Navbar />
+        <Navbar type={type} />
         <main className="content">
           {Object.keys(routes).map(
             (key) =>

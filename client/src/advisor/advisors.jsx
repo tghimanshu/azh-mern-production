@@ -80,7 +80,8 @@ const Advisors = ({ history, location }) => {
     const getBookings = async () => {
       const user = getRole();
       const results = await http.get("/booking/client/" + user._id);
-      const bookedAdvisors = results.data.map((b) => b.advisor_id._id);
+      const bookedAdvisors =
+        results.data && results.data.map((b) => b.advisor_id._id);
       setBookings(bookedAdvisors);
     };
     getBookings();

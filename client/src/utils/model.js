@@ -4,6 +4,64 @@ import {
   TwitterShareButton,
   MailruShareButton,
 } from "react-share";
+import Cropper from "react-easy-crop";
+
+export const RequestAmtModal = (props) => {
+  return (
+    <Modal
+      show={props.show}
+      onHide={props.handleClose}
+      aria-labelledby="exampleModalLabel"
+      centered
+    >
+      <Modal.Header closeButton>Get Recommendation</Modal.Header>
+      <Modal.Body>
+        <table>
+          <tbody>
+            <tr>
+              <td>Your Charge</td>
+              <td>
+                <input
+                  value={props.reqAmt}
+                  onChange={props.setReqAmt}
+                  placeholder="Your Amount"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>AZH Charges</td>
+              <td>
+                <input value="5%" disabled />
+              </td>
+            </tr>
+            <tr>
+              <td>You Will Recieve </td>
+              <td>
+                <input
+                  value={
+                    isNaN((parseInt(props.reqAmt) * 5) / 100)
+                      ? 0
+                      : (parseInt(props.reqAmt) * 5) / 100
+                  }
+                  disabled
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </Modal.Body>
+      <Modal.Footer>
+        <button
+          className="btn btn-lg btn-info float-right clearfix"
+          type="submit"
+          onClick={props.handleReqAmtSubmit}
+        >
+          Request
+        </button>
+      </Modal.Footer>
+    </Modal>
+  );
+};
 
 export const BookingModal = (props) => {
   return (
@@ -37,6 +95,42 @@ export const BookingModal = (props) => {
           onClick={props.handleBSubmit}
         >
           Get Recommendation
+        </button>
+      </Modal.Footer>
+    </Modal>
+  );
+};
+
+export const CropModel = (props) => {
+  return (
+    <Modal
+      show={props.show}
+      onHide={props.handleClose}
+      aria-labelledby="exampleModalLabel"
+      centered
+      size="lg"
+      className="cropModel"
+    >
+      <Modal.Header closeButton>Get Recommendation</Modal.Header>
+      <Modal.Body>
+        <Cropper
+          image={props.imageUrl}
+          crop={props.crop}
+          zoom={props.zoom}
+          aspect={200 / 200}
+          // cropSize={{ width: 200, height: 200 }}
+          onCropChange={props.setCrop}
+          onCropComplete={props.onCropComplete}
+          onZoomChange={props.setZoom}
+        />
+      </Modal.Body>
+      <Modal.Footer>
+        <button
+          className="btn btn-lg btn-info float-right clearfix"
+          type="submit"
+          onClick={(e) => props.handleUploadImage(e, props.ogImage)}
+        >
+          Save
         </button>
       </Modal.Footer>
     </Modal>

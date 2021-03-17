@@ -51,6 +51,12 @@ export const ClientRegistor = ({ history }) => {
         top: 0,
         behavior: "smooth",
       });
+      const result = await http.post("/client/login", {
+        email: username,
+        password: pass,
+      });
+      localStorage.setItem("auth-token", result.data);
+      history.push("/client");
     } catch (error) {
       // console.log(error);
       if (typeof error.response.data === "string") {
@@ -79,7 +85,7 @@ export const ClientRegistor = ({ history }) => {
           type="text"
           name="cli-username"
           id="cli-username"
-          placeholder="Enter User Name Here!!"
+          placeholder="Enter User Name Here"
         />
       </div>
       <div className="form-group">
@@ -92,7 +98,7 @@ export const ClientRegistor = ({ history }) => {
           type="text"
           name="cli-name"
           id="cli-name"
-          placeholder="Enter Name Here!!"
+          placeholder="Enter Name Here"
         />
       </div>
       <div className="form-group">
@@ -105,7 +111,7 @@ export const ClientRegistor = ({ history }) => {
           type="text"
           name="cli-email"
           id="cli-email"
-          placeholder="Enter Email Here!!"
+          placeholder="Enter Email Here"
         />
       </div>
       <div className="form-group">
@@ -118,7 +124,7 @@ export const ClientRegistor = ({ history }) => {
           type="number"
           name="cli-contact"
           id="cli-contact"
-          placeholder="Enter Contact Here!!"
+          placeholder="Enter Contact Here"
         />
       </div>
       <div className="form-group">
@@ -130,7 +136,7 @@ export const ClientRegistor = ({ history }) => {
           className="form-control"
           type="password"
           name="cli-pass"
-          placeholder="Enter Password!!"
+          placeholder="Enter Password"
         />
       </div>
       <div className="form-group">
@@ -142,7 +148,7 @@ export const ClientRegistor = ({ history }) => {
           className="form-control"
           type="password"
           name="cli-cpass"
-          placeholder="Confirm Password!!"
+          placeholder="Confirm Password"
         />
       </div>
       <div className="custom-control custom-checkbox">

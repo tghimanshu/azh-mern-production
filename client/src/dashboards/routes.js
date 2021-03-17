@@ -4,11 +4,14 @@ import Advisors from "./adminPages/advisors";
 import { Pages, AddPage } from "./adminPages/pages";
 import AdminBookings from "./adminPages/bookings";
 import AdminClientProfile from "./adminPages/clientProfile";
+import AdminAdvisor from "./adminPages/advisor";
 
 // Advisor Pages
-import AdvisorProfile from "./advisorPages/profile";
+import AdvisorProfile, { CompleteProfile } from "./advisorPages/profile";
 import AdvisorBookings from "./advisorPages/bookings";
 import AdvisorClientProfile from "./advisorPages/clientProfile";
+import AdvisorPricing from "./advisorPages/pricing";
+import AdvisorDashboard from "./advisorPages/dashboard";
 
 // Client Pages
 import ClientProfile from "./clientPages/profile";
@@ -28,6 +31,12 @@ export const routes = {
       name: "Advisors",
       component: Advisors,
       onMenu: true,
+    },
+    {
+      path: "/admin/advisor/:id",
+      name: "Advisor",
+      component: AdminAdvisor,
+      onMenu: false,
     },
     {
       path: "/admin/client/:id",
@@ -70,8 +79,20 @@ export const routes = {
     {
       path: "/advisor",
       name: "Dashboard",
+      component: AdvisorDashboard,
+      onMenu: true,
+    },
+    {
+      path: "/advisor/profile",
+      name: "Profile",
       component: AdvisorProfile,
       onMenu: true,
+    },
+    {
+      path: "/advisor/completeprofile",
+      name: "Complete Profile",
+      component: CompleteProfile,
+      onMenu: false,
     },
     {
       path: "/advisor/:booking_id/:id",
@@ -83,6 +104,12 @@ export const routes = {
       path: "/advisor/booking",
       name: "Recommendation",
       component: AdvisorBookings,
+      onMenu: true,
+    },
+    {
+      path: "/advisor/request",
+      name: "Requests",
+      component: AdvisorPricing,
       onMenu: true,
     },
   ],

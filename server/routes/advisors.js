@@ -29,7 +29,6 @@ const advisorAuth = (req, res, next) => {
   }
 };
 
-const transporter = require("../mail");
 const {
   Advisor,
   advisorValidate,
@@ -88,10 +87,9 @@ router.get("/username/:username", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    const advisors = await Advisor.findById(req.params.id).select([
-      "-password",
-      "-__v",
-    ]);
+    const advisors = await Advisor.findById(req.params.id)
+      .select(["-password", "-__v"])
+      .populate("feedbacks.client_id");
     res.send(advisors);
     res.end();
   } catch (error) {}
@@ -158,9 +156,35 @@ router.post("/login", async (req, res) => {
   res.header("x-auth-token", token).send(token);
 });
 
-router.put("/:id", advisorAuth, async (req, res) => {
+router.put("/reccamtchange/:id", advisorAuth, async (req, res) => {
   const advisor = await Advisor.findById(req.params.id);
   if (!advisor) res.status(400).send("Cannot locate the Advisor!");
+  /* validation logic */
+
+  const data = [...advisor.recc_change];
+  data.push(req.body);
+  advisor.recc_change = data;
+
+  const result = await advisor.save();
+  res.send(result);
+});
+
+router.put("/recccancel/:id", advisorAuth, async (req, res) => {
+  const advisor = await Advisor.findById(req.params.id);
+  if (!advisor) res.status(400).send("Cannot locate the Advisor!");
+  /* validation logic */
+
+  const data = [...advisor.recc_change];
+  data[req.body.index].isApproved = "cancelled";
+  advisor.recc_change = data;
+
+  const result = await advisor.save();
+  res.send(result);
+});
+
+router.put("/:id", async (req, res) => {
+  const advisor = await Advisor.findById(req.params.id);
+  if (!advisor) res.status(400).send("Cannot locate the Client!");
   /* validation logic */
 
   advisor.set(req.body);

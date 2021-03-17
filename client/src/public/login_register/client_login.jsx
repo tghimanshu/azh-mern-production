@@ -41,7 +41,7 @@ export const ClientLogin = ({ history }) => {
           type="text"
           name="l-cli-username"
           id="l-cli-username"
-          placeholder="Enter User Name Here!!"
+          placeholder="Enter User Name Here"
         />
       </div>
       <div className="form-group">
@@ -53,7 +53,7 @@ export const ClientLogin = ({ history }) => {
           className="form-control"
           type="password"
           name="l-cli-pass"
-          placeholder="Enter Password!!"
+          placeholder="Enter Password"
         />
       </div>
       <button

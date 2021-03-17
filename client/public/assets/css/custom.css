@@ -508,5 +508,9 @@ a.e-learning-a:hover {
 }
 
 /* *****************************
-      WANT ADVISOR 
+        IMAGE CROP 
 ********************************/
+
+.cropModel .modal-content {
+  height: 90vh;
+}

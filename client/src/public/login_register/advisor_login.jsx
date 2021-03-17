@@ -41,7 +41,7 @@ export const AdvisorLogin = ({ history }) => {
           type="text"
           name="l-adv-username"
           id="l-adv-username"
-          placeholder="Enter User Name Here!!"
+          placeholder="Enter User Name Here"
         />
       </div>
       <div className="form-group">
@@ -53,7 +53,7 @@ export const AdvisorLogin = ({ history }) => {
           className="form-control"
           type="password"
           name="l-adv-pass"
-          placeholder="Enter Password!!"
+          placeholder="Enter Password"
         />
       </div>
       <button

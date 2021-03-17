@@ -3,6 +3,7 @@ const Razorpay = require("razorpay");
 const shortid = require("shortid");
 const crypto = require("crypto");
 const config = require("config");
+const { Advisor, Booking } = require("../models/schemas");
 
 const router = express.Router();
 
@@ -12,23 +13,28 @@ const razorpay = new Razorpay({
 });
 
 router.post("/", async (req, res) => {
-  const payment_capture = 1;
-  const amount = 999;
-  const currency = "INR";
-  const receipt = shortid.generate();
-  const options = {
-    amount: (amount * 100).toString(),
-    currency,
-    receipt,
-    payment_capture,
-  };
-  const response = await razorpay.orders.create(options);
-  // console.log(response);
-  res.send({
-    id: response.id,
-    amount: response.amount,
-    currency: response.currency,
-  });
+  try {
+    const booking = await Booking.findById(req.body.b_id);
+    const payment_capture = 1;
+    const amount = booking.bookingAmt;
+    const currency = "INR";
+    const receipt = shortid.generate();
+    const options = {
+      amount: (amount * 100).toString(),
+      currency,
+      receipt,
+      payment_capture,
+    };
+    const response = await razorpay.orders.create(options);
+    // console.log(response);
+    res.send({
+      id: response.id,
+      amount: response.amount,
+      currency: response.currency,
+    });
+  } catch (err) {
+    res.send(err);
+  }
 });
 
 router.post("/verification", (req, res) => {

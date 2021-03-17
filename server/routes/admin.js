@@ -84,6 +84,17 @@ router.get("/clients", adminAuth, async (req, res) => {
   res.send(clients);
 });
 
+router.get("/client/:id", adminAuth, async (req, res) => {
+  try {
+    const client = await Client.findById(req.params.id);
+    res.send(client);
+  } catch (error) {
+    // console.log(error);
+  }
+});
+
+// * ADVISORS
+
 router.get("/advisors", adminAuth, async (req, res) => {
   const advisors = await Advisor.find();
   res.send(advisors);
@@ -102,12 +113,20 @@ router.put("/advisors/approve/:id", adminAuth, async (req, res) => {
   }
 });
 
-router.get("/client/:id", adminAuth, async (req, res) => {
-  try {
-    const client = await Client.findById(req.params.id);
-    res.send(client);
-  } catch (error) {
-    // console.log(error);
+router.put("/:status/:id", adminAuth, async () => {
+  const advisor = await Advisor.findById(req.params.id);
+  if (!advisor)
+    return res.status(400).send("User Doesn't Exist, Please Register!");
+  switch (req.params.satus) {
+    case "approve":
+      advisor.recc_amt = req.body.request.amount;
+      advisor.recc_change[req.body.index].isApproved = "approved";
+      return res.send("Approved!");
+    case "reject":
+      advisor.recc_change[req.body.index].isApproved = "rejected";
+      return res.send("Rejected!");
+    default:
+      break;
   }
 });
 

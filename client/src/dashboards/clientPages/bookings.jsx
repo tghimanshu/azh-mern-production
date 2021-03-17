@@ -29,7 +29,7 @@ const Bookings = () => {
     getBookings();
   }, []);
 
-  const displayRazorPay = async (b_id) => {
+  const displayRazorPay = async (b_id, adv_id) => {
     const res = await loadScript(
       "https://checkout.razorpay.com/v1/checkout.js"
     );
@@ -38,7 +38,7 @@ const Bookings = () => {
       return;
     }
 
-    const { data } = await http.post("/payment");
+    const { data } = await http.post("/payment", { b_id, adv_id });
 
     const options = {
       key: process.env.REACT_APP_RAZORPAY_CLIENT_KEY,
@@ -112,7 +112,9 @@ const Bookings = () => {
                   <button
                     className="btn btn-info"
                     // onClick={() => handleSeeRecommendation(client.madePayment)}
-                    onClick={() => displayRazorPay(client._id)}
+                    onClick={() =>
+                      displayRazorPay(client._id, client.advisor_id._id)
+                    }
                   >
                     Make Payment
                   </button>

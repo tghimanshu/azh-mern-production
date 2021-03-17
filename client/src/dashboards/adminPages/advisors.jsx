@@ -1,5 +1,6 @@
 import http from "../../utils/http";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Advisors = () => {
   const [advisors, setAdvisor] = useState([]);
@@ -37,6 +38,11 @@ const Advisors = () => {
       </thead>
       <tbody>
         {advisors.map((advisor) => {
+          const pending = advisor.recc_change
+            ? advisor.recc_change.filter((a) => a.isApproved === "pending")
+                .length
+            : null;
+          console.log(pending);
           return (
             <tr
               className={"table-" + (advisor.isApproved ? "success" : "danger")}
@@ -48,7 +54,7 @@ const Advisors = () => {
               <td>{advisor.email}</td>
 
               <td className="table-action">
-                <a href="/">
+                <Link to={"/advisor/" + advisor.username}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -64,7 +70,14 @@ const Advisors = () => {
                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                     <circle cx="12" cy="12" r="3"></circle>
                   </svg>
-                </a>
+                </Link>
+              </td>
+              <td>
+                {pending !== 0 && (
+                  <Link to={"/admin/advisor/" + advisor._id}>
+                    <div className="badge badge-info">{pending}</div>
+                  </Link>
+                )}
               </td>
               <td>
                 {advisor.isApproved ? (

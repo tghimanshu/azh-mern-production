@@ -54,12 +54,13 @@ router.post("/", async (req, res) => {
     });
     if (found.length > 0)
       return res.status(400).send("Booking Already Made with this advisor!");
-
+    const advisor = await Advisor.findById(req.body.advisor_id);
     const booking = new Booking({
       advisor_id: mongoose.Types.ObjectId(req.body.advisor_id),
       client_id: mongoose.Types.ObjectId(req.body.client_id),
       remarks: req.body.remarks,
       isApproved: req.body.isApproved,
+      bookingAmt: advisor.recc_amt,
     });
     const result = await booking.save();
     const clientEmail = await Client.findById(req.body.client_id);
@@ -128,6 +129,9 @@ router.put("/payment/:id", async (req, res) => {
     booking.madePayment = true;
     booking.order_id = req.body.order_id;
     booking.save();
+    const advisor = await Advisor.findById(booking.advisor_id);
+    advisor.balance += booking.bookingAmt;
+    advisor.save();
     res.send("Payment Made");
   } catch (err) {
     // console.log(err);
