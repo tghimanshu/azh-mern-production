@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import http from "../utils/http";
 import { Link } from "react-router-dom";
 import { BookingModal, ShareModal } from "../utils/model";
-import { getRole } from "../utils/jwt";
+import { getRole, getToken } from "../utils/jwt";
 import Swal from "sweetalert2";
 import LoadingScreen from "../utils/loadingScreen";
 import config from "../utils/config";
@@ -41,12 +41,12 @@ const Advisors = ({ history, location }) => {
         setFav(favs.split(","));
       }
     } else if (user.role !== "client") {
-      Swal.fire({
-        icon: "info",
-        text: "You Need To Be Logged In to access the Advisors",
-        confirmButtonText: "Login/Register",
-      }).then((res) => res.isConfirmed && history.push("/login"));
-      history.goBack();
+      // Swal.fire({
+      //   icon: "info",
+      //   text: "You Need To Be Logged In to access the Advisors",
+      //   confirmButtonText: "Login/Register",
+      // }).then((res) => res.isConfirmed && history.push("/login"));
+      // history.goBack();
     }
   }, [history]);
 
@@ -115,9 +115,18 @@ const Advisors = ({ history, location }) => {
   };
 
   const handleBClick = async (e, id) => {
+    const userToken = getToken();
+    if (!userToken) {
+      Swal.fire({
+        icon: "info",
+        text: "You Need To Be Logged In to access the Advisors",
+        confirmButtonText: "Login/Register",
+      }).then((res) => res.isConfirmed && history.push("/login"));
+    }
     const getUser = async () => {
       try {
         const userJwt = getRole();
+
         const { data } = await http.get("/client/" + userJwt._id);
         let status = 0;
         status += data.name !== 0 ? 10 : 0;

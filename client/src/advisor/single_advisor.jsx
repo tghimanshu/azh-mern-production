@@ -46,12 +46,12 @@ const SingleAdvisor = ({ match, history }) => {
       });
       getAdvisor(user);
     } else if (user.role !== "client") {
-      Swal.fire({
-        icon: "info",
-        text: "You Need To Be Logged In to access the Advisors",
-        confirmButtonText: "Login/Register",
-      }).then((res) => res.isConfirmed && history.push("/login"));
-      history.goBack();
+      // Swal.fire({
+      //   icon: "info",
+      //   text: "You Need To Be Logged In to access the Advisors",
+      //   confirmButtonText: "Login/Register",
+      // }).then((res) => res.isConfirmed && history.push("/login"));
+      // history.goBack();
     }
   }, [history, getAdvisor]);
 
@@ -59,6 +59,13 @@ const SingleAdvisor = ({ match, history }) => {
     const getUser = async () => {
       try {
         const userJwt = getRole();
+        if (!userJwt) {
+          Swal.fire({
+            icon: "info",
+            text: "You Need To Be Logged In to access the Advisors",
+            confirmButtonText: "Login/Register",
+          }).then((res) => res.isConfirmed && history.push("/login"));
+        }
         const { data } = await http.get("/client/" + userJwt._id);
         let status = 0;
         status += data.name !== 0 ? 10 : 0;

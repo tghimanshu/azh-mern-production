@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Col, Container, Form, Image, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, Image, Row } from "react-bootstrap";
 
 function HeroSection({ history }) {
   const [location, setLocation] = useState("");
@@ -28,21 +28,21 @@ function HeroSection({ history }) {
             >
               <div className="col-6 enterLocation input-group m-0">
                 <input
+                  type="button"
                   id="location"
                   className="form-control form-control-lg"
-                  placeholder="Look For Advisors"
-                  required={true}
-                  onChange={(e) => setLocation(e.target.value)}
+                  value="Look For Your Advisors"
+                  onClick={() => history.push("/advisors")}
+                  // onChange={(e) => setLocation(e.target.value)}
                 />
 
-                <div className="input-group-btn">
+                {/* <div className="input-group-btn">
                   <button className="btn btn-lg btn-default" type="submit">
                     GO
                   </button>
-                </div>
+                </div> */}
               </div>
             </Form>
-            {/* <Button variant="success">THis is the texts</Button> */}
           </Col>
           <Col lg={5}>
             <Image
