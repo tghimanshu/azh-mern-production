@@ -76,7 +76,9 @@ export const ClientRegistor = ({ history }) => {
     <form method="POST" className="container pt-3" onSubmit={handleSubmit}>
       {error}
       <div className="form-group">
-        <label htmlFor="cli-username">User Name: </label>
+        <label htmlFor="cli-username">
+          User Name: <span className="text-danger">*</span>
+        </label>
         <input
           value={username}
           onChange={(e) => setusername(e.target.value)}
@@ -89,7 +91,9 @@ export const ClientRegistor = ({ history }) => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="cli-name">Name: </label>
+        <label htmlFor="cli-name">
+          Name: <span className="text-danger">*</span>
+        </label>
         <input
           value={name}
           onChange={(e) => setname(e.target.value)}
@@ -102,7 +106,9 @@ export const ClientRegistor = ({ history }) => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="cli-email">E-Mail: </label>
+        <label htmlFor="cli-email">
+          E-Mail: <span className="text-danger">*</span>
+        </label>
         <input
           value={email}
           onChange={(e) => setemail(e.target.value)}
@@ -115,7 +121,9 @@ export const ClientRegistor = ({ history }) => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="cli-contact">Contact: </label>
+        <label htmlFor="cli-contact">
+          Contact: <span className="text-danger">*</span>
+        </label>
         <input
           value={contact}
           onChange={(e) => setcontact(parseInt(e.target.value))}
@@ -128,7 +136,9 @@ export const ClientRegistor = ({ history }) => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="cli-pass">Password: </label>
+        <label htmlFor="cli-pass">
+          Password: <span className="text-danger">*</span>
+        </label>
         <input
           value={pass}
           onChange={(e) => setpass(e.target.value)}
@@ -140,7 +150,9 @@ export const ClientRegistor = ({ history }) => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="cli-cpass">Confirm Password: </label>
+        <label htmlFor="cli-cpass">
+          Confirm Password: <span className="text-danger">*</span>
+        </label>
         <input
           value={cpass}
           onChange={(e) => setcpass(e.target.value)}
@@ -169,6 +181,7 @@ export const ClientRegistor = ({ history }) => {
         >
           I Agree to the{" "}
           <Link to="/page/terms-conditions">Terms &amp; Conditions.</Link>
+          <span className="text-danger">*</span>
         </label>
       </div>
       <ReCAPTCHA
