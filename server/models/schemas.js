@@ -383,10 +383,14 @@ const adminValidate = (data) => {
 
 const clientValidate = (data) => {
   return Joi.object({
-    username: Joi.string().min(5).max(255).required(),
+    username: Joi.string()
+      .min(5)
+      .max(255)
+      .required()
+      .regex(/[A-Za-z0-9_]/i),
     name: Joi.string().min(3).max(255).required(),
     email: Joi.string().required().email(),
-    contact: Joi.number().min(8).max(12).required(),
+    contact: Joi.number().min(8).required(),
     password: Joi.string().min(5).max(255).required(),
   }).validate(data);
 };
@@ -407,7 +411,10 @@ const advisorValidate = (data) => {
     sebi_no: Joi.string()
       .regex(/[A-Za-z]{3}[0-9]{9}/i)
       .trim()
-      .required(),
+      .required()
+      .messages({
+        "string.pattern.base": "Enter Valid SEBI Registration Number",
+      }),
     expertise: Joi.string().required(),
     profile_pic: Joi.string(),
   }).validate(data);
