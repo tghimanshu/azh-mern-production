@@ -23,12 +23,14 @@ const PublicRoutes = () => {
         <Route exact path="/e-learning" component={ELearning} />
         <Route exact path="/page/:slug" component={Page} />
         <Route exact path="/advisors/:username" component={SingleAdvisor} />
+        <Route exact path="/feedback/:id" component={SingleAdvisor} />
         <Route exact path="/advisors" component={Advisors} />
         <Route exact path="/forgot-password/:role" component={ForgotPassword} />
         <Route exact path="/reset/:role/:token" component={ResetPssword} />
 
         <Route exact path="/login" component={Login} />
         <Route exact path="/" component={Home} />
+        <Route path="/" component={Advisors} />
       </Switch>
       <Footer />
     </Fragment>

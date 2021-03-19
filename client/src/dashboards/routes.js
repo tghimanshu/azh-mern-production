@@ -23,6 +23,7 @@ import ClientGoal from "./clientPages/goals";
 import ClientBookings from "./clientPages/bookings";
 import ClientInsurances from "./clientPages/insurances";
 import ClientSheet from "./clientPages/sheet";
+import { AddFeedbackForm, FeedbackForms } from "./adminPages/addFeedbackForm";
 
 export const routes = {
   admin: [
@@ -48,6 +49,18 @@ export const routes = {
       path: "/admin/clients",
       name: "Clients",
       component: Clients,
+      onMenu: true,
+    },
+    {
+      path: "/admin/feedbackforms",
+      name: "Feedback Forms",
+      component: FeedbackForms,
+      onMenu: true,
+    },
+    {
+      path: "/admin/addfeedbackform",
+      name: "Add Feedback Form",
+      component: AddFeedbackForm,
       onMenu: true,
     },
     {
