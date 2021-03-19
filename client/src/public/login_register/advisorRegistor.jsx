@@ -194,7 +194,9 @@ export const AdvisorRegistor = ({ history }) => {
     <form method="POST" className="container pt-3" onSubmit={handleSubmit}>
       {error}
       <div className="form-group">
-        <label htmlFor="adv-username">User Name: </label>
+        <label htmlFor="adv-username">
+          User Name: <span className="text-danger">*</span>
+        </label>
         <input
           value={username}
           onChange={(e) => setusername(e.target.value)}
@@ -207,7 +209,9 @@ export const AdvisorRegistor = ({ history }) => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="adv-name">Name: </label>
+        <label htmlFor="adv-name">
+          Name: <span className="text-danger">*</span>
+        </label>
         <input
           value={name}
           onChange={(e) => setname(e.target.value)}
@@ -220,7 +224,9 @@ export const AdvisorRegistor = ({ history }) => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="adv-email">E-Mail: </label>
+        <label htmlFor="adv-email">
+          E-Mail: <span className="text-danger">*</span>
+        </label>
         <input
           value={email}
           onChange={(e) => setemail(e.target.value)}
@@ -233,7 +239,9 @@ export const AdvisorRegistor = ({ history }) => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="adv-contact">Contact: </label>
+        <label htmlFor="adv-contact">
+          Contact: <span className="text-danger">*</span>
+        </label>
         <input
           value={contact}
           onChange={(e) => setcontact(parseInt(e.target.value))}
@@ -246,7 +254,9 @@ export const AdvisorRegistor = ({ history }) => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="adv-experience">Experience (In Years): </label>
+        <label htmlFor="adv-experience">
+          Experience (In Years): <span className="text-danger">*</span>
+        </label>
         <input
           value={experience}
           onChange={(e) => setexperience(parseInt(e.target.value))}
@@ -259,7 +269,9 @@ export const AdvisorRegistor = ({ history }) => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="adv-reg_no">SEBI Registration Number: </label>
+        <label htmlFor="adv-reg_no">
+          SEBI Registration Number: <span className="text-danger">*</span>
+        </label>
         <input
           value={regNo}
           onChange={(e) => setregNo(e.target.value)}
@@ -272,7 +284,9 @@ export const AdvisorRegistor = ({ history }) => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="adv-position">Your Expertise: </label>
+        <label htmlFor="adv-position">
+          Your Expertise: <span className="text-danger">*</span>
+        </label>
         <input
           value={expertise}
           onChange={(e) => setexpertise(e.target.value)}
@@ -285,7 +299,9 @@ export const AdvisorRegistor = ({ history }) => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="adv-location">Location: </label>
+        <label htmlFor="adv-location">
+          Location: <span className="text-danger">*</span>
+        </label>
         <input
           value={location}
           onChange={(e) => setlocation(e.target.value)}
@@ -298,7 +314,9 @@ export const AdvisorRegistor = ({ history }) => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="adv-pass">Password: </label>
+        <label htmlFor="adv-pass">
+          Password: <span className="text-danger">*</span>
+        </label>
         <input
           value={pass}
           onChange={(e) => setpass(e.target.value)}
@@ -310,7 +328,9 @@ export const AdvisorRegistor = ({ history }) => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="adv-cpass">Confirm Password: </label>
+        <label htmlFor="adv-cpass">
+          Confirm Password: <span className="text-danger">*</span>
+        </label>
         <input
           value={cpass}
           onChange={(e) => setcpass(e.target.value)}
@@ -321,7 +341,9 @@ export const AdvisorRegistor = ({ history }) => {
           placeholder="Confirm Password"
         />
       </div>
-      <label htmlFor="adv-profile_pic">Profile_pic: </label>
+      <label htmlFor="adv-profile_pic">
+        Profile_pic: <span className="text-danger">*</span>
+      </label>
       <div className="form-group">
         <div className="input-group mb-3">
           <div className="custom-file">
@@ -335,6 +357,7 @@ export const AdvisorRegistor = ({ history }) => {
               {profilePic === ""
                 ? "Choose file"
                 : profilePic.split("advisors\\")[1]}
+              <span className="text-danger">*</span>
             </label>
           </div>
         </div>
@@ -365,6 +388,7 @@ export const AdvisorRegistor = ({ history }) => {
         >
           I Agree to the{" "}
           <a href="page.php?name=terms-conditions">Terms &amp; Conditions.</a>
+          <span className="text-danger">*</span>
         </label>
       </div>
       <ReCAPTCHA
