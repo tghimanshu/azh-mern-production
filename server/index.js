@@ -10,6 +10,7 @@ const booking = require("./routes/bookings");
 const elearning = require("./routes/elearning");
 const helpers = require("./routes/helpers");
 const payment = require("./routes/razorpay");
+const feedback = require("./routes/feedback");
 const cors = require("cors");
 const fs = require("fs");
 const { config } = require("exceljs");
@@ -35,6 +36,7 @@ app.use("/api/booking", booking);
 app.use("/api/elearning", elearning);
 app.use("/api/helpers", helpers);
 app.use("/api/payment", payment);
+app.use("/api/feedback", feedback);
 app.get("/", (req, res) => {
   res.json({
     status: "Ok",

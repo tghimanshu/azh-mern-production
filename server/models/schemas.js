@@ -317,6 +317,28 @@ const adminSchema = new mongoose.Schema({
   password: { type: String, required: true },
 });
 
+const feedbackFormSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  questions: Array,
+});
+
+const feedbackSchema = new mongoose.Schema(
+  {
+    client_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+    },
+  },
+  { strict: false }
+);
+
 const Page = mongoose.model(
   "Page",
   new mongoose.Schema({
@@ -371,6 +393,10 @@ const Admin = mongoose.model("Admin", adminSchema);
 
 const Booking = mongoose.model("booking", bookingSchema);
 
+const FeedbackForm = mongoose.model("FeedbackForm", feedbackFormSchema);
+
+const Feedback = mongoose.model("Feedback", feedbackSchema);
+
 // * VALIDATION
 
 const adminValidate = (data) => {
@@ -422,14 +448,16 @@ async function hash_password(pass) {
 }
 
 module.exports = {
-  Client: Client,
-  Advisor: Advisor,
-  Admin: Admin,
-  Page: Page,
-  Booking: Booking,
-  Elearning: Elearning,
-  adminValidate: adminValidate,
-  advisorValidate: advisorValidate,
-  clientValidate: clientValidate,
-  hash_password: hash_password,
+  Client,
+  Advisor,
+  Admin,
+  Page,
+  Booking,
+  Elearning,
+  FeedbackForm,
+  Feedback,
+  adminValidate,
+  advisorValidate,
+  clientValidate,
+  hash_password,
 };
