@@ -127,7 +127,7 @@ export const AddFeedbackForm = () => {
       if (formData.length === 0) {
         return setError(dangerAlert("Form Must Atleast have 1 Element"));
       }
-      const res = await http.post("/feedback", {
+      await http.post("/feedback", {
         title: title,
         description: description,
         questions: formData,

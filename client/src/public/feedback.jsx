@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import http from "../utils/http";
 
@@ -36,35 +36,40 @@ const Feedback = ({ match }) => {
     setAnswers(demo);
   };
   return (
-    <Container fluid>
-      <Row>
-        <Col md={8}>
-          {error}
-          <div className="feedback_form">
-            <div>
-              <h3>{title}</h3>
-            </div>
-            <div>
-              <p>{description}</p>
-            </div>
-            {formData.length !== 0 && <h4>Feedback Form Elements</h4>}
-            {formData.map(({ Component, text, type, options }, i) => (
-              <Component
-                key={i}
-                text={text}
-                type={type}
-                options={options ? options : []}
-                answers={answers}
-                index={i}
-                handleTextChange={handleTextChange}
-                handleRadioChange={handleRadioChange}
-              />
-            ))}
-            <Button variant="success">Submit</Button>
+    <Fragment>
+      <div className="p-title">
+        <section className="p-title-inner py-5">
+          <div className="container d-flex justify-content-center">
+            <h1>Feedback Form</h1>
           </div>
-        </Col>
-      </Row>
-    </Container>
+        </section>
+      </div>
+      <Container className="mt-2">
+        {error}
+        <div className="feedback_form">
+          <div>
+            <h3>{title}</h3>
+          </div>
+          <div>
+            <p>{description}</p>
+          </div>
+          {formData.length !== 0 && <h4>Feedback Form Elements</h4>}
+          {formData.map(({ Component, text, type, options }, i) => (
+            <Component
+              key={i}
+              text={text}
+              type={type}
+              options={options ? options : []}
+              answers={answers}
+              index={i}
+              handleTextChange={handleTextChange}
+              handleRadioChange={handleRadioChange}
+            />
+          ))}
+          <Button variant="success">Submit</Button>
+        </div>
+      </Container>
+    </Fragment>
   );
 };
 

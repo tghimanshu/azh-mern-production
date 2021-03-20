@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Button, Col, Container, Form, Image, Row } from "react-bootstrap";
+import { Col, Container, Form, Image, Row } from "react-bootstrap";
 
 function HeroSection({ history }) {
-  const [location, setLocation] = useState("");
+  const [location] = useState("");
 
   const handleLocationSubmit = (e) => {
     e.preventDefault();

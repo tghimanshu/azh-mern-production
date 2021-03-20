@@ -22,9 +22,9 @@ const PublicRoutes = () => {
         <Route exact path="/adminLogin" component={AdminLogin} />
         <Route exact path="/knowledge-base" component={Knowledge} />
         <Route exact path="/e-learning" component={ELearning} />
+        <Route exact path="/feedback/:id" component={Feedback} />
         <Route exact path="/page/:slug" component={Page} />
         <Route exact path="/advisors/:username" component={SingleAdvisor} />
-        <Route exact path="/feedback/:id" component={Feedback} />
         <Route exact path="/advisors" component={Advisors} />
         <Route exact path="/forgot-password/:role" component={ForgotPassword} />
         <Route exact path="/reset/:role/:token" component={ResetPssword} />
