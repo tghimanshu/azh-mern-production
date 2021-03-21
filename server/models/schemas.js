@@ -327,14 +327,26 @@ const feedbackFormSchema = new mongoose.Schema({
     required: true,
   },
   questions: Array,
+  allowedTo: Array,
 });
 
 const feedbackSchema = new mongoose.Schema(
   {
-    client_id: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
+    user: {
+      role: {
+        type: String,
+        enum: ["client", "guest", "advisor", "admin"],
+      },
+      id: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+      },
     },
+    formId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "FeedbackForm",
+    },
+    answers: Array,
   },
   { strict: false }
 );
