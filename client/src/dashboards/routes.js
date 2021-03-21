@@ -5,6 +5,7 @@ import { Pages, AddPage } from "./adminPages/pages";
 import AdminBookings from "./adminPages/bookings";
 import AdminClientProfile from "./adminPages/clientProfile";
 import AdminAdvisor from "./adminPages/advisor";
+import { AddFeedbackForm, FeedbackForms } from "./adminPages/addFeedbackForm";
 
 // Advisor Pages
 import AdvisorProfile, { CompleteProfile } from "./advisorPages/profile";
@@ -23,7 +24,10 @@ import ClientGoal from "./clientPages/goals";
 import ClientBookings from "./clientPages/bookings";
 import ClientInsurances from "./clientPages/insurances";
 import ClientSheet from "./clientPages/sheet";
-import { AddFeedbackForm, FeedbackForms } from "./adminPages/addFeedbackForm";
+import {
+  Feedbacks as ClientFeedbacks,
+  SingleFeedback,
+} from "./clientPages/feedbacks";
 
 export const routes = {
   admin: [
@@ -140,6 +144,24 @@ export const routes = {
       onMenu: false,
     },
     {
+      path: "/client/booking",
+      name: "Booking",
+      component: ClientBookings,
+      onMenu: true,
+    },
+    {
+      path: "/client/feedback",
+      name: "feedbacks",
+      component: ClientFeedbacks,
+      onMenu: true,
+    },
+    {
+      path: "/client/feedback/:id",
+      name: "Single Feedback",
+      component: SingleFeedback,
+      onMenu: true,
+    },
+    {
       path: "/client/personal",
       name: "Personal",
       component: ClientPersonal,
@@ -173,12 +195,6 @@ export const routes = {
       path: "/client/goal",
       name: "Goal",
       component: ClientGoal,
-      onMenu: true,
-    },
-    {
-      path: "/client/booking",
-      name: "Booking",
-      component: ClientBookings,
       onMenu: true,
     },
   ],

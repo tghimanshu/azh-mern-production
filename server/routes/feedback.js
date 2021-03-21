@@ -35,6 +35,13 @@ router.get("/:id", async (req, res) => {
   res.end();
 });
 
+router.get("/single/:id", async (req, res) => {
+  const result = await Feedback.findById(req.params.id);
+  if (!result) res.status(404).send("Form Doesn't Exist");
+  res.send(result);
+  res.end();
+});
+
 router.post("/", adminAuth, async (req, res) => {
   const feedbackForm = new FeedbackForm(req.body);
   const result = await feedbackForm.save();
@@ -43,11 +50,9 @@ router.post("/", adminAuth, async (req, res) => {
 
 router.get("/:role/:id", async (req, res) => {
   const result = await Feedback.find({
-    user: {
-      role: req.params.role,
-      id: req.params.id,
-    },
-  });
+    "user.role": req.params.role,
+    "user.id": req.params.id,
+  }).populate("formId");
   if (!result) return res.status(404).send("NO Data Found");
   res.send(result);
   res.end();

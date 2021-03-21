@@ -75,7 +75,7 @@ const Feedback = ({ match, history }) => {
       return;
     }
     try {
-      const res = await http.post("/feedback/single", {
+      await http.post("/feedback/single", {
         user: {
           role: "client",
           id: clientId,
