@@ -226,11 +226,27 @@ const Advisors = ({ history, location }) => {
               <Card.Body>
                 <Form>
                   <Form.Group>
+                    <Form.Label>Name</Form.Label>
+                    <Form.Control placeholder="Enter Name" />
+                  </Form.Group>
+                  <Form.Group>
+                    <Form.Label>Location</Form.Label>
                     <Form.Control placeholder="Enter Location" />
                   </Form.Group>
                   <Form.Group>
-                    <Form.Control placeholder="Enter Location" />
+                    <Form.Label>Expertise</Form.Label>
+                    <Form.Control placeholder="Enter Expertise" />
                   </Form.Group>
+                  <Form.Group>
+                    <Form.Label>Experience</Form.Label>
+                    <Form.Control
+                      type="number"
+                      placeholder="Enter Experience"
+                    />
+                  </Form.Group>
+                  <Button variant="success" type="submit">
+                    Apply
+                  </Button>
                 </Form>
               </Card.Body>
             </Card>
@@ -275,8 +291,28 @@ const Advisors = ({ history, location }) => {
                     </Badge>
                   </Card.Subtitle>
                 </Card.Body>
-                <Card.Footer>
-                  <Button variant="info">Get Recommendation</Button>
+                <Card.Footer className="d-flex flex-column justify-content-around align-items-center">
+                  <h3>Rs. {advisor.recc_amt}</h3>
+                  <div>
+                    <Button
+                      variant="info"
+                      className="btn-block"
+                      style={{ backgroundColor: "#2b32b2" }}
+                    >
+                      Get Recommendation
+                    </Button>
+                    <Button
+                      variant="info"
+                      className="btn-block"
+                      style={{
+                        background: "transparent",
+                        border: "2px solid #2b32b2",
+                        color: "#2b32b2",
+                      }}
+                    >
+                      Favourite
+                    </Button>
+                  </div>
                 </Card.Footer>
               </Card>
             ))}
