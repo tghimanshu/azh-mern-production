@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import http from "../utils/http";
-import { Link } from "react-router-dom";
 import { BookingModal, ShareModal } from "../utils/model";
 import { getRole, getToken } from "../utils/jwt";
 import Swal from "sweetalert2";
@@ -17,6 +16,7 @@ import {
   Form,
   Row,
 } from "react-bootstrap";
+import SectionTitle from "./sectionTitle";
 const queryString = require("query-string");
 
 const Advisors = ({ history, location }) => {
@@ -33,7 +33,6 @@ const Advisors = ({ history, location }) => {
   });
   const [disableBooking, setDisableBooking] = useState(false);
   const [fav, setFav] = useState([]);
-  const [bookings, setBookings] = useState([]);
   const [loadingScreen, setLoadingScreen] = useState(true);
   useEffect(() => {
     const user = getRole();
@@ -84,17 +83,6 @@ const Advisors = ({ history, location }) => {
     };
     getAdvisors();
   }, [location]);
-
-  useEffect(() => {
-    const getBookings = async () => {
-      const user = getRole();
-      const results = await http.get("/booking/client/" + user._id);
-      const bookedAdvisors =
-        results.data && results.data.map((b) => b.advisor_id._id);
-      setBookings(bookedAdvisors);
-    };
-    getBookings();
-  }, [showModel]);
 
   const handleBRemarks = (e) =>
     setAppointment({
@@ -209,19 +197,25 @@ const Advisors = ({ history, location }) => {
   return (
     <div>
       {loadingScreen && <LoadingScreen />}
-      <div className="p-title">
-        <section className="p-title-inner py-5">
-          <div className="container d-flex justify-content-center">
-            <h1>Advisors</h1>
-          </div>
-        </section>
-      </div>
-      <Container className="mt-4">
+      <SectionTitle
+        title="Advisors"
+        breadcrumbs={[
+          { link: "/", name: "Home" },
+          { link: "/advisors", name: "Advisors", active: true },
+        ]}
+      />
+      <Container className="mt-2">
         {advisors.length === 0 && (
           <h1 className="text-center">NO Advisors Found!</h1>
         )}
         <Row>
-          <Col md={3}>
+          <Col md={12} className="mb-3">
+            <button className="btn btn-outline-dark btn-pill">
+              <i className="ri-equalizer-fill mr-1" />
+              Filters
+            </button>
+          </Col>
+          <Col md={3} style={{ display: "none" }}>
             <Card>
               <Card.Body>
                 <Form>
@@ -251,72 +245,102 @@ const Advisors = ({ history, location }) => {
               </Card.Body>
             </Card>
           </Col>
-          <Col md={9}>
-            {advisors.map((advisor) => (
-              <Card
-                key={advisor._id}
-                className="d-flex flex-row"
-                style={{ width: "100%" }}
-              >
-                <Card.Img
-                  src={(config.apiEndPoint + advisor.profile_pic)
-                    .split("\\")
-                    .join("/")}
-                  style={{
-                    width: "150px",
-                    height: "150px",
-                    borderRadius: "50%",
-                    margin: "20px 0 20px 20px",
-                  }}
-                />
-                <Card.Body>
-                  <Card.Title as="h1">{advisor.name}</Card.Title>
-                  <ul className="list-unstyled member-info text-left">
-                    <li>
-                      <i className="ri-briefcase-4-fill mr-3"></i>
-                      <span>{advisor.experience} years of experience</span>
-                    </li>
-                    <li>
-                      <i className="ri-medal-fill mr-3"></i>
-                      <span>{advisor.expertise}</span>
-                    </li>
-                    <li>
-                      <i className="ri-map-pin-2-fill mr-3"></i>
-                      <span>{advisor.location}</span>
-                    </li>
-                  </ul>
-                  <Card.Subtitle>
-                    <Badge variant="info">
-                      {advisor.noOfClients + "+ Clients"}
-                    </Badge>
-                  </Card.Subtitle>
-                </Card.Body>
-                <Card.Footer className="d-flex flex-column justify-content-around align-items-center">
-                  <h3>Rs. {advisor.recc_amt}</h3>
+          {advisors.map((advisor) => (
+            <Col md={6} key={advisor._id}>
+              <Card className="" style={{ width: "100%" }}>
+                <div className="d-md-flex flex-md-row one_advisor">
+                  <Card.Img
+                    src={(config.apiEndPoint + advisor.profile_pic)
+                      .split("\\")
+                      .join("/")}
+                    style={{
+                      width: "150px",
+                      height: "150px",
+                      borderRadius: "50%",
+                      margin: "20px 0 20px 20px",
+                      boxShadow: "rgb(0 0 0 / 20%) 0px 3px 10px 0px",
+                    }}
+                  />
                   <div>
-                    <Button
-                      variant="info"
-                      className="btn-block"
-                      style={{ backgroundColor: "#2b32b2" }}
+                    <Card.Body style={{ paddingBottom: "0" }}>
+                      <Card.Title className="d-flex justify-content-between">
+                        <span
+                          style={{
+                            fontSize: "1.2rem",
+                            fontFamily: "Poppins",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {advisor.name}
+                        </span>
+                        <span
+                          style={{
+                            fontSize: "1rem",
+                            fontFamily: "Poppins",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          ₹ {advisor.recc_amt}
+                        </span>
+                      </Card.Title>
+                      <Card.Subtitle
+                        style={{ color: "#666", fontSize: ".8rem" }}
+                        className="mb-2"
+                      >
+                        {advisor.experience} years of experience -
+                        {advisor.noOfClients}+ Clients
+                      </Card.Subtitle>
+                      <ul className="list-unstyled member-info text-left">
+                        <li>
+                          <i className="ri-medal-fill mr-3"></i>
+                          <span>{advisor.expertise}</span>
+                        </li>
+                        <li>
+                          <i className="ri-map-pin-2-fill mr-3"></i>
+                          <span>{advisor.location}</span>
+                        </li>
+                        {advisor.days ? (
+                          <li>
+                            <i class="ri-time-line mr-3"></i>
+                            <span>
+                              {advisor.days.from.substring(0, 3)}-
+                              {advisor.days.to.substring(0, 3)}
+                            </span>
+                          </li>
+                        ) : (
+                          <li>
+                            <i class="ri-time-line mr-3"></i>
+                            <span>unspecified</span>
+                          </li>
+                        )}
+                      </ul>
+                    </Card.Body>
+                    <Card.Footer
+                      style={{ paddingTop: "0" }}
+                      className="d-flex flex-row justify-content-end"
                     >
-                      Get Recommendation
-                    </Button>
-                    <Button
-                      variant="info"
-                      className="btn-block"
-                      style={{
-                        background: "transparent",
-                        border: "2px solid #2b32b2",
-                        color: "#2b32b2",
-                      }}
-                    >
-                      Favourite
-                    </Button>
+                      <Button
+                        variant="random view_profile  "
+                        onClick={(e) => handleBClick(e, advisor._id)}
+                      >
+                        View Profile
+                      </Button>
+                      <Button
+                        variant="random get_reccomendation ml-3"
+                        disabled={disableBooking}
+                        onClick={(e) => handleBClick(e, advisor._id)}
+                        style={{
+                          boxShadow: "1px 1px 5px 2px rgba(0, 0, 0, 0.2)",
+                        }}
+                      >
+                        Get Recommendation
+                      </Button>
+                    </Card.Footer>
                   </div>
-                </Card.Footer>
+                </div>
               </Card>
-            ))}
-          </Col>
+            </Col>
+          ))}
         </Row>
       </Container>
       <BookingModal

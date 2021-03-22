@@ -64,8 +64,58 @@ h4 {
   transition: 0.1s linear all;
 }
 
+
 .advisor-buttons {
   display: grid;
   grid-template-columns: 1fr auto auto;
   grid-gap: 10px;
 } */
+.one_advisor:hover {
+  background: transparent;
+  box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+}
+.one_advisor > div {
+  flex: 1;
+}
+
+.adv-btns {
+  /* width: 34px;
+  height: 34px;
+  border-radius: 50%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4rem;
+  color: red;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+.adv-btns:hover {
+  text-decoration: none;
+  transition: 0.1s linear all;
+}
+.adv-btns:hover i {
+  color: red;
+  transition: 0.1s linear all;
+}
+.get_reccomendation {
+  background: transparent;
+  border: 2px solid #2b32b2;
+  color: #2b32b2;
+}
+.get_reccomendation:disabled {
+  background: transparent;
+  border: 2px solid rgba(43, 50, 178, 0.65);
+  color: #2b32b2;
+}
+.member-info li span,
+.member-info li i {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #1b1c1e;
+}
+.view_profile {
+  background: transparent;
+  color: #2b32b2;
+}

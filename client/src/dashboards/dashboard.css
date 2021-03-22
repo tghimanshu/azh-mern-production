@@ -4861,7 +4861,7 @@ input[type="submit"].btn-block {
 .accordion > .card .card-header {
   margin-bottom: 0;
 }
-.breadcrumb {
+/* .breadcrumb {
   display: -webkit-box;
   display: flex;
   flex-wrap: wrap;
@@ -4885,8 +4885,8 @@ input[type="submit"].btn-block {
   text-decoration: none;
 }
 .breadcrumb-item.active {
-  color: #6c757d;
-}
+  color: #6c757d; 
+} */
 .pagination {
   display: -webkit-box;
   display: flex;

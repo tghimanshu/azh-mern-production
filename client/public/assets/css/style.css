@@ -136,8 +136,7 @@ h6 {
 .nav-menu a:hover,
 .nav-menu .active > a,
 .nav-menu li:hover > a {
-  color: #1488cc;
-  text-decoration: none;
+  color: #2b32b2;
 }
 /* 
 .nav-menu .get-started a {

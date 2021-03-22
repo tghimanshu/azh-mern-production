@@ -30,6 +30,10 @@ function Profile({ history }) {
     summary: "",
     recc_amt: 0,
   });
+  const [days, setDays] = useState({
+    from: "",
+    to: "",
+  });
   const [blogs, setBlogs] = useState([
     {
       url: "",
@@ -86,6 +90,14 @@ function Profile({ history }) {
                   type: "facebook",
                 },
               ]
+        );
+        setDays(
+          user.data.days && user.data.days.length !== 0
+            ? user.data.days
+            : {
+                from: "",
+                to: "",
+              }
         );
       } catch (error) {
         // console.log(error);
@@ -152,6 +164,7 @@ function Profile({ history }) {
       summary,
       blogs: blogs[0].url === "" ? [] : blogs,
       socials: socials[0].url === "" ? [] : socials,
+      days: days.from === "" ? { from: "", to: "" } : days,
     });
     setalert(successAlert("Profile Updated Successfully!", setalert));
     window.scrollTo({
@@ -251,6 +264,57 @@ function Profile({ history }) {
                     </Form.Group>
                   </Col>
                 </Row>
+                <Row>
+                  <Col className="px-1" md="6">
+                    <Form.Group>
+                      <label>First Working Day of Week</label>
+                      <Form.Control
+                        value={days.from ? days.from : ""}
+                        onChange={(e) => {
+                          const demo = { ...days };
+                          demo.from = e.target.value;
+                          setDays(demo);
+                        }}
+                        placeholder="Contact"
+                        as="select"
+                      >
+                        <option value="">Select</option>
+                        <option value="monday">Monday</option>
+                        <option value="tuesday">Tuesday</option>
+                        <option value="wednesday">Wednesday</option>
+                        <option value="thursday">Thursday</option>
+                        <option value="friday">Friday</option>
+                        <option value="saturday">Saturday</option>
+                        <option value="sunday">Sunday</option>
+                      </Form.Control>
+                    </Form.Group>
+                  </Col>
+                  <Col className="px-1" md="6">
+                    <Form.Group>
+                      <label>Last Working Day of Week</label>
+                      <Form.Control
+                        value={days.to ? days.to : "monday"}
+                        onChange={(e) => {
+                          const demo = { ...days };
+                          demo.to = e.target.value;
+                          setDays(demo);
+                        }}
+                        placeholder="Contact"
+                        as="select"
+                      >
+                        <option value="">Select</option>
+                        <option value="monday">Monday</option>
+                        <option value="tuesday">Tuesday</option>
+                        <option value="wednesday">Wednesday</option>
+                        <option value="thursday">Thursday</option>
+                        <option value="friday">Friday</option>
+                        <option value="saturday">Saturday</option>
+                        <option value="sunday">Sunday</option>
+                      </Form.Control>
+                    </Form.Group>
+                  </Col>
+                </Row>
+
                 <Row>
                   <Col className="pr-1" md="6">
                     <Form.Group>

@@ -43,6 +43,32 @@ const advisorSchema = new mongoose.Schema({
     required: true,
   },
   noOfClients: { type: Number },
+  days: {
+    from: {
+      type: String,
+      enum: [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday",
+        "sunday",
+      ],
+    },
+    to: {
+      type: String,
+      enum: [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday",
+        "sunday",
+      ],
+    },
+  },
   summary: { type: String, default: "" },
   blogs: Array,
   socials: Array,

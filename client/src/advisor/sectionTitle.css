@@ -1,0 +1,6 @@
+.breadcrumb {
+  background: transparent;
+}
+.breadcrumb-item > a > a {
+  color: #2b32b2;
+}
