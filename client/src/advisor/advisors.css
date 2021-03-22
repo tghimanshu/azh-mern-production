@@ -1,15 +1,13 @@
-.card-box {
+/* .card-box {
   padding: 20px;
   border-radius: 6px;
   margin-bottom: 30px;
-  /* background-color: #2b32b2; */
   background: linear-gradient(
     to bottom right,
     rgba(43, 50, 178, 0.8),
     rgba(43, 50, 178, 0.9),
     rgba(43, 50, 178, 0.8)
   );
-  /* background-color: #1488cc; */
   transition: 0.4s linear box-shadow;
 }
 .card-box:hover {
@@ -17,7 +15,6 @@
 }
 
 .member-info li span {
-  /* text-align: right; */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -71,4 +68,4 @@ h4 {
   display: grid;
   grid-template-columns: 1fr auto auto;
   grid-gap: 10px;
-}
+} */

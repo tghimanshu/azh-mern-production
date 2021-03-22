@@ -8,6 +8,15 @@ import LoadingScreen from "../utils/loadingScreen";
 import config from "../utils/config";
 
 import "./advisors.css";
+import {
+  Badge,
+  Button,
+  Card,
+  Col,
+  Container,
+  Form,
+  Row,
+} from "react-bootstrap";
 const queryString = require("query-string");
 
 const Advisors = ({ history, location }) => {
@@ -207,157 +216,73 @@ const Advisors = ({ history, location }) => {
           </div>
         </section>
       </div>
-      <div className="container mt-4">
-        <div className="row mb-4">
-          <div className="col-md-1">
-            <button className="btn btn-outline-dark btn-pill">
-              <i className="ri-equalizer-fill mr-1" />
-              Filters
-            </button>
-          </div>
-        </div>
+      <Container className="mt-4">
         {advisors.length === 0 && (
           <h1 className="text-center">NO Advisors Found!</h1>
         )}
-        <div className="row">
-          {advisors.map((advisor) => {
-            return (
-              <div key={advisor._id} className="col-sm-3">
-                <div className="text-center card-box">
-                  <div className="member-card pt-2 pb-2">
-                    <div
-                      className="mx-auto adv-profile"
-                      style={{
-                        background: `url(${
-                          config.apiEndPoint
-                        }${advisor.profile_pic
-                          .split("\\")
-                          .join("/")}) no-repeat top center/cover`,
-                        width: "150px",
-                        height: "150px",
-                        borderRadius: "50%",
-                        border: "5px solid #eee",
-                      }}
-                    ></div>
-                    <div className="mt-2">
-                      <Link to={"/advisors/" + advisor.username}>
-                        <h4 className="text-white text-capitalize">
-                          {advisor.name}
-                        </h4>
-                      </Link>
-                      <ul className="list-unstyled member-info text-left text-white">
-                        <li>
-                          <i className="ri-briefcase-4-fill mr-3"></i>
-                          <span>{advisor.experience} years of experience</span>
-                        </li>
-                        <li>
-                          <i className="ri-medal-fill mr-3"></i>
-                          <span>{advisor.expertise}</span>
-                        </li>
-                        <li>
-                          <i className="ri-map-pin-2-fill mr-3"></i>
-                          <span>{advisor.location}</span>
-                        </li>
-                      </ul>
-                    </div>
-                    {/* <div className="advisor-buttons">
-                      {bookings.includes(advisor._id) ? (
-                        <button
-                          disabled={true}
-                          onClick={(e) => handleBClick(e, advisor._id)}
-                          type="button"
-                          className="btn btn-block btn-outline-light btn-pill py-1"
-                        >
-                          Booked
-                        </button>
-                      ) : (
-                        <button
-                          disabled={disableBooking}
-                          onClick={(e) => handleBClick(e, advisor._id)}
-                          type="button"
-                          className="btn btn-block btn-outline-light btn-pill py-1"
-                        >
-                          Book Me
-                        </button>
-                      )}
-
-                      <span
-                        className="border border-light adv-btns"
-                        onClick={(e) => handleFav(e, advisor._id)}
-                      >
-                        <i
-                          className={
-                            fav.includes(advisor._id)
-                              ? "ri-star-fill"
-                              : "ri-star-line"
-                          }
-                        ></i>
-                      </span>
-                      <span
-                        href="/"
-                        onClick={(e) => handleShareClick(e, advisor.username)}
-                        className="border border-light adv-btns"
-                      >
-                        <i className="ri-share-line"></i>
-                      </span>
-                    </div> */}
-
-                    <div>
-                      {bookings.includes(advisor._id) ? (
-                        <button
-                          disabled={true}
-                          onClick={(e) => handleBClick(e, advisor._id)}
-                          type="button"
-                          className="btn btn-block btn-outline-light btn-pill py-1"
-                        >
-                          Requested
-                        </button>
-                      ) : (
-                        <button
-                          disabled={disableBooking}
-                          onClick={(e) => handleBClick(e, advisor._id)}
-                          type="button"
-                          className="btn btn-block btn-outline-light btn-pill py-1"
-                        >
-                          Get Reccomendation
-                        </button>
-                      )}
-                      <div className="d-flex justify-content-around">
-                        <div className="">
-                          <button
-                            className="btn btn-block btn-outline-light btn-pill py-1 mt-2"
-                            onClick={(e) => handleFav(e, advisor._id)}
-                          >
-                            <i
-                              className={
-                                fav.includes(advisor._id)
-                                  ? "ri-star-fill"
-                                  : "ri-star-line"
-                              }
-                            ></i>
-                            Favourite
-                          </button>
-                        </div>
-                        <div className="">
-                          <button
-                            href="/"
-                            className="btn btn-block btn-outline-light btn-pill py-1 mt-2"
-                            onClick={(e) =>
-                              handleShareClick(e, advisor.username)
-                            }
-                          >
-                            <i className="ri-share-line"></i>Share
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
+        <Row>
+          <Col md={3}>
+            <Card>
+              <Card.Body>
+                <Form>
+                  <Form.Group>
+                    <Form.Control placeholder="Enter Location" />
+                  </Form.Group>
+                  <Form.Group>
+                    <Form.Control placeholder="Enter Location" />
+                  </Form.Group>
+                </Form>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col md={9}>
+            {advisors.map((advisor) => (
+              <Card
+                key={advisor._id}
+                className="d-flex flex-row"
+                style={{ width: "100%" }}
+              >
+                <Card.Img
+                  src={(config.apiEndPoint + advisor.profile_pic)
+                    .split("\\")
+                    .join("/")}
+                  style={{
+                    width: "150px",
+                    height: "150px",
+                    borderRadius: "50%",
+                    margin: "20px 0 20px 20px",
+                  }}
+                />
+                <Card.Body>
+                  <Card.Title as="h1">{advisor.name}</Card.Title>
+                  <ul className="list-unstyled member-info text-left">
+                    <li>
+                      <i className="ri-briefcase-4-fill mr-3"></i>
+                      <span>{advisor.experience} years of experience</span>
+                    </li>
+                    <li>
+                      <i className="ri-medal-fill mr-3"></i>
+                      <span>{advisor.expertise}</span>
+                    </li>
+                    <li>
+                      <i className="ri-map-pin-2-fill mr-3"></i>
+                      <span>{advisor.location}</span>
+                    </li>
+                  </ul>
+                  <Card.Subtitle>
+                    <Badge variant="info">
+                      {advisor.noOfClients + "+ Clients"}
+                    </Badge>
+                  </Card.Subtitle>
+                </Card.Body>
+                <Card.Footer>
+                  <Button variant="info">Get Recommendation</Button>
+                </Card.Footer>
+              </Card>
+            ))}
+          </Col>
+        </Row>
+      </Container>
       <BookingModal
         show={showModel}
         appointment={appointment}
@@ -375,3 +300,140 @@ const Advisors = ({ history, location }) => {
 };
 
 export default Advisors;
+
+//  <div className="row">
+//    {advisors.map((advisor) => {
+//      return (
+//        <div key={advisor._id} className="col-sm-3">
+//          <div className="text-center card-box">
+//            <div className="member-card pt-2 pb-2">
+//              <div
+//                className="mx-auto adv-profile"
+//                style={{
+//                  background: `url(${
+//                    config.apiEndPoint
+//                  }${advisor.profile_pic
+//                    .split("\\")
+//                    .join("/")}) no-repeat top center/cover`,
+//                  width: "150px",
+//                  height: "150px",
+//                  borderRadius: "50%",
+//                  border: "5px solid #eee",
+//                }}
+//              ></div>
+//              <div className="mt-2">
+//                <Link to={"/advisors/" + advisor.username}>
+//                  <h4 className="text-white text-capitalize">
+//                    {advisor.name}
+//                  </h4>
+//                </Link>
+//                <ul className="list-unstyled member-info text-left text-white">
+//                  <li>
+//                    <i className="ri-briefcase-4-fill mr-3"></i>
+//                    <span>{advisor.experience} years of experience</span>
+//                  </li>
+//                  <li>
+//                    <i className="ri-medal-fill mr-3"></i>
+//                    <span>{advisor.expertise}</span>
+//                  </li>
+//                  <li>
+//                    <i className="ri-map-pin-2-fill mr-3"></i>
+//                    <span>{advisor.location}</span>
+//                  </li>
+//                </ul>
+//              </div>
+//              {/* <div className="advisor-buttons">
+//                     {bookings.includes(advisor._id) ? (
+//                       <button
+//                         disabled={true}
+//                         onClick={(e) => handleBClick(e, advisor._id)}
+//                         type="button"
+//                         className="btn btn-block btn-outline-light btn-pill py-1"
+//                       >
+//                         Booked
+//                       </button>
+//                     ) : (
+//                       <button
+//                         disabled={disableBooking}
+//                         onClick={(e) => handleBClick(e, advisor._id)}
+//                         type="button"
+//                         className="btn btn-block btn-outline-light btn-pill py-1"
+//                       >
+//                         Book Me
+//                       </button>
+//                     )}
+
+//                     <span
+//                       className="border border-light adv-btns"
+//                       onClick={(e) => handleFav(e, advisor._id)}
+//                     >
+//                       <i
+//                         className={
+//                           fav.includes(advisor._id)
+//                             ? "ri-star-fill"
+//                             : "ri-star-line"
+//                         }
+//                       ></i>
+//                     </span>
+//                     <span
+//                       href="/"
+//                       onClick={(e) => handleShareClick(e, advisor.username)}
+//                       className="border border-light adv-btns"
+//                     >
+//                       <i className="ri-share-line"></i>
+//                     </span>
+//                   </div> */}
+
+//              <div>
+//                {bookings.includes(advisor._id) ? (
+//                  <button
+//                    disabled={true}
+//                    onClick={(e) => handleBClick(e, advisor._id)}
+//                    type="button"
+//                    className="btn btn-block btn-outline-light btn-pill py-1"
+//                  >
+//                    Requested
+//                  </button>
+//                ) : (
+//                  <button
+//                    disabled={disableBooking}
+//                    onClick={(e) => handleBClick(e, advisor._id)}
+//                    type="button"
+//                    className="btn btn-block btn-outline-light btn-pill py-1"
+//                  >
+//                    Get Reccomendation
+//                  </button>
+//                )}
+//                <div className="d-flex justify-content-around">
+//                  <div className="">
+//                    <button
+//                      className="btn btn-block btn-outline-light btn-pill py-1 mt-2"
+//                      onClick={(e) => handleFav(e, advisor._id)}
+//                    >
+//                      <i
+//                        className={
+//                          fav.includes(advisor._id)
+//                            ? "ri-star-fill"
+//                            : "ri-star-line"
+//                        }
+//                      ></i>
+//                      Favourite
+//                    </button>
+//                  </div>
+//                  <div className="">
+//                    <button
+//                      href="/"
+//                      className="btn btn-block btn-outline-light btn-pill py-1 mt-2"
+//                      onClick={(e) => handleShareClick(e, advisor.username)}
+//                    >
+//                      <i className="ri-share-line"></i>Share
+//                    </button>
+//                  </div>
+//                </div>
+//              </div>
+//            </div>
+//          </div>
+//        </div>
+//      );
+//    })}
+//  </div>;
