@@ -97,16 +97,7 @@ router.get("/:id", async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    const advisors = await Advisor.find().select([
-      "username",
-      "name",
-      "email",
-      "location",
-      "expertise",
-      "experience",
-      "profile_pic",
-      "isApproved",
-    ]);
+    const advisors = await Advisor.find().select(["-_v", "-password"]);
     res.send(advisors);
     res.end();
   } catch (error) {}
