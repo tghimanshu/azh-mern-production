@@ -80,8 +80,18 @@ router.delete("/:id", adminAuth, async (req, res) => {
 // * CLIENTS
 
 router.get("/clients", adminAuth, async (req, res) => {
-  const clients = await Client.find();
-  res.send(clients);
+  try {
+    const clients = await Client.find();
+
+    res.json(
+      clients.map((client) => ({
+        ...client.toObject(),
+        creationDate: client._id.getTimestamp(),
+      }))
+    );
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 router.get("/client/:id", adminAuth, async (req, res) => {

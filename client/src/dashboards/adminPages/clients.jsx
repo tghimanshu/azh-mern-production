@@ -7,7 +7,6 @@ const Clients = () => {
   useEffect(() => {
     const getClients = async () => {
       const clients = await http.get("/admin/clients");
-
       setClients(clients.data);
     };
     getClients();
@@ -17,21 +16,24 @@ const Clients = () => {
     <table className="table table-striped">
       <thead>
         <tr>
-          <th style={{ width: "25%" }}>User Name</th>
-          <th style={{ width: "25%" }}>Name</th>
-          <th style={{ width: "25%" }}>Phone Number</th>
-          <th style={{ width: "25%" }}>Email ID</th>
+          <th>User Name</th>
+          <th>Name</th>
+          <th>Phone Number</th>
+          <th>Email ID</th>
+          <th>Creation Date</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
         {clients.map((client) => {
+          const creationDate = new Date(client.creationDate);
           return (
             <tr key={client._id}>
               <td>{client.username}</td>
               <td>{client.name}</td>
               <td>{client.contact}</td>
               <td>{client.email}</td>
+              <td>{`${creationDate.getDate()}-${creationDate.getMonth()}-${creationDate.getFullYear()}`}</td>
               <td className="table-action">
                 <Link to={"/admin/client/" + client._id}>
                   <svg
