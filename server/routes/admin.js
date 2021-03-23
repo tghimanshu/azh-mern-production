@@ -106,8 +106,17 @@ router.get("/client/:id", adminAuth, async (req, res) => {
 // * ADVISORS
 
 router.get("/advisors", adminAuth, async (req, res) => {
-  const advisors = await Advisor.find();
-  res.send(advisors);
+  try {
+    const advisors = await Advisor.find();
+    res.json(
+      advisors.map((advisor) => ({
+        ...advisor.toObject(),
+        creationDate: advisor._id.getTimestamp(),
+      }))
+    );
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 router.put("/advisors/approve/:id", adminAuth, async (req, res) => {
