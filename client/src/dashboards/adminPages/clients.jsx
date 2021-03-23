@@ -11,7 +11,6 @@ const Clients = () => {
     };
     getClients();
   }, []);
-  // console.log(clients);
   return (
     <table className="table table-striped">
       <thead>
