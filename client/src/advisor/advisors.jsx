@@ -17,6 +17,7 @@ import {
   Row,
 } from "react-bootstrap";
 import SectionTitle from "./sectionTitle";
+import { Link } from "react-router-dom";
 const queryString = require("query-string");
 
 const Advisors = ({ history, location }) => {
@@ -301,7 +302,7 @@ const Advisors = ({ history, location }) => {
                         </li>
                         {advisor.days ? (
                           <li>
-                            <i class="ri-time-line mr-3"></i>
+                            <i className="ri-time-line mr-3"></i>
                             <span>
                               {advisor.days.from.substring(0, 3)}-
                               {advisor.days.to.substring(0, 3)}
@@ -309,7 +310,7 @@ const Advisors = ({ history, location }) => {
                           </li>
                         ) : (
                           <li>
-                            <i class="ri-time-line mr-3"></i>
+                            <i className="ri-time-line mr-3"></i>
                             <span>unspecified</span>
                           </li>
                         )}
@@ -319,12 +320,12 @@ const Advisors = ({ history, location }) => {
                       style={{ paddingTop: "0" }}
                       className="d-flex flex-row justify-content-end"
                     >
-                      <Button
-                        variant="random view_profile  "
-                        onClick={(e) => handleBClick(e, advisor._id)}
+                      <Link
+                        to={"/advisors/" + advisor.username}
+                        className="btn view_profile"
                       >
                         View Profile
-                      </Button>
+                      </Link>
                       <Button
                         variant="random get_reccomendation ml-3"
                         disabled={disableBooking}

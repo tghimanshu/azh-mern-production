@@ -43,6 +43,10 @@ const advisorSchema = new mongoose.Schema({
     required: true,
   },
   noOfClients: { type: Number },
+  timings: {
+    from: String,
+    to: String,
+  },
   days: {
     from: {
       type: String,

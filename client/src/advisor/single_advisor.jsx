@@ -24,6 +24,7 @@ const SingleAdvisor = ({ match, history }) => {
       const result = await http.get(
         "/advisor/username/" + match.params.username
       );
+      console.log(result);
       if (user.role === "client") {
         const { data } = await http.get("/booking/client/" + user._id);
         data.filter((d) => d.advisor_id._id === result.data._id).length !== 0 &&
@@ -52,6 +53,7 @@ const SingleAdvisor = ({ match, history }) => {
       //   confirmButtonText: "Login/Register",
       // }).then((res) => res.isConfirmed && history.push("/login"));
       // history.goBack();
+      getAdvisor(user);
     }
   }, [history, getAdvisor]);
 

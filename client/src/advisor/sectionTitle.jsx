@@ -1,6 +1,6 @@
 import React from "react";
 import { Breadcrumb } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./sectionTitle.css";
 
 const SectionTitle = (props) => {
@@ -11,12 +11,7 @@ const SectionTitle = (props) => {
           <h1>{props.title}</h1>
           <Breadcrumb>
             {props.breadcrumbs.map((breadcrumb, i) => (
-              <Breadcrumb.Item key={i} active={breadcrumb.active}>
-                {breadcrumb.active ? (
-                  breadcrumb.name
-                ) : (
-                  <NavLink to={breadcrumb.link}>{breadcrumb.name}</NavLink>
-                )}
+              <Breadcrumb.Item key={i} linkProps={{to: breadcrumb.link}} linkAs={Link} active={breadcrumb.active}>{breadcrumb.name}
               </Breadcrumb.Item>
             ))}
           </Breadcrumb>
