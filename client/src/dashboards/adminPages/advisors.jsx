@@ -29,15 +29,17 @@ const Advisors = () => {
     <table className="table table-striped">
       <thead>
         <tr>
-          <th style={{ width: "25%" }}>User Name</th>
-          <th style={{ width: "25%" }}>Name</th>
-          <th style={{ width: "25%" }}>Phone Number</th>
-          <th style={{ width: "25%" }}>Email ID</th>
+          <th>User Name</th>
+          <th>Name</th>
+          <th>Phone Number</th>
+          <th>Email ID</th>
+          <th>Creation Date</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
         {advisors.map((advisor) => {
+          const creationDate = new Date(advisor.creationDate);
           const pending = advisor.recc_change
             ? advisor.recc_change.filter((a) => a.isApproved === "pending")
                 .length
@@ -52,7 +54,7 @@ const Advisors = () => {
               <td>{advisor.name}</td>
               <td>{advisor.contact}</td>
               <td>{advisor.email}</td>
-
+              <td>{`${creationDate.getDate()}-${creationDate.getMonth()}-${creationDate.getFullYear()}`}</td>
               <td className="table-action">
                 <Link to={"/advisor/" + advisor.username}>
                   <svg

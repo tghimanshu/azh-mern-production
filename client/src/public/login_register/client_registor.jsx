@@ -14,7 +14,7 @@ export const ClientRegistor = ({ history }) => {
   const [pass, setpass] = useState("");
   const [cpass, setcpass] = useState("");
   const [isChecked, setisChecked] = useState(false);
-  const [cp, setcp] = useState(true);
+  const [cp, setcp] = useState(false);
 
   function onCaptchaChange(value) {
     setcp(value);

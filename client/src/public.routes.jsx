@@ -12,6 +12,7 @@ import { ForgotPassword, ResetPssword } from "./public/forgot-password";
 import Advisors from "./advisor/advisors";
 import SingleAdvisor from "./advisor/single_advisor";
 import AdminLogin from "./dashboards/adminLogin";
+import Feedback from "./public/feedback";
 
 const PublicRoutes = () => {
   return (
@@ -21,6 +22,7 @@ const PublicRoutes = () => {
         <Route exact path="/adminLogin" component={AdminLogin} />
         <Route exact path="/knowledge-base" component={Knowledge} />
         <Route exact path="/e-learning" component={ELearning} />
+        <Route exact path="/feedback/:id" component={Feedback} />
         <Route exact path="/page/:slug" component={Page} />
         <Route exact path="/advisors/:username" component={SingleAdvisor} />
         <Route exact path="/advisors" component={Advisors} />
@@ -29,6 +31,7 @@ const PublicRoutes = () => {
 
         <Route exact path="/login" component={Login} />
         <Route exact path="/" component={Home} />
+        <Route path="/" component={Advisors} />
       </Switch>
       <Footer />
     </Fragment>

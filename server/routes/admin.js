@@ -80,8 +80,18 @@ router.delete("/:id", adminAuth, async (req, res) => {
 // * CLIENTS
 
 router.get("/clients", adminAuth, async (req, res) => {
-  const clients = await Client.find();
-  res.send(clients);
+  try {
+    const clients = await Client.find();
+
+    res.json(
+      clients.map((client) => ({
+        ...client.toObject(),
+        creationDate: client._id.getTimestamp(),
+      }))
+    );
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 router.get("/client/:id", adminAuth, async (req, res) => {
@@ -96,8 +106,17 @@ router.get("/client/:id", adminAuth, async (req, res) => {
 // * ADVISORS
 
 router.get("/advisors", adminAuth, async (req, res) => {
-  const advisors = await Advisor.find();
-  res.send(advisors);
+  try {
+    const advisors = await Advisor.find();
+    res.json(
+      advisors.map((advisor) => ({
+        ...advisor.toObject(),
+        creationDate: advisor._id.getTimestamp(),
+      }))
+    );
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 router.put("/advisors/approve/:id", adminAuth, async (req, res) => {
