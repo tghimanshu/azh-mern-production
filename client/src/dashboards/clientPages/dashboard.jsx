@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import jwtDecode from "jwt-decode";
 import http from "../../utils/http";
 import { Link } from "react-router-dom";
 // import { dangerAlert } from "../../utils/alerts";
@@ -7,7 +6,6 @@ import "react-quill/dist/quill.snow.css";
 
 // react-bootstrap components
 import { Card, Container, Row, Col, ProgressBar } from "react-bootstrap";
-import config from "../../utils/config";
 import Recommendation from "./bookings";
 import { getRole } from "../../utils/jwt";
 import { getCompletionStatus } from "../../utils/logout";
@@ -25,7 +23,7 @@ function ClientDashboard({ history }) {
     email: "",
     contact: 0,
   });
-  const [recc, setRecc] = useState(null);
+  // const [recc, setRecc] = useState(null);
   const [completionState, setCompletionState] = useState(0);
 
   useEffect(() => {
@@ -33,9 +31,9 @@ function ClientDashboard({ history }) {
       try {
         const userJwt = getRole();
         const { data } = await http.get("/client/" + userJwt._id);
-        const results = await http.get("/booking/client/" + userJwt._id);
-        const filteredRecc = results.data.filter((d) => d.advisor_id !== null);
-        setRecc(filteredRecc);
+        // const results = await http.get("/booking/client/" + userJwt._id);
+        // const filteredRecc = results.data.filter((d) => d.advisor_id !== null);
+        // setRecc(filteredRecc);
         setUser(data);
         // let status = 0;
         // status += data.name !== 0 ? 10 : 0;

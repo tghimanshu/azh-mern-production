@@ -25,6 +25,7 @@ const Advisors = () => {
     });
     setAdvisor(newAdv);
   };
+
   return (
     <table className="table table-striped">
       <thead>

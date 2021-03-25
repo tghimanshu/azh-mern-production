@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import HeroSection from "./hero-section";
 import WhyAZH from "./whyazh";
-import HowItWorks from "./how_it_works";
+import { HowItWorks, WantAnAdvisor } from "./how_it_works";
 import Initiative from "./Initiatives";
 import Figures from "./figures";
 import EndToEnd from "./end-to-end";
@@ -12,6 +12,7 @@ function Home(props) {
       <HeroSection {...props} />
       <WhyAZH />
       <HowItWorks />
+      <WantAnAdvisor />
       <Initiative />
       <Figures />
       <EndToEnd />

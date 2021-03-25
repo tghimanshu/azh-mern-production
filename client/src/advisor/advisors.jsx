@@ -8,12 +8,13 @@ import config from "../utils/config";
 
 import "./advisors.css";
 import {
-  Badge,
   Button,
   Card,
   Col,
   Container,
   Form,
+  OverlayTrigger,
+  Popover,
   Row,
 } from "react-bootstrap";
 import SectionTitle from "./sectionTitle";
@@ -33,7 +34,7 @@ const Advisors = ({ history, location }) => {
     username: "",
   });
   const [disableBooking, setDisableBooking] = useState(false);
-  const [fav, setFav] = useState([]);
+  // const [fav, setFav] = useState([]);
   const [loadingScreen, setLoadingScreen] = useState(true);
   useEffect(() => {
     const user = getRole();
@@ -45,10 +46,10 @@ const Advisors = ({ history, location }) => {
         remarks: "",
         client_id: user._id,
       });
-      const favs = localStorage.getItem("favs");
-      if (favs !== null) {
-        setFav(favs.split(","));
-      }
+      // const favs = localStorage.getItem("favs");
+      // if (favs !== null) {
+      //   setFav(favs.split(","));
+      // }
     } else if (user.role !== "client") {
       // Swal.fire({
       //   icon: "info",
@@ -169,32 +170,51 @@ const Advisors = ({ history, location }) => {
     }
   };
 
-  const handleShareClick = (e, username) => {
-    setShareModel({
-      show: true,
-      username: username,
-    });
-  };
+  // const handleShareClick = (e, username) => {
+  //   setShareModel({
+  //     show: true,
+  //     username: username,
+  //   });
+  // };
 
-  const handleFav = (e, id) => {
-    if (fav.includes(id)) {
-      const temp_fav = [...fav];
-      let inx = temp_fav.indexOf(id);
-      temp_fav.splice(inx, 1);
-      setFav(temp_fav);
-      localStorage.setItem("favs", temp_fav);
-    } else {
-      const temp_fav = [...fav, id];
-      setFav(temp_fav);
-      localStorage.setItem("favs", temp_fav.join(","));
-    }
-  };
+  // const handleFav = (e, id) => {
+  //   if (fav.includes(id)) {
+  //     const temp_fav = [...fav];
+  //     let inx = temp_fav.indexOf(id);
+  //     temp_fav.splice(inx, 1);
+  //     setFav(temp_fav);
+  //     localStorage.setItem("favs", temp_fav);
+  //   } else {
+  //     const temp_fav = [...fav, id];
+  //     setFav(temp_fav);
+  //     localStorage.setItem("favs", temp_fav.join(","));
+  //   }
+  // };
 
   const handleClose = () => {
     setShareModel(false);
     setShowModel(false);
   };
 
+  const popover = (
+    <Popover id="popover-basic">
+      <Popover.Content>
+        <p>
+          <b>Inusrance :</b> Insuring yourself or your family by selection of
+          plans that is best suited to your needs{" "}
+        </p>
+        <p>
+          <b>Invesments :</b> Plan your finance to achieve your goals for ex
+          buying a house or child’s marriage.
+        </p>
+        <small>
+          or any other financial query. just reach out with what you need help
+          with and the selected advisor will send personalised recommendation
+          followed by a video call for doubts if need be.
+        </small>
+      </Popover.Content>
+    </Popover>
+  );
   return (
     <div>
       {loadingScreen && <LoadingScreen />}
@@ -330,16 +350,22 @@ const Advisors = ({ history, location }) => {
                       >
                         View Profile
                       </Link>
-                      <Button
-                        variant="random get_reccomendation ml-3"
-                        disabled={disableBooking}
-                        onClick={(e) => handleBClick(e, advisor._id)}
-                        style={{
-                          boxShadow: "1px 1px 5px 2px rgba(0, 0, 0, 0.2)",
-                        }}
+                      <OverlayTrigger
+                        trigger="hover"
+                        placement="left"
+                        overlay={popover}
                       >
-                        Get Recommendation
-                      </Button>
+                        <Button
+                          variant="random get_reccomendation ml-3"
+                          disabled={disableBooking}
+                          onClick={(e) => handleBClick(e, advisor._id)}
+                          style={{
+                            boxShadow: "1px 1px 5px 2px rgba(0, 0, 0, 0.2)",
+                          }}
+                        >
+                          Get Recommendation
+                        </Button>
+                      </OverlayTrigger>
                     </Card.Footer>
                   </div>
                 </div>
@@ -365,140 +391,3 @@ const Advisors = ({ history, location }) => {
 };
 
 export default Advisors;
-
-//  <div className="row">
-//    {advisors.map((advisor) => {
-//      return (
-//        <div key={advisor._id} className="col-sm-3">
-//          <div className="text-center card-box">
-//            <div className="member-card pt-2 pb-2">
-//              <div
-//                className="mx-auto adv-profile"
-//                style={{
-//                  background: `url(${
-//                    config.apiEndPoint
-//                  }${advisor.profile_pic
-//                    .split("\\")
-//                    .join("/")}) no-repeat top center/cover`,
-//                  width: "150px",
-//                  height: "150px",
-//                  borderRadius: "50%",
-//                  border: "5px solid #eee",
-//                }}
-//              ></div>
-//              <div className="mt-2">
-//                <Link to={"/advisors/" + advisor.username}>
-//                  <h4 className="text-white text-capitalize">
-//                    {advisor.name}
-//                  </h4>
-//                </Link>
-//                <ul className="list-unstyled member-info text-left text-white">
-//                  <li>
-//                    <i className="ri-briefcase-4-fill mr-3"></i>
-//                    <span>{advisor.experience} years of experience</span>
-//                  </li>
-//                  <li>
-//                    <i className="ri-medal-fill mr-3"></i>
-//                    <span>{advisor.expertise}</span>
-//                  </li>
-//                  <li>
-//                    <i className="ri-map-pin-2-fill mr-3"></i>
-//                    <span>{advisor.location}</span>
-//                  </li>
-//                </ul>
-//              </div>
-//              {/* <div className="advisor-buttons">
-//                     {bookings.includes(advisor._id) ? (
-//                       <button
-//                         disabled={true}
-//                         onClick={(e) => handleBClick(e, advisor._id)}
-//                         type="button"
-//                         className="btn btn-block btn-outline-light btn-pill py-1"
-//                       >
-//                         Booked
-//                       </button>
-//                     ) : (
-//                       <button
-//                         disabled={disableBooking}
-//                         onClick={(e) => handleBClick(e, advisor._id)}
-//                         type="button"
-//                         className="btn btn-block btn-outline-light btn-pill py-1"
-//                       >
-//                         Book Me
-//                       </button>
-//                     )}
-
-//                     <span
-//                       className="border border-light adv-btns"
-//                       onClick={(e) => handleFav(e, advisor._id)}
-//                     >
-//                       <i
-//                         className={
-//                           fav.includes(advisor._id)
-//                             ? "ri-star-fill"
-//                             : "ri-star-line"
-//                         }
-//                       ></i>
-//                     </span>
-//                     <span
-//                       href="/"
-//                       onClick={(e) => handleShareClick(e, advisor.username)}
-//                       className="border border-light adv-btns"
-//                     >
-//                       <i className="ri-share-line"></i>
-//                     </span>
-//                   </div> */}
-
-//              <div>
-//                {bookings.includes(advisor._id) ? (
-//                  <button
-//                    disabled={true}
-//                    onClick={(e) => handleBClick(e, advisor._id)}
-//                    type="button"
-//                    className="btn btn-block btn-outline-light btn-pill py-1"
-//                  >
-//                    Requested
-//                  </button>
-//                ) : (
-//                  <button
-//                    disabled={disableBooking}
-//                    onClick={(e) => handleBClick(e, advisor._id)}
-//                    type="button"
-//                    className="btn btn-block btn-outline-light btn-pill py-1"
-//                  >
-//                    Get Reccomendation
-//                  </button>
-//                )}
-//                <div className="d-flex justify-content-around">
-//                  <div className="">
-//                    <button
-//                      className="btn btn-block btn-outline-light btn-pill py-1 mt-2"
-//                      onClick={(e) => handleFav(e, advisor._id)}
-//                    >
-//                      <i
-//                        className={
-//                          fav.includes(advisor._id)
-//                            ? "ri-star-fill"
-//                            : "ri-star-line"
-//                        }
-//                      ></i>
-//                      Favourite
-//                    </button>
-//                  </div>
-//                  <div className="">
-//                    <button
-//                      href="/"
-//                      className="btn btn-block btn-outline-light btn-pill py-1 mt-2"
-//                      onClick={(e) => handleShareClick(e, advisor.username)}
-//                    >
-//                      <i className="ri-share-line"></i>Share
-//                    </button>
-//                  </div>
-//                </div>
-//              </div>
-//            </div>
-//          </div>
-//        </div>
-//      );
-//    })}
-//  </div>;

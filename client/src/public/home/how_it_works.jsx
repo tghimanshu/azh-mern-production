@@ -1,6 +1,115 @@
-import { Container, Image } from "react-bootstrap";
+import { Col, Container, Image, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-function HowItWorks() {
+
+export function HowItWorks() {
+  return (
+    <section id="how-it-works" classNmae="text-black">
+      <Container>
+        <h1>
+          HOW IT WORKS
+          <p
+            style={{
+              fontWeight: "initial",
+              fontSize: "initial",
+              marginBottom: "5px",
+            }}
+          >
+            3 Steps and you're done
+          </p>
+          <hr className="m-0 mb-5" />
+        </h1>
+        <Row>
+          <Col md={4} className="d-md-flex">
+            <div>
+              <h1
+                style={{
+                  fontSize: "4em",
+                  color: "#2B32B2",
+                  lineHeight: "0.8em",
+                }}
+              >
+                01
+              </h1>
+            </div>
+            <div className="ml-2 mr-4">
+              <h2
+                style={{
+                  fontFamily: "Roboto",
+                  fontWeight: "bold",
+                }}
+              >
+                PROFILING
+              </h2>
+              <p>
+                sign up for free and complete your profile by filling in details
+                and you will be good to go to explore your advisors
+              </p>
+            </div>
+          </Col>
+
+          <Col md={4} className="d-md-flex">
+            <div>
+              <h1
+                style={{
+                  fontSize: "4em",
+                  color: "#2B32B2",
+                  lineHeight: "0.8em",
+                }}
+              >
+                02
+              </h1>
+            </div>
+            <div className="ml-2 mr-4">
+              <h2
+                style={{
+                  fontFamily: "Roboto",
+                  fontWeight: "bold",
+                }}
+              >
+                EXPLORING
+              </h2>
+              <p>
+                Explore amongst all the SEBI resgistered advisors and you can
+                also whittle down your search by appplying filters.
+              </p>
+            </div>
+          </Col>
+
+          <Col md={4} className="d-md-flex">
+            <div>
+              <h1
+                style={{
+                  fontSize: "4em",
+                  color: "#2B32B2",
+                  lineHeight: "0.8em",
+                }}
+              >
+                03
+              </h1>
+            </div>
+            <div className="ml-2 mr-4">
+              <h2
+                style={{
+                  fontFamily: "Roboto",
+                  fontWeight: "bold",
+                }}
+              >
+                SELECTING
+              </h2>
+              <p>
+                your personalised plan be that insurance or investment is now
+                just a button away. Reach out and the advisor will get back with
+                the recommendation .
+              </p>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    </section>
+  );
+}
+
+export function WantAnAdvisor() {
   return (
     <section id="how-it-works" className="text-black">
       <Container>
@@ -58,5 +167,3 @@ function HowItWorks() {
     </section>
   );
 }
-
-export default HowItWorks;
