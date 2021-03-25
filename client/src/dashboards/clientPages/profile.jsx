@@ -15,10 +15,14 @@ import {
   ProgressBar,
 } from "react-bootstrap";
 import { successAlert } from "../../utils/alerts";
+import { getCompletionStatus } from "../../utils/logout";
 
 function Profile() {
   const [alert, setalert] = useState("");
-  const [completionState, setCompletionState] = useState(0);
+  const [completionState, setCompletionState] = useState({
+    percent: 0,
+    state: "",
+  });
   const [user, setUser] = useState({
     address: "",
     city: "",
@@ -38,27 +42,7 @@ function Profile() {
         const userJwt = getRole();
         const { data } = await http.get("/client/" + userJwt._id);
         setUser(data);
-        let status = 0;
-        status += data.name !== 0 ? 10 : 0;
-        status += data.personal_details.self.name !== "" ? 15 : 0;
-
-        status += data.goals.length !== 0 && data.goals[0].goal !== "" ? 15 : 0;
-        status +=
-          data.investments.length !== 0 &&
-          !data.haveInvestments &&
-          data.investments[0].goal !== 0
-            ? 15
-            : 0;
-
-        status +=
-          data.insurances.length !== 0 &&
-          !data.haveInsurances &&
-          data.insurances[0].goal !== 0
-            ? 15
-            : 0;
-
-        status += data.income.inc_self !== 0 ? 15 : 0;
-        status += data.expenses.monthly.groceries !== 0 ? 15 : 0;
+        const status = getCompletionStatus(data);
         setCompletionState(status);
       } catch (error) {
         // console.log(error);
@@ -94,7 +78,7 @@ function Profile() {
           <Col md="8">
             <Card>
               <Card.Header>
-                <Card.Title as="h4">Edit Profile {completionState}</Card.Title>
+                <Card.Title as="h4">Edit Profile</Card.Title>
               </Card.Header>
               <Card.Body>
                 <Form onSubmit={handleSubmit}>
@@ -256,18 +240,18 @@ function Profile() {
                 </p>
                 <div className="d-flex justify-content-between">
                   <small>Profile Status:</small>
-                  <small>{completionState}%</small>
+                  <small>{completionState.percent}%</small>
                 </div>
                 <ProgressBar
-                  now={completionState}
-                  label={`${completionState}%`}
+                  now={completionState.percent}
+                  label={`${completionState.percent}%`}
                   srOnly
                   variant={
-                    (completionState > 80 && "success") ||
-                    (completionState > 50 &&
-                      completionState < 80 &&
+                    (completionState.percent > 80 && "success") ||
+                    (completionState.percent > 50 &&
+                      completionState.percent < 80 &&
                       "warning") ||
-                    (completionState < 50 && "danger")
+                    (completionState.percent < 50 && "danger")
                   }
                 />
               </Card.Body>

@@ -261,6 +261,10 @@ const Advisors = ({ history, location }) => {
                       margin: "20px 0 20px 20px",
                       boxShadow: "rgb(0 0 0 / 20%) 0px 3px 10px 0px",
                     }}
+                    onError={(e) => {
+                      e.target.src =
+                        "http://localhost:3000/static/media/site-logo.2f58d515.png";
+                    }}
                   />
                   <div>
                     <Card.Body style={{ paddingBottom: "0" }}>

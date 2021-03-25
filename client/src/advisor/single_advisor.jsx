@@ -167,6 +167,10 @@ const SingleAdvisor = ({ match, history }) => {
             src={config.apiEndPoint + advisor.profile_pic}
             alt={advisor.name}
             style={{ width: "100%", height: "auto" }}
+            onError={(e) => {
+              e.target.src =
+                "http://localhost:3000/static/media/site-logo.2f58d515.png";
+            }}
           />
           <h2 className="mt-2">{advisor.name}</h2>
           <hr />

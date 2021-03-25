@@ -28,6 +28,7 @@ import {
   Feedbacks as ClientFeedbacks,
   SingleFeedback,
 } from "./clientPages/feedbacks";
+import ClientDashboard from "./clientPages/dashboard";
 
 export const routes = {
   admin: [
@@ -134,6 +135,12 @@ export const routes = {
     {
       path: "/client",
       name: "Dashboard",
+      component: ClientDashboard,
+      onMenu: true,
+    },
+    {
+      path: "/client/profile",
+      name: "Profile",
       component: ClientProfile,
       onMenu: true,
     },
