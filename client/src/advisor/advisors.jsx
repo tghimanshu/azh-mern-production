@@ -327,15 +327,17 @@ const Advisors = ({ history, location }) => {
                         {advisor.days ? (
                           <li>
                             <i className="ri-time-line mr-3"></i>
-                            <span>
+                            <span>{advisor.availability}</span>
+                            {/* <span>
                               {advisor.days.from.substring(0, 3)}-
                               {advisor.days.to.substring(0, 3)}
-                            </span>
+                            </span> */}
                           </li>
                         ) : (
                           <li>
                             <i className="ri-time-line mr-3"></i>
-                            <span>unspecified</span>
+                            {/* <span>unspecified</span> */}
+                            <span>{advisor.availability}</span>
                           </li>
                         )}
                       </ul>

@@ -30,6 +30,11 @@ const advisorSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  availability: {
+    type: String,
+    enum: ["In Office", "Out of Office"],
+    default: "In Office",
+  },
   email: {
     type: String,
     required: true,

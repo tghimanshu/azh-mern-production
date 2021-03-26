@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export function HowItWorks() {
   return (
-    <section id="how-it-works" classNmae="text-black">
+    <section id="how-it-works" className="text-black">
       <Container>
         <h1>
           HOW IT WORKS
