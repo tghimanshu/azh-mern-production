@@ -283,7 +283,7 @@ const Advisors = ({ history, location }) => {
                     }}
                     onError={(e) => {
                       e.target.src =
-                        config.get("apiEndPoint") + "/assets/img/site-logo.png";
+                        config.get("apiEndPoint") + "/uploads/site-logo.png";
                     }}
                   />
                   <div>
