@@ -401,6 +401,7 @@ const Elearning = mongoose.model(
     title: String,
     author: String,
     image: String,
+    link: String,
   })
 );
 
