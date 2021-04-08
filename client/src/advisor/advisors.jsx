@@ -200,7 +200,7 @@ const Advisors = ({ history, location }) => {
     <Popover id="popover-basic">
       <Popover.Content>
         <p>
-          <b>Inusrance :</b> Insuring yourself or your family by selection of
+          <b>Insurance :</b> Insuring yourself or your family by selection of
           plans that is best suited to your needs{" "}
         </p>
         <p>
