@@ -23,6 +23,7 @@ const queryString = require("query-string");
 
 const Advisors = ({ history, location }) => {
   const [advisors, setAdvisors] = useState([]);
+  const [filteredAdvisors, setFilteredAdvisors] = useState([]);
   const [appointment, setAppointment] = useState({
     adv_id: "",
     client_id: "",
@@ -36,6 +37,13 @@ const Advisors = ({ history, location }) => {
   const [disableBooking, setDisableBooking] = useState(false);
   // const [fav, setFav] = useState([]);
   const [loadingScreen, setLoadingScreen] = useState(true);
+  const [filters, setFilters] = useState({
+    name: "",
+    location: "",
+    experience: "",
+    expertise: "",
+  });
+  const [showFilter, setShowFilter] = useState(false);
   useEffect(() => {
     const user = getRole();
     if (user.role === "advisor") {
@@ -46,17 +54,6 @@ const Advisors = ({ history, location }) => {
         remarks: "",
         client_id: user._id,
       });
-      // const favs = localStorage.getItem("favs");
-      // if (favs !== null) {
-      //   setFav(favs.split(","));
-      // }
-    } else if (user.role !== "client") {
-      // Swal.fire({
-      //   icon: "info",
-      //   text: "You Need To Be Logged In to access the Advisors",
-      //   confirmButtonText: "Login/Register",
-      // }).then((res) => res.isConfirmed && history.push("/login"));
-      // history.goBack();
     }
   }, [history]);
 
@@ -64,20 +61,8 @@ const Advisors = ({ history, location }) => {
     const getAdvisors = async () => {
       try {
         const { data } = await http.get("/advisor");
-        if (location.search) {
-          const queries = queryString.parse(location.search);
-          setAdvisors(
-            data.filter(
-              (adv) =>
-                adv.isApproved === true &&
-                adv.location
-                  .toLowerCase()
-                  .includes(queries.location.toLowerCase())
-            )
-          );
-        } else {
-          setAdvisors(data.filter((adv) => adv.isApproved === true));
-        }
+        setAdvisors(data.filter((adv) => adv.isApproved === true));
+        setFilteredAdvisors(data.filter((adv) => adv.isApproved === true));
         setLoadingScreen(false);
       } catch (error) {
         // console.log(error);
@@ -170,30 +155,32 @@ const Advisors = ({ history, location }) => {
     }
   };
 
-  // const handleShareClick = (e, username) => {
-  //   setShareModel({
-  //     show: true,
-  //     username: username,
-  //   });
-  // };
-
-  // const handleFav = (e, id) => {
-  //   if (fav.includes(id)) {
-  //     const temp_fav = [...fav];
-  //     let inx = temp_fav.indexOf(id);
-  //     temp_fav.splice(inx, 1);
-  //     setFav(temp_fav);
-  //     localStorage.setItem("favs", temp_fav);
-  //   } else {
-  //     const temp_fav = [...fav, id];
-  //     setFav(temp_fav);
-  //     localStorage.setItem("favs", temp_fav.join(","));
-  //   }
-  // };
-
   const handleClose = () => {
     setShareModel(false);
     setShowModel(false);
+  };
+
+  const handleFilters = (e) => {
+    e.preventDefault();
+    console.log("data");
+    const data = [...advisors];
+
+    setFilteredAdvisors(
+      data.filter((adv) => {
+        if (
+          adv.name.toLowerCase().includes(filters.name.toLowerCase()) &&
+          adv.location.toLowerCase().includes(filters.location.toLowerCase()) &&
+          adv.expertise
+            .toLowerCase()
+            .includes(filters.expertise.toLowerCase()) &&
+          (filters.experience === "" ||
+            adv.experience === parseInt(filters.experience))
+        ) {
+          return true;
+        }
+        return false;
+      })
+    );
   };
 
   const popover = (
@@ -226,47 +213,81 @@ const Advisors = ({ history, location }) => {
         ]}
       />
       <Container className="mt-2">
-        {advisors.length === 0 && (
+        {filteredAdvisors.length === 0 && (
           <h1 className="text-center">NO Advisors Found!</h1>
         )}
         <Row>
           <Col md={12} className="mb-3">
-            <button className="btn btn-outline-dark btn-pill">
+            <button
+              className="btn btn-outline-dark btn-pill"
+              onClick={() => setShowFilter((f) => !f)}
+            >
               <i className="ri-equalizer-fill mr-1" />
               Filters
             </button>
-          </Col>
-          <Col md={3} style={{ display: "none" }}>
-            <Card>
-              <Card.Body>
-                <Form>
-                  <Form.Group>
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control placeholder="Enter Name" />
-                  </Form.Group>
-                  <Form.Group>
-                    <Form.Label>Location</Form.Label>
-                    <Form.Control placeholder="Enter Location" />
-                  </Form.Group>
-                  <Form.Group>
-                    <Form.Label>Expertise</Form.Label>
-                    <Form.Control placeholder="Enter Expertise" />
-                  </Form.Group>
-                  <Form.Group>
-                    <Form.Label>Experience</Form.Label>
-                    <Form.Control
-                      type="number"
-                      placeholder="Enter Experience"
-                    />
-                  </Form.Group>
-                  <Button variant="success" type="submit">
-                    Apply
+            {showFilter && (
+              <Form.Row className="mt-3">
+                <Col md={4}>
+                  <Form.Control
+                    type="text"
+                    placeholder="Name"
+                    value={filters.name}
+                    onChange={(e) => {
+                      const data = { ...filters };
+                      data.name = e.target.value;
+                      setFilters(data);
+                    }}
+                  />
+                </Col>
+                <Col md={2}>
+                  <Form.Control
+                    type="text"
+                    placeholder="Location"
+                    value={filters.location}
+                    onChange={(e) => {
+                      const data = { ...filters };
+                      data.location = e.target.value;
+                      setFilters(data);
+                    }}
+                  />
+                </Col>
+                <Col md={2}>
+                  <Form.Control
+                    type="number"
+                    placeholder="Experience"
+                    value={filters.experience}
+                    onChange={(e) => {
+                      const data = { ...filters };
+                      data.experience = e.target.value;
+                      setFilters(data);
+                    }}
+                  />
+                </Col>
+                <Col md={2}>
+                  <Form.Control
+                    type="text"
+                    placeholder="Expertise"
+                    value={filters.expertise}
+                    onChange={(e) => {
+                      const data = { ...filters };
+                      data.expertise = e.target.value;
+                      setFilters(data);
+                    }}
+                  />
+                </Col>
+                <Col md={2}>
+                  <Button
+                    variant="success"
+                    className="btn-block"
+                    onClick={handleFilters}
+                  >
+                    Filter
                   </Button>
-                </Form>
-              </Card.Body>
-            </Card>
+                </Col>
+              </Form.Row>
+            )}
           </Col>
-          {advisors.map((advisor) => (
+          {filteredAdvisors.map((advisor) => (
             <Col md={6} key={advisor._id}>
               <Card className="" style={{ width: "100%" }}>
                 <div className="d-md-flex flex-md-row one_advisor">
@@ -352,7 +373,7 @@ const Advisors = ({ history, location }) => {
                         View Profile
                       </Link>
                       <OverlayTrigger
-                        trigger="hover"
+                        trigger="hover focus"
                         placement="left"
                         overlay={popover}
                       >

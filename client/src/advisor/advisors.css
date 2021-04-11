@@ -76,6 +76,7 @@ h4 {
 }
 .one_advisor > div {
   flex: 1;
+  overflow: hidden;
 }
 
 .adv-btns {
@@ -108,6 +109,11 @@ h4 {
   border: 2px solid rgba(43, 50, 178, 0.65);
   color: #2b32b2;
 }
+.member-info li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
 .member-info li span,
 .member-info li i {
   white-space: nowrap;

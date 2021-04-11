@@ -193,7 +193,7 @@ export const routes = {
       onMenu: true,
     },
     {
-      path: "/client/expenses",
+      path: "/client/expense",
       name: "Expenses",
       component: ClientExpense,
       onMenu: true,
