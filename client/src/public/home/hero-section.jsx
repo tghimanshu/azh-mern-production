@@ -13,15 +13,13 @@ function HeroSection({ history }) {
       <Container>
         <Row>
           <Col lg={7} className="d-flex justify-content-center flex-column">
-            <h1>
-              Your
+            <h2>
+              Get best recommendations on your
               <br />
-              <span className="hero-title-blue">
-                Registered Investment Advisor
-              </span>
+              <span className="hero-title-blue">personal finances</span>
               <br />
-              Is a few clicks away
-            </h1>
+              through SEBI registered investment advisors
+            </h2>
             <Form
               className="row mt-4 justify-content-center justify-content-lg-start"
               onSubmit={(e) => handleLocationSubmit(e)}

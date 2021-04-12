@@ -232,7 +232,7 @@ const advisorRegistration = (name, email) => {
 const clientForgotPassword = (email, token, res) => {
   if (config.get("mailing")) {
     const mailData = {
-      from: "himnesh234@gmail.com",
+      from: config.get("mailingData.mail"),
       to: email,
       subject: "Reset Password.",
       html: `<h1> Reset Password</h1>
@@ -254,7 +254,7 @@ const clientForgotPassword = (email, token, res) => {
 const advisorForgotPassword = (email, token) => {
   if (config.get("mailing")) {
     const mailData = {
-      from: "himnesh234@gmail.com",
+      from: config.get("mailingData.mail"),
       to: email,
       subject: "Reset Password.",
       html: `<h1> Reset Password</h1>

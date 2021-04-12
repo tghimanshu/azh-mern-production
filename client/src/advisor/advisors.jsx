@@ -19,7 +19,7 @@ import {
 } from "react-bootstrap";
 import SectionTitle from "./sectionTitle";
 import { Link } from "react-router-dom";
-const queryString = require("query-string");
+// const queryString = require("query-string");
 
 const Advisors = ({ history, location }) => {
   const [advisors, setAdvisors] = useState([]);

@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import http from "../../utils/http";
+import { Table, Column, HeaderCell, Cell } from "rsuite-table";
+import "rsuite-table/dist/css/rsuite-table.css";
 
 const Advisor = ({ match }) => {
   const [requests, setRequests] = useState(null);
