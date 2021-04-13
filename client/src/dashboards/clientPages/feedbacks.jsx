@@ -18,14 +18,16 @@ export const Feedbacks = () => {
     <table className="table table-striped">
       <thead>
         <tr>
+          <th>#</th>
           <th>Form Title</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        {feedbacks.map((feedback) => {
+        {feedbacks.map((feedback, index) => {
           return (
             <tr key={feedback._id}>
+              <td>{index + 1}</td>
               <td>{feedback.formId.title}</td>
               <td>
                 <Link

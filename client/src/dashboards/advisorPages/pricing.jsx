@@ -26,6 +26,7 @@ const AdvisorPricing = ({ history }) => {
       <table className="table table-striped">
         <thead>
           <tr>
+            <th>#</th>
             <th>Date</th>
             <th>Amount</th>
             <th>Status</th>
@@ -39,6 +40,7 @@ const AdvisorPricing = ({ history }) => {
 
               return (
                 <tr key={i}>
+                  <td>{i + 1}</td>
                   <td>
                     {myDate.getDate() +
                       "-" +

@@ -20,7 +20,7 @@ const Investment = ({ history }) => {
       Purpose: "",
       InvestmentType: "",
       Products: "",
-      InterestRate: 0,
+      scheme: "",
     },
   ]);
   const addInvestment = () => {
@@ -35,7 +35,7 @@ const Investment = ({ history }) => {
         Purpose: "",
         InvestmentType: "",
         Products: "",
-        InterestRate: 0,
+        scheme: "",
       },
     ]);
   };
@@ -108,6 +108,30 @@ const Investment = ({ history }) => {
                       </Accordion.Toggle>
                       <Accordion.Collapse eventKey={String(i)}>
                         <Card.Body className="row">
+                          <Col lg="4">
+                            <Form.Group>
+                              <label>Investment Type</label>
+                              <Form.Control
+                                value={investments[i].InvestmentType}
+                                onChange={(e) => {
+                                  const myGoal = investments[i];
+                                  myGoal.InvestmentType = e.target.value;
+                                  const demo = [...investments];
+                                  demo[i] = myGoal;
+                                  setInvestments(demo);
+                                }}
+                                type="text"
+                                placeholder="Enter Investment Type"
+                                list="inv_type"
+                              />
+                              <datalist id="inv_type">
+                                <option value="Mutual Fund">Mutual Fund</option>
+                                <option value="Bond">Bond</option>
+                                <option value="Debenture">Debenture</option>
+                              </datalist>
+                            </Form.Group>
+                          </Col>
+
                           <Col md="4">
                             <Form.Group>
                               <label>Investment Amount</label>
@@ -210,44 +234,21 @@ const Investment = ({ history }) => {
                               />
                             </Form.Group>
                           </Col>
+
                           <Col lg="4">
                             <Form.Group>
-                              <label>Investment Type</label>
+                              <label>Scheme</label>
                               <Form.Control
-                                value={investments[i].InvestmentType}
+                                value={investments[i].scheme}
                                 onChange={(e) => {
                                   const myGoal = investments[i];
-                                  myGoal.InvestmentType = e.target.value;
+                                  myGoal.scheme = e.target.value;
                                   const demo = [...investments];
                                   demo[i] = myGoal;
                                   setInvestments(demo);
                                 }}
                                 type="text"
-                                placeholder="Enter Investment Type"
-                                list="inv_type"
-                              />
-                              <datalist id="inv_type">
-                                <option value="Mutual Fund">Mutual Fund</option>
-                                <option value="Bond">Bond</option>
-                                <option value="Debenture">Debenture</option>
-                              </datalist>
-                            </Form.Group>
-                          </Col>
-
-                          <Col lg="4">
-                            <Form.Group>
-                              <label>Interest Rate</label>
-                              <Form.Control
-                                value={investments[i].InterestRate}
-                                onChange={(e) => {
-                                  const myGoal = investments[i];
-                                  myGoal.InterestRate = e.target.value;
-                                  const demo = [...investments];
-                                  demo[i] = myGoal;
-                                  setInvestments(demo);
-                                }}
-                                type="number"
-                                placeholder="Enter Interest Rate"
+                                placeholder="Enter Investment Scheme"
                               />
                             </Form.Group>
                           </Col>

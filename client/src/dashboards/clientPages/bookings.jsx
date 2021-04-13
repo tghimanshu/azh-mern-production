@@ -79,6 +79,7 @@ const Bookings = () => {
     <table className="table table-striped">
       <thead>
         <tr>
+          <th>#</th>
           <th>Advisor Name</th>
           <th>Remarks</th>
           <th>Status</th>
@@ -86,9 +87,10 @@ const Bookings = () => {
         </tr>
       </thead>
       <tbody>
-        {bookings.map((client) => {
+        {bookings.map((client, index) => {
           return (
             <tr key={client._id}>
+              <td>{index + 1}</td>
               <td>{client.advisor_id.name}</td>
               <td>{client.remarks}</td>
               <td className="table-action">

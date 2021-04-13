@@ -32,9 +32,6 @@ const Personal = ({ history }) => {
       {
         name: "",
         dob: "",
-        contact: "",
-        email: "",
-        profdetails: "",
       },
     ],
   });
@@ -48,9 +45,6 @@ const Personal = ({ history }) => {
       {
         name: "",
         dob: "",
-        contact: "",
-        email: "",
-        profdetails: "",
       },
     ];
     set_pers_details(demo);
@@ -235,63 +229,6 @@ const Personal = ({ history }) => {
                             placeholder="Date Of Birth"
                             name="child-1-dob"
                             id="child-1-dob"
-                          />
-                        </div>
-                        <div className="form-group col-12 col-lg-6">
-                          <label className="child-1-number">
-                            Telephone Number:{" "}
-                          </label>
-                          <Form.Control
-                            value={child.contact}
-                            onChange={(e) => {
-                              const demo = { ...pers_details };
-                              demo.childrens[i].contact = e.target.value;
-                              set_pers_details(demo);
-                            }}
-                            maxLength="100"
-                            type="number"
-                            required={true}
-                            className="form-control"
-                            placeholder="Enter Telephone Number"
-                            name="child-1-number"
-                            id="child-1-number"
-                          />
-                        </div>
-                        <div className="form-group col-12 col-lg-6">
-                          <label className="child-1-email">E-Mail: </label>
-                          <Form.Control
-                            value={child.email}
-                            onChange={(e) => {
-                              const demo = { ...pers_details };
-                              demo.childrens[i].email = e.target.value;
-                              set_pers_details(demo);
-                            }}
-                            maxLength="100"
-                            type="email"
-                            required={true}
-                            className="form-control"
-                            placeholder="Enter E-Mail"
-                            name="child-1-email"
-                            id="child-1-email"
-                          />
-                        </div>
-                        <div className="form-group col-12">
-                          <label className="child-1-prof-details">
-                            Professional Details:{" "}
-                          </label>
-                          <Form.Control
-                            value={child.profdetails}
-                            onChange={(e) => {
-                              const demo = { ...pers_details };
-                              demo.childrens[i].profdetails = e.target.value;
-                              set_pers_details(demo);
-                            }}
-                            type="text"
-                            required={true}
-                            className="form-control"
-                            placeholder="Enter Professional Details"
-                            name="child-1-prof-details"
-                            id="child-1-prof-details"
                           />
                         </div>
                       </Card.Body>

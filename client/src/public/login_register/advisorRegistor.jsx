@@ -417,3 +417,20 @@ export const AdvisorRegistor = ({ history }) => {
     </form>
   );
 };
+
+export const FPAdvisorRegister = ({ history }) => {
+  return (
+    <>
+      <div className="p-title">
+        <section className="p-title-inner py-5">
+          <div className="container d-flex justify-content-center">
+            <h1>Advisor Register</h1>
+          </div>
+        </section>
+      </div>
+      <div className="container px-5">
+        <AdvisorRegistor history={history} />
+      </div>
+    </>
+  );
+};

@@ -54,7 +54,7 @@ const ResetPssword = ({ match, history }) => {
   const handleClick = async () => {
     const user = jwtDecode(match.params.token);
     // console.log(user);
-    if (pass === cpass && pass.length > 6 && match.params.role === "client") {
+    if (pass === cpass && pass.length > 6) {
       await http.post(`/${match.params.role}/reset-password`, {
         email: user.email,
         password: pass,

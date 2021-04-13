@@ -34,6 +34,7 @@ function Bookings({ history }) {
             <table className="table table-striped">
               <thead>
                 <tr>
+                  <th>#</th>
                   <th>Client Name</th>
                   <th>Remarks</th>
                   <th>Actions</th>
@@ -41,7 +42,7 @@ function Bookings({ history }) {
                 </tr>
               </thead>
               <tbody>
-                {bookings.map((advisor) => {
+                {bookings.map((advisor, index) => {
                   return (
                     <tr
                       className={
@@ -53,6 +54,7 @@ function Bookings({ history }) {
                       }
                       key={advisor._id}
                     >
+                      <td>{index + 1}</td>
                       <td>{advisor.client_id.name}</td>
                       <td>{advisor.remarks}</td>
                       {advisor.isApproved === "approved" && (

@@ -12,9 +12,10 @@ const Goal = ({ history }) => {
   const [goals, setGoals] = useState([
     {
       goal: "",
-      remark: "",
-      timeHorizon: "",
       amtNeededToday: 0,
+      achievementYear: "",
+      startYear: "",
+      amtSaved: "",
     },
   ]);
   const addGoal = () => {
@@ -22,9 +23,10 @@ const Goal = ({ history }) => {
       ...goals,
       {
         goal: "",
-        remark: "",
-        timeHorizon: "",
-        amtNeededToday: 0,
+        amtNeededToday: Number,
+        achievementYear: "",
+        startYear: "",
+        amtSaved: "",
       },
     ]);
   };
@@ -60,7 +62,7 @@ const Goal = ({ history }) => {
   };
   return (
     <div className="container mt-4 wizard wizard-success mb-4 sw-main sw-theme-arrows">
-      <StepsNav stepNo={6} />
+      <StepsNav stepNo={8} />
       <Card>
         <Card.Header>
           <Card.Title className="font-weight-bold">Goals</Card.Title>
@@ -96,40 +98,6 @@ const Goal = ({ history }) => {
                           />
                         </Form.Group>
                       </Col>
-                      <Col md="6">
-                        <Form.Group>
-                          <label>Remark</label>
-                          <Form.Control
-                            value={goals[i].remark}
-                            onChange={(e) => {
-                              const myGoal = goals[i];
-                              myGoal.remark = e.target.value;
-                              const demo = [...goals];
-                              demo[i] = myGoal;
-                              setGoals(demo);
-                            }}
-                            type="text"
-                            placeholder="Enter Goal"
-                          />
-                        </Form.Group>
-                      </Col>
-                      <Col lg="6">
-                        <Form.Group>
-                          <label>Time Horizon</label>
-                          <Form.Control
-                            value={goals[i].timeHorizon}
-                            onChange={(e) => {
-                              const myGoal = goals[i];
-                              myGoal.timeHorizon = e.target.value;
-                              const demo = [...goals];
-                              demo[i] = myGoal;
-                              setGoals(demo);
-                            }}
-                            type="text"
-                            placeholder="Enter Goal"
-                          />
-                        </Form.Group>
-                      </Col>
                       <Col lg="6">
                         <Form.Group>
                           <label>Amount Needed as of Today</label>
@@ -144,6 +112,57 @@ const Goal = ({ history }) => {
                             }}
                             type="text"
                             placeholder="Enter Amount"
+                          />
+                        </Form.Group>
+                      </Col>
+                      <Col md="6">
+                        <Form.Group>
+                          <label>Achievement Year</label>
+                          <Form.Control
+                            value={goals[i].achievementYear}
+                            onChange={(e) => {
+                              const myGoal = goals[i];
+                              myGoal.achievementYear = e.target.value;
+                              const demo = [...goals];
+                              demo[i] = myGoal;
+                              setGoals(demo);
+                            }}
+                            type="date"
+                            placeholder="Enter Achievement Year"
+                          />
+                        </Form.Group>
+                      </Col>
+                      <Col lg="6">
+                        <Form.Group>
+                          <label>Start Year</label>
+                          <Form.Control
+                            value={goals[i].startYear}
+                            onChange={(e) => {
+                              const myGoal = goals[i];
+                              myGoal.startYear = e.target.value;
+                              const demo = [...goals];
+                              demo[i] = myGoal;
+                              setGoals(demo);
+                            }}
+                            type="date"
+                            placeholder="Enter Start Year"
+                          />
+                        </Form.Group>
+                      </Col>
+                      <Col lg="6">
+                        <Form.Group>
+                          <label>Amount Saved</label>
+                          <Form.Control
+                            value={goals[i].amtSaved}
+                            onChange={(e) => {
+                              const myGoal = goals[i];
+                              myGoal.amtSaved = e.target.value;
+                              const demo = [...goals];
+                              demo[i] = myGoal;
+                              setGoals(demo);
+                            }}
+                            type="number"
+                            placeholder="Enter Amount Saved"
                           />
                         </Form.Group>
                       </Col>
@@ -166,7 +185,7 @@ const Goal = ({ history }) => {
             <Col lg="6">
               <div className="d-flex justify-content-end my-3">
                 <Link
-                  to="/client/expense"
+                  to="/client/liability"
                   className="btn btn-fill btn-dark mx-2"
                   type="button"
                 >

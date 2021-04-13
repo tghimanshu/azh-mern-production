@@ -15,6 +15,7 @@ const Clients = () => {
     <table className="table table-striped">
       <thead>
         <tr>
+          <th>#</th>
           <th>User Name</th>
           <th>Name</th>
           <th>Phone Number</th>
@@ -24,10 +25,11 @@ const Clients = () => {
         </tr>
       </thead>
       <tbody>
-        {clients.map((client) => {
+        {clients.map((client, index) => {
           const creationDate = new Date(client.creationDate);
           return (
             <tr key={client._id}>
+              <td>{index + 1}</td>
               <td>{client.username}</td>
               <td>{client.name}</td>
               <td>{client.contact}</td>

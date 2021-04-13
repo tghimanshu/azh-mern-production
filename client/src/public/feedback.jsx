@@ -19,13 +19,14 @@ const Feedback = ({ match, history }) => {
   useEffect(() => {
     const user = getRole();
     if (user.role !== "client") {
-      Swal.fire({
-        icon: "info",
-        text: "You must be logged in as a client to access this page.",
-        confirmButtonText: "Login/Register",
-      }).then((value) => {
-        value.isConfirmed && history.push("/login");
-      });
+      // Swal.fire({
+      //   icon: "info",
+      //   text: "You must be logged in as a client to access this page.",
+      //   confirmButtonText: "Login/Register",
+      // }).then((value) => {
+      //   value.isConfirmed && history.push("/login");
+      // });
+      setClientId(null);
     } else {
       setClientId(user._id);
     }

@@ -32,14 +32,14 @@ const Navbar = (props) => {
         <i className="hamburger align-self-center"></i>
       </a>
 
-      <form className="form-inline d-none d-sm-inline-block">
+      {/* <form className="form-inline d-none d-sm-inline-block">
         <input
           className="form-control form-control-no-border mr-sm-2"
           type="text"
           placeholder="Search projects..."
           aria-label="Search"
         />
-      </form>
+      </form> */}
 
       <div className="navbar-collapse collapse">
         <ul className="navbar-nav ml-auto">

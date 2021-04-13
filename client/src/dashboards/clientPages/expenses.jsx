@@ -21,6 +21,9 @@ const Expense = ({ history }) => {
       car_loan: 0,
       personal_loan: 0,
       home_loan: 0,
+      life_insurance: 0,
+      health_insurance: 0,
+      other_insurance: 0,
     },
     irregular: {
       travel: 0,
@@ -53,7 +56,7 @@ const Expense = ({ history }) => {
       user.expenses = expenses;
       await http.put("/client/" + res._id, user);
       setalert(successAlert("Expeses Details Updated Successfully!", setalert));
-      history.push("/client/goal");
+      history.push("/client/asset");
     } catch (error) {
       // console.log(error);
       //   return <Redirect to="/login" />;
@@ -225,6 +228,7 @@ const Expense = ({ history }) => {
               id="exp-others-reg"
             />
           </div>
+
           <div className="form-group col-12 col-lg-6">
             <label className="exp-car-loan">Car Loan</label>
             <Form.Control
@@ -279,7 +283,52 @@ const Expense = ({ history }) => {
               id="exp-home-loan"
             />
           </div>
+
+          <div className="form-group col-12 col-lg-6">
+            <label className="exp-home-loan">Life Insurance Premium</label>
+            <Form.Control
+              value={expenses.monthly.life_insurance}
+              onChange={(e) => {
+                const demo = { ...expenses };
+                demo.monthly.life_insurance = e.target.value;
+                setExpenses(demo);
+              }}
+              maxLength="100"
+              type="number"
+              placeholder="Enter Life Insurane Premium"
+            />
+          </div>
+          <div className="form-group col-12 col-lg-6">
+            <label className="exp-home-loan">Life Insurance Premium</label>
+            <Form.Control
+              value={expenses.monthly.health_insurance}
+              onChange={(e) => {
+                const demo = { ...expenses };
+                demo.monthly.health_insurance = e.target.value;
+                setExpenses(demo);
+              }}
+              maxLength="100"
+              type="number"
+              placeholder="Enter Health Insurane Premium"
+            />
+          </div>
+          <div className="form-group col-12 col-lg-6">
+            <label className="exp-home-loan">Other Insurance Premium</label>
+            <Form.Control
+              value={expenses.monthly.other_insurance}
+              onChange={(e) => {
+                const demo = { ...expenses };
+                demo.monthly.other_insurance = e.target.value;
+                setExpenses(demo);
+              }}
+              maxLength="100"
+              type="number"
+              placeholder="Enter Other Insurane Premium"
+            />
+          </div>
+
           <h5 className="font-italic col-12">Irregular Expenses</h5>
+
           <div className="form-group col-12 col-lg-6">
             <label className="aexp-travel">Annual Travel</label>
             <Form.Control

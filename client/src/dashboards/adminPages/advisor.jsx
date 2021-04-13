@@ -1,7 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
 import http from "../../utils/http";
-import { Table, Column, HeaderCell, Cell } from "rsuite-table";
-import "rsuite-table/dist/css/rsuite-table.css";
 
 const Advisor = ({ match }) => {
   const [requests, setRequests] = useState(null);
@@ -20,6 +18,7 @@ const Advisor = ({ match }) => {
       <table className="table table-striped">
         <thead>
           <tr>
+            <th>#</th>
             <th>Date</th>
             <th>Amount</th>
             <th>Status</th>
@@ -33,6 +32,7 @@ const Advisor = ({ match }) => {
 
               return (
                 <tr key={i}>
+                  <td>{i}</td>
                   <td>
                     {myDate.getDate() +
                       "-" +

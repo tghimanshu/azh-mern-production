@@ -18,9 +18,7 @@ const Insurances = ({ history }) => {
       CommencementDate: "",
       Tenure: 0,
       PolicyStatus: "",
-      Proposer: "",
-      PolicyNumber: "",
-      Bonus: 0,
+      plan: "",
     },
   ]);
   const addInsurance = () => {
@@ -33,9 +31,7 @@ const Insurances = ({ history }) => {
         CommencementDate: "",
         Tenure: 0,
         PolicyStatus: "",
-        Proposer: "",
-        PolicyNumber: "",
-        Bonus: "",
+        plan: "",
       },
     ]);
   };
@@ -209,53 +205,25 @@ const Insurances = ({ history }) => {
                           </Col>
                           <Col lg="4">
                             <Form.Group>
-                              <label>Proposer</label>
+                              <label>Insurance Plan</label>
                               <Form.Control
-                                value={insurances[i].Proposer}
+                                value={insurances[i].plan}
                                 onChange={(e) => {
                                   const myGoal = insurances[i];
-                                  myGoal.Proposer = e.target.value;
+                                  myGoal.plan = e.target.value;
                                   const demo = [...insurances];
                                   demo[i] = myGoal;
                                   setInsurances(demo);
                                 }}
                                 type="text"
-                                placeholder="Enter Proposer"
+                                placeholder="Enter Insurance Plan"
+                                list="ins_plan"
                               />
-                            </Form.Group>
-                          </Col>
-                          <Col lg="4">
-                            <Form.Group>
-                              <Form.Label>PolicyNumber</Form.Label>
-                              <Form.Control
-                                defaultValue={insurances[i].PolicyNumber}
-                                onChange={(e) => {
-                                  const myGoal = insurances[i];
-                                  myGoal.PolicyNumber = e.target.value;
-                                  const demo = [...insurances];
-                                  demo[i] = myGoal;
-                                  setInsurances(demo);
-                                }}
-                                type="text"
-                                placeholder="Enter Policy Number"
-                              />
-                            </Form.Group>
-                          </Col>
-                          <Col lg="4">
-                            <Form.Group>
-                              <label>Bonus</label>
-                              <Form.Control
-                                value={insurances[i].Bonus}
-                                onChange={(e) => {
-                                  const myGoal = insurances[i];
-                                  myGoal.Bonus = e.target.value;
-                                  const demo = [...insurances];
-                                  demo[i] = myGoal;
-                                  setInsurances(demo);
-                                }}
-                                type="number"
-                                placeholder="Enter Bonus"
-                              />
+                              <datalist id="ins_plan">
+                                <option value="health">Health</option>
+                                <option value="life">Life</option>
+                                <option value="general">General</option>
+                              </datalist>
                             </Form.Group>
                           </Col>
                         </Card.Body>

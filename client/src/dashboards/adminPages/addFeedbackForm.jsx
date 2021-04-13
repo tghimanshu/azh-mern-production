@@ -80,6 +80,20 @@ export const AddFeedbackForm = () => {
         });
         setFormData(demo6);
         break;
+      case "review":
+        const demo7 = [...formData];
+        demo7.push({
+          type: "radio",
+          text: "Your Question Here",
+          options: [
+            { text: "Good", value: "Good" },
+            { text: "Better", value: "better" },
+            { text: "Excellent", value: "excellent" },
+          ],
+          Component: YesNo,
+        });
+        setFormData(demo7);
+        break;
       default:
         break;
     }
@@ -226,6 +240,15 @@ export const AddFeedbackForm = () => {
             <ListGroup.Item className="d-flex justify-content-between align-items-center">
               <span>Yes/No</span>
               <Button onClick={() => handleFormItemAdd("yesno")} variant="info">
+                Add
+              </Button>
+            </ListGroup.Item>
+            <ListGroup.Item className="d-flex justify-content-between align-items-center">
+              <span>Review</span>
+              <Button
+                onClick={() => handleFormItemAdd("review")}
+                variant="info"
+              >
                 Add
               </Button>
             </ListGroup.Item>

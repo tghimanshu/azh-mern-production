@@ -22,9 +22,10 @@ const Bookings = () => {
         </tr>
       </thead>
       <tbody>
-        {bookings.map((client) => {
+        {bookings.map((client, index) => {
           return (
             <tr key={client._id}>
+              <td>{index + 1}</td>
               <td>{client.advisor_id.name}</td>
               <td>{client.client_id.name}</td>
               <td>{new Date(client.booking_time).toString()}</td>

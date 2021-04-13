@@ -20,15 +20,17 @@ const Pages = () => {
     <table className="table table-striped">
       <thead>
         <tr>
+          <th>#</th>
           <th>Name</th>
           <th>Slug</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        {clients.map((client) => {
+        {clients.map((client, index) => {
           return (
             <tr key={client._id}>
+              <td>{index + 1}</td>
               <td>{client.name}</td>
               <td>{client.slug}</td>
               <td>

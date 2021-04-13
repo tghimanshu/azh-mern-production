@@ -92,10 +92,10 @@ function Footer() {
             </h4>
             <ul className="list-unstyled details">
               <li className="mt-2">
-                <a href="/login">Register - Advisor</a>
+                <a href="/clientRegister">Register - Client</a>
               </li>
               <li className="mt-2">
-                <a href="/login">Register - Client</a>
+                <a href="/advisorRegister">Register - Advisor</a>
               </li>
               <li className="mt-2">
                 <a href="/page/terms-conditions">Terms &amp; Conditions</a>

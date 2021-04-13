@@ -198,3 +198,21 @@ export const ClientRegistor = ({ history }) => {
     </form>
   );
 };
+
+export const FPClientRegister = ({ history }) => {
+  return (
+    <>
+      <div className="p-title">
+        <section className="p-title-inner py-5">
+          <div className="container d-flex justify-content-center">
+            <h1>Client Register</h1>
+          </div>
+        </section>
+      </div>
+      ;
+      <div className="container px-5">
+        <ClientRegistor history={history} />
+      </div>
+    </>
+  );
+};

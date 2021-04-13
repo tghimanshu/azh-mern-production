@@ -29,6 +29,8 @@ import {
   SingleFeedback,
 } from "./clientPages/feedbacks";
 import ClientDashboard from "./clientPages/dashboard";
+import ClientLiability from "./clientPages/liabilities";
+import ClientAsset from "./clientPages/assets";
 
 export const routes = {
   admin: [
@@ -166,7 +168,7 @@ export const routes = {
       path: "/client/feedback/:id",
       name: "Single Feedback",
       component: SingleFeedback,
-      onMenu: true,
+      onMenu: false,
     },
     {
       path: "/client/personal",
@@ -196,6 +198,18 @@ export const routes = {
       path: "/client/expense",
       name: "Expenses",
       component: ClientExpense,
+      onMenu: true,
+    },
+    {
+      path: "/client/asset",
+      name: "Asset",
+      component: ClientAsset,
+      onMenu: true,
+    },
+    {
+      path: "/client/liability",
+      name: "Liability",
+      component: ClientLiability,
       onMenu: true,
     },
     {
