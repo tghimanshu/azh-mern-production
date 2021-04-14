@@ -5,6 +5,7 @@ const {
   Admin,
   Client,
   Advisor,
+  Feedback,
   adminValidate,
   hash_password,
 } = require("../models/schemas");
@@ -35,6 +36,11 @@ router.get("/", async (req, res) => {
   res.send(admins);
   res.end();
 });
+// router.get("/:id", async (req, res) => {
+//   const admin = await Admin.findById(req.params.id);
+//   res.send(admin);
+//   res.end();
+// });
 
 router.post("/", async (req, res) => {
   const validate = adminValidate(req.body);
@@ -146,6 +152,21 @@ router.put("/:status/:id", adminAuth, async () => {
       return res.send("Rejected!");
     default:
       break;
+  }
+});
+
+router.get("/feedbacks", async (req, res) => {
+  try {
+    const result = await Feedback.find().populate("formId");
+    if (!result) res.status(404).send("Feedbacks Doesn't Exist");
+    res.json(
+      result.map((feedback) => ({
+        ...feedback.toObject(),
+        creationDate: feedback._id.getTimestamp(),
+      }))
+    );
+  } catch (err) {
+    console.log("err");
   }
 });
 

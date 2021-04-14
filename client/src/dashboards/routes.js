@@ -31,6 +31,10 @@ import {
 import ClientDashboard from "./clientPages/dashboard";
 import ClientLiability from "./clientPages/liabilities";
 import ClientAsset from "./clientPages/assets";
+import {
+  AllFeedbacks,
+  SingleFeedback as AdminSingleFeedback,
+} from "./adminPages/allFeedbacks";
 
 export const routes = {
   admin: [
@@ -69,6 +73,18 @@ export const routes = {
       name: "Add Feedback Form",
       component: AddFeedbackForm,
       onMenu: true,
+    },
+    {
+      path: "/admin/allfeedbacks",
+      name: "All Feedbacks",
+      component: AllFeedbacks,
+      onMenu: true,
+    },
+    {
+      path: "/admin/feedback/:id",
+      name: "All Feedbacks",
+      component: AdminSingleFeedback,
+      onMenu: false,
     },
     {
       path: "/admin/pages",
