@@ -237,7 +237,7 @@ const clientForgotPassword = (email, token, res) => {
       subject: "Reset Password.",
       html: `<h1> Reset Password</h1>
       <p> Please Follow the below link to reset your AZH password.</p>
-      <a href="http://localhost:3000/reset/client/${token}">Reset Password</a>`,
+      <a href="https://advisorzaroorihai.com/reset/client/${token}">Reset Password</a>`,
     };
 
     transporter.sendMail(mailData, function (err, info) {
@@ -259,7 +259,7 @@ const advisorForgotPassword = (email, token) => {
       subject: "Reset Password.",
       html: `<h1> Reset Password</h1>
       <p> Please Follow the below link to reset your AZH password.</p>
-      <a href="http://localhost:3000/reset/advisor/${token}">Reset Password</a>`,
+      <a href="https://advisorzaroorihai.com/reset/advisor/${token}">Reset Password</a>`,
     };
 
     transporter.sendMail(mailData, function (err, info) {
