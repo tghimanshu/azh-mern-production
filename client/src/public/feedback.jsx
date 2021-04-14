@@ -107,7 +107,7 @@ const Feedback = ({ match, history }) => {
       </div>
       <Container className="mt-2">
         {error}
-        <Form className="feedback_form" onSubmit={handleSubmit}>
+        <Form className="feedback_form">
           <div className="feedback_form_title mt-3">
             <h3>{title}</h3>
             <p>{description}</p>
@@ -130,7 +130,7 @@ const Feedback = ({ match, history }) => {
               onChange={onCaptchaChange}
             />
           </span>
-          <Button variant="success" className="mt-2" type="submit">
+          <Button variant="success" className="mt-2" onClick={handleSubmit}>
             Submit Feedback
           </Button>
         </Form>
