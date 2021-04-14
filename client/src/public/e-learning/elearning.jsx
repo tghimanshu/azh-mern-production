@@ -2,6 +2,7 @@ import { Fragment, useEffect, useState } from "react";
 import config from "../../utils/config";
 import LoadingScreen from "../../utils/loadingScreen";
 import http from "../../utils/http";
+import SectionTitle from "../../advisor/sectionTitle";
 
 function ELearning() {
   const [elearnings, setElearnings] = useState([]);
@@ -17,13 +18,13 @@ function ELearning() {
   return (
     <Fragment>
       {loadingScreen && <LoadingScreen />}
-      <div className="p-title">
-        <section className="p-title-inner py-5">
-          <div className="container d-flex justify-content-center">
-            <h1>E Learning</h1>
-          </div>
-        </section>
-      </div>
+      <SectionTitle
+        title="E Learning"
+        breadcrumbs={[
+          { link: "/", name: "Home" },
+          { link: "/elearning", name: "E-Learning", active: true },
+        ]}
+      />
       <div className="container mt-5">
         <div className="row">
           {console.log(elearnings)}

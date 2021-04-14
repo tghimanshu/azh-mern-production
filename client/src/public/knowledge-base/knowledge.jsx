@@ -1,16 +1,17 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Fragment } from "react";
+import SectionTitle from "../../advisor/sectionTitle";
 
 function Knowledge() {
   return (
     <Fragment>
-      <div className="p-title">
-        <section className="p-title-inner py-5">
-          <div className="container d-flex justify-content-center">
-            <h1>Knowledge Base</h1>
-          </div>
-        </section>
-      </div>
+      <SectionTitle
+        title="Knowledge Base"
+        breadcrumbs={[
+          { link: "/", name: "Home" },
+          { link: "/knowledge-base", name: "knowledge-base", active: true },
+        ]}
+      />
       <div className="container mt-5">
         <div className="row knowledge_base">
           <div className="col-md-4 pbDiv">

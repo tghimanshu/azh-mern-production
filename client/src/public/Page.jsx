@@ -2,6 +2,7 @@ import { Fragment, useEffect, useState } from "react";
 import http from "../utils/http";
 import parse from "html-react-parser";
 import LoadingScreen from "../utils/loadingScreen";
+import SectionTitle from "../advisor/sectionTitle";
 
 function Page({ match }) {
   const [page, setPage] = useState({});
@@ -17,13 +18,13 @@ function Page({ match }) {
   return (
     <Fragment>
       {loadingScreen && <LoadingScreen />}
-      <div className="p-title">
-        <section className="p-title-inner py-5">
-          <div className="container d-flex justify-content-center">
-            <h1>{page.name}</h1>
-          </div>
-        </section>
-      </div>
+      <SectionTitle
+        title={page.name}
+        breadcrumbs={[
+          { link: "/", name: "Home" },
+          { link: "/" + page.slug, name: page.name, active: true },
+        ]}
+      />
       <div className="container mt-2">{parse(String(page.content))}</div>
     </Fragment>
   );
