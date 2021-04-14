@@ -396,16 +396,6 @@ const feedbackFormSchema = new mongoose.Schema({
 
 const feedbackSchema = new mongoose.Schema(
   {
-    user: {
-      role: {
-        type: String,
-        enum: ["client", "guest", "advisor", "admin"],
-      },
-      id: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-      },
-    },
     formId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "FeedbackForm",

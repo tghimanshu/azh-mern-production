@@ -77,10 +77,6 @@ const Feedback = ({ match, history }) => {
     }
     try {
       await http.post("/feedback/single", {
-        user: {
-          role: "client",
-          id: clientId,
-        },
         formId: formId,
         answers: answers,
       });
