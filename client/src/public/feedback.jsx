@@ -8,7 +8,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 
 const Feedback = ({ match, history }) => {
   const [error, setError] = useState("");
-  const [clientId, setClientId] = useState("");
+  // const [clientId, setClientId] = useState("");
   const [formId, setFormId] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -25,10 +25,10 @@ const Feedback = ({ match, history }) => {
       //   confirmButtonText: "Login/Register",
       // }).then((value) => {
       //   value.isConfirmed && history.push("/login");
-      // });
-      setClientId(null);
+      // })
+      // setClientId(null);
     } else {
-      setClientId(user._id);
+      // setClientId(user._id);
     }
   }, [history]);
 

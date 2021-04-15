@@ -270,60 +270,41 @@ export const FeedbackForms = () => {
     getClients();
   }, []);
   return (
-    <table className="table table-striped">
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Description</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {feedbackForms.map((client) => {
-          return (
-            <tr key={client._id}>
-              <td>{client.title}</td>
-              <td>{client.description}</td>
-              <td>
-                <Link to={"/feedback/" + client._id}>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="feather feather-edit-2 align-middle"
+    <>
+      <table className="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {feedbackForms.map((client, i) => {
+            return (
+              <tr key={client._id}>
+                <td>{i + 1}</td>
+                <td>{client.title}</td>
+                <td>
+                  <Link
+                    className="btn btn-info mr-2"
+                    to={"/admin/allfeedbacks/" + client._id}
                   >
-                    <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
-                  </svg>
-                </Link>
-                <Link to={"/feedback/" + client._id}>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="feather feather-eye align-middle mr-2"
+                    Feedbacks
+                  </Link>
+                  <Link
+                    className="btn btn-success"
+                    to={"/feedback/" + client._id}
                   >
-                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                    <circle cx="12" cy="12" r="3"></circle>
-                  </svg>
-                </Link>
-              </td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
+                    View
+                  </Link>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </>
   );
 };
 

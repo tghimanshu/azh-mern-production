@@ -598,6 +598,11 @@
   dependencies:
     "ms" "2.0.0"
 
+"deeks@2.3.0":
+  "integrity" "sha512-mrNI+TSdnK5s2Gal4Fv3/RGcrYGtB4NC3tTXU1hu74tYsG9JS6SzNKLD8doq6UWsglouGwC86kXqB1pdO+9hyA=="
+  "resolved" "https://registry.npmjs.org/deeks/-/deeks-2.3.0.tgz"
+  "version" "2.3.0"
+
 "deep-equal@^1.0.1":
   "integrity" "sha512-yd9c5AdiqVcR+JjcwUQb9DkhJc8ngNr0MahEBGvDiJw8puWab2yZlh+nkasOnZP+EGTAP6rRp2JzJhJZzvNF8g=="
   "resolved" "https://registry.npmjs.org/deep-equal/-/deep-equal-1.1.1.tgz"
@@ -659,6 +664,11 @@
   dependencies:
     "readable-stream" "1.1.x"
     "streamsearch" "0.1.2"
+
+"doc-path@2.3.0":
+  "integrity" "sha512-RMZA8AXl0I78jI9odw0kFzOfQvBcCFLI6/ZtOs9PwogcL4DHc+sCUZQ34fkealJyqErJryYODVBOtO2IzU/CSw=="
+  "resolved" "https://registry.npmjs.org/doc-path/-/doc-path-2.3.0.tgz"
+  "version" "2.3.0"
 
 "dom-serializer@^1.0.1", "dom-serializer@~1.2.0":
   "integrity" "sha512-n6kZFH/KlCrqs/1GHMOd5i2fd/beQHuehKdWvNNffbGHTr/almdhuVvTVFb3V7fglz+nC50fFusu3lY33h12pA=="
@@ -1153,6 +1163,14 @@
   "integrity" "sha1-peZUwuWi3rXyAdls77yoDA7y9RM="
   "resolved" "https://registry.npmjs.org/jsbn/-/jsbn-0.1.1.tgz"
   "version" "0.1.1"
+
+"json-2-csv@^3.10.3":
+  "integrity" "sha512-GEvAkQ8dtvI9cD3VslY6TUtOYBzwlNF/4OzoVoiKXl+Ztd9VXL2SNQnYyXyqZCnKU3hwIfOoD9MdaWMMA2WOeg=="
+  "resolved" "https://registry.npmjs.org/json-2-csv/-/json-2-csv-3.10.3.tgz"
+  "version" "3.10.3"
+  dependencies:
+    "deeks" "2.3.0"
+    "doc-path" "2.3.0"
 
 "json-schema-traverse@^0.4.1":
   "integrity" "sha512-xbbCH5dCYU5T8LcEhhuh7HJ88HXuW3qsI3Y0zOZFKfZEHcpWiHU/Jxzk629Brsab/mMiHQti9wMP+845RPe3Vg=="

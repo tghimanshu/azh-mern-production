@@ -75,10 +75,10 @@ export const routes = {
       onMenu: true,
     },
     {
-      path: "/admin/allfeedbacks",
+      path: "/admin/allfeedbacks/:id",
       name: "All Feedbacks",
       component: AllFeedbacks,
-      onMenu: true,
+      onMenu: false,
     },
     {
       path: "/admin/feedback/:id",
@@ -178,7 +178,7 @@ export const routes = {
       path: "/client/feedback",
       name: "feedbacks",
       component: ClientFeedbacks,
-      onMenu: true,
+      onMenu: false,
     },
     {
       path: "/client/feedback/:id",

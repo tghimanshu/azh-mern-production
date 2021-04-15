@@ -13,6 +13,7 @@ const _ = require("lodash");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const config = require("config");
+const converter = require("json-2-csv");
 
 const adminAuth = (req, res, next) => {
   if (!req.header("x-auth-token")) return res.status(401).send("Access Denied");
@@ -36,6 +37,7 @@ router.get("/", async (req, res) => {
   res.send(admins);
   res.end();
 });
+
 // router.get("/:id", async (req, res) => {
 //   const admin = await Admin.findById(req.params.id);
 //   res.send(admin);
@@ -155,9 +157,13 @@ router.put("/:status/:id", adminAuth, async () => {
   }
 });
 
-router.get("/feedbacks", async (req, res) => {
+// * FEEDBACKS
+
+router.get("/feedbacks/:id", async (req, res) => {
   try {
-    const result = await Feedback.find().populate("formId");
+    const result = await Feedback.find({ formId: req.params.id }).populate(
+      "formId"
+    );
     if (!result) res.status(404).send("Feedbacks Doesn't Exist");
     res.json(
       result.map((feedback) => ({
@@ -165,6 +171,31 @@ router.get("/feedbacks", async (req, res) => {
         creationDate: feedback._id.getTimestamp(),
       }))
     );
+  } catch (err) {
+    console.log("err");
+  }
+});
+
+router.get("/feedbacks/export/:id", async (req, res) => {
+  try {
+    const result = await Feedback.find({ formId: req.params.id });
+    if (!result) res.status(404).send("Feedbacks Doesn't Exist");
+    const myJson = [];
+    result.map((feedback) => {
+      const anss = {};
+      feedback.answers.map((ans) => {
+        anss[ans.text] = ans.value;
+        return;
+      });
+      myJson.push(anss);
+    });
+    const data = await converter.json2csvAsync(myJson);
+    res.setHeader(
+      "Content-disposition",
+      "attachment; filename=exportedData.csv"
+    );
+    res.set("Content-Type", "text/csv");
+    res.status(200).send(data);
   } catch (err) {
     console.log("err");
   }

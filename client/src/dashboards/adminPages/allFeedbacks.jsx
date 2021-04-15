@@ -1,46 +1,59 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import http from "../../utils/http";
-import { getRole } from "../../utils/jwt";
 
-export const AllFeedbacks = () => {
+export const AllFeedbacks = ({ match }) => {
   const [feedbacks, setFeedbacks] = useState([]);
   useEffect(() => {
     const getClients = async () => {
-      const details = await http.get(`/admin/feedbacks`);
+      const details = await http.get(`/admin/feedbacks/` + match.params.id);
       setFeedbacks(details.data);
     };
     getClients();
-  }, []);
-  console.log(feedbacks);
+  }, [match]);
+
   return (
-    <table className="table table-striped">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Form Title</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {feedbacks.map((feedback, index) => {
-          return (
-            <tr key={feedback._id}>
-              <td>{index + 1}</td>
-              <td>{feedback.formId.title}</td>
-              <td>
-                <Link
-                  to={"/admin/feedback/" + feedback._id}
-                  className="btn btn-success"
-                >
-                  View
-                </Link>
-              </td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
+    <>
+      <a
+        href={
+          process.env.REACT_APP_API_END_POINT +
+          "/admin/feedbacks/export/" +
+          match.params.id
+        }
+        className="btn btn-success mb-3"
+        target="_blank"
+        rel="noreferrer"
+      >
+        Export
+      </a>
+      <table className="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Form Title</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {feedbacks.map((feedback, index) => {
+            return (
+              <tr key={feedback._id}>
+                <td>{index + 1}</td>
+                <td>{feedback.formId.title}</td>
+                <td>
+                  <Link
+                    to={"/admin/feedback/" + feedback._id}
+                    className="btn btn-success"
+                  >
+                    View
+                  </Link>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </>
   );
 };
 
