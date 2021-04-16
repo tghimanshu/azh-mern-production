@@ -274,6 +274,26 @@ const advisorForgotPassword = (email, token) => {
   }
 };
 
+const bulkMail = (emails, subject, body) => {
+  if (config.get("mailing")) {
+    const mailData = {
+      from: `Advisor Zaroori Hai <${config.get("mailingData.mail")}>`,
+      bcc: emails,
+      subject: subject,
+      html: body,
+    };
+
+    transporter.sendMail(mailData, function (err, info) {
+      if (err) {
+        console.log(err);
+      }
+      if (info) {
+        console.log(info);
+      }
+    });
+  }
+};
+
 module.exports = {
   clientRegistration,
   clientForgotPassword,
@@ -281,4 +301,5 @@ module.exports = {
   advisorRegistration,
   advisorForgotPassword,
   advisorReccMadeMail,
+  bulkMail,
 };

@@ -14,6 +14,7 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const config = require("config");
 const converter = require("json-2-csv");
+const { bulkMail } = require("../mail");
 
 const adminAuth = (req, res, next) => {
   if (!req.header("x-auth-token")) return res.status(401).send("Access Denied");
@@ -198,6 +199,41 @@ router.get("/feedbacks/export/:id", async (req, res) => {
     res.status(200).send(data);
   } catch (err) {
     console.log("err");
+  }
+});
+
+//  * BULK MAILS
+
+router.post("/bulkmail/:type", async (req, res) => {
+  try {
+    switch (req.params.type) {
+      case "client":
+        const results = await Client.find();
+        const emails = results.map((r) => r.email);
+        bulkMail(emails, req.body.subject, req.body.content);
+        res.send(emails);
+        break;
+      case "advisor":
+        const results2 = await Advisor.find();
+        const emails2 = results2.map((r) => r.email);
+        bulkMail(emails2, req.body.subject, req.body.content);
+        res.send(emails2);
+        break;
+      case "feedback":
+        const results3 = await Feedback.find({ formId: "" });
+        const emails3 = results2.map((r) => r.email);
+        bulkMail(emails3, req.body.subject, req.body.content);
+        res.send(emails3);
+        break;
+      default:
+        res.send("ok");
+        break;
+    }
+  } catch (err) {
+    console.log(
+      "-------------------------------------------------------------"
+    );
+    console.log(err);
   }
 });
 

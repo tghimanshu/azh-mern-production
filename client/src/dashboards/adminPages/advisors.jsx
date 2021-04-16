@@ -1,9 +1,16 @@
 import http from "../../utils/http";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Button, Container, FormControl } from "react-bootstrap";
+import ReactQuill from "react-quill";
+import { successAlert, dangerAlert } from "../../utils/alerts";
 
 const Advisors = () => {
   const [advisors, setAdvisor] = useState(null);
+  const [showMail, setShowMail] = useState(false);
+  const [subject, setSubject] = useState("");
+  const [content, setContent] = useState("");
+  const [error, setError] = useState("");
   const getAdvisors = async () => {
     const advisors = await http.get("/admin/advisors");
 
@@ -12,6 +19,29 @@ const Advisors = () => {
   useEffect(() => {
     getAdvisors();
   }, []);
+
+  const handleMail = async () => {
+    try {
+      if (subject === "") {
+        setError(dangerAlert("Empty Subject not Allowed"));
+      } else if (content === "" || content === "<p><br></p>") {
+        setError(dangerAlert("Empty Content not Allowed"));
+      } else {
+        await http.post("/admin/bulkmail/client", {
+          subject,
+          content,
+        });
+        setError(successAlert("Mail SuccessFul", setError));
+      }
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const approveAdv = async (approved, id) => {
     const { data } = await http.put("/admin/advisors/approve/" + id, {
       isApproved: approved,
@@ -28,6 +58,30 @@ const Advisors = () => {
 
   return (
     <>
+      <Container>
+        <Button variant="info mb-3" onClick={() => setShowMail(!showMail)}>
+          Mail
+        </Button>
+        {showMail && (
+          <>
+            {error}
+            <FormControl
+              className="mb-2"
+              placeholder="Enter Subject here"
+              value={subject}
+              onChange={(e) => setSubject(e.target.value)}
+            />
+            <ReactQuill
+              className="mb-2"
+              value={content}
+              onChange={(value) => setContent(value)}
+            />
+            <Button variant="success mb-4" onClick={handleMail}>
+              Send
+            </Button>
+          </>
+        )}
+      </Container>
       <table className="table table-striped">
         <thead>
           <tr>
