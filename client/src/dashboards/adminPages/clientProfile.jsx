@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from "react";
 import http from "../../utils/http";
-import { Col, Container, Row, Table } from "react-bootstrap";
+import {
+  Accordion,
+  Button,
+  Card,
+  Col,
+  Container,
+  Row,
+  Table,
+} from "react-bootstrap";
 
 const ClientProfile = ({ match, history }) => {
   const [client, setClient] = useState({});
@@ -39,183 +47,179 @@ const ClientProfile = ({ match, history }) => {
   } else {
     return (
       <Container>
-        <Row>
-          <Col lg={12}>
-            <div className="table-responsive">
-              <h3>Personal Details</h3>
-              <Table striped bordered size="sm" hover>
-                <thead>
-                  <tr>
-                    <td>#</td>
-                    <td>Name</td>
-                    <td>Date Of Birth</td>
-                    <td>Professional Details</td>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Self</td>
-                    <td>{pd.self.name}</td>
-                    <td>{pd.self.dob}</td>
-                    <td>{pd.self.profdetails}</td>
-                  </tr>
-                  <tr>
-                    <td>Spouse</td>
-                    <td>{pd.spouse.name}</td>
-                    <td>{pd.spouse.dob}</td>
-                    <td>{pd.spouse.profdetails}</td>
-                  </tr>
-                  {pd.childrens.map((c, i) => {
-                    return (
-                      <tr key={i}>
-                        <td>Child {i + 1}</td>
-                        <td>{c.name}</td>
-                        <td>{c.dob}</td>
-                        <td>{c.profdetails}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </Table>
+        <Card>
+          <Card.Header>
+            <Card.Title as="h1">Account Details</Card.Title>
+          </Card.Header>
+          <Card.Body>
+            <Row>
+              <Col md={4} className="mb-3">
+                <div className="font-weight-bold">Name</div>
+                <div>{client.name}</div>
+              </Col>
+              <Col md={4} className="mb-3">
+                <div className="font-weight-bold">E Mail</div>
+                <div>{client.email}</div>
+              </Col>
+              <Col md={4} className="mb-3">
+                <div className="font-weight-bold">Contact</div>
+                <div>{client.contact}</div>
+              </Col>
+              <Col md={4} className="mb-3">
+                <div className="font-weight-bold">Address</div>
+                <div>{client.address}</div>
+              </Col>
+              <Col md={4} className="mb-3">
+                <div className="font-weight-bold">City</div>
+                <div>{client.city + " " + client.postalCode}</div>
+              </Col>
+              <Col md={4} className="mb-3">
+                <div className="font-weight-bold">Country</div>
+                <div>{client.country}</div>
+              </Col>
+            </Row>
+          </Card.Body>
+        </Card>
+        <Card>
+          <Card.Header>
+            <Card.Title as="h1">Personal Details</Card.Title>
+          </Card.Header>
+          <Card.Body>
+            <div className="mb-3">
+              <h4 classNmae="mb-3">Self</h4>
+              <Row>
+                <Col md={6} className="mb-3">
+                  <div className="font-weight-bold">Name</div>
+                  <div>{client.personal_details.self.name}</div>
+                </Col>
+                <Col md={6} className="mb-3">
+                  <div className="font-weight-bold">Date Of Birth</div>
+                  <div>{client.personal_details.self.dob}</div>
+                </Col>
+                <Col md={12} className="mb-3">
+                  <div className="font-weight-bold">Professional Detials</div>
+                  <div>{client.personal_details.self.profdetails}</div>
+                </Col>
+              </Row>
             </div>
-          </Col>
-          <Col lg={12}>
-            <div className="table-responsive">
-              <h3>Sources Of Income</h3>
-              <Table striped bordered hover size="sm">
-                <thead>
-                  <tr>
-                    <td>Type</td>
-                    <td>Amount</td>
-                  </tr>
-                </thead>
-                <tbody>
-                  {Object.keys(income).map((i) => (
-                    <tr key={i}>
-                      <td>{i}</td>
-                      <td>{income[i]}</td>
-                    </tr>
-                  ))}
-                  <tr>
-                    <td>Total: </td>
-                    <td>{sum(income)}</td>
-                  </tr>
-                </tbody>
-              </Table>
+            <div className="mb-3">
+              <h4 className="mb-3">Spouse</h4>
+              <Row>
+                <Col md={6} className="mb-3">
+                  <div className="font-weight-bold">Name</div>
+                  <div>{client.personal_details.spouse.name}</div>
+                </Col>
+                <Col md={6} className="mb-3">
+                  <div className="font-weight-bold">Date Of Birth</div>
+                  <div>{client.personal_details.spouse.dob}</div>
+                </Col>
+                <Col md={12} className="mb-3">
+                  <div className="font-weight-bold">Professional Detials</div>
+                  <div>{client.personal_details.spouse.profdetails}</div>
+                </Col>
+              </Row>
             </div>
-          </Col>
-          <Col lg={12}>
-            <h3>monthly Expenses</h3>
-            <div className="table-responsive">
-              <Table striped bordered hover size="sm">
-                <thead>
-                  <tr>
-                    <td>Type</td>
-                    <td>Amount</td>
-                  </tr>
-                </thead>
-                <tbody>
-                  {Object.keys(expenses.monthly).map((m) => (
-                    <tr key={m}>
-                      <td>{m}</td>
-                      <td>{expenses.monthly[m]}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
+            <div className="mb-3">
+              <h4 className="mb-3">Childrens</h4>
+              <Accordion defaultActiveKey="0">
+                {client.personal_details.childrens.map((child, i) => (
+                  <Card>
+                    <Card.Header>
+                      <Accordion.Toggle
+                        as={Button}
+                        variant="link"
+                        eventKey={i + 1}
+                      >
+                        Child {i + 1}
+                      </Accordion.Toggle>
+                    </Card.Header>
+                    <Accordion.Collapse eventKey={i + 1}>
+                      <Card.Body>
+                        <Row>
+                          <Col md={6} className="mb-3">
+                            <div className="font-weight-bold">Name</div>
+                            <div>{child.name}</div>
+                          </Col>
+                          <Col md={6} className="mb-3">
+                            <div className="font-weight-bold">
+                              Date Of Birth
+                            </div>
+                            <div>{child.dob}</div>
+                          </Col>
+                        </Row>
+                      </Card.Body>
+                    </Accordion.Collapse>
+                  </Card>
+                ))}
+              </Accordion>
             </div>
-          </Col>
-          <Col lg={12}>
-            <h3>Irregular Expenses</h3>
-            <div className="table-responsive">
-              <Table striped bordered hover size="sm">
-                <thead>
+          </Card.Body>
+        </Card>
+        <Card>
+          <Card.Header>
+            <Card.Title as="h1">Income Details</Card.Title>
+          </Card.Header>
+          <Card.Body>
+            <Table striped bordered hover>
+              <thead>
+                <tr>
+                  <td>Type</td>
+                  <td>Value</td>
+                </tr>
+              </thead>
+              <tbody>
+                {Object.keys(income).map((inc) => (
                   <tr>
-                    <td>Type</td>
-                    <td>Amount</td>
+                    <td>{inc.substring(4)}</td>
+                    <td>{income[inc]}</td>
                   </tr>
-                </thead>
-                <tbody>
-                  {Object.keys(expenses.irregular).map((m) => (
-                    <tr key={m}>
-                      <td>{m}</td>
-                      <td>{expenses.irregular[m]}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
-            </div>
-          </Col>
-          <Col lg={12}>
-            <h3>Goals</h3>
-            <div className="table-responsive">
-              <Table striped bordered hover size="sm">
-                <thead>
+                ))}
+              </tbody>
+            </Table>
+          </Card.Body>
+        </Card>
+
+        <Card>
+          <Card.Header>
+            <Card.Title as="h1">Expenses Details</Card.Title>
+          </Card.Header>
+          <Card.Body>
+            <h4>Monthly Expenses</h4>
+            <Table striped bordered hover>
+              <thead>
+                <tr>
+                  <td>Type</td>
+                  <td>Value</td>
+                </tr>
+              </thead>
+              <tbody>
+                {Object.keys(expenses.monthly).map((exp) => (
                   <tr>
-                    {Object.keys(goals[0]).map((goal) => (
-                      <td key={goal}>{goal}</td>
-                    ))}
+                    <td>{exp}</td>
+                    <td>{expenses.monthly[exp]}</td>
                   </tr>
-                </thead>
-                <tbody>
-                  {goals.map((goal, i) => (
-                    <tr key={i}>
-                      {Object.keys(goal).map((m, i) => (
-                        <td key={i}>{expenses.irregular[m]}</td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
-            </div>
-          </Col>
-          <Col lg={12}>
-            <h3>Investments</h3>
-            <div className="table-responsive">
-              <Table striped bordered hover size="sm">
-                <thead>
+                ))}
+              </tbody>
+            </Table>
+            <h4>Irregular Expenses</h4>
+            <Table striped bordered hover>
+              <thead>
+                <tr>
+                  <td>Type</td>
+                  <td>Value</td>
+                </tr>
+              </thead>
+              <tbody>
+                {Object.keys(expenses.irregular).map((exp) => (
                   <tr>
-                    {Object.keys(investments[0]).map((ins) => (
-                      <td key={ins}>{ins}</td>
-                    ))}
+                    <td>{exp}</td>
+                    <td>{expenses.irregular[exp]}</td>
                   </tr>
-                </thead>
-                <tbody>
-                  {insurances.map((inves, i) => (
-                    <tr key={i}>
-                      {Object.keys(inves).map((inv, i) => (
-                        <td key={i}>{inves[inv]}</td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
-            </div>
-          </Col>
-          <Col lg={12}>
-            <h3>Insurance</h3>
-            <div className="table-responsive">
-              <Table striped bordered hover size="sm">
-                <thead>
-                  <tr>
-                    {Object.keys(insurances[0]).map((ins) => (
-                      <td key={ins}>{ins}</td>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {insurances.map((inves, i) => (
-                    <tr key={i}>
-                      {Object.keys(inves).map((inv, i) => (
-                        <td key={i}>{inves[inv]}</td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
-            </div>
-          </Col>
-        </Row>
+                ))}
+              </tbody>
+            </Table>
+          </Card.Body>
+        </Card>
       </Container>
     );
   }

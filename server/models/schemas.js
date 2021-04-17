@@ -204,17 +204,6 @@ const clientSchema = new mongoose.Schema({
         },
       ],
     },
-    income: {
-      type: Object,
-      default: {
-        inc_self: 0,
-        inc_spouse: 0,
-        inc_parents: 0,
-        inc_property: 0,
-        inc_business: 0,
-        inc_others: 0,
-      },
-    },
   },
   investments: {
     type: [Object],
