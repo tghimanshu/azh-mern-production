@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { Button, FormControl } from "react-bootstrap";
+import ReactQuill from "react-quill";
 import { Link } from "react-router-dom";
+import { dangerAlert, successAlert } from "../../utils/alerts";
 import http from "../../utils/http";
 
 export const AllFeedbacks = ({ match }) => {
   const [feedbacks, setFeedbacks] = useState([]);
+  const [showMail, setShowMail] = useState(false);
+  const [subject, setSubject] = useState("");
+  const [content, setContent] = useState("");
+  const [error, setError] = useState("");
   useEffect(() => {
     const getClients = async () => {
       const details = await http.get(`/admin/feedbacks/` + match.params.id);
@@ -12,6 +19,28 @@ export const AllFeedbacks = ({ match }) => {
     getClients();
   }, [match]);
 
+  const handleMail = async () => {
+    try {
+      if (subject === "") {
+        setError(dangerAlert("Empty Subject not Allowed"));
+      } else if (content === "" || content === "<p><br></p>") {
+        setError(dangerAlert("Empty Content not Allowed"));
+      } else {
+        await http.post("/admin/bulkmail/feedback", {
+          formId: match.params.id,
+          subject: subject,
+          content: content,
+        });
+        setError(successAlert("Mail SuccessFul", setError));
+      }
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <a
@@ -20,12 +49,34 @@ export const AllFeedbacks = ({ match }) => {
           "/admin/feedbacks/export/" +
           match.params.id
         }
-        className="btn btn-success mb-3"
+        className="btn btn-success mb-3 mr-2"
         target="_blank"
         rel="noreferrer"
       >
         Export
       </a>
+      <Button variant="info mb-3" onClick={() => setShowMail(!showMail)}>
+        Mail
+      </Button>
+      {showMail && (
+        <>
+          {error}
+          <FormControl
+            className="mb-2"
+            placeholder="Enter Subject here"
+            value={subject}
+            onChange={(e) => setSubject(e.target.value)}
+          />
+          <ReactQuill
+            className="mb-2"
+            value={content}
+            onChange={(value) => setContent(value)}
+          />
+          <Button variant="success mb-4" onClick={handleMail}>
+            Send
+          </Button>
+        </>
+      )}
       <table className="table table-striped">
         <thead>
           <tr>
