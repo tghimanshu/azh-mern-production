@@ -225,6 +225,10 @@ router.post("/bulkmail/:type", async (req, res) => {
         bulkMail(emails3, req.body.subject, req.body.content);
         res.send(emails3);
         break;
+      case "custom":
+        bulkMail(req.body.emails, req.body.subject, req.body.content);
+        res.send(req.body.emails);
+        break;
       default:
         res.send("ok");
         break;

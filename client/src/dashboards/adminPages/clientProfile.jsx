@@ -6,12 +6,19 @@ import {
   Card,
   Col,
   Container,
+  FormControl,
   Row,
   Table,
 } from "react-bootstrap";
+import { dangerAlert, successAlert } from "../../utils/alerts";
+import ReactQuill from "react-quill";
 
 const ClientProfile = ({ match, history }) => {
   const [client, setClient] = useState({});
+  const [showMail, setShowMail] = useState(false);
+  const [subject, setSubject] = useState("");
+  const [content, setContent] = useState("");
+  const [error, setError] = useState("");
   useEffect(() => {
     const getUserData = async () => {
       try {
@@ -24,11 +31,56 @@ const ClientProfile = ({ match, history }) => {
     getUserData();
   }, [match]);
 
+  const handleMail = async () => {
+    try {
+      if (subject === "") {
+        setError(dangerAlert("Empty Subject not Allowed"));
+      } else if (content === "" || content === "<p><br></p>") {
+        setError(dangerAlert("Empty Content not Allowed"));
+      } else {
+        await http.post("/admin/bulkmail/custom", {
+          emails: client.email,
+          subject,
+          content,
+        });
+        setError(successAlert("Mail SuccessFul", setError));
+      }
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   if (Object.keys(client).length === 0) {
     return <h1>Loading...</h1>;
   } else {
     return (
       <Container>
+        <Button variant="info mb-3" onClick={() => setShowMail(!showMail)}>
+          Mail
+        </Button>
+        {showMail && (
+          <>
+            {error}
+            <FormControl
+              className="mb-2"
+              placeholder="Enter Subject here"
+              value={subject}
+              onChange={(e) => setSubject(e.target.value)}
+            />
+            <ReactQuill
+              className="mb-2"
+              value={content}
+              onChange={(value) => setContent(value)}
+            />
+            <Button variant="success mb-4" onClick={handleMail}>
+              Send
+            </Button>
+          </>
+        )}
         <Card>
           <Card.Header>
             <Card.Title as="h1">Account Details</Card.Title>
