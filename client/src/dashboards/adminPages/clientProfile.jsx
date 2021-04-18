@@ -24,24 +24,6 @@ const ClientProfile = ({ match, history }) => {
     getUserData();
   }, [match]);
 
-  function sum(obj) {
-    var sum = 0;
-    for (var el in obj) {
-      if (obj.hasOwnProperty(el)) {
-        sum += parseFloat(obj[el]);
-      }
-    }
-    return sum;
-  }
-
-  const {
-    personal_details: pd,
-    income,
-    expenses,
-    goals,
-    investments,
-    insurances,
-  } = client;
   if (Object.keys(client).length === 0) {
     return <h1>Loading...</h1>;
   } else {
@@ -168,10 +150,10 @@ const ClientProfile = ({ match, history }) => {
                 </tr>
               </thead>
               <tbody>
-                {Object.keys(income).map((inc) => (
+                {Object.keys(client.income).map((inc) => (
                   <tr>
                     <td>{inc.substring(4)}</td>
-                    <td>{income[inc]}</td>
+                    <td>{client.income[inc]}</td>
                   </tr>
                 ))}
               </tbody>
@@ -193,10 +175,10 @@ const ClientProfile = ({ match, history }) => {
                 </tr>
               </thead>
               <tbody>
-                {Object.keys(expenses.monthly).map((exp) => (
+                {Object.keys(client.expenses.monthly).map((exp) => (
                   <tr>
                     <td>{exp}</td>
-                    <td>{expenses.monthly[exp]}</td>
+                    <td>{client.expenses.monthly[exp]}</td>
                   </tr>
                 ))}
               </tbody>
@@ -210,19 +192,213 @@ const ClientProfile = ({ match, history }) => {
                 </tr>
               </thead>
               <tbody>
-                {Object.keys(expenses.irregular).map((exp) => (
+                {Object.keys(client.expenses.irregular).map((exp) => (
                   <tr>
                     <td>{exp}</td>
-                    <td>{expenses.irregular[exp]}</td>
+                    <td>{client.expenses.irregular[exp]}</td>
                   </tr>
                 ))}
               </tbody>
             </Table>
           </Card.Body>
         </Card>
+        {client.haveInvestments && (
+          <Card>
+            <Card.Header>
+              <Card.Title as="h1">Investments</Card.Title>
+            </Card.Header>
+            <Card.Body>
+              <Accordion defaultActiveKey="1">
+                {client.investments.map((investment, i) => (
+                  <Card>
+                    <Card.Header>
+                      <Accordion.Toggle
+                        as={Button}
+                        variant="link"
+                        eventKey={i + 1}
+                      >
+                        Investment {i + 1}
+                      </Accordion.Toggle>
+                    </Card.Header>
+                    <Accordion.Collapse eventKey={i + 1}>
+                      <Card.Body>
+                        <Row>
+                          {Object.keys(investment).map((inv) => (
+                            <Col md={4}>
+                              <div className="font-weight-bold">
+                                {inv.replace(/([A-Z])/g, " $1").trim()}
+                              </div>
+                              <div>{investment[inv]}</div>
+                            </Col>
+                          ))}
+                        </Row>
+                      </Card.Body>
+                    </Accordion.Collapse>
+                  </Card>
+                ))}
+              </Accordion>
+            </Card.Body>
+          </Card>
+        )}
+
+        {client.haveInsurances && (
+          <Card>
+            <Card.Header>
+              <Card.Title as="h1">Insurances</Card.Title>
+            </Card.Header>
+            <Card.Body>
+              <Accordion defaultActiveKey="1">
+                {client.insurances.map((insurance, i) => (
+                  <Card>
+                    <Card.Header>
+                      <Accordion.Toggle
+                        as={Button}
+                        variant="link"
+                        eventKey={i + 1}
+                      >
+                        Insurance {i + 1}
+                      </Accordion.Toggle>
+                    </Card.Header>
+                    <Accordion.Collapse eventKey={i + 1}>
+                      <Card.Body>
+                        <Row>
+                          {Object.keys(insurance).map((ins) => (
+                            <Col md={4}>
+                              <div className="font-weight-bold">
+                                {ins.replace(/([A-Z])/g, " $1").trim()}
+                              </div>
+                              <div>{insurance[ins]}</div>
+                            </Col>
+                          ))}
+                        </Row>
+                      </Card.Body>
+                    </Accordion.Collapse>
+                  </Card>
+                ))}
+              </Accordion>
+            </Card.Body>
+          </Card>
+        )}
+
+        {client.haveAssets && (
+          <Card>
+            <Card.Header>
+              <Card.Title as="h1">Assets</Card.Title>
+            </Card.Header>
+            <Card.Body>
+              <Accordion defaultActiveKey="1">
+                {client.assets.map((asset, i) => (
+                  <Card>
+                    <Card.Header>
+                      <Accordion.Toggle
+                        as={Button}
+                        variant="link"
+                        eventKey={i + 1}
+                      >
+                        Asset {i + 1}
+                      </Accordion.Toggle>
+                    </Card.Header>
+                    <Accordion.Collapse eventKey={i + 1}>
+                      <Card.Body>
+                        <Row>
+                          {Object.keys(asset).map((as) => (
+                            <Col md={4}>
+                              <div className="font-weight-bold">
+                                {as.replace(/([A-Z])/g, " $1").trim()}
+                              </div>
+                              <div>{asset[as]}</div>
+                            </Col>
+                          ))}
+                        </Row>
+                      </Card.Body>
+                    </Accordion.Collapse>
+                  </Card>
+                ))}
+              </Accordion>
+            </Card.Body>
+          </Card>
+        )}
+
+        {client.haveLiabilities && (
+          <Card>
+            <Card.Header>
+              <Card.Title as="h1">Liabilities</Card.Title>
+            </Card.Header>
+            <Card.Body>
+              <Accordion defaultActiveKey="1">
+                {client.liabilities.map((liability, i) => (
+                  <Card>
+                    <Card.Header>
+                      <Accordion.Toggle
+                        as={Button}
+                        variant="link"
+                        eventKey={i + 1}
+                      >
+                        Liability {i + 1}
+                      </Accordion.Toggle>
+                    </Card.Header>
+                    <Accordion.Collapse eventKey={i + 1}>
+                      <Card.Body>
+                        <Row>
+                          {Object.keys(liability).map((lb) => (
+                            <Col md={4}>
+                              <div className="font-weight-bold">
+                                {lb.replace(/([A-Z])/g, " $1").trim()}
+                              </div>
+                              <div>{liability[lb]}</div>
+                            </Col>
+                          ))}
+                        </Row>
+                      </Card.Body>
+                    </Accordion.Collapse>
+                  </Card>
+                ))}
+              </Accordion>
+            </Card.Body>
+          </Card>
+        )}
+        {client.haveGoals && (
+          <Card>
+            <Card.Header>
+              <Card.Title as="h1">Goals</Card.Title>
+            </Card.Header>
+            <Card.Body>
+              <Accordion defaultActiveKey="1">
+                {client.goals.map((goal, i) => (
+                  <Card>
+                    <Card.Header>
+                      <Accordion.Toggle
+                        as={Button}
+                        variant="link"
+                        eventKey={i + 1}
+                      >
+                        Goal {i + 1}
+                      </Accordion.Toggle>
+                    </Card.Header>
+                    <Accordion.Collapse eventKey={i + 1}>
+                      <Card.Body>
+                        <Row>
+                          {Object.keys(goal).map((gl) => (
+                            <Col md={4}>
+                              <div className="font-weight-bold">
+                                {gl.replace(/([A-Z])/g, " $1").trim()}
+                              </div>
+                              <div>{goal[gl]}</div>
+                            </Col>
+                          ))}
+                        </Row>
+                      </Card.Body>
+                    </Accordion.Collapse>
+                  </Card>
+                ))}
+              </Accordion>
+            </Card.Body>
+          </Card>
+        )}
       </Container>
     );
   }
 };
 
 export default ClientProfile;
+// s.replace(/([A-Z])/g, ' $1').trim()

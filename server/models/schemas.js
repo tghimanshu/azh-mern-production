@@ -216,7 +216,7 @@ const clientSchema = new mongoose.Schema({
         CurrentValue: Number,
         Purpose: "",
         InvestmentType: "",
-        Products: "",
+        // Products: "",
         scheme: "",
       },
     ],
@@ -275,6 +275,10 @@ const clientSchema = new mongoose.Schema({
         amtSaved: Number,
       },
     ],
+  },
+  haveGoals: {
+    type: Boolean,
+    default: true,
   },
   insurances: {
     type: Array,
