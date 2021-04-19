@@ -159,7 +159,8 @@ export function WantAnAdvisor() {
           />
         </div>
       </Container>
-      <div className="mt-4 get-in-call">
+
+      <div className="container mt-4 get-in-call">
         <Link to="/login">
           I’m a little confused and would like go on a call{" "}
         </Link>

@@ -514,3 +514,26 @@ a.e-learning-a:hover {
 .cropModel .modal-content {
   height: 90vh;
 }
+
+@media screen and (max-width: 1000px) {
+  .wantAdvisors > * {
+    position: relative !important;
+    top: initial !important;
+    bottom: initial !important;
+    left: initial !important;
+    right: initial !important;
+    transform: initial !important;
+  }
+  .wantAdvisors a {
+    position: relative;
+    display: block;
+    text-align: center;
+    margin-left: 0 !important;
+  }
+  .wantAdvisors .wa {
+    margin-bottom: 1em;
+  }
+  .wantAdvisors .wa::after {
+    transform: translate(-50%, -50%);
+  }
+}
