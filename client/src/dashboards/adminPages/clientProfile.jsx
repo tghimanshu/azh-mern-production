@@ -230,13 +230,13 @@ const ClientProfile = ({ match, history }) => {
                   </tr>
                 </thead>
                 <tbody>
-                  {console.log(client.expenses)}
-                  {Object.keys(client.expenses.monthly).map((exp) => (
-                    <tr>
-                      <td>{exp}</td>
-                      <td>{client.expenses.monthly[exp]}</td>
-                    </tr>
-                  ))}
+                  {client.expenses.monthly &&
+                    Object.keys(client.expenses.monthly).map((exp) => (
+                      <tr>
+                        <td>{exp}</td>
+                        <td>{client.expenses.monthly[exp]}</td>
+                      </tr>
+                    ))}
                 </tbody>
               </Table>
               <h4>Irregular Expenses</h4>
@@ -248,12 +248,13 @@ const ClientProfile = ({ match, history }) => {
                   </tr>
                 </thead>
                 <tbody>
-                  {Object.keys(client.expenses.irregular).map((exp) => (
-                    <tr>
-                      <td>{exp}</td>
-                      <td>{client.expenses.irregular[exp]}</td>
-                    </tr>
-                  ))}
+                  {client.expenses.irregular &&
+                    Object.keys(client.expenses.irregular).map((exp) => (
+                      <tr>
+                        <td>{exp}</td>
+                        <td>{client.expenses.irregular[exp]}</td>
+                      </tr>
+                    ))}
                 </tbody>
               </Table>
             </Card.Body>
