@@ -35,6 +35,7 @@ import {
   AllFeedbacks,
   SingleFeedback as AdminSingleFeedback,
 } from "./adminPages/allFeedbacks";
+import HomePageEdit from "./adminPages/homepage";
 
 export const routes = {
   admin: [
@@ -108,6 +109,12 @@ export const routes = {
       path: "/admin/bookings",
       name: "Bookings",
       component: AdminBookings,
+      onMenu: true,
+    },
+    {
+      path: "/admin/homepage",
+      name: "Home Page Edit",
+      component: HomePageEdit,
       onMenu: true,
     },
   ],

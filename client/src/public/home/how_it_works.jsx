@@ -1,7 +1,8 @@
 import { Col, Container, Image, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import parse from "html-react-parser";
 
-export function HowItWorks() {
+export function HowItWorks({ homePageData }) {
   return (
     <section id="how-it-works" className="text-black">
       <Container>
@@ -38,11 +39,18 @@ export function HowItWorks() {
                   fontWeight: "bold",
                 }}
               >
-                PROFILING
+                {parse(
+                  homePageData.howitworks[0].title
+                    ? homePageData.howitworks[0].title
+                    : ""
+                )}
               </h2>
               <p>
-                sign up for free and complete your profile by filling in details
-                and you will be good to go to explore your advisors
+                {parse(
+                  homePageData.howitworks[0].content
+                    ? homePageData.howitworks[0].content
+                    : ""
+                )}
               </p>
             </div>
           </Col>
@@ -66,11 +74,18 @@ export function HowItWorks() {
                   fontWeight: "bold",
                 }}
               >
-                EXPLORING
+                {parse(
+                  homePageData.howitworks[1].title
+                    ? homePageData.howitworks[1].title
+                    : ""
+                )}
               </h2>
               <p>
-                Explore amongst all the SEBI resgistered advisors and you can
-                also whittle down your search by appplying filters.
+                {parse(
+                  homePageData.howitworks[1].content
+                    ? homePageData.howitworks[1].content
+                    : ""
+                )}
               </p>
             </div>
           </Col>
@@ -94,12 +109,18 @@ export function HowItWorks() {
                   fontWeight: "bold",
                 }}
               >
-                SELECTING
+                {parse(
+                  homePageData.howitworks[2].title
+                    ? homePageData.howitworks[2].title
+                    : ""
+                )}
               </h2>
               <p>
-                your personalised plan be that insurance or investment is now
-                just a button away. Reach out and the advisor will get back with
-                the recommendation .
+                {parse(
+                  homePageData.howitworks[2].content
+                    ? homePageData.howitworks[2].content
+                    : ""
+                )}
               </p>
             </div>
           </Col>

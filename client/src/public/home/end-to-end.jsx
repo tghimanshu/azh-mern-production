@@ -1,4 +1,6 @@
-function EndToEnd() {
+import parse from "html-react-parser";
+
+function EndToEnd({ homePageData }) {
   return (
     <section
       id="end-to-end-solutions"
@@ -11,10 +13,7 @@ function EndToEnd() {
       <div className="row justify-content-lg-between">
         <div className="ete-sol-text ml-0 col-12 col-lg-6 p-2 mt-4 pt-lg-4">
           <p style={{ fontFamily: "Roboto, sans-serif" }}>
-            Just Start today and we will take care of the seamless transactions.
-            Get recommendations from the SEBI resgistered investment advisors
-            and execute the trades on Paytm, Groww or whichever platform you
-            like
+            {parse(homePageData.endtoend ? homePageData.endtoend : "")}
           </p>
         </div>
         <div className="col-12 col-lg-5">

@@ -14,6 +14,7 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const config = require("config");
 const converter = require("json-2-csv");
+const fs = require("fs");
 const { bulkMail } = require("../mail");
 
 const adminAuth = (req, res, next) => {
@@ -234,11 +235,31 @@ router.post("/bulkmail/:type", async (req, res) => {
         break;
     }
   } catch (err) {
-    console.log(
-      "-------------------------------------------------------------"
-    );
     console.log(err);
   }
+});
+
+// * HOMEPAGE DATA
+
+router.get("/hpdata", (req, res) => {
+  try {
+    fs.readFile("models/homepage_data.json", (err, data) => {
+      if (err) {
+        res.status(500).send(err);
+      }
+      const hpd = JSON.parse(data);
+      res.send(hpd);
+    });
+  } catch (err) {}
+});
+
+router.put("/hpdata", adminAuth, (req, res) => {
+  fs.writeFile("models/homepage_data.json", req.body.data, (err) => {
+    if (error) {
+      res.send(err);
+    }
+  });
+  res.json({ status: "OK" });
 });
 
 module.exports = router;

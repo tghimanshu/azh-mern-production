@@ -1,7 +1,8 @@
 import { Col, Row, Image, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import parse from "html-react-parser";
 
-function WhyAZH() {
+function WhyAZH({ homePageData }) {
   return (
     <section id="whyazh">
       <Container>
@@ -17,14 +18,16 @@ function WhyAZH() {
               fluid
             />
             <h2>
-              HASSLE FREE
-              <br />
-              REGISTRATION
+              {parse(
+                homePageData.whyazh[0].title ? homePageData.whyazh[0].title : ""
+              )}
             </h2>
             <p>
-              Just answer few questions and get your risk profiling done in no
-              minute. after that send your profile to whoever’s services you
-              wish to avail{" "}
+              {parse(
+                homePageData.whyazh[0].content
+                  ? homePageData.whyazh[0].content
+                  : ""
+              )}
             </p>
           </Col>
           <Col md={3}>
@@ -35,14 +38,16 @@ function WhyAZH() {
               fluid
             />
             <h2>
-              SEBI REGISTERED
-              <br />
-              ADVISORS
+              {parse(
+                homePageData.whyazh[1].title ? homePageData.whyazh[1].title : ""
+              )}
             </h2>
             <p>
-              All our advisors onboard are SEBI Registered and holds abundance
-              of experience and wisdom. Once you send profile your
-              recommendation will be ready within 48hrs.
+              {parse(
+                homePageData.whyazh[1].content
+                  ? homePageData.whyazh[1].content
+                  : ""
+              )}
             </p>
           </Col>
           <Col md={3}>
@@ -53,13 +58,16 @@ function WhyAZH() {
               fluid
             />
             <h2>
-              SAFE AND
-              <br />
-              SECURED
+              {parse(
+                homePageData.whyazh[2].title ? homePageData.whyazh[2].title : ""
+              )}
             </h2>
             <p>
-              We have a strict policies for data privacy and even while you send
-              your profile to desired advisors, your identity is kept anonymos{" "}
+              {parse(
+                homePageData.whyazh[2].content
+                  ? homePageData.whyazh[2].content
+                  : ""
+              )}
             </p>
           </Col>
         </Row>
