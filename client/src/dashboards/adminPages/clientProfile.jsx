@@ -230,6 +230,7 @@ const ClientProfile = ({ match, history }) => {
                   </tr>
                 </thead>
                 <tbody>
+                  {console.log(client.expenses)}
                   {Object.keys(client.expenses.monthly).map((exp) => (
                     <tr>
                       <td>{exp}</td>
