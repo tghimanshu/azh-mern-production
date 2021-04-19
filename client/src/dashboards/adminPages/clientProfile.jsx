@@ -189,71 +189,75 @@ const ClientProfile = ({ match, history }) => {
             </div>
           </Card.Body>
         </Card>
-        <Card>
-          <Card.Header>
-            <Card.Title as="h1">Income Details</Card.Title>
-          </Card.Header>
-          <Card.Body>
-            <Table striped bordered hover>
-              <thead>
-                <tr>
-                  <td>Type</td>
-                  <td>Value</td>
-                </tr>
-              </thead>
-              <tbody>
-                {Object.keys(client.income).map((inc) => (
+        {client.income && (
+          <Card>
+            <Card.Header>
+              <Card.Title as="h1">Income Details</Card.Title>
+            </Card.Header>
+            <Card.Body>
+              <Table striped bordered hover>
+                <thead>
                   <tr>
-                    <td>{inc.substring(4)}</td>
-                    <td>{client.income[inc]}</td>
+                    <td>Type</td>
+                    <td>Value</td>
                   </tr>
-                ))}
-              </tbody>
-            </Table>
-          </Card.Body>
-        </Card>
+                </thead>
+                <tbody>
+                  {Object.keys(client.income).map((inc) => (
+                    <tr>
+                      <td>{inc.substring(4)}</td>
+                      <td>{client.income[inc]}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            </Card.Body>
+          </Card>
+        )}
 
-        <Card>
-          <Card.Header>
-            <Card.Title as="h1">Expenses Details</Card.Title>
-          </Card.Header>
-          <Card.Body>
-            <h4>Monthly Expenses</h4>
-            <Table striped bordered hover>
-              <thead>
-                <tr>
-                  <td>Type</td>
-                  <td>Value</td>
-                </tr>
-              </thead>
-              <tbody>
-                {Object.keys(client.expenses.monthly).map((exp) => (
+        {client.expenses && (
+          <Card>
+            <Card.Header>
+              <Card.Title as="h1">Expenses Details</Card.Title>
+            </Card.Header>
+            <Card.Body>
+              <h4>Monthly Expenses</h4>
+              <Table striped bordered hover>
+                <thead>
                   <tr>
-                    <td>{exp}</td>
-                    <td>{client.expenses.monthly[exp]}</td>
+                    <td>Type</td>
+                    <td>Value</td>
                   </tr>
-                ))}
-              </tbody>
-            </Table>
-            <h4>Irregular Expenses</h4>
-            <Table striped bordered hover>
-              <thead>
-                <tr>
-                  <td>Type</td>
-                  <td>Value</td>
-                </tr>
-              </thead>
-              <tbody>
-                {Object.keys(client.expenses.irregular).map((exp) => (
+                </thead>
+                <tbody>
+                  {Object.keys(client.expenses.monthly).map((exp) => (
+                    <tr>
+                      <td>{exp}</td>
+                      <td>{client.expenses.monthly[exp]}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+              <h4>Irregular Expenses</h4>
+              <Table striped bordered hover>
+                <thead>
                   <tr>
-                    <td>{exp}</td>
-                    <td>{client.expenses.irregular[exp]}</td>
+                    <td>Type</td>
+                    <td>Value</td>
                   </tr>
-                ))}
-              </tbody>
-            </Table>
-          </Card.Body>
-        </Card>
+                </thead>
+                <tbody>
+                  {Object.keys(client.expenses.irregular).map((exp) => (
+                    <tr>
+                      <td>{exp}</td>
+                      <td>{client.expenses.irregular[exp]}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            </Card.Body>
+          </Card>
+        )}
         {client.haveInvestments && (
           <Card>
             <Card.Header>
