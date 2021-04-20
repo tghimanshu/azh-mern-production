@@ -72,15 +72,15 @@ router.post("/login", async (req, res) => {
   res.header("x-auth-token", token).send(token);
 });
 
-router.put("/:id", adminAuth, async (req, res) => {
-  const admin = await Admin.findById(req.params.id);
-  if (!admin) res.status(400).send("Cannot locate the Admin!");
-  /* validation logic */
+// router.put("/:id", adminAuth, async (req, res) => {
+//   const admin = await Admin.findById(req.params.id);
+//   if (!admin) res.status(400).send("Cannot locate the Admin!");
+//   /* validation logic */
 
-  admin.set(_.pick(req.body[("name", "email")]));
-  const result = await admin.save();
-  res.send(result);
-});
+//   admin.set(_.pick(req.body[("name", "email")]));
+//   const result = await admin.save();
+//   res.send(result);
+// });
 
 router.delete("/:id", adminAuth, async (req, res) => {
   const result = await Admin.findByIdAndRemove(req.params.id);
@@ -253,13 +253,22 @@ router.get("/hpdata", (req, res) => {
   } catch (err) {}
 });
 
-router.put("/hpdata", adminAuth, (req, res) => {
-  fs.writeFile("models/homepage_data.json", req.body.data, (err) => {
-    if (error) {
-      res.send(err);
-    }
-  });
-  res.json({ status: "OK" });
+router.put("/hpdata", (req, res) => {
+  try {
+    fs.writeFile(
+      "models/homepage_data.json",
+      JSON.stringify(req.body.data),
+      (err) => {
+        if (err) {
+          res.send(err);
+        } else {
+          res.json({ status: "OK" });
+        }
+      }
+    );
+  } catch (err) {
+    res.send("error");
+  }
 });
 
 module.exports = router;
