@@ -276,15 +276,20 @@ export const FeedbackForms = () => {
           <tr>
             <th>#</th>
             <th>Title</th>
+            <th>Creation Date</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {feedbackForms.map((client, i) => {
+            const creationDate = new Date(client.creationDate);
             return (
               <tr key={client._id}>
                 <td>{i + 1}</td>
                 <td>{client.title}</td>
+                <td>{`${creationDate.getDate()}-${
+                  creationDate.getMonth() + 1
+                }-${creationDate.getFullYear()}`}</td>
                 <td>
                   <Link
                     className="btn btn-info mr-2"

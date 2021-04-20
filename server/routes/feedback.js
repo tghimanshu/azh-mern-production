@@ -24,7 +24,13 @@ const adminAuth = (req, res, next) => {
 
 router.get("/", async (req, res) => {
   const result = await FeedbackForm.find();
-  res.send(result);
+  // res.send(result);
+  res.json(
+    result.map((feedback) => ({
+      ...feedback.toObject(),
+      creationDate: feedback._id.getTimestamp(),
+    }))
+  );
   res.end();
 });
 

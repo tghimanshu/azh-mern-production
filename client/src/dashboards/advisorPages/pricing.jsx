@@ -42,11 +42,9 @@ const AdvisorPricing = ({ history }) => {
                 <tr key={i}>
                   <td>{i + 1}</td>
                   <td>
-                    {myDate.getDate() +
-                      "-" +
-                      myDate.getMonth() +
-                      "-" +
-                      myDate.getFullYear()}
+                    {`${myDate.getDate()}-${
+                      myDate.getMonth() + 1
+                    }-${myDate.getFullYear()}`}
                   </td>
                   <td>{request.amount}</td>
                   <td>

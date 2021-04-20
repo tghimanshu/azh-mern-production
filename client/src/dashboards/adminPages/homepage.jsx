@@ -41,7 +41,7 @@ function HomePageEdit() {
           <Card.Body>
             {error}
             <small className="d-inline-block mb-3">
-              For a new line, use <code>[new_line]</code>
+              For a new line, use <code>&lt;br /&gt;</code>
             </small>
             <Form onSubmit={handleSubmit}>
               <h4>How It Works</h4>

@@ -82,15 +82,20 @@ export const AllFeedbacks = ({ match }) => {
           <tr>
             <th>#</th>
             <th>Form Title</th>
+            <th>Creation Date</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {feedbacks.map((feedback, index) => {
+            const creationDate = new Date(feedback.creationDate);
             return (
               <tr key={feedback._id}>
                 <td>{index + 1}</td>
                 <td>{feedback.formId.title}</td>
+                <td>{`${creationDate.getDate()}-${
+                  creationDate.getMonth() + 1
+                }-${creationDate.getFullYear()}`}</td>
                 <td>
                   <Link
                     to={"/admin/feedback/" + feedback._id}

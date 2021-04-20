@@ -87,7 +87,9 @@ const Clients = () => {
                 <td>{client.name}</td>
                 <td>{client.contact}</td>
                 <td>{client.email}</td>
-                <td>{`${creationDate.getDate()}-${creationDate.getMonth()}-${creationDate.getFullYear()}`}</td>
+                <td>{`${creationDate.getDate()}-${
+                  creationDate.getMonth() + 1
+                }-${creationDate.getFullYear()}`}</td>
                 <td className="table-action">
                   <Link to={"/admin/client/" + client._id}>
                     <svg

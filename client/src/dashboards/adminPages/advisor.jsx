@@ -34,11 +34,9 @@ const Advisor = ({ match }) => {
                 <tr key={i}>
                   <td>{i}</td>
                   <td>
-                    {myDate.getDate() +
-                      "-" +
-                      myDate.getMonth() +
-                      "-" +
-                      myDate.getFullYear()}
+                    {`${myDate.getDate()}-${
+                      myDate.getMonth() + 1
+                    }-${myDate.getFullYear()}`}
                   </td>
                   <td>{request.amount}</td>
                   <td>
