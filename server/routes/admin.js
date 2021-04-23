@@ -223,7 +223,10 @@ router.post("/bulkmail/:type", async (req, res) => {
       case "feedback":
         const results3 = await Feedback.find({ formId: req.body.formId });
         const emails3 = results3.map((r) => r.answers[1].value);
-        bulkMail(emails3, req.body.subject, req.body.content);
+        // let chunk = [];
+        while (emails3.length > 0) {
+          bulkMail(emails3.splice(0, 20), req.body.subject, req.body.content);
+        }
         res.send(emails3);
         break;
       case "custom":
