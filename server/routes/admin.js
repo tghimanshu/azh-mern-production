@@ -211,13 +211,17 @@ router.post("/bulkmail/:type", async (req, res) => {
       case "client":
         const results = await Client.find();
         const emails = results.map((r) => r.email);
-        bulkMail(emails, req.body.subject, req.body.content);
+        while (emails.length > 0) {
+          bulkMail(emails.splice(0, 20), req.body.subject, req.body.content);
+        }
         res.send(emails);
         break;
       case "advisor":
         const results2 = await Advisor.find();
         const emails2 = results2.map((r) => r.email);
-        bulkMail(emails2, req.body.subject, req.body.content);
+        while (emals2.length > 0) {
+          bulkMail(emails2.splice(0, 20), req.body.subject, req.body.content);
+        }
         res.send(emails2);
         break;
       case "feedback":
