@@ -94,6 +94,7 @@ const Investment = ({ history }) => {
               I Don't Have Any Investments
             </label>
           </div>
+
           {haveInvestments && (
             <form>
               <Accordion defaultActiveKey="0">
