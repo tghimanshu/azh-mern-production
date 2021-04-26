@@ -15,12 +15,15 @@ import AdminLogin from "./dashboards/adminLogin";
 import Feedback from "./public/feedback";
 import { FPClientRegister } from "./public/login_register/client_registor";
 import { FPAdvisorRegister } from "./public/login_register/advisorRegistor";
+import VideoCall from "./public/videoCall";
 
 const PublicRoutes = () => {
   return (
     <Fragment>
       <Navbar />
       <Switch>
+        <Route exact path="/videocall" component={VideoCall} />
+        <Route exact path="/videocall/:id" component={VideoCall} />
         <Route exact path="/adminLogin" component={AdminLogin} />
         <Route exact path="/clientRegister" component={FPClientRegister} />
         <Route exact path="/advisorRegister" component={FPAdvisorRegister} />

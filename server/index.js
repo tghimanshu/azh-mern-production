@@ -1,6 +1,8 @@
 require("dotenv").config();
 const https = require("https");
 const express = require("express");
+const app = express();
+const server = https.createServer(app);
 const path = require("path");
 const admin = require("./routes/admin");
 const advisor = require("./routes/advisors");
@@ -21,8 +23,6 @@ const io = require("socket.io")(server, {
     methods: ["GET", "POST"],
   },
 });
-
-const app = express();
 
 app.use(express.json());
 
@@ -54,6 +54,7 @@ app.get("/", (req, res) => {
 
 io.on("connection", (socket) => {
   socket.emit("me", socket.id);
+  socket.emit("me", 10);
 
   socket.on("disconnect", () => {
     socket.broadcast.emit("callEnded");

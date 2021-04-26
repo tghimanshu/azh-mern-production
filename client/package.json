@@ -11,6 +11,7 @@
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.3",
     "react-contenteditable": "^3.3.5",
+    "react-copy-to-clipboard": "^5.0.3",
     "react-dom": "^17.0.1",
     "react-easy-crop": "^3.3.1",
     "react-google-recaptcha": "^2.1.0",
@@ -20,6 +21,8 @@
     "react-scripts": "^4.0.3",
     "react-share": "^4.3.1",
     "react-step-wizard": "^5.3.5",
+    "simple-peer": "^9.11.0",
+    "socket.io-client": "^4.0.1",
     "sweetalert2": "^10.13.1",
     "web-vitals": "^0.2.4"
   },
