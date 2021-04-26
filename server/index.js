@@ -15,6 +15,13 @@ const cors = require("cors");
 const fs = require("fs");
 const { config } = require("exceljs");
 
+const io = require("socket.io")(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+  },
+});
+
 const app = express();
 
 app.use(express.json());
@@ -42,6 +49,26 @@ app.get("/", (req, res) => {
     status: "Ok",
   });
 });
+
+// * SOCKET IO CODE
+
+io.on("connection", (socket) => {
+  socket.emit("me", socket.id);
+
+  socket.on("disconnect", () => {
+    socket.broadcast.emit("callEnded");
+  });
+
+  socket.on("callUser", ({ userToCall, signalData, from, name }) => {
+    io.to(userToCall).emit("callUser", { signal: signalData, from, name });
+  });
+
+  socket.on("answerCall", (data) => {
+    io.to(data.to).emit("callAccepted", data.signal);
+  });
+});
+
+// * STARTING THE SERVER
 
 const port = 5000;
 //const port = process.env.PORT || 5000;
