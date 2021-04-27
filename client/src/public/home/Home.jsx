@@ -20,7 +20,7 @@ function Home(props) {
       setLoadingScreen(false);
     };
     getHomePage();
-  });
+  }, []);
   return (
     <Fragment>
       {loadingScreen && <LoadingScreen />}
