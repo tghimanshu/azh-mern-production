@@ -25,10 +25,17 @@ const ContextProvider = ({ children }) => {
       .getUserMedia({ video: true, audio: true })
       .then((currentStream) => {
         setStream(currentStream);
-
-        myVideo.current.setAttribute("autoplay", "");
-        myVideo.current.setAttribute("muted", "");
-        myVideo.current.srcObject = currentStream;
+        if ("srcObject" in myVideo) {
+          myVideo.srcObject = stream;
+        } else {
+          myVideo.src = window.URL.createObjectURL(stream);
+        }
+        myVideo.onloadedmetadata = function (e) {
+          myVideo.play();
+        };
+        // myVideo.current.setAttribute("autoplay", "");
+        // myVideo.current.setAttribute("muted", "");
+        // myVideo.current.srcObject = currentStream;
       });
 
     socket.on("me", (id) => setMe(id));
