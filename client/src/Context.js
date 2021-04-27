@@ -26,6 +26,8 @@ const ContextProvider = ({ children }) => {
       .then((currentStream) => {
         setStream(currentStream);
 
+        myVideo.current.setAttribute("autoplay", "");
+        myVideo.current.setAttribute("muted", "");
         myVideo.current.srcObject = currentStream;
       });
 
