@@ -25,13 +25,13 @@ const ContextProvider = ({ children }) => {
       .getUserMedia({ video: true, audio: true })
       .then((currentStream) => {
         setStream(currentStream);
-        if ("srcObject" in myVideo) {
-          myVideo.srcObject = stream;
+        if ("srcObject" in myVideo.current) {
+          myVideo.current.srcObject = currentStream;
         } else {
-          myVideo.src = window.URL.createObjectURL(stream);
+          myVideo.current.src = window.URL.createObjectURL(currentStream);
         }
-        myVideo.onloadedmetadata = function (e) {
-          myVideo.play();
+        myVideo.current.onloadedmetadata = function (e) {
+          myVideo.current.play();
         };
         // myVideo.current.setAttribute("autoplay", "");
         // myVideo.current.setAttribute("muted", "");

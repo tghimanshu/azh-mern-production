@@ -26,13 +26,6 @@ app.use(cors());
 //   next();
 // });
 
-//const io = require("socket.io")(server, {
-//  cors: {
-//    origin: "*",
-//    methods: ["GET", "POST"],
-//  },
-//});
-
 app.use("/api/uploads", express.static(path.join(__dirname, "/uploads")));
 
 app.use("/api/socket", socket);
@@ -76,3 +69,12 @@ if (process.env.NODE_ENV === "production") {
     console.log(`Server Started at port ${port}....`)
   );
 }
+
+const io = require("socket.io")(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+  },
+});
+
+socket(io);
