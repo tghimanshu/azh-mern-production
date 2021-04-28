@@ -43,6 +43,7 @@ const VideoCall = ({ match }) => {
               <div className="embed-responsive embed-responsive-16by9">
                 <video
                   muted
+                  playinline
                   ref={myVideo}
                   autoPlay
                   className="embed-responsive-item"
@@ -56,6 +57,7 @@ const VideoCall = ({ match }) => {
                 <video
                   ref={userVideo}
                   autoPlay
+                  playinline
                   className="embed-responsive-item"
                 />
               </div>
