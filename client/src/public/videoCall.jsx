@@ -1,13 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Fragment } from "react";
-import {
-  Button,
-  Col,
-  Container,
-  FormControl,
-  ResponsiveEmbed,
-  Row,
-} from "react-bootstrap";
+import { Button, Col, Container, FormControl, Row } from "react-bootstrap";
 import SectionTitle from "../advisor/sectionTitle";
 import { SocketContext, ContextProvider } from "../Context";
 import CopyToClipboard from "react-copy-to-clipboard";
