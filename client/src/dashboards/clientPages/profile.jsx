@@ -239,21 +239,20 @@ function Profile() {
                     : user.about_me}
                 </p>
                 <div className="d-flex justify-content-between">
-                  <small>Profile Status:</small>
-                  <small>{completionState.percent}%</small>
+                  <p>Profile Status: {completionState.state}</p>
+                  {completionState.remaining &&
+                    completionState.remaining.length !== 0 && (
+                      <Link
+                        to={"/client" + completionState.remaining[0].link}
+                        className="ml-auto mr-0"
+                      >
+                        {completionState.remaining[0].title} +{" "}
+                        {completionState.remaining[0].points}{" "}
+                      </Link>
+                    )}
                 </div>
-                <ProgressBar
-                  now={completionState.percent}
-                  label={`${completionState.percent}%`}
-                  srOnly
-                  variant={
-                    (completionState.percent > 80 && "success") ||
-                    (completionState.percent > 50 &&
-                      completionState.percent < 80 &&
-                      "warning") ||
-                    (completionState.percent < 50 && "danger")
-                  }
-                />
+
+                <ProgressBar animated now={completionState.percent} />
               </Card.Body>
               <hr></hr>
               <div className="button-container mb-3 mr-auto ml-auto">

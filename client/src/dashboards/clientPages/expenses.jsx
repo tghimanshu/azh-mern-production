@@ -40,7 +40,29 @@ const Expense = ({ history }) => {
         const userJwt = getRole();
         const user = await http.get("/client/" + userJwt._id);
         // console.log(userJwt._id);
-        setExpenses(user.data.expenses);
+        setExpenses(
+          user.data.expenses.monthly
+            ? user.data.expenses
+            : {
+                irregular: user.data.expenses.irregular,
+                monthly: {
+                  groceries: 0,
+                  education: 0,
+                  house_helps: 0,
+                  bills: 0,
+                  entertianment: 0,
+                  rent: 0,
+                  petrol: 0,
+                  others: 0,
+                  car_loan: 0,
+                  personal_loan: 0,
+                  home_loan: 0,
+                  life_insurance: 0,
+                  health_insurance: 0,
+                  other_insurance: 0,
+                },
+              }
+        );
       } catch (error) {
         // console.log(error);
       }
@@ -62,6 +84,7 @@ const Expense = ({ history }) => {
       //   return <Redirect to="/login" />;
     }
   };
+  console.log(expenses);
   return (
     <div className="container mt-4 wizard wizard-success mb-4 sw-main sw-theme-arrows">
       <StepsNav stepNo={5} />

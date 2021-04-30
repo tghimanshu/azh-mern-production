@@ -24,51 +24,41 @@ function ClientDashboard({ history }) {
     contact: 0,
   });
   // const [recc, setRecc] = useState(null);
-  const [completionState, setCompletionState] = useState(0);
+  const [completionState, setCompletionState] = useState([]);
 
   useEffect(() => {
     const getUser = async () => {
       try {
         const userJwt = getRole();
         const { data } = await http.get("/client/" + userJwt._id);
-        // const results = await http.get("/booking/client/" + userJwt._id);
-        // const filteredRecc = results.data.filter((d) => d.advisor_id !== null);
-        // setRecc(filteredRecc);
+
         setUser(data);
-        // let status = 0;
-        // status += data.name !== 0 ? 10 : 0;
-        // status += data.personal_details.self.name !== "" ? 15 : 0;
-
-        // status += data.goals.length !== 0 && data.goals[0].goal !== "" ? 15 : 0;
-        // status +=
-        //   data.investments.length !== 0 &&
-        //   !data.haveInvestments &&
-        //   data.investments[0].goal !== 0
-        //     ? 15
-        //     : 0;
-
-        // status +=
-        //   data.insurances.length !== 0 &&
-        //   !data.haveInsurances &&
-        //   data.insurances[0].goal !== 0
-        //     ? 15
-        //     : 0;
-
-        // status += data.income.inc_self !== 0 ? 15 : 0;
-        // status += data.expenses.monthly.groceries !== 0 ? 15 : 0;
         const status = getCompletionStatus(data);
         setCompletionState(status);
       } catch (error) {}
     };
     getUser();
-  }, [history]);
+  }, []);
+
+  console.log(completionState);
+
   return (
     <Container fluid>
       <Row>
         <Col md="8">
           <Card>
-            <Card.Header as="h4">
-              Profile Status: {completionState.state}
+            <Card.Header className="d-flex justify-content-between">
+              <h4>Profile Status: {completionState.state}</h4>
+              {completionState.remaining &&
+                completionState.remaining.length !== 0 && (
+                  <Link
+                    to={"/client" + completionState.remaining[0].link}
+                    className="ml-auto mr-0"
+                  >
+                    {completionState.remaining[0].title} +{" "}
+                    {completionState.remaining[0].points}{" "}
+                  </Link>
+                )}
             </Card.Header>
             <Card.Body>
               <ProgressBar animated now={completionState.percent} />

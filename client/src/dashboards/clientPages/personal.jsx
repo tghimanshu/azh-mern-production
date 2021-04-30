@@ -6,16 +6,33 @@ import {
   Card,
   Col,
   Container,
-  Container as div,
+  // Container as div,
   Form,
   Row,
 } from "react-bootstrap";
-import { successAlert } from "../../utils/alerts";
+import { dangerAlert, successAlert } from "../../utils/alerts";
 import StepsNav from "./steps_nav";
 
 const Personal = ({ history }) => {
   const [alert, setalert] = useState("");
   const [pers_details, set_pers_details] = useState({
+    self: {
+      name: "",
+      dob: "",
+      contact: "",
+      email: "",
+      profdetails: "",
+    },
+    spouse: {
+      name: "",
+      dob: "",
+      contact: "",
+      email: "",
+      profdetails: "",
+    },
+    childrens: [{ name: "", dob: "" }],
+  });
+  const [requiredFields, setRequiredFields] = useState({
     self: {
       name: "",
       dob: "",
@@ -48,6 +65,14 @@ const Personal = ({ history }) => {
             data.personal_details.childrens.length !== 0 &&
             true
         );
+        const fields = { ...requiredFields };
+        let cf = [];
+        for (let i = 0; i < data.personal_details.childrens.length; i++) {
+          cf.push({ name: "", dob: "" });
+        }
+        fields.childrens = cf;
+        setRequiredFields(fields);
+
         set_pers_details({
           self: data.personal_details.self,
           spouse: data.personal_details.spouse,
@@ -56,9 +81,107 @@ const Personal = ({ history }) => {
       } catch (error) {}
     };
     getUser();
+    return () => {
+      set_pers_details({
+        self: {
+          name: "",
+          dob: "",
+          contact: "",
+          email: "",
+          profdetails: "",
+        },
+        spouse: {
+          name: "",
+          dob: "",
+          contact: "",
+          email: "",
+          profdetails: "",
+        },
+        childrens: [{ name: "", dob: "" }],
+      });
+    };
   }, []);
+
+  const validateForm = () => {
+    const { self, spouse, childrens } = pers_details;
+    const myReqFields = { ...requiredFields };
+    const msg = "Required Field";
+    let ers = Object.keys(self).map((k) => {
+      switch (k) {
+        case "contact":
+          if (self[k] === 0 || self[k] === "") {
+            myReqFields.self[k] = msg;
+            return true;
+          } else {
+            myReqFields.self[k] = "";
+            return false;
+          }
+        default:
+          if (self[k] === "") {
+            myReqFields.self[k] = msg;
+            return true;
+          } else {
+            myReqFields.self[k] = "";
+            return false;
+          }
+      }
+    });
+
+    if (havingSpouse) {
+      ers.push(
+        ...Object.keys(spouse).map((k) => {
+          switch (k) {
+            case "contact":
+              if (spouse[k] === 0 || spouse[k] === "") {
+                myReqFields.spouse[k] = msg;
+                return true;
+              } else {
+                myReqFields.spouse[k] = "";
+                return false;
+              }
+            default:
+              if (spouse[k] === "") {
+                myReqFields.spouse[k] = msg;
+                return true;
+              } else {
+                myReqFields.spouse[k] = "";
+                return false;
+              }
+          }
+        })
+      );
+    }
+
+    if (havingChild) {
+      childrens.map((c, i) => {
+        return ers.push(
+          ...Object.keys(c).map((k) => {
+            if (c[k] === "") {
+              myReqFields.childrens[i][k] = msg;
+              return true;
+            } else {
+              myReqFields.childrens[i][k] = "";
+              return false;
+            }
+          })
+        );
+      });
+    }
+    setRequiredFields(myReqFields);
+    if (ers.indexOf(true) === -1) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   const StepOneSubmit = async (e) => {
     e.preventDefault();
+    const valRes = validateForm();
+    if (!valRes) {
+      setalert(dangerAlert("Please Solve the Errors"));
+      return;
+    }
     try {
       const res = getRole();
       const user = await http.get("/client/" + res._id);
@@ -79,8 +202,11 @@ const Personal = ({ history }) => {
 
   const addChild = () => {
     const add = { ...pers_details };
+    const add2 = { ...requiredFields };
     add.childrens = [...pers_details.childrens, { name: "", dob: "" }];
+    add2.childrens = [...requiredFields.childrens, { name: "", dob: "" }];
     set_pers_details(add);
+    setRequiredFields(add2);
   };
 
   return (
@@ -112,6 +238,9 @@ const Personal = ({ history }) => {
                   className="form-control"
                   placeholder="Enter Full Name"
                 />
+                <small className="text-danger">
+                  {requiredFields.self.name}
+                </small>
               </Form.Group>
             </Col>
             <Col lg={4}>
@@ -130,6 +259,7 @@ const Personal = ({ history }) => {
                   className="form-control"
                   placeholder="Date Of Birth"
                 />
+                <small className="text-danger">{requiredFields.self.dob}</small>
               </Form.Group>
             </Col>
             <Col lg={6}>
@@ -148,6 +278,9 @@ const Personal = ({ history }) => {
                   className="form-control"
                   placeholder="Enter Telephone Number"
                 />
+                <small className="text-danger">
+                  {requiredFields.self.contact}
+                </small>
               </Form.Group>
             </Col>
             <Col lg={6}>
@@ -165,6 +298,7 @@ const Personal = ({ history }) => {
                 className="form-control"
                 placeholder="Enter E-Mail"
               />
+              <small className="text-danger">{requiredFields.self.email}</small>
             </Col>
             <Col>
               <Form.Group>
@@ -181,6 +315,9 @@ const Personal = ({ history }) => {
                   className="form-control"
                   placeholder="Enter Profession Details"
                 />
+                <small className="text-danger">
+                  {requiredFields.self.profdetails}
+                </small>
               </Form.Group>
             </Col>
           </Row>
@@ -194,7 +331,7 @@ const Personal = ({ history }) => {
           )}
           {havingSpouse && (
             <React.Fragment>
-              <form className="row spouse">
+              <div className="row spouse">
                 <h5 className="font-italic col-12">spouse</h5>
                 <div className="form-group col-12 col-lg-8">
                   <label className="spouse-name">Full Name</label>
@@ -211,6 +348,9 @@ const Personal = ({ history }) => {
                     className="form-control"
                     placeholder="Enter Full Name"
                   />
+                  <small className="text-danger">
+                    {requiredFields.spouse.name}
+                  </small>
                 </div>
                 <div className="form-group col-12 col-lg-4">
                   <label className="spouse-dob">Date Of Birth</label>
@@ -227,6 +367,9 @@ const Personal = ({ history }) => {
                     className="form-control"
                     placeholder="Date Of Birth"
                   />
+                  <small className="text-danger">
+                    {requiredFields.spouse.dob}
+                  </small>
                 </div>
                 <div className="form-group col-12 col-lg-6">
                   <label className="spouse-number">Telephone Number: </label>
@@ -243,6 +386,9 @@ const Personal = ({ history }) => {
                     className="form-control"
                     placeholder="Enter Telephone Number"
                   />
+                  <small className="text-danger">
+                    {requiredFields.spouse.contact}
+                  </small>
                 </div>
                 <div className="form-group col-12 col-lg-6">
                   <label className="spouse-email">E-Mail: </label>
@@ -259,6 +405,9 @@ const Personal = ({ history }) => {
                     className="form-control"
                     placeholder="Enter E-Mail"
                   />
+                  <small className="text-danger">
+                    {requiredFields.spouse.email}
+                  </small>
                 </div>
                 <div className="form-group col-12">
                   <label className="spouse-prof-details">
@@ -276,8 +425,11 @@ const Personal = ({ history }) => {
                     className="form-control"
                     placeholder="Enter Professional Details"
                   />
+                  <small className="text-danger">
+                    {requiredFields.spouse.profdetails}
+                  </small>
                 </div>
-              </form>
+              </div>
               {!havingChild && (
                 <button
                   className="btn btn-info"
@@ -318,6 +470,9 @@ const Personal = ({ history }) => {
                                     className="form-control"
                                     placeholder="Enter Full Name"
                                   />
+                                  <small className="text-danger">
+                                    {requiredFields.childrens[i].name}
+                                  </small>
                                 </div>
                                 <div className="form-group col-12 col-lg-4">
                                   <label className="child-1-dob">
@@ -338,6 +493,9 @@ const Personal = ({ history }) => {
                                     className="form-control"
                                     placeholder="Date Of Birth"
                                   />
+                                  <small className="text-danger">
+                                    {requiredFields.childrens[i].dob}
+                                  </small>
                                 </div>
                               </Card.Body>
                             </Accordion.Collapse>
@@ -362,7 +520,6 @@ const Personal = ({ history }) => {
               to="/client/income"
               className="btn btn-fill btn-primary mx-2"
               onClick={StepOneSubmit}
-              type="submit"
             >
               Save &amp; Next
             </button>
