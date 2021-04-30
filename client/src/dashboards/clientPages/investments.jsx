@@ -3,7 +3,7 @@ import React from "react";
 import { Accordion, Card, Col, Form } from "react-bootstrap";
 import { getRole } from "../../utils/jwt";
 import http from "../../utils/http";
-import { successAlert } from "../../utils/alerts";
+import { dangerAlert, successAlert } from "../../utils/alerts";
 import { Link } from "react-router-dom";
 import StepsNav from "./steps_nav";
 
@@ -23,18 +23,43 @@ const Investment = ({ history }) => {
       scheme: "",
     },
   ]);
-  const addInvestment = () => {
-    setInvestments([
+  const [requiredFields, setRequiredFields] = useState([
+    {
+      InvestmentType: "",
+      InvestmentAmount: "",
+      StartDate: "",
+      MaturityDate: "",
+      Tenure: "",
+      CurrentValue: "",
+      Purpose: "",
+      scheme: "",
+    },
+  ]);
+  const addInvestment = async () => {
+    await setRequiredFields([
+      ...requiredFields,
+      {
+        InvestmentAmount: "",
+        StartDate: "",
+        MaturityDate: "",
+        Tenure: "",
+        CurrentValue: "",
+        Purpose: "",
+        InvestmentType: "",
+        scheme: "",
+      },
+    ]);
+
+    await setInvestments([
       ...investments,
       {
-        InvestedAmount: 0,
+        InvestmentAmount: 0,
         StartDate: "",
         MaturityDate: "",
         Tenure: 0,
         CurrentValue: 0,
         Purpose: "",
         InvestmentType: "",
-        Products: "",
         scheme: "",
       },
     ]);
@@ -48,16 +73,64 @@ const Investment = ({ history }) => {
       try {
         const userJwt = getRole();
         const user = await http.get("/client/" + userJwt._id);
-        setInvestments(user.data.investments);
+
+        let cf = [];
+        for (let i = 0; i < user.data.investments.length; i++) {
+          cf.push({
+            InvestmentType: "",
+            InvestmentAmount: "",
+            StartDate: "",
+            MaturityDate: "",
+            Tenure: "",
+            CurrentValue: "",
+            Purpose: "",
+            scheme: "",
+          });
+        }
         setHaveInvestments(user.data.haveInvestments);
+        setRequiredFields(cf);
+        setInvestments(user.data.investments);
       } catch (error) {
         // console.log(error);
       }
     };
     getUser();
   }, []);
+
+  const validateForm = () => {
+    const myReqFields = { ...requiredFields };
+    const msg = "Required Field";
+    let ers = [];
+    if (haveInvestments) {
+      investments.map((c, i) => {
+        return ers.push(
+          ...Object.keys(c).map((k) => {
+            if (c[k] === "" || c[k] === 0) {
+              myReqFields[i][k] = msg;
+              return true;
+            } else {
+              myReqFields[i][k] = "";
+              return false;
+            }
+          })
+        );
+      });
+      setRequiredFields(myReqFields);
+    }
+    if (ers.indexOf(true) === -1) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   const StepFourSubmit = async (e) => {
     e.preventDefault();
+    const valRes = validateForm();
+    if (!valRes) {
+      setalert(dangerAlert("Please Solve the Errors"));
+      return;
+    }
     try {
       const res = getRole();
       const user = await http.get("/client/" + res._id);
@@ -71,6 +144,7 @@ const Investment = ({ history }) => {
       //   return <Redirect to="/login" />;
     }
   };
+
   return (
     <div className="container mt-4 wizard wizard-success mb-4 sw-main sw-theme-arrows">
       <StepsNav stepNo={2} />
@@ -130,6 +204,9 @@ const Investment = ({ history }) => {
                                 <option value="Bond">Bond</option>
                                 <option value="Debenture">Debenture</option>
                               </datalist>
+                              <small className="text-danger">
+                                {requiredFields[i].InvestmentType}
+                              </small>
                             </Form.Group>
                           </Col>
 
@@ -145,9 +222,12 @@ const Investment = ({ history }) => {
                                   demo[i] = myGoal;
                                   setInvestments(demo);
                                 }}
-                                type="text"
+                                type="number"
                                 placeholder="Enter Investment Amout"
                               />
+                              <small className="text-danger">
+                                {requiredFields[i].InvestmentAmount}
+                              </small>
                             </Form.Group>
                           </Col>
                           <Col md="4">
@@ -163,8 +243,11 @@ const Investment = ({ history }) => {
                                   setInvestments(demo);
                                 }}
                                 type="date"
-                                placeholder="Enter Goal"
+                                placeholder="Enter Start Date"
                               />
+                              <small className="text-danger">
+                                {requiredFields[i].StartDate}
+                              </small>
                             </Form.Group>
                           </Col>
                           <Col lg="4">
@@ -182,6 +265,9 @@ const Investment = ({ history }) => {
                                 type="date"
                                 placeholder="Enter Maturity Date"
                               />
+                              <small className="text-danger">
+                                {requiredFields[i].MaturityDate}
+                              </small>
                             </Form.Group>
                           </Col>
                           <Col lg="4">
@@ -199,6 +285,9 @@ const Investment = ({ history }) => {
                                 type="number"
                                 placeholder="Enter Tenure"
                               />
+                              <small className="text-danger">
+                                {requiredFields[i].Tenure}
+                              </small>
                             </Form.Group>
                           </Col>
                           <Col lg="4">
@@ -216,6 +305,9 @@ const Investment = ({ history }) => {
                                 type="number"
                                 placeholder="Enter Current Value"
                               />
+                              <small className="text-danger">
+                                {requiredFields[i].CurrentValue}
+                              </small>
                             </Form.Group>
                           </Col>
                           <Col lg="4">
@@ -233,6 +325,9 @@ const Investment = ({ history }) => {
                                 type="text"
                                 placeholder="Enter Purpose"
                               />
+                              <small className="text-danger">
+                                {requiredFields[i].Purpose}
+                              </small>
                             </Form.Group>
                           </Col>
 
@@ -251,6 +346,9 @@ const Investment = ({ history }) => {
                                 type="text"
                                 placeholder="Enter Investment Scheme"
                               />
+                              <small className="text-danger">
+                                {requiredFields[i].scheme}
+                              </small>
                             </Form.Group>
                           </Col>
                         </Card.Body>

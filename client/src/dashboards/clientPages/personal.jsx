@@ -65,7 +65,22 @@ const Personal = ({ history }) => {
             data.personal_details.childrens.length !== 0 &&
             true
         );
-        const fields = { ...requiredFields };
+        const fields = {
+          self: {
+            name: "",
+            dob: "",
+            contact: "",
+            email: "",
+            profdetails: "",
+          },
+          spouse: {
+            name: "",
+            dob: "",
+            contact: "",
+            email: "",
+            profdetails: "",
+          },
+        };
         let cf = [];
         for (let i = 0; i < data.personal_details.childrens.length; i++) {
           cf.push({ name: "", dob: "" });
