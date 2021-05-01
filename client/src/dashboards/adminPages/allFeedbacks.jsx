@@ -4,6 +4,7 @@ import ReactQuill from "react-quill";
 import { Link } from "react-router-dom";
 import { dangerAlert, successAlert } from "../../utils/alerts";
 import http from "../../utils/http";
+import Swal from "sweetalert2";
 
 export const AllFeedbacks = ({ match }) => {
   const [feedbacks, setFeedbacks] = useState([]);
@@ -41,6 +42,37 @@ export const AllFeedbacks = ({ match }) => {
       console.log(error);
     }
   };
+  const handleAssignment = async (e, id) => {
+    try {
+      e.preventDefault();
+      const { data } = await http.get("/admin/advisors/name");
+      const opts = {};
+      data.map((d) => {
+        opts[d._id] = d.name;
+        return true;
+      });
+      const { value: advisor } = await Swal.fire({
+        title: "Assign Advisor",
+        input: "select",
+        inputOptions: opts,
+        inputPlaceholder: "Select a fruit",
+        showCancelButton: true,
+        inputValidator: (value) => {
+          return new Promise((resolve) => {
+            if (value === "") {
+              resolve("You need to select an Advisor :)");
+            } else {
+              resolve();
+            }
+          });
+        },
+      });
+
+      console.log(advisor);
+      await http.put(`/admin/assign/${advisor}/feedback/${id}`);
+    } catch (err) {}
+  };
+
   return (
     <>
       <a
@@ -97,6 +129,21 @@ export const AllFeedbacks = ({ match }) => {
                   creationDate.getMonth() + 1
                 }-${creationDate.getFullYear()}`}</td>
                 <td>
+                  {(feedback.assigned === undefined ||
+                    feedback.assigned === false) && (
+                    <Button
+                      variant="success mr-2"
+                      onClick={(e) => handleAssignment(e, feedback._id)}
+                    >
+                      Assign
+                    </Button>
+                  )}
+                  {feedback.assigned !== undefined &&
+                    feedback.assigned === true && (
+                      <Button variant="success mr-2" disabled>
+                        Assigned
+                      </Button>
+                    )}
                   <Link
                     to={"/admin/feedback/" + feedback._id}
                     className="btn btn-success"

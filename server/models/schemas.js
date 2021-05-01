@@ -133,6 +133,7 @@ const advisorSchema = new mongoose.Schema({
       text: String,
     },
   ],
+  assignedLeads: [Object],
   profileCompleted: {
     type: Boolean,
     default: false,
@@ -328,6 +329,10 @@ const clientSchema = new mongoose.Schema({
     type: Boolean,
     default: true,
   },
+  assigned: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const bookingSchema = new mongoose.Schema({
@@ -394,6 +399,7 @@ const feedbackSchema = new mongoose.Schema(
       ref: "FeedbackForm",
     },
     answers: Array,
+    assigned: { type: Boolean, default: false },
   },
   { strict: false }
 );

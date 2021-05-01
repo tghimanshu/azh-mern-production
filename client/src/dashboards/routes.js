@@ -13,6 +13,7 @@ import AdvisorBookings from "./advisorPages/bookings";
 import AdvisorClientProfile from "./advisorPages/clientProfile";
 import AdvisorPricing from "./advisorPages/pricing";
 import AdvisorDashboard from "./advisorPages/dashboard";
+import AssignedLeads from "./advisorPages/assignedleads";
 
 // Client Pages
 import ClientProfile from "./clientPages/profile";
@@ -147,6 +148,12 @@ export const routes = {
       path: "/advisor/booking",
       name: "Recommendation",
       component: AdvisorBookings,
+      onMenu: true,
+    },
+    {
+      path: "/advisor/assignedleads",
+      name: "Assigned Leads",
+      component: AssignedLeads,
       onMenu: true,
     },
     {

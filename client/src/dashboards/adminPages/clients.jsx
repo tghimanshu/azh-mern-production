@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Container, FormControl } from "react-bootstrap";
 import ReactQuill from "react-quill";
+import Swal from "sweetalert2";
 import { successAlert, dangerAlert } from "../../utils/alerts";
 
 const Clients = () => {
@@ -39,6 +40,38 @@ const Clients = () => {
       console.log(error);
     }
   };
+
+  const handleAssignment = async (e, id) => {
+    try {
+      e.preventDefault();
+      const { data } = await http.get("/admin/advisors/name");
+      const opts = {};
+      data.map((d) => {
+        opts[d._id] = d.name;
+        return true;
+      });
+      const { value: advisor } = await Swal.fire({
+        title: "Assign Advisor",
+        input: "select",
+        inputOptions: opts,
+        inputPlaceholder: "Select a fruit",
+        showCancelButton: true,
+        inputValidator: (value) => {
+          return new Promise((resolve) => {
+            if (value === "") {
+              resolve("You need to select an Advisor :)");
+            } else {
+              resolve();
+            }
+          });
+        },
+      });
+
+      console.log(advisor);
+      await http.put(`/admin/assign/${advisor}/client/${id}`);
+    } catch (err) {}
+  };
+
   return (
     <>
       <Container>
@@ -90,7 +123,22 @@ const Clients = () => {
                 <td>{`${creationDate.getDate()}-${
                   creationDate.getMonth() + 1
                 }-${creationDate.getFullYear()}`}</td>
-                <td className="table-action">
+                <td className="table-action d-flex justify-content-between align-items-center">
+                  {console.log(client.assigned === undefined)}
+                  {(client.assigned === undefined ||
+                    client.assigned === false) && (
+                    <Button
+                      variant="success mr-2"
+                      onClick={(e) => handleAssignment(e, client._id)}
+                    >
+                      Assign
+                    </Button>
+                  )}
+                  {client.assigned !== undefined && client.assigned === true && (
+                    <Button variant="success mr-2" disabled>
+                      Assigned
+                    </Button>
+                  )}
                   <Link to={"/admin/client/" + client._id}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

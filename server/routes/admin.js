@@ -16,6 +16,7 @@ const config = require("config");
 const converter = require("json-2-csv");
 const fs = require("fs");
 const { bulkMail } = require("../mail");
+const { userInfo } = require("os");
 
 const adminAuth = (req, res, next) => {
   if (!req.header("x-auth-token")) return res.status(401).send("Access Denied");
@@ -87,6 +88,45 @@ router.delete("/:id", adminAuth, async (req, res) => {
   res.send(result);
 });
 
+// * ASSIGNED LEADS TO ADVISORS
+
+router.put("/assign/:advId/:type/:id", async (req, res) => {
+  try {
+    const leadSave = async (name) => {
+      const adv = await Advisor.findById(req.params.advId);
+      const data = [...adv.assignedLeads];
+      data.push({
+        type: req.params.type,
+        id: req.params.id,
+        name: name,
+      });
+      adv.assignedLeads = data;
+
+      await adv.save();
+    };
+    switch (req.params.type) {
+      case "client":
+        const client = await Client.findById(req.params.id);
+        client.assigned = true;
+        await client.save();
+        leadSave(client.name);
+        break;
+      case "feedback":
+        const feedback = await Feedback.findById(req.params.id);
+        feedback.assigned = true;
+        await feedback.save();
+        leadSave(feedback.answers[0].value);
+        break;
+      default:
+        break;
+    }
+    res.send("lead assigned successfully");
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("something went wrong!");
+  }
+});
+
 // * CLIENTS
 
 router.get("/clients", adminAuth, async (req, res) => {
@@ -124,6 +164,15 @@ router.get("/advisors", adminAuth, async (req, res) => {
         creationDate: advisor._id.getTimestamp(),
       }))
     );
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get("/advisors/name", adminAuth, async (req, res) => {
+  try {
+    const advisors = await Advisor.find({ isApproved: true }).select("name");
+    res.json(advisors);
   } catch (error) {
     console.log(error);
   }

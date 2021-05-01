@@ -274,6 +274,36 @@ const advisorForgotPassword = (email, token) => {
   }
 };
 
+const feedbackCertificate = (name, email, image) => {
+  if (config.get("mailing")) {
+    const mailData = {
+      from: config.get("mailingData.mail"),
+      to: email,
+      subject: `Thanks for the Feedback, ${name}`,
+      html: `<p>Thanks for attending the session</p>
+      <p>We have attacted the certificate for the feedback in this email.</p>
+      <p>Regards,</p>
+      <p>Advisor Zaroori Hai</p>`,
+      attachments: [
+        {
+          filename: "certificate.png",
+          content: image,
+        },
+      ],
+    };
+
+    transporter.sendMail(mailData, function (err, info) {
+      if (err) {
+        console.log(err);
+        return Error("Mail Send Error!");
+      }
+      if (info) {
+        console.log(info);
+      }
+    });
+  }
+};
+
 const bulkMail = (emails, subject, body) => {
   if (config.get("mailing")) {
     const mailData = {
@@ -302,4 +332,5 @@ module.exports = {
   advisorForgotPassword,
   advisorReccMadeMail,
   bulkMail,
+  feedbackCertificate,
 };

@@ -4,6 +4,7 @@ const config = require("config");
 
 const router = express.Router();
 const jwt = require("jsonwebtoken");
+const { feedbackCertificate } = require("../mail");
 
 const adminAuth = (req, res, next) => {
   if (!req.header("x-auth-token")) return res.status(401).send("Access Denied");
@@ -51,6 +52,30 @@ router.get("/single/:id", async (req, res) => {
 router.post("/", adminAuth, async (req, res) => {
   const feedbackForm = new FeedbackForm(req.body);
   const result = await feedbackForm.save();
+
+  // const width = 600; // width of the image
+  // const height = 474; // height of the image
+  // const canvas = createCanvas(width, height);
+  // const context = canvas.getContext("2d");
+
+  // context.textAlign = "center";
+  // context.textBaseline = "top";
+  // context.fillStyle = "#FFFFFF";
+  // context.font = "80px 'signpainter' bold";
+  // loadImage("./images/background.jpg").then((image) => {
+  //   context.drawImage(image, 0, 0, 600, 474);
+  //   context.fillText(req.body.answers[0].value, 300, 150);
+
+  //   const imageBUffer = canvas.toBuffer("image/png");
+
+  //   // Set and send the response as a PNG
+  //   // res.set({ "Content-Type": "image/png" });
+  //   feedbackCertificate(
+  //     req.body.answers[0].value,
+  //     req.body.answers[1].value,
+  //     imageBuffer
+  //   );
+  // });
   res.send(result);
 });
 
