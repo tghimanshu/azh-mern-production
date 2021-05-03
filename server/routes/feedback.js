@@ -1,6 +1,8 @@
 const express = require("express");
 const { FeedbackForm, Feedback } = require("../models/schemas");
 const config = require("config");
+const { registerFont, createCanvas, loadImage } = require("canvas");
+const path = require("path");
 
 const router = express.Router();
 const jwt = require("jsonwebtoken");
@@ -52,30 +54,6 @@ router.get("/single/:id", async (req, res) => {
 router.post("/", adminAuth, async (req, res) => {
   const feedbackForm = new FeedbackForm(req.body);
   const result = await feedbackForm.save();
-
-  // const width = 600; // width of the image
-  // const height = 474; // height of the image
-  // const canvas = createCanvas(width, height);
-  // const context = canvas.getContext("2d");
-
-  // context.textAlign = "center";
-  // context.textBaseline = "top";
-  // context.fillStyle = "#FFFFFF";
-  // context.font = "80px 'signpainter' bold";
-  // loadImage("./images/background.jpg").then((image) => {
-  //   context.drawImage(image, 0, 0, 600, 474);
-  //   context.fillText(req.body.answers[0].value, 300, 150);
-
-  //   const imageBUffer = canvas.toBuffer("image/png");
-
-  //   // Set and send the response as a PNG
-  //   // res.set({ "Content-Type": "image/png" });
-  //   feedbackCertificate(
-  //     req.body.answers[0].value,
-  //     req.body.answers[1].value,
-  //     imageBuffer
-  //   );
-  // });
   res.send(result);
 });
 
@@ -92,6 +70,36 @@ router.get("/:role/:id", async (req, res) => {
 router.post("/single", async (req, res) => {
   const feedback = new Feedback(req.body);
   const result = await feedback.save();
+  console.log("feedback saved");
+
+  const width = 2000; // width of the image
+  const height = 1414; // height of the image
+  const canvas = createCanvas(width, height);
+  const context = canvas.getContext("2d");
+
+  context.textAlign = "center";
+  context.textBaseline = "top";
+  context.fillStyle = "#000";
+  context.font = "80px 'Roboto', sans bold";
+  loadImage(path.join(__dirname, "..", "uploads", "certificate.png")).then(
+    (image) => {
+      context.drawImage(image, 0, 0, 2000, 1414);
+      context.fillText(req.body.answers[0].value, 1000, 620);
+      // context.fillText("database 1", 1000, 620);
+
+      const imageBuffer = canvas.toBuffer("image/png");
+      console.log("image created");
+
+      // Set and send the response as a PNG
+      // res.set({ "Content-Type": "image/png" });
+      feedbackCertificate(
+        req.body.answers[0].value,
+        req.body.answers[1].value,
+        imageBuffer
+      );
+      console.log("mail send");
+    }
+  );
   res.send(result);
 });
 
