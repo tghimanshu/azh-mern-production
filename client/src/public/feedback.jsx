@@ -14,6 +14,7 @@ const Feedback = ({ match, history }) => {
   const [description, setDescription] = useState("");
   const [formData, setFormData] = useState([]);
   const [answers, setAnswers] = useState([]);
+  const [certificate, setCertificate] = useState(false);
   const [cp, setcp] = useState(false);
 
   useEffect(() => {
@@ -38,6 +39,7 @@ const Feedback = ({ match, history }) => {
       setTitle(data.title);
       setDescription(data.description);
       setFormId(data._id);
+      setCertificate(data.certificate ? data.certificate : false);
       setAnswers(data.questions.map((q) => ({ text: q.text, value: "" })));
       setFormData(data.questions.map((q) => ({ ...q, Component: TextField })));
     };
@@ -79,6 +81,7 @@ const Feedback = ({ match, history }) => {
       await http.post("/feedback/single", {
         formId: formId,
         answers: answers,
+        certificate: certificate,
       });
       window.scrollTo({
         top: 0,

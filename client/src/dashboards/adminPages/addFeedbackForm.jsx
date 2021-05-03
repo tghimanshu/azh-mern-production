@@ -94,6 +94,37 @@ export const AddFeedbackForm = () => {
         });
         setFormData(demo7);
         break;
+      case "yesnomaybe":
+        const demo8 = [...formData];
+        demo8.push({
+          type: "radio",
+          text: "Your Question Here",
+          options: [
+            { text: "Yes", value: "yes" },
+            { text: "No", value: "no" },
+            { text: "May Be", value: "maybe" },
+          ],
+          Component: YesNo,
+        });
+        setFormData(demo8);
+        break;
+      case "attended":
+        const demo9 = [...formData];
+        demo9.push({
+          type: "checkbox",
+          text: "Your Question Here",
+          options: [
+            { text: "Yes", value: "1" },
+            { text: "No", value: "2" },
+            { text: "May Be", value: "3" },
+            { text: "May Be", value: "4" },
+            { text: "May Be", value: "5" },
+          ],
+          Component: MSOptions,
+        });
+        setFormData(demo9);
+        break;
+
       default:
         break;
     }
@@ -107,7 +138,7 @@ export const AddFeedbackForm = () => {
 
   const handleOptionTextChange = (e, index, optIndex) => {
     const demo = [...formData];
-    demo[index].option[optIndex].text = e.target.value;
+    demo[index].options[optIndex].text = e.target.value;
     setFormData(demo);
   };
 
@@ -247,6 +278,24 @@ export const AddFeedbackForm = () => {
               <span>Review</span>
               <Button
                 onClick={() => handleFormItemAdd("review")}
+                variant="info"
+              >
+                Add
+              </Button>
+            </ListGroup.Item>
+            <ListGroup.Item className="d-flex justify-content-between align-items-center">
+              <span>Yes/No/Maybe</span>
+              <Button
+                onClick={() => handleFormItemAdd("yesnomaybe")}
+                variant="info"
+              >
+                Add
+              </Button>
+            </ListGroup.Item>
+            <ListGroup.Item className="d-flex justify-content-between align-items-center">
+              <span>Attended</span>
+              <Button
+                onClick={() => handleFormItemAdd("attended")}
                 variant="info"
               >
                 Add
@@ -402,6 +451,50 @@ const Ratings = (props) => {
           <div key={i} className="custom-control custom-radio custom-control">
             <input
               type={props.type}
+              className="custom-control-input"
+              value={option.value}
+              disabled={true}
+            />
+            <label className="custom-control-label">
+              <ContentEditable
+                html={option.text}
+                disabled={false}
+                onChange={(e) =>
+                  props.handleOptionTextChange(e, props.index, i)
+                }
+                onBlur={() => props.handleTextBlur(props.index, i)}
+              />
+            </label>
+          </div>
+        ))}
+      </div>
+      <Button
+        variant="danger"
+        onClick={() => props.handleRemoveElement(props.index)}
+        className="mt-1"
+      >
+        Remove
+      </Button>
+    </div>
+  );
+};
+
+const MSOptions = (props) => {
+  return (
+    <div className="mt-2">
+      <label>
+        <ContentEditable
+          html={props.text}
+          disabled={false}
+          onChange={(e) => props.handleTextChange(e, props.index)}
+          onBlur={() => props.handleTextBlur(props.index, -1)}
+        />
+      </label>
+      <div className="session-review">
+        {props.options.map((option, i) => (
+          <div key={i} className="custom-control custom-radio custom-control">
+            <input
+              type="checkbox"
               className="custom-control-input"
               value={option.value}
               disabled={true}

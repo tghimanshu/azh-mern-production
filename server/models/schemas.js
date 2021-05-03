@@ -388,6 +388,10 @@ const feedbackFormSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  certificate: {
+    type: Boolean,
+    default: false,
+  },
   questions: Array,
   allowedTo: Array,
 });

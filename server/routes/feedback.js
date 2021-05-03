@@ -71,35 +71,36 @@ router.post("/single", async (req, res) => {
   const feedback = new Feedback(req.body);
   const result = await feedback.save();
   console.log("feedback saved");
+  if (req.body.certificate) {
+    const width = 2000; // width of the image
+    const height = 1414; // height of the image
+    const canvas = createCanvas(width, height);
+    const context = canvas.getContext("2d");
 
-  const width = 2000; // width of the image
-  const height = 1414; // height of the image
-  const canvas = createCanvas(width, height);
-  const context = canvas.getContext("2d");
+    context.textAlign = "center";
+    context.textBaseline = "top";
+    context.fillStyle = "#000";
+    context.font = "80px 'Roboto', sans bold";
+    loadImage(path.join(__dirname, "..", "uploads", "certificate.png")).then(
+      (image) => {
+        context.drawImage(image, 0, 0, 2000, 1414);
+        context.fillText(req.body.answers[0].value, 1000, 620);
+        // context.fillText("database 1", 1000, 620);
 
-  context.textAlign = "center";
-  context.textBaseline = "top";
-  context.fillStyle = "#000";
-  context.font = "80px 'Roboto', sans bold";
-  loadImage(path.join(__dirname, "..", "uploads", "certificate.png")).then(
-    (image) => {
-      context.drawImage(image, 0, 0, 2000, 1414);
-      context.fillText(req.body.answers[0].value, 1000, 620);
-      // context.fillText("database 1", 1000, 620);
+        const imageBuffer = canvas.toBuffer("image/png");
+        console.log("image created");
 
-      const imageBuffer = canvas.toBuffer("image/png");
-      console.log("image created");
-
-      // Set and send the response as a PNG
-      // res.set({ "Content-Type": "image/png" });
-      feedbackCertificate(
-        req.body.answers[0].value,
-        req.body.answers[1].value,
-        imageBuffer
-      );
-      console.log("mail send");
-    }
-  );
+        // Set and send the response as a PNG
+        // res.set({ "Content-Type": "image/png" });
+        feedbackCertificate(
+          req.body.answers[0].value,
+          req.body.answers[1].value,
+          imageBuffer
+        );
+        console.log("mail send");
+      }
+    );
+  }
   res.send(result);
 });
 
