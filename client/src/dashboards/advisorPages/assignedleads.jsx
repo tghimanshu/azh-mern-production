@@ -1,10 +1,10 @@
-import http from "../../utils/http";
 import React, { useEffect, useState } from "react";
+import http from "../../utils/http";
 import { getRole } from "../../utils/jwt";
 import { Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
 
-function AssignedLeads({ history }) {
+export function AssignedLeads({ history }) {
   const [leads, setLeads] = useState([]);
   const [advId, setAdvId] = useState("");
 
@@ -49,16 +49,22 @@ function AssignedLeads({ history }) {
                       <td>{lead.name}</td>
                       <td>{lead.type}</td>
                       <td>
-                        <Link
-                          to={
-                            lead.type === "client"
-                              ? `/advisor/${advId}/${lead.id}`
-                              : `/advisor`
-                          }
-                          className="btn btn-info"
-                        >
-                          View
-                        </Link>
+                        {lead.type === "client" && (
+                          <Link
+                            to={`/advisor/${advId}/${lead.id}`}
+                            className="btn btn-info"
+                          >
+                            View
+                          </Link>
+                        )}
+                        {lead.type === "feedback" && (
+                          <Link
+                            to={`/advisor/feedback/${lead.id}`}
+                            className="btn btn-info"
+                          >
+                            View
+                          </Link>
+                        )}
                       </td>
                     </tr>
                   );
@@ -72,4 +78,30 @@ function AssignedLeads({ history }) {
   );
 }
 
-export default AssignedLeads;
+export const AdvSingleFeedback = ({ match }) => {
+  const [feedback, setFeedback] = useState(null);
+  useEffect(() => {
+    const getFeedback = async () => {
+      console.log("/feedback/single/" + match.params.id);
+      const { data } = await http.get("/feedback/single/" + match.params.id);
+      setFeedback(data);
+    };
+    getFeedback();
+    return () => {
+      setFeedback(null);
+    };
+  }, [match]);
+  return (
+    <>
+      <h2>Your Response</h2>
+      <hr />
+      {feedback &&
+        feedback.answers.map((fb, i) => (
+          <dl className="mt-2" key={i}>
+            <dt className="font-weight-bold">{fb.text}</dt>
+            <dd>{fb.value}</dd>
+          </dl>
+        ))}
+    </>
+  );
+};

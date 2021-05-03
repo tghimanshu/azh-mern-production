@@ -6,6 +6,11 @@ import AdminBookings from "./adminPages/bookings";
 import AdminClientProfile from "./adminPages/clientProfile";
 import AdminAdvisor from "./adminPages/advisor";
 import { AddFeedbackForm, FeedbackForms } from "./adminPages/addFeedbackForm";
+import {
+  AllFeedbacks,
+  SingleFeedback as AdminSingleFeedback,
+} from "./adminPages/allFeedbacks";
+import HomePageEdit from "./adminPages/homepage";
 
 // Advisor Pages
 import AdvisorProfile, { CompleteProfile } from "./advisorPages/profile";
@@ -13,7 +18,7 @@ import AdvisorBookings from "./advisorPages/bookings";
 import AdvisorClientProfile from "./advisorPages/clientProfile";
 import AdvisorPricing from "./advisorPages/pricing";
 import AdvisorDashboard from "./advisorPages/dashboard";
-import AssignedLeads from "./advisorPages/assignedleads";
+import { AssignedLeads, AdvSingleFeedback } from "./advisorPages/assignedleads";
 
 // Client Pages
 import ClientProfile from "./clientPages/profile";
@@ -25,18 +30,13 @@ import ClientGoal from "./clientPages/goals";
 import ClientBookings from "./clientPages/bookings";
 import ClientInsurances from "./clientPages/insurances";
 import ClientSheet from "./clientPages/sheet";
-import {
-  Feedbacks as ClientFeedbacks,
-  SingleFeedback,
-} from "./clientPages/feedbacks";
+// import {
+//   Feedbacks as ClientFeedbacks,
+//   SingleFeedback,
+// } from "./clientPages/feedbacks";
 import ClientDashboard from "./clientPages/dashboard";
 import ClientLiability from "./clientPages/liabilities";
 import ClientAsset from "./clientPages/assets";
-import {
-  AllFeedbacks,
-  SingleFeedback as AdminSingleFeedback,
-} from "./adminPages/allFeedbacks";
-import HomePageEdit from "./adminPages/homepage";
 
 export const routes = {
   admin: [
@@ -139,6 +139,12 @@ export const routes = {
       onMenu: false,
     },
     {
+      path: "/advisor/feedback/:id",
+      name: "Single Feedback",
+      component: AdvSingleFeedback,
+      onMenu: false,
+    },
+    {
       path: "/advisor/:booking_id/:id",
       name: "Client Profile",
       component: AdvisorClientProfile,
@@ -156,6 +162,7 @@ export const routes = {
       component: AssignedLeads,
       onMenu: true,
     },
+
     {
       path: "/advisor/request",
       name: "Requests",
@@ -188,18 +195,18 @@ export const routes = {
       component: ClientBookings,
       onMenu: true,
     },
-    {
-      path: "/client/feedback",
-      name: "feedbacks",
-      component: ClientFeedbacks,
-      onMenu: false,
-    },
-    {
-      path: "/client/feedback/:id",
-      name: "Single Feedback",
-      component: SingleFeedback,
-      onMenu: false,
-    },
+    // {
+    //   path: "/client/feedback",
+    //   name: "feedbacks",
+    //   component: ClientFeedbacks,
+    //   onMenu: false,
+    // },
+    // {
+    //   path: "/client/feedback/:id",
+    //   name: "Single Feedback",
+    //   component: SingleFeedback,
+    //   onMenu: false,
+    // },
     {
       path: "/client/personal",
       name: "Personal",
