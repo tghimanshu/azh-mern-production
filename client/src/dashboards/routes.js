@@ -145,7 +145,13 @@ export const routes = {
       onMenu: false,
     },
     {
-      path: "/advisor/:booking_id/:id",
+      path: "/advisor/booking/:booking_id/:id",
+      name: "Client Profile",
+      component: AdvisorClientProfile,
+      onMenu: false,
+    },
+    {
+      path: "/advisor/client/:booking_id/:id",
       name: "Client Profile",
       component: AdvisorClientProfile,
       onMenu: false,

@@ -14,7 +14,7 @@ import ReactQuill from "react-quill";
 import { dangerAlert, successAlert } from "../../utils/alerts";
 import "react-quill/dist/quill.snow.css";
 
-const ClientProfile = ({ match, history }) => {
+const ClientProfile = ({ match, history, location }) => {
   const [alert, setAlert] = useState("");
   const [recommendation, setRecommendation] = useState("");
   const [showRecommendation, setShowRecommendation] = useState(false);
@@ -67,9 +67,7 @@ const ClientProfile = ({ match, history }) => {
         top: 0,
         behavior: "smooth",
       });
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   const handleSaveRec = async () => {
@@ -105,12 +103,14 @@ const ClientProfile = ({ match, history }) => {
           </Card.Header>
           <Card.Body>
             {alert}
-            <button
-              className="btn btn-success mb-3"
-              onClick={() => setShowRecommendation(!showRecommendation)}
-            >
-              Write Recommendation
-            </button>
+            {location.pathname.includes("booking") && (
+              <button
+                className="btn btn-success mb-3"
+                onClick={() => setShowRecommendation(!showRecommendation)}
+              >
+                Write Recommendation
+              </button>
+            )}
             <Button
               variant="info ml-2 mb-3"
               onClick={() => setShowMail(!showMail)}
@@ -193,7 +193,7 @@ const ClientProfile = ({ match, history }) => {
           </Card.Header>
           <Card.Body>
             <div className="mb-3">
-              <h4 classNmae="mb-3">Self</h4>
+              <h4 className="mb-3">Self</h4>
               <Row>
                 <Col md={6} className="mb-3">
                   <div className="font-weight-bold">Name</div>
@@ -230,7 +230,7 @@ const ClientProfile = ({ match, history }) => {
               <h4 className="mb-3">Childrens</h4>
               <Accordion defaultActiveKey="0">
                 {client.personal_details.childrens.map((child, i) => (
-                  <Card>
+                  <Card key={i}>
                     <Card.Header>
                       <Accordion.Toggle
                         as={Button}
@@ -275,8 +275,8 @@ const ClientProfile = ({ match, history }) => {
                 </tr>
               </thead>
               <tbody>
-                {Object.keys(client.income).map((inc) => (
-                  <tr>
+                {Object.keys(client.income).map((inc, ix) => (
+                  <tr key={ix}>
                     <td>{inc.substring(4)}</td>
                     <td>{client.income[inc]}</td>
                   </tr>
@@ -300,8 +300,8 @@ const ClientProfile = ({ match, history }) => {
                 </tr>
               </thead>
               <tbody>
-                {Object.keys(client.expenses.monthly).map((exp) => (
-                  <tr>
+                {Object.keys(client.expenses.monthly).map((exp, ix) => (
+                  <tr key={ix}>
                     <td>{exp}</td>
                     <td>{client.expenses.monthly[exp]}</td>
                   </tr>
@@ -317,8 +317,8 @@ const ClientProfile = ({ match, history }) => {
                 </tr>
               </thead>
               <tbody>
-                {Object.keys(client.expenses.irregular).map((exp) => (
-                  <tr>
+                {Object.keys(client.expenses.irregular).map((exp, ix) => (
+                  <tr key={ix}>
                     <td>{exp}</td>
                     <td>{client.expenses.irregular[exp]}</td>
                   </tr>
@@ -335,7 +335,7 @@ const ClientProfile = ({ match, history }) => {
             <Card.Body>
               <Accordion defaultActiveKey="1">
                 {client.investments.map((investment, i) => (
-                  <Card>
+                  <Card key={i}>
                     <Card.Header>
                       <Accordion.Toggle
                         as={Button}
@@ -348,8 +348,8 @@ const ClientProfile = ({ match, history }) => {
                     <Accordion.Collapse eventKey={i + 1}>
                       <Card.Body>
                         <Row>
-                          {Object.keys(investment).map((inv) => (
-                            <Col md={4}>
+                          {Object.keys(investment).map((inv, ix) => (
+                            <Col md={4} key={ix}>
                               <div className="font-weight-bold">
                                 {inv.replace(/([A-Z])/g, " $1").trim()}
                               </div>
@@ -374,7 +374,7 @@ const ClientProfile = ({ match, history }) => {
             <Card.Body>
               <Accordion defaultActiveKey="1">
                 {client.insurances.map((insurance, i) => (
-                  <Card>
+                  <Card key={i}>
                     <Card.Header>
                       <Accordion.Toggle
                         as={Button}
@@ -387,8 +387,8 @@ const ClientProfile = ({ match, history }) => {
                     <Accordion.Collapse eventKey={i + 1}>
                       <Card.Body>
                         <Row>
-                          {Object.keys(insurance).map((ins) => (
-                            <Col md={4}>
+                          {Object.keys(insurance).map((ins, ix) => (
+                            <Col md={4} key={ix}>
                               <div className="font-weight-bold">
                                 {ins.replace(/([A-Z])/g, " $1").trim()}
                               </div>
@@ -413,7 +413,7 @@ const ClientProfile = ({ match, history }) => {
             <Card.Body>
               <Accordion defaultActiveKey="1">
                 {client.assets.map((asset, i) => (
-                  <Card>
+                  <Card key={i}>
                     <Card.Header>
                       <Accordion.Toggle
                         as={Button}
@@ -426,8 +426,8 @@ const ClientProfile = ({ match, history }) => {
                     <Accordion.Collapse eventKey={i + 1}>
                       <Card.Body>
                         <Row>
-                          {Object.keys(asset).map((as) => (
-                            <Col md={4}>
+                          {Object.keys(asset).map((as, ix) => (
+                            <Col md={4} key={ix}>
                               <div className="font-weight-bold">
                                 {as.replace(/([A-Z])/g, " $1").trim()}
                               </div>
@@ -452,7 +452,7 @@ const ClientProfile = ({ match, history }) => {
             <Card.Body>
               <Accordion defaultActiveKey="1">
                 {client.liabilities.map((liability, i) => (
-                  <Card>
+                  <Card key={i}>
                     <Card.Header>
                       <Accordion.Toggle
                         as={Button}
@@ -465,8 +465,8 @@ const ClientProfile = ({ match, history }) => {
                     <Accordion.Collapse eventKey={i + 1}>
                       <Card.Body>
                         <Row>
-                          {Object.keys(liability).map((lb) => (
-                            <Col md={4}>
+                          {Object.keys(liability).map((lb, ix) => (
+                            <Col md={4} key={ix}>
                               <div className="font-weight-bold">
                                 {lb.replace(/([A-Z])/g, " $1").trim()}
                               </div>
@@ -490,7 +490,7 @@ const ClientProfile = ({ match, history }) => {
             <Card.Body>
               <Accordion defaultActiveKey="1">
                 {client.goals.map((goal, i) => (
-                  <Card>
+                  <Card key={i}>
                     <Card.Header>
                       <Accordion.Toggle
                         as={Button}
@@ -503,8 +503,8 @@ const ClientProfile = ({ match, history }) => {
                     <Accordion.Collapse eventKey={i + 1}>
                       <Card.Body>
                         <Row>
-                          {Object.keys(goal).map((gl) => (
-                            <Col md={4}>
+                          {Object.keys(goal).map((gl, ix) => (
+                            <Col md={4} key={ix}>
                               <div className="font-weight-bold">
                                 {gl.replace(/([A-Z])/g, " $1").trim()}
                               </div>

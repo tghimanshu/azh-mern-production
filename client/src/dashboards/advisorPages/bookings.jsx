@@ -74,7 +74,7 @@ function Bookings({ history }) {
                       )}
                       <td>
                         <Link
-                          to={`/advisor/${advisor._id}/${advisor.client_id._id}`}
+                          to={`/advisor/booking/${advisor._id}/${advisor.client_id._id}`}
                           className="btn btn-info"
                         >
                           View

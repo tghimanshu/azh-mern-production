@@ -12,7 +12,6 @@ export function AssignedLeads({ history }) {
     const getAdvisors = async () => {
       const userJwt = getRole();
       const { data } = await http.get("/advisor/" + userJwt._id);
-      console.log(data);
       if (!data.profileCompleted) history.push("/advisor/completeprofile");
       setAdvId(data._id);
       setLeads(data.assignedLeads ? data.assignedLeads : []);
@@ -51,7 +50,7 @@ export function AssignedLeads({ history }) {
                       <td>
                         {lead.type === "client" && (
                           <Link
-                            to={`/advisor/${advId}/${lead.id}`}
+                            to={`/advisor/client/${advId}/${lead.id}`}
                             className="btn btn-info"
                           >
                             View

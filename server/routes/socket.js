@@ -3,7 +3,7 @@ const socketCode = (io) => {
 
   io.on("connection", (socket) => {
     socket.emit("me", socket.id);
-    console.log(socket.id);
+    // console.log(socket.id);
     // socket.emit("me", 10);
 
     socket.on("disconnect", () => {
