@@ -143,7 +143,11 @@ const TextField = (props) => {
   return (
     <div className="mt-2">
       <label>
-        {props.text} <span className="text-danger">*</span>
+        {props.text}{" "}
+        <span className="text-danger">
+          {props.text.toLowerCase().includes("name") ||
+            (props.text.toLowerCase().includes("email") && "*")}
+        </span>
       </label>
       {["text", "email", "number"].includes(props.type) && (
         <input
