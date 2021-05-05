@@ -87,6 +87,7 @@ const Feedback = ({ match, history }) => {
         top: 0,
         behavior: "smooth",
       });
+	    history.push("/")
       setError(successAlert("Response Captured SuccessFully", setError));
     } catch (err) {
       Swal.fire({
