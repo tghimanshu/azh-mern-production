@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import http from "../../utils/http";
 import { getRole } from "../../utils/jwt";
 import { Link } from "react-router-dom";
-import { Card } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 
 export function AssignedLeads({ history }) {
   const [leads, setLeads] = useState([]);
@@ -19,6 +19,19 @@ export function AssignedLeads({ history }) {
     getAdvisors();
   }, [history]);
 
+  const handleUpdateData = () => {
+    try {
+      leads.map(async (l) => {
+        if (l.type === "feedback") {
+          return await http.get(`/advisor/checkRegistration/${advId}/${l.id}`);
+        } else {
+          return;
+        }
+      });
+      window.location.reload();
+    } catch (err) {}
+  };
+
   return (
     <>
       {leads.length === 0 && (
@@ -31,6 +44,9 @@ export function AssignedLeads({ history }) {
       {leads.length !== 0 && (
         <Card>
           <Card.Body>
+            <Button variant="success" onClick={handleUpdateData}>
+              Update Data
+            </Button>
             <table className="table table-striped">
               <thead>
                 <tr>
@@ -46,7 +62,10 @@ export function AssignedLeads({ history }) {
                     <tr key={lead.id}>
                       <td>{index + 1}</td>
                       <td>{lead.name}</td>
-                      <td>{lead.type}</td>
+                      <td>
+                        {lead.type}
+                        {lead.registered === true && "(Registered)"}
+                      </td>
                       <td>
                         {lead.type === "client" && (
                           <Link
@@ -56,7 +75,15 @@ export function AssignedLeads({ history }) {
                             View
                           </Link>
                         )}
-                        {lead.type === "feedback" && (
+                        {lead.registered && lead.type === "feedback" && (
+                          <Link
+                            to={`/advisor/client/${advId}/${lead.clientId}`}
+                            className="btn btn-info"
+                          >
+                            View
+                          </Link>
+                        )}
+                        {!lead.registered && lead.type === "feedback" && (
                           <Link
                             to={`/advisor/feedback/${lead.id}`}
                             className="btn btn-info"

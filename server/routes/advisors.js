@@ -34,6 +34,7 @@ const {
   advisorValidate,
   hash_password,
   Client,
+  Feedback,
 } = require("../models/schemas");
 
 const multer = require("multer");
@@ -223,6 +224,37 @@ router.get("/client/:id", advisorAuth, async (req, res) => {
     res.send(client);
   } catch (error) {
     // console.log(error);
+  }
+});
+
+router.get("/checkRegistration/:advId/:id", async (req, res) => {
+  try {
+    const fb = await Feedback.findById(req.params.id);
+    const client = await Client.findOne({ email: fb.answers[1].value });
+    const adv = await Advisor.findById(req.params.advId);
+    if (!client) res.status(404).send("No Clients Found");
+
+    adv.assignedLeads = adv.assignedLeads.map((lead) => {
+      if (lead.id === req.params.id) {
+        if (!lead.registered || lead.registered !== true) {
+          lead.clientId = client._id;
+          lead.registered = true;
+          client.assigned = true;
+          return lead;
+        } else {
+          return lead;
+        }
+      } else {
+        return lead;
+      }
+    });
+    await Advisor.findByIdAndUpdate(adv._id, {
+      $set: { assignedLeads: adv.assignedLeads },
+    });
+    await client.save();
+    res.send(adv);
+  } catch (err) {
+    res.status(500).send("error occured");
   }
 });
 

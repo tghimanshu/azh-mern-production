@@ -27,6 +27,7 @@ const ClientProfile = ({ match, history, location }) => {
     const getUserData = async () => {
       try {
         const { data } = await http.get("/advisor/client/" + match.params.id);
+        console.log(data);
         setClient(data);
       } catch (error) {
         // console.log(error);

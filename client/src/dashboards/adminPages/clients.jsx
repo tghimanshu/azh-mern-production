@@ -54,7 +54,7 @@ const Clients = () => {
         title: "Assign Advisor",
         input: "select",
         inputOptions: opts,
-        inputPlaceholder: "Select a fruit",
+        inputPlaceholder: "Select an Advisor",
         showCancelButton: true,
         inputValidator: (value) => {
           return new Promise((resolve) => {
