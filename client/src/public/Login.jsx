@@ -1,4 +1,5 @@
 import { Fragment, useEffect } from "react";
+import SectionTitle from "../advisor/sectionTitle";
 import { Tabs, Tab } from "react-bootstrap";
 import { getRole } from "../utils/jwt";
 import { AdvisorRegistor } from "./login_register/advisorRegistor";
@@ -27,13 +28,13 @@ function Login(props) {
   }, [props]);
   return (
     <Fragment>
-      <div className="p-title">
-        <section className="p-title-inner py-5">
-          <div className="container d-flex justify-content-center">
-            <h1>Login/Register</h1>
-          </div>
-        </section>
-      </div>
+      <SectionTitle
+        title="Login/Register"
+        breadcrumbs={[
+          { link: "/", name: "Home" },
+          { link: "/login", name: "Login/Register", active: true },
+        ]}
+      />
       <div className="container mt-3">
         <div className="row">
           <div className="login-form col-12 col-lg-6">

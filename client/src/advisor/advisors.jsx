@@ -287,6 +287,100 @@ const Advisors = ({ history, location }) => {
               </Form.Row>
             )}
           </Col>
+
+          <Col md={6}>
+            <Card className="" style={{ width: "100%" }}>
+              <div className="d-md-flex flex-md-row one_advisor">
+                <Card.Img
+                  src={"https://www.smallcase.com/static/svgs/logo-full.svg"}
+                  style={{
+                    width: "150px",
+                    height: "150px",
+                    borderRadius: "50%",
+                    margin: "20px 0 20px 20px",
+                    boxShadow: "rgb(0 0 0 / 20%) 0px 3px 10px 0px",
+                  }}
+                  onError={(e) => {
+                    e.target.src = "/static/media/site-logo.2f58d515.png";
+                  }}
+                />
+                <div>
+                  <Card.Body style={{ paddingBottom: "0" }}>
+                    <Card.Title className="d-flex justify-content-between">
+                      <span
+                        style={{
+                          fontSize: "1.2rem",
+                          fontFamily: "Poppins",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        Small Case
+                      </span>
+                      <span
+                        style={{
+                          fontSize: "1rem",
+                          fontFamily: "Poppins",
+                          fontWeight: "bold",
+                        }}
+                      ></span>
+                    </Card.Title>
+                    <Card.Subtitle
+                      style={{ color: "#666", fontSize: ".8rem" }}
+                      className="mb-2"
+                    >
+                      Stock Investing made easy
+                    </Card.Subtitle>
+                    <ul className="list-unstyled member-info text-left">
+                      <li>
+                        <i className="ri-medal-fill mr-3"></i>
+                        <span>Stock Investment</span>
+                      </li>
+                      <li>
+                        <i className="ri-map-pin-2-fill mr-3"></i>
+                        <span>All India</span>
+                      </li>
+                      <li>
+                        <i className="ri-map-pin-2-fill mr-3"></i>
+                        <span>In Office</span>
+                      </li>
+                    </ul>
+                  </Card.Body>
+                  <Card.Footer
+                    style={{ paddingTop: "0" }}
+                    className="d-flex flex-row justify-content-end"
+                  >
+                    <a
+                      href="https://advisorzaroorihai.smallcase.com/"
+                      className="btn view_profile"
+                      rel="noreferrer"
+                      target="_blank"
+                    >
+                      View Profile
+                    </a>
+                    <OverlayTrigger
+                      trigger="hover focus"
+                      placement="left"
+                      overlay={popover}
+                    >
+                      <a
+                        className="btn btn-random get_reccomendation ml-3"
+                        href="https://advisorzaroorihai.smallcase.com/"
+                        style={{
+                          boxShadow: "1px 1px 5px 2px rgba(0, 0, 0, 0.2)",
+                        }}
+                        rel="noreferrer"
+                        target="_blank"
+                        type="button"
+                      >
+                        Get Recommendation
+                      </a>
+                    </OverlayTrigger>
+                  </Card.Footer>
+                </div>
+              </div>
+            </Card>
+          </Col>
+
           {filteredAdvisors.map((advisor) => (
             <Col md={6} key={advisor._id}>
               <Card className="" style={{ width: "100%" }}>
