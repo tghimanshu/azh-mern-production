@@ -148,6 +148,7 @@ h6 {
 } */
 
 .nav-menu .get-started a,
+.get-started a,
 .wantAdvisors .wa a,
 .get-in-call a,
 .get-in-touch a {
@@ -165,6 +166,7 @@ h6 {
 }
 
 .nav-menu .get-started a:hover,
+.get-started a:hover,
 .wantAdvisors .wa a:hover,
 .get-in-call a:hover,
 .get-in-touch a:hover {
@@ -423,7 +425,8 @@ h6 {
   margin-top: 10px;
 }
 
-.mobile-nav .get-started a {
+.mobile-nav .get-started a,
+.get-started a {
   margin: 0 15px;
   padding: 10px 30px;
   display: inline-block;
