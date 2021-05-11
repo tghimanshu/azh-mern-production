@@ -17,19 +17,22 @@ export function HeroSection() {
             textTransform: "unset",
             fontFamily: `'Roboto Slab', serif`,
           }}
+          class="typewriter"
         >
           Simplifying{" "}
           <span
+            class="txt-type"
+            data-wait="3000"
+            data-words='["Investments", "Loans"]'
             style={{
               color: "#2B32B2",
               fontSize: "90px",
               textTransform: "unset",
               fontFamily: `'Roboto Slab', serif`,
             }}
-          >
-            Investments
-          </span>
+          ></span>
         </h1>
+        <br />
         <h1
           style={{
             fontSize: "90px",
@@ -76,24 +79,28 @@ export function WhoAreWe() {
       </p>
       <div
         style={{
-          background: "linear-gradient(#fafafa 50%,#2B32B2 50%)",
+          background: "#fafafa",
         }}
       >
-        <div
-          style={{
-            padding: "50px 12em",
-          }}
-        >
-          <Plyr
-            source={{
-              title: "first video",
-              type: "video",
-              sources: { src: "5f2QSAVJc8Q", provider: "youtube" },
-              poster:
-                "https://static.wikia.nocookie.net/naruto/images/d/dd/Naruto_Uzumaki%21%21.png/revision/latest?cb=20161013233552",
+        <Container>
+          <div
+            style={{
+              padding: "50px 110px",
             }}
-          />
-        </div>
+          >
+            <Plyr
+              source={{
+                type: "video",
+                sources: [
+                  {
+                    src: "https://advisorzaroorihai.com/assets/img/azh.mp4",
+                    type: "video/mp4",
+                  },
+                ],
+              }}
+            />
+          </div>
+        </Container>
       </div>
       <h1
         className="text-center"
@@ -514,8 +521,9 @@ export function Figures() {
           </div>
         </div>
       </section>
-      <div classNmae="d-flex justify-content-center">
+      <Container className="d-flex flex-column  justify-content-center">
         <img
+          className="img-responsive"
           src={process.env.PUBLIC_URL + "/assets/img/news/devices.svg"}
           alt=""
         />
@@ -531,7 +539,7 @@ export function Figures() {
         >
           Join the movement.
         </p>
-      </div>
+      </Container>
     </Fragment>
   );
 }
@@ -550,6 +558,7 @@ export function Brands() {
           color: "#2B32B2",
           marginTop: "20px",
           marginBottom: "60px",
+          textAlign: "center",
         }}
       >
         Brands that have taken the steps towards Financial swatantrata with us
