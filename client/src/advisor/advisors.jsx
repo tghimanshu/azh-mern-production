@@ -412,6 +412,7 @@ const Advisors = ({ history, location }) => {
                         >
                           {advisor.name}
                         </span>
+		  {/*
                         <span
                           style={{
                             fontSize: "1rem",
@@ -421,6 +422,7 @@ const Advisors = ({ history, location }) => {
                         >
                           ₹ {advisor.recc_amt}
                         </span>
+			*/}
                       </Card.Title>
                       <Card.Subtitle
                         style={{ color: "#666", fontSize: ".8rem" }}
