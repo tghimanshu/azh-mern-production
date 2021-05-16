@@ -23,7 +23,7 @@ export function HeroSection() {
           <span
             class="txt-type"
             data-wait="3000"
-            data-words='["Investments", "Loans"]'
+            data-words='["Investments", "Loans", "Insurance"]'
             style={{
               color: "#2B32B2",
               fontSize: "90px",
