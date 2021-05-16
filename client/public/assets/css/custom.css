@@ -32,7 +32,6 @@ section h1 {
   /* font-size: 54px; */
   font-family: "Roboto";
   font-weight: bolder;
-  text-transform: uppercase;
   display: inline-block;
 }
 
@@ -52,44 +51,6 @@ section h1 hr {
   height: 100vh;
 }
 
-.hero-title-blue {
-  color: #2b32b2;
-}
-
-.enterLocation {
-  border-radius: 20px;
-  background-color: #fcfcfc;
-  box-shadow: -2px -2px 12px rgba(252, 252, 252, 0.5),
-    2px 2px 12px rgba(196, 196, 196, 0.5);
-}
-.enterLocation input {
-  font-size: 0.8rem;
-  font-weight: bold;
-  font-style: italic;
-  border: none;
-  outline: none;
-  margin-right: 10px;
-  background: transparent;
-}
-.enterLocation input:focus {
-  background: transparentz;
-  box-shadow: none;
-}
-.enterLocation button {
-  font-size: 0.8rem;
-  font-weight: bold;
-  position: relative;
-}
-.enterLocation button::before {
-  content: "";
-  width: 2px;
-  height: 60%;
-  background: #555;
-  position: absolute;
-  top: auto;
-  bottom: auto;
-  left: -2px;
-}
 /************************************
                 WHY AZH
 *************************************/
@@ -579,4 +540,231 @@ a.e-learning-a:hover {
 }
 .data7 {
   grid-area: data7;
+}
+
+/* GLOBALS FONTS */
+
+.roboto-90 {
+  font-size: 90px;
+  font-family: "Roboto Slab", serif;
+}
+
+.hero-title-blue {
+  color: #2b32b2;
+  font-size: 90px;
+  font-family: "Roboto Slab", serif;
+}
+
+.bg-fa {
+  background-color: #fafafa;
+}
+.monsterrat-40-700 {
+  font-size: 40px;
+  font-family: "Montserrat bold", sans-serif;
+  font-weight: 700;
+  margin-top: "80px";
+  margin-bottom: "10px";
+}
+
+.monsterrat-400 {
+  font-family: "Montserrat regular", sans-serif;
+  font-weight: 400;
+}
+
+.whoWeAreVideo {
+  padding: 50px 110px;
+}
+.news {
+  display: block;
+  font-family: "Monsterrat 500", sans-serif;
+  font-weight: 500;
+  font-size: 100px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.py-100 {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.monsterrat-80-600 {
+  font-family: "Mosterrat", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 80px;
+}
+.mosterrat-20 {
+  font-family: "Mosterrat", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+}
+
+.consultAdvBtn {
+  padding: 20px;
+  border-radius: 10px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 45px;
+}
+
+.newsDiv {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  color: white;
+  display: flex;
+  align-items: flex-end;
+  padding-left: 9%;
+}
+
+.blue-section-title {
+  background: #2b32b2;
+  padding: 15px 30px;
+  border-radius: 50px;
+  font-family: "Monsterrat", sans-serif;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 600;
+  margin-bottom: 50px;
+}
+
+.monsterrat-30-600 {
+  font-size: 30px;
+  font-family: "Mosterrat", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.75);
+  text-decoration: underline;
+}
+
+.monsterrat-24-500 {
+  font-family: "Monsterrat", sans-serif;
+  color: #1a1a1a;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.m-100-50 {
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
+
+.joinMovement {
+  font-family: "Monsterrat", sans-serif;
+  color: #1a1a1a;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.brands-hr {
+  margin-top: 40px;
+}
+
+.brands-text {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 40px;
+  color: #2b32b2;
+  margin-top: 20px;
+  margin-bottom: 60px;
+}
+
+.swatantrata-img {
+  width: 60vw;
+}
+
+.allBrands {
+  display: flex;
+  justify-content: space-around;
+}
+
+@media only screen and (max-width: 812px) {
+  .roboto-90 {
+    font-size: 2rem;
+    font-family: "Roboto Slab", serif;
+  }
+  .roboto-90:first-child {
+    margin-bottom: 0;
+  }
+
+  .hero-title-blue {
+    color: #2b32b2;
+    font-size: 2rem;
+    font-family: "Roboto Slab", serif;
+  }
+  .hero-title-blue::before {
+    content: "\a";
+    white-space: pre;
+  }
+  .swatantrata-img {
+    width: 80vw;
+  }
+  .figure-text {
+    height: unset;
+  }
+  .allBrands {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-content: center;
+  }
+  .allBrands img {
+    justify-self: center;
+    margin-bottom: 40px;
+  }
+  .whoWeAreVideo {
+    padding: 0;
+  }
+  .py-100 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .news {
+    font-size: 4rem;
+  }
+  .monsterrat-30-600 {
+    font-size: 1.2rem;
+  }
+  .monsterrat-80-600 {
+    font-size: 3rem;
+  }
+  .playlist img {
+    width: 100%;
+  }
+  .consultAdvBtn {
+    font-size: 1rem;
+    padding: 10px;
+  }
+  .consultAdvBtnH4 {
+    margin-bottom: 1.5rem;
+  }
+  .blogs-grid {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "data3"
+      "data1"
+      "data7"
+      "data6"
+      "data2"
+      "data4"
+      "data5";
+  }
+  .monsterrat-24-500 {
+    font-size: 1rem;
+  }
+  .brands-text {
+    font-size: 1.4rem;
+  }
 }
