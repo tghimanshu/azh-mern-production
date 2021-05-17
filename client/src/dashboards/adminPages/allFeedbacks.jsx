@@ -70,6 +70,8 @@ export const AllFeedbacks = ({ match }) => {
 
       await http.put(`/admin/assign/${advisor}/feedback/${id}`);
     } catch (err) {}
+    e.target.setAttribute("disabled", true);
+    e.target.innerText = "Assigned";
   };
 
   return (

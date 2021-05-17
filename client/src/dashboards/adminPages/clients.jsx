@@ -70,6 +70,8 @@ const Clients = () => {
       console.log(advisor);
       await http.put(`/admin/assign/${advisor}/client/${id}`);
     } catch (err) {}
+    e.target.setAttribute("disabled", true);
+    e.target.innerText = "Assigned";
   };
 
   return (

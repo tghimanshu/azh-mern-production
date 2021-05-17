@@ -116,7 +116,7 @@ export const routes = {
       path: "/admin/homepage",
       name: "Home Page Edit",
       component: HomePageEdit,
-      onMenu: true,
+      onMenu: false,
     },
   ],
   advisor: [
