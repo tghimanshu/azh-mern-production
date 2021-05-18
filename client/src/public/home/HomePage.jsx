@@ -16,17 +16,7 @@ export function HeroSection() {
           <span
             className="hero-title-blue txt-type"
             data-wait="3000"
-<<<<<<< HEAD
             data-words='["Investments", "Loans", "Insurance"]'
-            style={{
-              color: "#2B32B2",
-              fontSize: "90px",
-              textTransform: "unset",
-              fontFamily: `'Roboto Slab', serif`,
-            }}
-=======
-            data-words='["Investments", "Loans"]'
->>>>>>> 05a07a4cb68c9177c47e35cdafb6775a4744713f
           ></span>
         </h1>
         <br />
@@ -68,7 +58,7 @@ export function WhoAreWe() {
           </div>
         </Container>
       </div>
-      <h1 className="text-center news">NEWS</h1>
+      {/* <h1 className="text-center news">NEWS</h1> */}
     </section>
   );
 }
