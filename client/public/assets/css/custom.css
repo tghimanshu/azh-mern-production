@@ -1,8 +1,12 @@
 body,
 html {
   font-size: 18px;
+  /* background: #e5e5e5; */
 }
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 * {
+  /* font-family: "Poppins", sans-serif; */
   font-family: "Roboto", sans-serif;
 }
 
@@ -25,6 +29,7 @@ p {
 
 section h1 {
   color: black;
+  /* font-size: 54px; */
   font-family: "Roboto";
   font-weight: bolder;
   display: inline-block;
@@ -42,13 +47,102 @@ section h1 hr {
 *************************************/
 
 #azhHero {
+  /*width: 100vw;*/
   height: 100vh;
 }
+
+/************************************
+                WHY AZH
+*************************************/
+
+.section-center-title {
+  display: block;
+  text-align: center;
+  font-weight: 900;
+  margin-bottom: 2em;
+}
+#whyazh {
+  padding: 0;
+  margin: 0;
+}
+#whyazh h2 {
+  margin-top: 0.5em;
+  font-weight: bold;
+}
+
+.get-in-call a,
+.get-in-touch a {
+  display: block;
+  padding-left: 4em;
+  padding-right: 4em;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.get-in-call a {
+  padding-left: 6em;
+  padding-right: 6em;
+}
+
+.wantAdvisors {
+  position: relative;
+}
+
+/************************************
+            Advisory Solutions
+*************************************/
+#hero-get-started {
+  width: 50%;
+  margin: 0 auto;
+  border-radius: 20px;
+  font-size: 1rem;
+  transition: linear 0.2s;
+}
+#hero-get-started {
+  margin: 0;
+}
+#hero-get-started:hover {
+  border: 1px solid #f8a51e;
+  background: none;
+  color: black;
+}
+.ab-fs-3 {
+  font-size: 0.55em;
+}
+.ab-fs-2 {
+  font-size: 0.6em;
+}
+.ab-fs-1 {
+  font-size: 0.78em;
+}
+
+/************************************
+                Initiatives
+*************************************/
+
+.initiatives {
+  position: relative;
+}
+.initiatives > div > img {
+  box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.25);
+  border: 0.5px solid rgba(0, 0, 0, 0.5);
+}
+.initiatives .seperator {
+  position: absolute;
+  left: 50%;
+  width: 4px;
+  height: 108%;
+  top: -8%;
+  background: #0d4caa;
+  transform: translateX(-50%);
+}
+
 /************************************
                 Figures
 *************************************/
 
 #figures {
+  /* background: #2b32b2; */
   margin-bottom: 80px;
 }
 .figure-amt {
@@ -63,6 +157,84 @@ section h1 hr {
   align-items: center;
   justify-content: center;
   font-size: 25px;
+  /* color: #e0e0e0; */
+}
+
+/************************************
+          End to End Solutions
+*************************************/
+
+.ete-sol-text {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+/************************************
+              Newsletter
+*************************************/
+
+#newsletter h3 {
+  color: white;
+}
+#newsletter {
+  background: linear-gradient(90deg, #2b32b2 0%, #4b1e93 100%);
+  border-radius: 20px 100px 20px 20px;
+  position: relative;
+  color: white;
+}
+.newsletter-form-border {
+  border: 2px solid black;
+  z-index: -1;
+  position: absolute;
+  top: 0px;
+  left: 0;
+  transform-origin: bottom right;
+  transform: rotate(1.47deg);
+  width: 100%;
+  height: 100%;
+  border-radius: 20px 100px 20px 20px;
+}
+.newsletter-form {
+  position: relative;
+}
+.newsletter-form img {
+  position: absolute;
+  top: -34px;
+  right: -30px;
+  width: 140px;
+}
+
+.newsletter-form .input-group {
+  padding: 5px;
+  border-radius: 100px;
+  background: orange;
+}
+.newsletter-form .input-group input {
+  border-radius: 100px;
+  background: transparent;
+  border: none;
+  color: black;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+.newsletter-form input::placeholder {
+  color: #222;
+  font-weight: bold;
+}
+.newsletter-form input:focus {
+  outline: none;
+  box-shadow: none;
+}
+.newsletter-form button {
+  border-radius: 100px;
+  color: #000;
+  background: white;
+  font-size: 0.6rem;
+}
+
+.newsletter-form button:hover,
+.newsletter-form button:focus {
+  background: none;
 }
 
 /************************************
@@ -73,33 +245,100 @@ section h1 hr {
   font-size: 1.1em;
   margin-right: 10px;
 }
-
 .reach-us .socials li i {
   font-size: 1.5em;
   /* margin-right: 41px; */
 }
-
 .footer-left-hr {
   width: 50%;
   height: 4px;
   border-radius: 4px;
   background: linear-gradient(#2b32b2, #1488cc);
 }
-
 .footer-right-hr {
   width: 50%;
   height: 4px;
   border-radius: 4px;
   background: linear-gradient(#2b32b2, #1488cc);
 }
-
 footer a {
   color: black;
 }
-
 footer a:hover {
   color: black;
   text-decoration: none;
+}
+
+/****************************************
+                Accordian
+*****************************************/
+
+/*******************************
+* Does not work properly if "in" is added after "collapse".
+* Get free snippets on bootpen.com
+*******************************/
+.panel-group .panel {
+  border-radius: 6px;
+  box-shadow: none;
+  border: 1px solid #a9a9a9;
+  margin: 0 10px;
+  height: auto;
+}
+
+.panel-default > .panel-heading {
+  padding: 0;
+  border-radius: 0;
+  color: #212121;
+  /* border: 1px solid #202020; */
+}
+
+.panel-title {
+  margin: 0;
+  height: 62px;
+}
+@media only screen and (max-width: 780px) {
+  .panel-title {
+    height: auto;
+  }
+}
+
+.panel-title > a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #000;
+  font-size: 1rem;
+  align-self: center;
+  height: 100%;
+}
+
+.panel-title > a > div {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-weight: bold;
+}
+.more-less {
+  color: #212121;
+  font-size: 1.4em;
+  font-weight: bold;
+}
+
+.panel-default > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #eeeeee;
+  padding: 10px;
+  font-size: 0.8rem;
+}
+
+/* advisors */
+
+.card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  border: 1px solid black;
+  border-radius: 15px;
 }
 
 /* Advisors */
@@ -174,7 +413,6 @@ footer a:hover {
 .p-title-inner h1 {
   color: white;
 }
-
 /* e-learning */
 
 .e-learning-img {
@@ -246,6 +484,29 @@ a.e-learning-a:hover {
 
 .cropModel .modal-content {
   height: 90vh;
+}
+
+@media screen and (max-width: 1000px) {
+  .wantAdvisors > * {
+    position: relative !important;
+    top: initial !important;
+    bottom: initial !important;
+    left: initial !important;
+    right: initial !important;
+    transform: initial !important;
+  }
+  .wantAdvisors a {
+    position: relative;
+    display: block;
+    text-align: center;
+    margin-left: 0 !important;
+  }
+  .wantAdvisors .wa {
+    margin-bottom: 1em;
+  }
+  .wantAdvisors .wa::after {
+    transform: translate(-50%, -50%);
+  }
 }
 
 /* blogs */
@@ -426,11 +687,6 @@ a.e-learning-a:hover {
 .allBrands {
   display: flex;
   justify-content: space-around;
-}
-
-#whoWeAre {
-  display: grid;
-  grid-template-rows: 1fr auto;
 }
 
 @media only screen and (max-width: 812px) {
