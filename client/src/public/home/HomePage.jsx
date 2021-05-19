@@ -1,8 +1,8 @@
+import { Fragment } from "react";
 import { Col, Container, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import Plyr from "plyr-react";
 import "plyr-react/dist/plyr.css";
-import { Link } from "react-router-dom";
-import { Fragment } from "react";
 
 export function HeroSection() {
   return (
@@ -17,7 +17,9 @@ export function HeroSection() {
             className="hero-title-blue txt-type"
             data-wait="3000"
             data-words='["Investments", "Loans", "Insurance"]'
-          ></span>
+          >
+            &nbsp;
+          </span>
         </h1>
         <br />
         <h1 className="roboto-90">like never before</h1>

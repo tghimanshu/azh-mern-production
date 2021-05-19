@@ -1,16 +1,14 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import PublicRoutes from "./public.routes";
-// import Admin from "./admin/admin";
-import Client from "./dashboards/client";
-// import Advisor from "./advisor/advisor";
+import Dashboard from "./dashboards/client";
 
 function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/admin" component={Client} />
-        <Route path="/advisor" component={Client} />
-        <Route path="/client" component={Client} />
+        <Route path="/admin" component={Dashboard} />
+        <Route path="/advisor" component={Dashboard} />
+        <Route path="/client" component={Dashboard} />
         <Route path="/" component={PublicRoutes} />
       </Switch>
     </BrowserRouter>
