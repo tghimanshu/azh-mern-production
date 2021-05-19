@@ -30,7 +30,7 @@ export function HeroSection() {
 
 export function WhoAreWe() {
   return (
-    <section className="bg-fa">
+    <section id="whoWeAre" className="bg-fa">
       <Container>
         <h2 className="d-block monsterrat-40-700 text-center">Who are we?</h2>
         <p className="text-center monsterrat-400">
