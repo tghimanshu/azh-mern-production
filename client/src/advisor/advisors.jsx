@@ -19,7 +19,52 @@ import {
 } from "react-bootstrap";
 import SectionTitle from "./sectionTitle";
 import { Link } from "react-router-dom";
+import { Fragment } from "react";
 // const queryString = require("query-string");
+
+export const AdvisorCategories = () => {
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    const getCategory = async () => {
+      const { data } = await http.get("/category");
+      setCategories(data);
+    };
+    getCategory();
+  }, []);
+  return (
+    <Fragment>
+      <SectionTitle
+        title="Advisors"
+        breadcrumbs={[
+          { link: "/", name: "Home" },
+          { link: "/advisors", name: "Advisors", active: true },
+        ]}
+      />
+      <Container>
+        <Row className="adv-categories">
+          {categories.length !== 0 &&
+            categories.map((category, i) => (
+              <div key={i} className="adv-category">
+                <img
+                  src={
+                    config.apiEndPoint +
+                    "/uploads/categories/" +
+                    category.imageUrl
+                  }
+                  alt=""
+                />
+                <div className="adv-category-details">
+                  <h1 className="title">{category.title}</h1>
+                  <small>{category.shortDesc && category.shortDesc}</small>
+                  <p>{category.description}</p>
+                </div>
+              </div>
+            ))}
+        </Row>
+      </Container>
+    </Fragment>
+  );
+};
 
 const Advisors = ({ history, location }) => {
   const [advisors, setAdvisors] = useState([]);
@@ -149,8 +194,7 @@ const Advisors = ({ history, location }) => {
     } else {
       Swal.fire({
         icon: "info",
-        text:
-          "you need to complete atleast 60% of your profile to ask for recommendation!",
+        text: "you need to complete atleast 60% of your profile to ask for recommendation!",
       });
     }
   };
@@ -412,7 +456,7 @@ const Advisors = ({ history, location }) => {
                         >
                           {advisor.name}
                         </span>
-		  {/*
+                        {/*
                         <span
                           style={{
                             fontSize: "1rem",

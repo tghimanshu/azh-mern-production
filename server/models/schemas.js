@@ -17,6 +17,28 @@ mongoose
 
 // * SCHEMAS
 
+const categorySchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  shortDesc: {
+    type: String,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  slug: {
+    type: String,
+    required: true,
+  },
+  imageUrl: {
+    type: String,
+    required: true,
+  },
+});
+
 const advisorSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -455,6 +477,8 @@ adminSchema.methods.generateAuthToken = function () {
 
 // * MODELS
 
+const Category = mongoose.model("Category", categorySchema);
+
 const Advisor = mongoose.model("Advisor", advisorSchema);
 
 const Client = mongoose.model("Client", clientSchema);
@@ -516,6 +540,16 @@ const advisorValidate = (data) => {
   }).validate(data);
 };
 
+const categoryValidate = (data) => {
+  return Joi.object({
+    slug: Joi.string().required(),
+    title: Joi.string().required(),
+    description: Joi.string().required(),
+    imageUrl: Joi.string().required(),
+    shortDesc: Joi.string(),
+  }).validate(data);
+};
+
 // * HASHING PASSWORD
 
 async function hash_password(pass) {
@@ -526,6 +560,7 @@ async function hash_password(pass) {
 
 module.exports = {
   Client,
+  Category,
   Advisor,
   Admin,
   Page,
@@ -534,6 +569,7 @@ module.exports = {
   FeedbackForm,
   Feedback,
   adminValidate,
+  categoryValidate,
   advisorValidate,
   clientValidate,
   hash_password,

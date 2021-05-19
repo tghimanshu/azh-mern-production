@@ -9,7 +9,7 @@ import ELearning from "./public/e-learning/elearning";
 // import Advisors from "./advisor/kno";
 import Login from "./public/Login";
 import { ForgotPassword, ResetPssword } from "./public/forgot-password";
-import Advisors from "./advisor/advisors";
+import Advisors, { AdvisorCategories } from "./advisor/advisors";
 import SingleAdvisor from "./advisor/single_advisor";
 import AdminLogin from "./dashboards/adminLogin";
 import Feedback from "./public/feedback";
@@ -22,6 +22,7 @@ const PublicRoutes = () => {
     <Fragment>
       <Navbar />
       <Switch>
+        <Route exact path="/categories" component={AdvisorCategories} />
         <Route exact path="/videocall" component={VideoCall} />
         <Route exact path="/videocall/:id" component={VideoCall} />
         <Route exact path="/adminLogin" component={AdminLogin} />
