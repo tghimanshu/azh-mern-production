@@ -57,3 +57,28 @@
     align-items: center;
   }
 }
+
+.adv-category:hover {
+  box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+}
+.adv-category-details > h1.title {
+  font-family: "Poppins";
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.adv-category img {
+  width: 100%;
+  height: auto;
+}
+
+.adv-category-details > .title > small {
+  font-family: "Poppins";
+  font-size: 14px;
+  font-weight: 400;
+}
+.adv-category-details > p.description {
+  font-family: "Poppins";
+  font-size: 12px;
+  font-weight: 400;
+}

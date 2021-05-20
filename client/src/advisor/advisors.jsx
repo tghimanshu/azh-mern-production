@@ -34,7 +34,7 @@ export const AdvisorCategories = () => {
   return (
     <Fragment>
       <SectionTitle
-        title="Advisors"
+        title="DISCOVER ADVISORS"
         breadcrumbs={[
           { link: "/", name: "Home" },
           { link: "/advisors", name: "Advisors", active: true },
@@ -44,21 +44,34 @@ export const AdvisorCategories = () => {
         <Row className="adv-categories">
           {categories.length !== 0 &&
             categories.map((category, i) => (
-              <div key={i} className="adv-category">
-                <img
-                  src={
-                    config.apiEndPoint +
-                    "/uploads/categories/" +
-                    category.imageUrl
-                  }
-                  alt=""
-                />
-                <div className="adv-category-details">
-                  <h1 className="title">{category.title}</h1>
-                  <small>{category.shortDesc && category.shortDesc}</small>
-                  <p>{category.description}</p>
-                </div>
-              </div>
+              <Col xs={12} md={6} key={i} className="mb-3 adv-category">
+                <Link
+                  to={"/categories/" + category.slug}
+                  className="a-unstyled"
+                >
+                  <Row>
+                    <div className="col-lg-8">
+                      <img
+                        src={
+                          config.apiEndPoint +
+                          "/uploads/categories/" +
+                          category.imageUrl
+                        }
+                        alt=""
+                      />
+                    </div>
+                    <div className="col-lg-4 p-md-0 adv-category-details">
+                      <h1 className="title">
+                        <div>{category.title}</div>
+                        <small>
+                          {category.shortDesc && category.shortDesc}
+                        </small>
+                      </h1>
+                      <p className="description">{category.description}</p>
+                    </div>
+                  </Row>
+                </Link>
+              </Col>
             ))}
         </Row>
       </Container>
