@@ -103,26 +103,30 @@ export const AllAdvisors = ({ match }) => {
       <Container>
         <Row>
           {advisors.length !== 0 &&
-            advisors.map((advisor) => (
-              <Col xs={12} md={4} className="position-relative p-0 one-advisor">
-                <img
-                  src={(config.apiEndPoint + advisor.profile_pic)
-                    .split("\\")
-                    .join("/")}
-                  alt=""
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                  }}
-                  onError={(e) => {
-                    e.target.src =
-                      "http://localhost:3000/static/media/site-logo.2f58d515.png";
-                  }}
-                />
-                <div className="advDetails">
-                  <h3 className="title">Nakshita Mehta</h3>
-                  <p className="position">Credent Asset Management</p>
-                </div>
+            advisors.map((advisor, i) => (
+              <Col key={i} xs={12} md={4} className="p-0 one-advisor mb-2">
+                <Link to={"/advisors/" + advisor.username}>
+                  <div className="position-relative mx-1">
+                    <img
+                      src={(config.apiEndPoint + advisor.profile_pic)
+                        .split("\\")
+                        .join("/")}
+                      alt=""
+                      style={{
+                        width: "100%",
+                        height: "auto",
+                      }}
+                      onError={(e) => {
+                        e.target.src =
+                          "http://localhost:3000/static/media/site-logo.2f58d515.png";
+                      }}
+                    />
+                    <div className="advDetails">
+                      <h3 className="title">Nakshita Mehta</h3>
+                      <p className="position">Credent Asset Management</p>
+                    </div>
+                  </div>
+                </Link>
               </Col>
             ))}
         </Row>
