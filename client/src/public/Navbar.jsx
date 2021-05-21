@@ -15,12 +15,12 @@ function Navbar(props) {
           <ul>
             <li
               className={
-                window.location.pathname.includes("advisors")
+                window.location.pathname.includes("categories")
                   ? "active"
                   : undefined
               }
             >
-              <Link to="/advisors">Advisors</Link>
+              <Link to="/categories">Advisors</Link>
             </li>
             <li
               className={

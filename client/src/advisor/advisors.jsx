@@ -85,11 +85,19 @@ export const AllAdvisors = ({ match }) => {
     const getAdvisors = async () => {
       try {
         const { data } = await http.get("/advisor");
-        setAdvisors(data.filter((adv) => adv.isApproved === true));
+        console.log(match.params.slug);
+        setAdvisors(
+          data.filter(
+            (adv) =>
+              adv.isApproved === true &&
+              adv.categories &&
+              adv.categories.includes(match.params.slug)
+          )
+        );
       } catch (error) {}
     };
     getAdvisors();
-  }, []);
+  }, [match]);
 
   return (
     <Fragment>
@@ -122,8 +130,8 @@ export const AllAdvisors = ({ match }) => {
                       }}
                     />
                     <div className="advDetails">
-                      <h3 className="title">Nakshita Mehta</h3>
-                      <p className="position">Credent Asset Management</p>
+                      <h3 className="title">{advisor.name}</h3>
+                      <p className="position">{advisor.expertise}</p>
                     </div>
                   </div>
                 </Link>
