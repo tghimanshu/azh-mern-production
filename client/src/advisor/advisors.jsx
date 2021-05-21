@@ -79,6 +79,58 @@ export const AdvisorCategories = () => {
   );
 };
 
+export const AllAdvisors = ({ match }) => {
+  const [advisors, setAdvisors] = useState([]);
+  useEffect(() => {
+    const getAdvisors = async () => {
+      try {
+        const { data } = await http.get("/advisor");
+        setAdvisors(data.filter((adv) => adv.isApproved === true));
+      } catch (error) {}
+    };
+    getAdvisors();
+  }, []);
+
+  return (
+    <Fragment>
+      <SectionTitle
+        title="DISCOVER ADVISORS"
+        breadcrumbs={[
+          { link: "/", name: "Home" },
+          { link: "/advisors", name: "Advisors", active: true },
+        ]}
+      />
+      <Container>
+        <Row>
+          {advisors.length !== 0 &&
+            advisors.map((advisor) => (
+              <Col xs={12} md={4} className="position-relative p-0 one-advisor">
+                <img
+                  src={(config.apiEndPoint + advisor.profile_pic)
+                    .split("\\")
+                    .join("/")}
+                  alt=""
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                  }}
+                  onError={(e) => {
+                    e.target.src =
+                      "http://localhost:3000/static/media/site-logo.2f58d515.png";
+                  }}
+                />
+                <div className="advDetails">
+                  <h3 className="title">Nakshita Mehta</h3>
+                  <p className="position">Credent Asset Management</p>
+                </div>
+              </Col>
+            ))}
+        </Row>
+      </Container>
+    </Fragment>
+  );
+};
+
 const Advisors = ({ history, location }) => {
   const [advisors, setAdvisors] = useState([]);
   const [filteredAdvisors, setFilteredAdvisors] = useState([]);
