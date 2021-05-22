@@ -32,6 +32,10 @@ h6 {
   z-index: 99999;
 }
 
+#root {
+  max-width: 1440px;
+  margin: 0 auto;
+}
 .back-to-top i {
   display: flex;
   align-items: center;

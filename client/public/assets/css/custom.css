@@ -18,7 +18,9 @@ p {
   text-decoration: none;
   color: inherit;
 }
-
+.title-blue {
+  color: #2b32b2;
+}
 /************************************
                 Globals
 *************************************/
