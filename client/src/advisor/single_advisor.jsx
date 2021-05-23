@@ -5,7 +5,6 @@ import parse from "html-react-parser";
 import { BookingModal } from "../utils/model";
 import { getRole } from "../utils/jwt";
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
 
 const SingleAdvisor = ({ match, history }) => {
   const [advisor, setadvisor] = useState({});

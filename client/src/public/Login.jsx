@@ -1,9 +1,6 @@
 import { Fragment, useEffect } from "react";
 import SectionTitle from "../advisor/sectionTitle";
-import { Tabs, Tab } from "react-bootstrap";
 import { getRole } from "../utils/jwt";
-import { AdvisorRegistor } from "./login_register/advisorRegistor";
-import { AdvisorLogin } from "./login_register/advisor_login";
 import { ClientLogin } from "./login_register/client_login";
 import { ClientRegistor } from "./login_register/client_registor";
 
@@ -39,25 +36,11 @@ function Login(props) {
         <div className="row">
           <div className="login-form col-12 col-lg-6">
             <legend className="text-center">Login</legend>
-            <Tabs defaultActiveKey="client" id="uncontrolled-tab-example">
-              <Tab eventKey="client" title="Client">
-                <ClientLogin history={props.history} />
-              </Tab>
-              <Tab eventKey="advisor" title="Advisor">
-                <AdvisorLogin history={props.history} />
-              </Tab>
-            </Tabs>
+            <ClientLogin history={props.history} />
           </div>
           <div className="register-form col-12 col-lg-6">
             <legend className="text-center">Register</legend>
-            <Tabs defaultActiveKey="client" id="uncontrolled-tab-example">
-              <Tab eventKey="client" title="Client">
-                <ClientRegistor history={props.history} />
-              </Tab>
-              <Tab eventKey="advisor" title="Advisor">
-                <AdvisorRegistor history={props.history} />
-              </Tab>
-            </Tabs>
+            <ClientRegistor history={props.history} />
           </div>
         </div>
       </div>

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Footer() {
   return (
     <footer className="mt-5 p-0 container">
@@ -88,13 +90,13 @@ function Footer() {
             <h4 className="font-weight-bold text-uppercase mb-4">ABOUT US</h4>
             <ul className="list-unstyled details">
               <li className="mt-2">
-                <a href="/page/about-us">Solutions</a>
+                <Link to="/page/about-us">Solutions</Link>
               </li>
               <li className="mt-2">
-                <a href="/page/about-us">Events</a>
+                <Link to="/page/about-us">Events</Link>
               </li>
               <li className="mt-2">
-                <a href="/page/about-us">Company</a>
+                <Link to="/page/about-us">Company</Link>
               </li>
             </ul>
           </div>
@@ -104,16 +106,16 @@ function Footer() {
             </h4>
             <ul className="list-unstyled details">
               <li className="mt-2">
-                <a href="/clientRegister">Register - Client</a>
+                <Link to="/advisorLogin">Login - Advisor</Link>
               </li>
               <li className="mt-2">
-                <a href="/advisorRegister">Register - Advisor</a>
+                <Link to="/advisorRegister">Register - Advisor</Link>
               </li>
               <li className="mt-2">
-                <a href="/page/terms-conditions">Terms &amp; Conditions</a>
+                <Link to="/page/terms-conditions">Terms &amp; Conditions</Link>
               </li>
               <li className="mt-2">
-                <a href="/page/privacy-policy">Privacy Policy</a>
+                <Link to="/page/privacy-policy">Privacy Policy</Link>
               </li>
             </ul>
           </div>
