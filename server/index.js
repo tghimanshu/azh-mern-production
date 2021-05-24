@@ -72,11 +72,11 @@ if (process.env.NODE_ENV === "production") {
   );
 }
 
-const io = require("socket.io")(server, {
-  cors: {
-    origin: "*",
-    methods: ["GET", "POST"],
-  },
-});
+// const io = require("socket.io")(server, {
+//   cors: {
+//     origin: "*",
+//     methods: ["GET", "POST"],
+//   },
+// });
 
-socket(io);
+// socket(io);
