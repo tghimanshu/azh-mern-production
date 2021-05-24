@@ -141,7 +141,8 @@ export const AllAdvisors = ({ match }) => {
         <Row>
           {advisors.length !== 0 &&
             advisors.map((advisor, i) => (
-              <Col key={i} xs={12} md={4} className="p-0 one-advisor mb-2">
+              // <Col key={i} xs={12} md={4} className="p-0 one-advisor mb-2">
+              <Col key={i} xs={12} md={4} className="one-advisor mb-2">
                 <Link to={"/advisors/" + advisor.username}>
                   <div className="position-relative mx-1">
                     <img

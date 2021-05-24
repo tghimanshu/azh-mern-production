@@ -135,16 +135,18 @@ const SingleAdvisor = ({ match, history }) => {
     <div className="container pt-5 mt-5">
       <div className="row">
         <div className="col-md-3">
-          <img
-            className="single_advisor_img"
-            src={config.apiEndPoint + advisor.profile_pic}
-            alt={advisor.name}
-            style={{ width: "100%", height: "auto" }}
-            onError={(e) => {
-              e.target.src =
-                "http://localhost:3000/static/media/site-logo.2f58d515.png";
-            }}
-          />
+          <div className="saidiv mb-2">
+            <img
+              className="single_advisor_img"
+              src={config.apiEndPoint + advisor.profile_pic}
+              alt={advisor.name}
+              style={{ width: "100%", height: "auto" }}
+              onError={(e) => {
+                e.target.src =
+                  "http://localhost:3000/static/media/site-logo.2f58d515.png";
+              }}
+            />
+          </div>
         </div>
         <div className="col-md-9">
           <h1 className="monsterrat-40-700 title-blue">{advisor.name}</h1>
