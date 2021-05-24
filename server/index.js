@@ -13,7 +13,7 @@ const helpers = require("./routes/helpers");
 const payment = require("./routes/razorpay");
 const feedback = require("./routes/feedback");
 const category = require("./routes/category");
-const socket = require("./routes/socket");
+// const socket = require("./routes/socket");
 const cors = require("cors");
 const fs = require("fs");
 const { config } = require("exceljs");
@@ -29,7 +29,7 @@ app.use(cors());
 
 app.use("/api/uploads", express.static(path.join(__dirname, "/uploads")));
 
-app.use("/api/socket", socket);
+// app.use("/api/socket", socket);
 app.use("/api/admin", admin);
 app.use("/api/advisor", advisor);
 app.use("/api/category", category);
