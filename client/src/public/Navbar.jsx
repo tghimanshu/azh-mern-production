@@ -4,7 +4,10 @@ import logo from "../images/site-logo.png";
 
 function Navbar(props) {
   return (
-    <header id="header" className="fixed-top d-flex align-items-center">
+    <header
+      id="header"
+      className="fixed-top d-flex align-items-center nav-scrolled"
+    >
       <div className="container d-flex align-items-center">
         <div className="logo mr-auto">
           <Link to="/">
