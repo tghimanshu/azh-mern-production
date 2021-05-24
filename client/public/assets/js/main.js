@@ -58,8 +58,12 @@
       var currentScrollPos = window.pageYOffset;
       if (prevScrollpos > currentScrollPos) {
         document.getElementById("header").style.top = "0";
+        document.getElementsByClassName("mobile-nav-toggle")[0].style.top =
+          "45px";
       } else {
         document.getElementById("header").style.top = "-100px";
+        document.getElementsByClassName("mobile-nav-toggle")[0].style.top =
+          "-100px";
       }
       prevScrollpos = currentScrollPos;
     };
