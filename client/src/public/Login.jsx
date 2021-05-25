@@ -1,11 +1,12 @@
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Card, ListGroup } from "react-bootstrap";
 import SectionTitle from "../advisor/sectionTitle";
 import { getRole } from "../utils/jwt";
-// import { ClientLogin } from "./login_register/client_login";
+import { ClientLogin } from "./login_register/client_login";
 import { ClientRegistor } from "./login_register/client_registor";
 
 function Login(props) {
+  const [isRegister, setIsregister] = useState(false);
   useEffect(() => {
     try {
       const role = getRole().role;
@@ -80,7 +81,28 @@ function Login(props) {
                 </Card.Title>
               </Card.Header>
               <Card.Body>
-                <ClientRegistor history={props.history} />
+                {!isRegister && (
+                  <>
+                    <ClientLogin history={props.history} />
+                    <button
+                      onClick={() => setIsregister(true)}
+                      className="btn btn-link mx-auto d-block"
+                    >
+                      New here, Sign Up Now.
+                    </button>
+                  </>
+                )}
+                {isRegister && (
+                  <>
+                    <ClientRegistor history={props.history} />
+                    <button
+                      onClick={() => setIsregister(false)}
+                      className="btn btn-link mx-auto d-block"
+                    >
+                      Already Register, Login Now
+                    </button>
+                  </>
+                )}
               </Card.Body>
             </Card>
           </div>
