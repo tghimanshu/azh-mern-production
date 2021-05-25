@@ -13,10 +13,9 @@ import Advisors, { AdvisorCategories, AllAdvisors } from "./advisor/advisors";
 import SingleAdvisor from "./advisor/single_advisor";
 import AdminLogin from "./dashboards/adminLogin";
 import Feedback from "./public/feedback";
-import { FPClientRegister } from "./public/login_register/client_registor";
 import { FPAdvisorRegister } from "./public/login_register/advisorRegistor";
 import { FPAdvisorLogin } from "./public/login_register/advisor_login";
-import VideoCall from "./public/videoCall";
+// import VideoCall from "./public/videoCall";
 
 const PublicRoutes = () => {
   return (
@@ -25,10 +24,9 @@ const PublicRoutes = () => {
       <Switch>
         <Route exact path="/categories/:slug" component={AllAdvisors} />
         <Route exact path="/categories" component={AdvisorCategories} />
-        <Route exact path="/videocall" component={VideoCall} />
-        <Route exact path="/videocall/:id" component={VideoCall} />
+        {/* <Route exact path="/videocall" component={VideoCall} /> */}
+        {/* <Route exact path="/videocall/:id" component={VideoCall} /> */}
         <Route exact path="/adminLogin" component={AdminLogin} />
-        <Route exact path="/clientRegister" component={FPClientRegister} />
         <Route exact path="/advisorLogin" component={FPAdvisorLogin} />
         <Route exact path="/advisorRegister" component={FPAdvisorRegister} />
         <Route exact path="/knowledge-base" component={Knowledge} />

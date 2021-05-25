@@ -1,7 +1,8 @@
 import { Fragment, useEffect } from "react";
+import { Card, ListGroup } from "react-bootstrap";
 import SectionTitle from "../advisor/sectionTitle";
 import { getRole } from "../utils/jwt";
-import { ClientLogin } from "./login_register/client_login";
+// import { ClientLogin } from "./login_register/client_login";
 import { ClientRegistor } from "./login_register/client_registor";
 
 function Login(props) {
@@ -34,13 +35,54 @@ function Login(props) {
       />
       <div className="container mt-3">
         <div className="row">
-          <div className="login-form col-12 col-lg-6">
-            <legend className="text-center">Login</legend>
-            <ClientLogin history={props.history} />
+          <div className="col-12 col-lg-7">
+            <Card>
+              <Card.Header>
+                <Card.Title as="h1" className="text-center font-weight-bold">
+                  Let's achieve your personal finance together
+                </Card.Title>
+              </Card.Header>
+              <Card.Body>
+                <ListGroup className="list-unstyled">
+                  <ListGroup.Item>
+                    Get Access to comprehensive dashboard for your Financial
+                    plan. Personalise it,track it, Plan better and Crush your
+                    financial goals
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    Get Invite-only access to Live webinars on topics such as
+                    Reducing debts, Investing wisely, How to protect your
+                    portfolio etc to boost your financial health
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    QnA sessions addressing your all financial queries sorted by
+                    an Industry expert, From how do I select an insurance to how
+                    can I save more. Just Ask and you shall have the answers.
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    Your one stop solution to all your financial requirements,
+                    From insurance, loans , to portfolio management services
+                    etc.{" "}
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    Get access to Finest advisors in the industry and take your
+                    investment journey to a next level
+                  </ListGroup.Item>
+                </ListGroup>
+              </Card.Body>
+            </Card>
           </div>
-          <div className="register-form col-12 col-lg-6">
-            <legend className="text-center">Register</legend>
-            <ClientRegistor history={props.history} />
+          <div className="col-12 col-lg-5">
+            <Card>
+              <Card.Header>
+                <Card.Title as="h1" className="text-center font-weight-bold">
+                  User Login
+                </Card.Title>
+              </Card.Header>
+              <Card.Body>
+                <ClientRegistor history={props.history} />
+              </Card.Body>
+            </Card>
           </div>
         </div>
       </div>
