@@ -312,8 +312,26 @@ a.e-learning-a:hover {
   font-weight: 400;
 }
 
+#whoWeAre {
+  height: 100vh;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
 .whoWeAreVideo {
+  width: 50vw;
+}
+/* .whoWeAreVideo {
   padding: 50px 110px;
+} */
+#wvrvideo {
+  width: 50vw;
+  margin: 0 auto;
+  display: block;
+  height: max-content;
 }
 .news {
   display: block;
@@ -422,17 +440,12 @@ a.e-learning-a:hover {
 }
 
 .swatantrata-img {
-  width: 60vw;
+  width: 50%;
 }
 
 .allBrands {
   display: flex;
   justify-content: space-around;
-}
-
-#whoWeAre {
-  display: grid;
-  grid-template-rows: 1fr auto;
 }
 
 @media only screen and (max-width: 812px) {
@@ -512,5 +525,8 @@ a.e-learning-a:hover {
   }
   .brands-text {
     font-size: 1.4rem;
+  }
+  .whoWeAreVideo {
+    width: 90vw;
   }
 }

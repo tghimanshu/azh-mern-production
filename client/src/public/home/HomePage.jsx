@@ -31,7 +31,7 @@ export function HeroSection() {
 export function WhoAreWe() {
   return (
     <section id="whoWeAre" className="bg-fa">
-      <Container>
+      <div>
         <h2 className="d-block monsterrat-40-700 text-center">Who are we?</h2>
         <p className="text-center monsterrat-400">
           Advisor zaroori hai is a comprehensive platfrom trying to bridge the
@@ -42,25 +42,29 @@ export function WhoAreWe() {
           more informed decisions.
           <br />
         </p>
-      </Container>
-      <div className="bg-fa">
-        <Container>
-          <div className="whoWeAreVideo">
-            <Plyr
-              source={{
-                type: "video",
-                sources: [
-                  {
-                    src: "https://advisorzaroorihai.com/assets/img/azh.mp4",
-                    type: "video/mp4",
-                  },
-                ],
-              }}
-            />
-          </div>
-        </Container>
       </div>
-      {/* <h1 className="text-center news">NEWS</h1> */}
+      <div className="bg-fa">
+        <div className="whoWeAreVideo">
+          <Plyr
+            id="wvrvideo"
+            source={{
+              type: "video",
+              sources: [
+                {
+                  src: "https://advisorzaroorihai.com/assets/img/azh.mp4",
+                  type: "video/mp4",
+                },
+              ],
+            }}
+          />
+          {/* <iframe
+            title="main yt video"
+            id="wvrvideo"
+            src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0"
+            allowfullscreen
+          ></iframe> */}
+        </div>
+      </div>
     </section>
   );
 }
