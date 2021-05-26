@@ -36,7 +36,7 @@ function Login(props) {
       />
       <div className="container mt-3">
         <div className="row">
-          <div className="col-12 col-lg-7">
+          <div className="col-12 col-lg-7 order-2 order-lg-1">
             <Card>
               <Card.Header>
                 <Card.Title as="h1" className="text-center font-weight-bold">
@@ -73,7 +73,7 @@ function Login(props) {
               </Card.Body>
             </Card>
           </div>
-          <div className="col-12 col-lg-5">
+          <div className="col-12 col-lg-5 order-1 order-lg-2">
             <Card>
               <Card.Header>
                 <Card.Title as="h1" className="text-center font-weight-bold">

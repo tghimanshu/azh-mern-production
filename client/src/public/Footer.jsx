@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <footer className="mt-5 p-0 container">
+    <footer className="p-0 container">
       <hr className="ml-0 mb-4 footer-left-hr" />
 
       <div className="row mr-3 mt-3 ml-3 justify-content-between">

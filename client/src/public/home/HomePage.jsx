@@ -71,9 +71,10 @@ export function WhoAreWe() {
 
 export function News() {
   return (
-    <Container className="py-100">
+    <Container className="pf_playlist">
+      {/* <Container className="py-100"> */}
       <Row>
-        <Col lg={6}>
+        <Col lg={6} className="pf_content">
           <h1 className="monsterrat-80-600">
             Your
             <br />
@@ -94,7 +95,7 @@ export function News() {
             </Link>
           </h4>
         </Col>
-        <Col lg={6}>
+        <Col lg={6} className="playlist-container">
           <Row className="playlist">
             <Col xs={12} lg={6} className="position-relative mb-3">
               <img
@@ -273,7 +274,7 @@ export function Figures() {
     <Fragment>
       <section id="figures" className="p-4 font-weight-bolder">
         <div className="container px-md-5">
-          <div className="row justify-content-lg-between">
+          <div className="row justify-content-between">
             <div className="col-12 col-lg-3 text-center">
               <h1 className="figure-amt">
                 <span data-counter="100000" className="figure-amt-inner">
@@ -286,7 +287,7 @@ export function Figures() {
               </div>
             </div>
             <div className="col-12 col-lg-3 text-center">
-              <h1 className="figure-amt hiiiijfadsikfjasdkljfasdf">
+              <h1 className="figure-amt">
                 <span data-counter="250" className="figure-amt-inner">
                   0
                 </span>

@@ -252,8 +252,12 @@ a.e-learning-a:hover {
 
 /* blogs */
 .blogs-grid {
+  height: auto;
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: minmax(40.8%, auto) minmax(32.1%, auto) minmax(
+      27%,
+      auto
+    );
   grid-template-rows: auto auto auto;
   grid-gap: 15px;
   grid-template-areas:
@@ -351,13 +355,13 @@ a.e-learning-a:hover {
   font-family: "Mosterrat", sans-serif;
   font-style: normal;
   font-weight: 600;
-  font-size: 80px;
+  font-size: 4.4em;
 }
 .mosterrat-20 {
   font-family: "Mosterrat", sans-serif;
   font-style: normal;
   font-weight: normal;
-  font-size: 20px;
+  font-size: 1.4em;
 }
 
 .consultAdvBtn {
@@ -366,8 +370,30 @@ a.e-learning-a:hover {
   font-family: Poppins;
   font-style: normal;
   font-weight: 600;
-  font-size: 30px;
-  line-height: 45px;
+  font-size: 1.2em;
+  line-height: 1.5em;
+}
+
+.pf_playlist {
+  min-height: 100vh;
+  max-height: max-content;
+}
+
+.pf_content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  max-height: max-content;
+}
+
+.playlist-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  max-height: max-content;
+  padding: 25px 0;
 }
 
 .newsDiv {
@@ -495,7 +521,7 @@ a.e-learning-a:hover {
     font-size: 1.2rem;
   }
   .monsterrat-80-600 {
-    font-size: 3rem;
+    font-size: 2.6rem;
   }
   .playlist img {
     width: 100%;
@@ -528,5 +554,12 @@ a.e-learning-a:hover {
   }
   .whoWeAreVideo {
     width: 90vw;
+  }
+  .figure-amt {
+    font-size: 1.8em;
+  }
+  .figure-text {
+    font-size: 1.4em;
+    margin-bottom: 10px;
   }
 }
