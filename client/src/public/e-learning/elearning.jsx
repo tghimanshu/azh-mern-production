@@ -1,23 +1,22 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import config from "../../utils/config";
 import LoadingScreen from "../../utils/loadingScreen";
-import http from "../../utils/http";
 import SectionTitle from "../../advisor/sectionTitle";
+import { listELearningAction } from "../../redux/actions/actions";
 
 function ELearning() {
-  const [elearnings, setElearnings] = useState([]);
-  const [loadingScreen, setLoadingScreen] = useState(true);
+  const dispatch = useDispatch();
+  const elearningList = useSelector((state) => state.elearning);
+  const { loading, elearnings, error } = elearningList;
+
   useEffect(() => {
-    const getData = async () => {
-      const { data } = await http.get("/elearning");
-      setElearnings(data);
-      setLoadingScreen(false);
-    };
-    getData();
-  }, []);
+    dispatch(listELearningAction());
+  }, [dispatch]);
   return (
     <Fragment>
-      {loadingScreen && <LoadingScreen />}
+      {loading && <LoadingScreen />}
+      {error && console.log(error)}
       <SectionTitle
         title="E Learning"
         breadcrumbs={[
@@ -27,41 +26,41 @@ function ELearning() {
       />
       <div className="container mt-5">
         <div className="row">
-          {console.log(elearnings)}
-          {elearnings.map((elearning, i) => (
-            <div key={i} className="col-md-4 col-xs-12 pbDiv">
-              <a
-                href={elearning.link}
-                className="e-learning-a"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <div className="e-learning-div">
-                  <div className="row">
-                    <div className="col-7">
-                      <h5 className="title">{elearning.title}</h5>
-                      <p className="bottom-title">by {elearning.author}</p>
-                    </div>
-                    <div className="col-5">
-                      <img
-                        className="e-learning-img img-responsive"
-                        src={config.apiEndPoint + elearning.image}
-                        alt=""
-                      />
-                      <img
-                        src={
-                          config.apiEndPoint +
-                          "/uploads/e_learning/rsz_video-icon.png"
-                        }
-                        className="vid-icon"
-                        alt=""
-                      />
+          {elearnings.length !== 0 &&
+            elearnings.map((elearning, i) => (
+              <div key={i} className="col-md-4 col-xs-12 pbDiv">
+                <a
+                  href={elearning.link}
+                  className="e-learning-a"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <div className="e-learning-div">
+                    <div className="row">
+                      <div className="col-7">
+                        <h5 className="title">{elearning.title}</h5>
+                        <p className="bottom-title">by {elearning.author}</p>
+                      </div>
+                      <div className="col-5">
+                        <img
+                          className="e-learning-img img-responsive"
+                          src={config.apiEndPoint + elearning.image}
+                          alt=""
+                        />
+                        <img
+                          src={
+                            config.apiEndPoint +
+                            "/uploads/e_learning/rsz_video-icon.png"
+                          }
+                          className="vid-icon"
+                          alt=""
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-              </a>
-            </div>
-          ))}
+                </a>
+              </div>
+            ))}
         </div>
       </div>
     </Fragment>

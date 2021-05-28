@@ -22,11 +22,6 @@ app.use(express.json());
 
 app.use(cors());
 
-// app.use((req, res, next) => {
-//   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
-//   next();
-// });
-
 app.use("/api/uploads", express.static(path.join(__dirname, "/uploads")));
 
 // app.use("/api/socket", socket);
@@ -46,17 +41,16 @@ app.get("/", (req, res) => {
   });
 });
 // socket(io);
+
 // * STARTING THE SERVER
 
 const port = 5000;
-//const port = process.env.PORT || 5000;
 if (process.env.NODE_ENV === "production") {
   const privateKey = fs.readFileSync("/etc/nginx/ssl/privateKey.key", "utf8"); // key
   const certificate = fs.readFileSync(
     "/etc/nginx/ssl/crts/sslCert.crt",
     "utf8"
   ); // certificate
-  // const ca = fs.readFileSync('/etc/letsencrypt/live/.com/chain.pem', 'utf8'); // chain
   const credentials = {
     key: privateKey,
     cert: certificate,

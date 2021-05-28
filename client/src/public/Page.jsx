@@ -1,31 +1,36 @@
-import { Fragment, useEffect, useState } from "react";
-import http from "../utils/http";
+import { Fragment, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import parse from "html-react-parser";
 import LoadingScreen from "../utils/loadingScreen";
 import SectionTitle from "../advisor/sectionTitle";
+import { getSinglePageAction } from "../redux/actions/actions";
 
 function Page({ match }) {
-  const [page, setPage] = useState({});
-  const [loadingScreen, setLoadingScreen] = useState(true);
+  const dispatch = useDispatch();
+
+  const pageData = useSelector((state) => state.page);
+  const { loading, page, error } = pageData;
+
   useEffect(() => {
-    const getData = async () => {
-      const { data } = await http.get("/page/" + match.params.slug);
-      setPage(data);
-      setLoadingScreen(false);
-    };
-    getData();
-  }, [match.params.slug]);
+    dispatch(getSinglePageAction(match.params.slug));
+  }, [dispatch, match.params.slug]);
+
   return (
     <Fragment>
-      {loadingScreen && <LoadingScreen />}
-      <SectionTitle
-        title={page.name}
-        breadcrumbs={[
-          { link: "/", name: "Home" },
-          { link: "/" + page.slug, name: page.name, active: true },
-        ]}
-      />
-      <div className="container mt-2">{parse(String(page.content))}</div>
+      {loading && <LoadingScreen />}
+      {error && <p>{error}</p>}
+      {page && (
+        <>
+          <SectionTitle
+            title={page.name}
+            breadcrumbs={[
+              { link: "/", name: "Home" },
+              { link: "/" + page.slug, name: page.name, active: true },
+            ]}
+          />
+          <div className="container mt-2">{parse(String(page.content))}</div>
+        </>
+      )}
     </Fragment>
   );
 }

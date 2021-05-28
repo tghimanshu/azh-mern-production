@@ -1,10 +1,4 @@
-import React, { useEffect, useState } from "react";
-import http from "../utils/http";
-import { BookingModal, ShareModal } from "../utils/model";
-import { getRole, getToken } from "../utils/jwt";
-import Swal from "sweetalert2";
-import LoadingScreen from "../utils/loadingScreen";
-import config from "../utils/config";
+import React, { useEffect, useState, Fragment } from "react";
 import {
   Button,
   Card,
@@ -15,25 +9,39 @@ import {
   Popover,
   Row,
 } from "react-bootstrap";
-import SectionTitle from "./sectionTitle";
+import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
-import { Fragment } from "react";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { useDispatch, useSelector } from "react-redux";
 import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
+import http from "../utils/http";
+import LoadingScreen from "../utils/loadingScreen";
+import config from "../utils/config";
+import SectionTitle from "./sectionTitle";
+import { BookingModal, ShareModal } from "../utils/model";
+import { getRole, getToken } from "../utils/jwt";
 
 import "./advisors.css";
+import {
+  listAdvisorsAction,
+  listCategoriesAction,
+} from "../redux/actions/actions";
 
 export const AdvisorCategories = () => {
-  const [categories, setCategories] = useState([]);
+  const dispatch = useDispatch();
+
+  const catList = useSelector((state) => state.categories);
+  const { loading, categories, error } = catList;
+
   useEffect(() => {
-    const getCategory = async () => {
-      const { data } = await http.get("/category");
-      setCategories(data);
-    };
-    getCategory();
-  }, []);
+    dispatch(listCategoriesAction());
+  }, [dispatch]);
+
   return (
     <Fragment>
+      {loading && <LoadingScreen />}
+      {error && console.log(error)}
       <SectionTitle
         title="DISCOVER ADVISORS"
         breadcrumbs={[
@@ -43,6 +51,7 @@ export const AdvisorCategories = () => {
       />
       <Container>
         <Row>
+          {categories.length === 0 && <h3>There are no Advisors</h3>}
           {categories.length !== 0 &&
             categories.map((category, i) => (
               <Col xs={12} md={6} key={i} className="mb-3">
@@ -70,67 +79,29 @@ export const AdvisorCategories = () => {
             ))}
         </Row>
       </Container>
-      {/* <Container>
-        <Row className="adv-categories">
-          {categories.length !== 0 &&
-            categories.map((category, i) => (
-              <Col xs={12} md={6} key={i} className="mb-3 adv-category">
-                <Link
-                  to={"/categories/" + category.slug}
-                  className="a-unstyled"
-                >
-                  <Row>
-                    <div className="col-lg-8">
-                      <img
-                        src={
-                          config.apiEndPoint +
-                          "/uploads/categories/" +
-                          category.imageUrl
-                        }
-                        alt=""
-                      />
-                    </div>
-                    <div className="col-lg-4 p-md-0 adv-category-details">
-                      <h1 className="title">
-                        <div>{category.title}</div>
-                        <small>
-                          {category.shortDesc && category.shortDesc}
-                        </small>
-                      </h1>
-                      <p className="description">{category.description}</p>
-                    </div>
-                  </Row>
-                </Link>
-              </Col>
-            ))}
-        </Row>
-      </Container> */}
     </Fragment>
   );
 };
 
 export const AllAdvisors = ({ match }) => {
-  const [advisors, setAdvisors] = useState([]);
-  useEffect(() => {
-    const getAdvisors = async () => {
-      try {
-        const { data } = await http.get("/advisor");
+  const dispatch = useDispatch();
+  const advList = useSelector((state) => state.advisors);
+  const { loading, advisors, error } = advList;
+  const allAdvisors = advisors.filter(
+    (adv) =>
+      adv.isApproved === true &&
+      adv.categories &&
+      adv.categories.includes(match.params.slug)
+  );
 
-        setAdvisors(
-          data.filter(
-            (adv) =>
-              adv.isApproved === true &&
-              adv.categories &&
-              adv.categories.includes(match.params.slug)
-          )
-        );
-      } catch (error) {}
-    };
-    getAdvisors();
-  }, [match]);
+  useEffect(() => {
+    dispatch(listAdvisorsAction());
+  }, [dispatch]);
 
   return (
     <Fragment>
+      {loading && <LoadingScreen />}
+      {error && console.log(error)}
       <SectionTitle
         title="DISCOVER ADVISORS"
         breadcrumbs={[
@@ -140,10 +111,9 @@ export const AllAdvisors = ({ match }) => {
       />
       <Container>
         <Row className="d-none d-md-flex">
-          {advisors.length !== 0 &&
-            advisors.map((advisor, i) => (
+          {allAdvisors.length !== 0 &&
+            allAdvisors.map((advisor, i) => (
               <Col key={i} xs={12} md={4} className="p-0 one-advisor mb-2">
-                {/* // <Col key={i} xs={12} md={4} className="one-advisor mb-2"> */}
                 <Link to={"/advisors/" + advisor.username}>
                   <div className="position-relative mx-1">
                     <img

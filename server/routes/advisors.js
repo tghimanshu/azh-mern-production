@@ -86,48 +86,6 @@ router.get("/username/:username", async (req, res) => {
   } catch (error) {}
 });
 
-router.get("/:id", async (req, res) => {
-  try {
-    const advisors = await Advisor.findById(req.params.id)
-      .select(["-password", "-__v"])
-      .populate("feedbacks.client_id");
-    res.send(advisors);
-    res.end();
-  } catch (error) {}
-});
-
-router.get("/", async (req, res) => {
-  try {
-    const advisors = await Advisor.find().select(["-_v", "-password"]);
-    res.send(advisors);
-    res.end();
-  } catch (error) {}
-});
-
-router.post("/", async (req, res) => {
-  try {
-    const { error } = advisorValidate(req.body);
-    if (error) return res.status(400).send(error.details);
-
-    if (await Advisor.findOne({ email: req.body.email }))
-      return res.status(400).send("Email Already Registered!");
-
-    if (await Advisor.findOne({ username: req.body.username }))
-      return res.status(400).send("Username Taken!");
-    req.body.password = await hash_password(req.body.password);
-
-    const advisor = new Advisor(req.body);
-
-    const result = advisor.save();
-    advisorRegistration(req.body.name, req.body.email);
-
-    res.send(result);
-  } catch (error) {
-    // console.log(error);
-    res.status(400).send(error);
-  }
-});
-
 router.post("/login", async (req, res) => {
   const advisor =
     req.body.email.indexOf("@") !== -1
@@ -171,21 +129,6 @@ router.put("/recccancel/:id", advisorAuth, async (req, res) => {
   advisor.recc_change = data;
 
   const result = await advisor.save();
-  res.send(result);
-});
-
-router.put("/:id", async (req, res) => {
-  const advisor = await Advisor.findById(req.params.id);
-  if (!advisor) res.status(400).send("Cannot locate the Client!");
-  /* validation logic */
-
-  advisor.set(req.body);
-  const result = await advisor.save();
-  res.send(result);
-});
-
-router.delete("/:id", advisorAuth, async (req, res) => {
-  const result = await Advisor.findByIdAndRemove(req.params.id);
   res.send(result);
 });
 
@@ -255,6 +198,62 @@ router.get("/checkRegistration/:advId/:id", async (req, res) => {
     res.send(adv);
   } catch (err) {
     res.status(500).send("error occured");
+  }
+});
+
+router.get("/:id", async (req, res) => {
+  try {
+    const advisors = await Advisor.findById(req.params.id)
+      .select(["-password", "-__v"])
+      .populate("feedbacks.client_id");
+    res.send(advisors);
+    res.end();
+  } catch (error) {}
+});
+
+router.put("/:id", async (req, res) => {
+  const advisor = await Advisor.findById(req.params.id);
+  if (!advisor) res.status(400).send("Cannot locate the Client!");
+  /* validation logic */
+
+  advisor.set(req.body);
+  const result = await advisor.save();
+  res.send(result);
+});
+
+router.delete("/:id", advisorAuth, async (req, res) => {
+  const result = await Advisor.findByIdAndRemove(req.params.id);
+  res.send(result);
+});
+router.get("/", async (req, res) => {
+  try {
+    const advisors = await Advisor.find().select(["-_v", "-password"]);
+    res.send(advisors);
+    res.end();
+  } catch (error) {}
+});
+
+router.post("/", async (req, res) => {
+  try {
+    const { error } = advisorValidate(req.body);
+    if (error) return res.status(400).send(error.details);
+
+    if (await Advisor.findOne({ email: req.body.email }))
+      return res.status(400).send("Email Already Registered!");
+
+    if (await Advisor.findOne({ username: req.body.username }))
+      return res.status(400).send("Username Taken!");
+    req.body.password = await hash_password(req.body.password);
+
+    const advisor = new Advisor(req.body);
+
+    const result = advisor.save();
+    advisorRegistration(req.body.name, req.body.email);
+
+    res.send(result);
+  } catch (error) {
+    // console.log(error);
+    res.status(400).send(error);
   }
 });
 

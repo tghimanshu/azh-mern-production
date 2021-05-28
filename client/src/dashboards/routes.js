@@ -16,7 +16,6 @@ import HomePageEdit from "./adminPages/homepage";
 import AdvisorProfile, { CompleteProfile } from "./advisorPages/profile";
 import AdvisorBookings from "./advisorPages/bookings";
 import AdvisorClientProfile from "./advisorPages/clientProfile";
-import AdvisorPricing from "./advisorPages/pricing";
 import AdvisorDashboard from "./advisorPages/dashboard";
 import { AssignedLeads, AdvSingleFeedback } from "./advisorPages/assignedleads";
 
@@ -166,13 +165,6 @@ export const routes = {
       path: "/advisor/assignedleads",
       name: "Assigned Leads",
       component: AssignedLeads,
-      onMenu: true,
-    },
-
-    {
-      path: "/advisor/request",
-      name: "Requests",
-      component: AdvisorPricing,
       onMenu: true,
     },
   ],
