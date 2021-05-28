@@ -73,16 +73,6 @@ router.post("/login", async (req, res) => {
   res.header("x-auth-token", token).send(token);
 });
 
-// router.put("/:id", adminAuth, async (req, res) => {
-//   const admin = await Admin.findById(req.params.id);
-//   if (!admin) res.status(400).send("Cannot locate the Admin!");
-//   /* validation logic */
-
-//   admin.set(_.pick(req.body[("name", "email")]));
-//   const result = await admin.save();
-//   res.send(result);
-// });
-
 router.delete("/:id", adminAuth, async (req, res) => {
   const result = await Admin.findByIdAndRemove(req.params.id);
   res.send(result);

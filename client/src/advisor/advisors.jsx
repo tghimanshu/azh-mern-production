@@ -5,8 +5,6 @@ import { getRole, getToken } from "../utils/jwt";
 import Swal from "sweetalert2";
 import LoadingScreen from "../utils/loadingScreen";
 import config from "../utils/config";
-
-import "./advisors.css";
 import {
   Button,
   Card,
@@ -20,7 +18,10 @@ import {
 import SectionTitle from "./sectionTitle";
 import { Link } from "react-router-dom";
 import { Fragment } from "react";
-// const queryString = require("query-string");
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from "react-responsive-carousel";
+
+import "./advisors.css";
 
 export const AdvisorCategories = () => {
   const [categories, setCategories] = useState([]);
@@ -114,7 +115,7 @@ export const AllAdvisors = ({ match }) => {
     const getAdvisors = async () => {
       try {
         const { data } = await http.get("/advisor");
-        console.log(match.params.slug);
+
         setAdvisors(
           data.filter(
             (adv) =>
@@ -138,11 +139,11 @@ export const AllAdvisors = ({ match }) => {
         ]}
       />
       <Container>
-        <Row>
+        <Row className="d-none d-md-flex">
           {advisors.length !== 0 &&
             advisors.map((advisor, i) => (
-              // <Col key={i} xs={12} md={4} className="p-0 one-advisor mb-2">
-              <Col key={i} xs={12} md={4} className="one-advisor mb-2">
+              <Col key={i} xs={12} md={4} className="p-0 one-advisor mb-2">
+                {/* // <Col key={i} xs={12} md={4} className="one-advisor mb-2"> */}
                 <Link to={"/advisors/" + advisor.username}>
                   <div className="position-relative mx-1">
                     <img
@@ -168,6 +169,37 @@ export const AllAdvisors = ({ match }) => {
               </Col>
             ))}
         </Row>
+        <div className="d-block d-md-none">
+          <Carousel infiniteLoop={true} showArrows={true} showThumbs={true}>
+            {advisors.length !== 0 &&
+              advisors.map((advisor, i) => (
+                <div key={i} xs={12} md={4} className="one-advisor mb-2">
+                  <Link to={"/advisors/" + advisor.username}>
+                    <div className="position-relative mx-1">
+                      <img
+                        src={(config.apiEndPoint + advisor.profile_pic)
+                          .split("\\")
+                          .join("/")}
+                        alt=""
+                        style={{
+                          width: "100%",
+                          height: "auto",
+                        }}
+                        onError={(e) => {
+                          e.target.src =
+                            "http://localhost:3000/static/media/site-logo.2f58d515.png";
+                        }}
+                      />
+                      <div className="advDetails">
+                        <h3 className="title">{advisor.name}</h3>
+                        <p className="position">{advisor.expertise}</p>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+              ))}
+          </Carousel>
+        </div>
       </Container>
     </Fragment>
   );
