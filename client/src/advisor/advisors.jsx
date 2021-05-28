@@ -157,7 +157,8 @@ export const AllAdvisors = ({ match }) => {
                       }}
                       onError={(e) => {
                         e.target.src =
-                          "http://localhost:3000/static/media/site-logo.2f58d515.png";
+                          process.env.PUBLIC_URL +
+                          "/assets/advisors-alternative.png";
                       }}
                     />
                     <div className="advDetails">
@@ -187,7 +188,8 @@ export const AllAdvisors = ({ match }) => {
                         }}
                         onError={(e) => {
                           e.target.src =
-                            "http://localhost:3000/static/media/site-logo.2f58d515.png";
+                            process.env.PUBLIC_URL +
+                            "/assets/advisors-alternative.png";
                         }}
                       />
                       <div className="advDetails">
