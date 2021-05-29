@@ -1,7 +1,9 @@
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Plyr from "plyr-react";
+import { useDispatch, useSelector } from "react-redux";
+import { listELearningAction } from "../../redux/actions/actions";
 import "plyr-react/dist/plyr.css";
 
 export function HeroSection() {
@@ -70,6 +72,14 @@ export function WhoAreWe() {
 }
 
 export function News() {
+  const dispatch = useDispatch();
+
+  const eLearningList = useSelector((state) => state.elearning);
+  const { elearnings } = eLearningList;
+
+  useEffect(() => {
+    dispatch(listELearningAction());
+  }, [dispatch]);
   return (
     <Container className="pf_playlist">
       {/* <Container className="py-100"> */}
@@ -97,76 +107,28 @@ export function News() {
         </Col>
         <Col lg={6} className="playlist-container">
           <Row className="playlist">
-            <Col xs={12} lg={6} className="position-relative mb-3">
-              <img
-                src={process.env.PUBLIC_URL + "/assets/img/news/news1.png"}
-                alt=""
-              />
-              <div className="newsDiv">
-                <a href="https://youtu.be/6P-eFqA7XRk">
-                  <h3 className="text-white">Derivatives</h3>
-                </a>
-              </div>
-            </Col>
-            <Col xs={12} lg={6} className="position-relative mb-3">
-              <img
-                src={process.env.PUBLIC_URL + "/assets/img/news/news1.png"}
-                alt=""
-              />
-              <div className="newsDiv">
-                <a href="https://youtu.be/3dwalnVAKc0">
-                  <h3 className="text-white">
-                    Mediclaim and Accidental Insurance
-                  </h3>
-                </a>
-              </div>
-            </Col>
-            <Col xs={12} lg={6} className="position-relative mb-3">
-              <img
-                src={process.env.PUBLIC_URL + "/assets/img/news/news1.png"}
-                alt=""
-              />
-              <div className="newsDiv">
-                <a href="https://youtu.be/M2JetO0cFoo">
-                  <h3 className="text-white">Alternative Investments</h3>
-                </a>
-              </div>
-            </Col>
-            <Col xs={12} lg={6} className="position-relative mb-3">
-              <img
-                src={process.env.PUBLIC_URL + "/assets/img/news/news1.png"}
-                alt=""
-              />
-              <div className="newsDiv">
-                <a href="https://youtu.be/DcIjNBXfPiw">
-                  <h3 className="text-white">Basics and Term Insurance</h3>
-                </a>
-              </div>
-            </Col>
-            <Col xs={12} lg={6} className="position-relative mb-3">
-              <img
-                src={process.env.PUBLIC_URL + "/assets/img/news/news1.png"}
-                alt=""
-              />
-              <div className="newsDiv">
-                <a href="https://youtu.be/4uG5agBqiJ4">
-                  <h3 className="text-white">
-                    ULP, Pension &amp; Life Insurance
-                  </h3>
-                </a>
-              </div>
-            </Col>
-            <Col xs={12} lg={6} className="position-relative mb-3">
-              <img
-                src={process.env.PUBLIC_URL + "/assets/img/news/news1.png"}
-                alt=""
-              />
-              <div className="newsDiv">
-                <a href="https://youtu.be/52SajFdSS3c">
-                  <h3 className="text-white">Industry face-off</h3>
-                </a>
-              </div>
-            </Col>
+            {elearnings &&
+              elearnings.map((elearning, i) => (
+                <Col
+                  key={elearning._id}
+                  xs={12}
+                  lg={6}
+                  className="position-relative mb-3"
+                >
+                  <img
+                    // src={process.env.PUBLIC_URL + "/assets/img/news/news1.png"}
+                    src={`${process.env.PUBLIC_URL}/assets/img/news/news${
+                      (i + 1) % 6 === 0 ? "6" : (i + 1) % 6
+                    }.png`}
+                    alt=""
+                  />
+                  <div className="newsDiv">
+                    <a href={elearning.link}>
+                      <h3 className="text-white">{elearning.title}</h3>
+                    </a>
+                  </div>
+                </Col>
+              ))}
           </Row>
         </Col>
       </Row>
@@ -185,55 +147,188 @@ export function Blogs() {
               width="100%"
               height="100%"
               src={process.env.PUBLIC_URL + "/assets/img/first.svg"}
+              style={{ visibility: "hidden" }}
               alt=""
             />
+            <div
+              className="blogImg"
+              style={{
+                background:
+                  "url(https://credentglobal.com/wp-content/uploads/2021/05/2021-Money-Best-Robo-Advisors-1.jpg) center center/cover",
+              }}
+            ></div>
+            <a
+              href="https://credentglobal.com/sebi-guidance-makes-robo-advisors-jump-through-an-additional-loop/"
+              className="blog-content"
+            >
+              <h3>
+                SEBI Guidance makes Robo-Advisors jump through an additional
+                loop.
+              </h3>
+              <div className="d-flex justify-content-between">
+                <span>5 min read</span>
+                <span>Credent Global</span>
+              </div>
+            </a>
           </div>
           <div className="data2">
             <img
               width="100%"
               height="100%"
               src={process.env.PUBLIC_URL + "/assets/img/second.svg"}
+              style={{ visibility: "hidden" }}
               alt=""
             />
+            <div
+              className="blogImg"
+              style={{
+                background:
+                  "url(https://credentglobal.com/wp-content/uploads/2021/05/EggsOneBasket_Header.jpg) center center/cover",
+              }}
+            ></div>
+            <a
+              href="https://credentglobal.com/covid-19-calls-for-more-diversification-not-less/"
+              className="blog-content"
+            >
+              <h3>Covid-19 Calls for more diversification, not less.</h3>
+              <div className="d-flex justify-content-between">
+                <span>5 min read</span>
+                <span>Credent Global</span>
+              </div>
+            </a>
           </div>
           <div className="data3">
             <img
               width="100%"
               height="100%"
               src={process.env.PUBLIC_URL + "/assets/img/third.svg"}
+              style={{ visibility: "hidden" }}
               alt=""
             />
+            <div
+              className="blogImg"
+              style={{
+                background:
+                  "url(https://credentglobal.com/wp-content/uploads/2019/08/6aug.jpg) center center/cover",
+              }}
+            ></div>
+            <a
+              href="https://credentglobal.com/is-this-the-time-to-buy-or-sell/"
+              className="blog-content"
+            >
+              <h3>Is this the time to Buy or Sell?</h3>
+              <div className="d-flex justify-content-between">
+                <span>5 min read</span>
+                <span>Credent Global</span>
+              </div>
+            </a>
           </div>
           <div className="data4">
             <img
               width="100%"
               height="100%"
               src={process.env.PUBLIC_URL + "/assets/img/fourth.svg"}
+              style={{ visibility: "hidden" }}
               alt=""
             />
+            <div
+              className="blogImg"
+              style={{
+                background:
+                  "url(https://credentglobal.com/wp-content/uploads/2020/06/24621.jpg) center center/cover",
+              }}
+            ></div>
+            <a
+              href="https://credentglobal.com/covid-19-a-real-life-stress-test-for-your-business/"
+              className="blog-content"
+            >
+              <h3>Covid-19: A real-life stress test for your business</h3>
+              <div className="d-flex justify-content-between">
+                <span>5 min read</span>
+                <span>Credent Global</span>
+              </div>
+            </a>
           </div>
           <div className="data5">
             <img
               width="100%"
               height="100%"
               src={process.env.PUBLIC_URL + "/assets/img/fifth.svg"}
+              style={{ visibility: "hidden" }}
               alt=""
             />
+            <div
+              className="blogImg"
+              style={{
+                background:
+                  "url(https://credentglobal.com/wp-content/uploads/2021/05/dogecoin-litecoin-etheteum-and-bitcoin-PS98VLU-scaled.jpg) center center/cover",
+              }}
+            ></div>
+            <a
+              href="https://credentglobal.com/crypto-exchanges-prefer-sebi-or-a-new-entity-as-regulator-not-rbi/"
+              className="blog-content"
+            >
+              <h3>
+                Crypto Exchanges prefer SEBI or a New Entity as Regulator, Not
+                RBI.
+              </h3>
+              <div className="d-flex justify-content-between">
+                <span>5 min read</span>
+                <span>Credent Global</span>
+              </div>
+            </a>
           </div>
           <div className="data6">
             <img
               width="100%"
               height="100%"
               src={process.env.PUBLIC_URL + "/assets/img/sixth.svg"}
+              style={{ visibility: "hidden" }}
               alt=""
             />
+            <div
+              className="blogImg"
+              style={{
+                background:
+                  "url(https://credentglobal.com/wp-content/uploads/2019/07/8july.jpg) center center/cover",
+              }}
+            ></div>
+            <a
+              href="https://credentglobal.com/why-the-stock-market-gave-a-thumbs-down-to-budget/"
+              className="blog-content"
+            >
+              <h3>Why the stock market gave a ‘Thumbs down’ to Budget?</h3>
+              <div className="d-flex justify-content-between">
+                <span>5 min read</span>
+                <span>Credent Global</span>
+              </div>
+            </a>
           </div>
           <div className="data7">
             <img
               width="100%"
-              src={process.env.PUBLIC_URL + "/assets/img/seventh.svg"}
+              height="100%"
+              src={process.env.PUBLIC_URL + "/assets/img/seventhk.svg"}
+              style={{ visibility: "hidden" }}
               alt=""
             />
+            <div
+              className="blogImg"
+              style={{
+                background:
+                  "url(https://credentglobal.com/wp-content/uploads/2019/02/Blog_15th.jpg) center center/cover",
+              }}
+            ></div>
+            <a
+              href="https://credentglobal.com/the-best-time-to-exit-from-a-stock/"
+              className="blog-content"
+            >
+              <h3>The Best time to exit from a stock?</h3>
+              <div className="d-flex justify-content-between">
+                <span>5 min read</span>
+                <span>Credent Global</span>
+              </div>
+            </a>
           </div>
         </div>
         <div className="d-flex justify-content-end monsterrat-30-600">

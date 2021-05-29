@@ -5,6 +5,7 @@ import parse from "html-react-parser";
 import { BookingModal } from "../utils/model";
 import { getRole } from "../utils/jwt";
 import Swal from "sweetalert2";
+import SectionTitle from "./sectionTitle";
 
 const SingleAdvisor = ({ match, history }) => {
   const [advisor, setadvisor] = useState({});
@@ -132,7 +133,18 @@ const SingleAdvisor = ({ match, history }) => {
   };
 
   return (
-    <div className="container pt-5 mt-5">
+    <div className="container">
+      <SectionTitle
+        title="DISCOVER ADVISORS"
+        breadcrumbs={[
+          { link: "/categories", name: "Discover Advisors", active: true },
+          {
+            link: "/categories",
+            name: advisor.name ? advisor.name : "Advisor",
+            active: true,
+          },
+        ]}
+      />
       <div className="row">
         <div className="col-md-3">
           <div className="saidiv mb-2">

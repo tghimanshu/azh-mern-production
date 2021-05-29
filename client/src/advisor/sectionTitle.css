@@ -1,6 +1,28 @@
 .breadcrumb {
   background: transparent;
+  display: flex;
+  align-items: flex-end;
 }
-.breadcrumb-item > a > a {
+.breadcrumb-item a {
+  margin: 0;
+  padding: 0;
+  color: #737373;
+  font-weight: bold;
+}
+.breadcrumb-item a:hover {
+  transform: scale(1.02);
+  transition: 0.2s;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
+.breadcrumb-item + .breadcrumb-item::before {
+  content: ">";
+}
+.breadcrumb-item:last-child a {
   color: #2b32b2;
+}
+
+@media only screen and (max-width: 800px) {
+  .breadcrumb {
+    flex-direction: column;
+  }
 }

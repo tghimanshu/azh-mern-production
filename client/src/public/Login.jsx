@@ -45,29 +45,45 @@ function Login(props) {
               </Card.Header>
               <Card.Body>
                 <ListGroup className="list-unstyled">
-                  <ListGroup.Item>
-                    Get Access to comprehensive dashboard for your Financial
-                    plan. Personalise it,track it, Plan better and Crush your
-                    financial goals
+                  <ListGroup.Item style={{ display: "flex" }}>
+                    <i class="ri-check-line mr-2"></i>
+                    <div>
+                      Get Access to comprehensive dashboard for your Financial
+                      plan. Personalise it,track it, Plan better and Crush your
+                      financial goals
+                    </div>
                   </ListGroup.Item>
-                  <ListGroup.Item>
-                    Get Invite-only access to Live webinars on topics such as
-                    Reducing debts, Investing wisely, How to protect your
-                    portfolio etc to boost your financial health
+                  <ListGroup.Item style={{ display: "flex" }}>
+                    <i class="ri-check-line mr-2"></i>
+                    <div>
+                      Get Invite-only access to Live webinars on topics such as
+                      Reducing debts, Investing wisely, How to protect your
+                      portfolio etc to boost your financial health
+                    </div>
                   </ListGroup.Item>
-                  <ListGroup.Item>
-                    QnA sessions addressing your all financial queries sorted by
-                    an Industry expert, From how do I select an insurance to how
-                    can I save more. Just Ask and you shall have the answers.
+                  <ListGroup.Item style={{ display: "flex" }}>
+                    <i class="ri-check-line mr-2"></i>
+                    <div>
+                      QnA sessions addressing your all financial queries sorted
+                      by an Industry expert, From how do I select an insurance
+                      to how can I save more. Just Ask and you shall have the
+                      answers.
+                    </div>
                   </ListGroup.Item>
-                  <ListGroup.Item>
-                    Your one stop solution to all your financial requirements,
-                    From insurance, loans , to portfolio management services
-                    etc.{" "}
+                  <ListGroup.Item style={{ display: "flex" }}>
+                    <i class="ri-check-line mr-2"></i>
+                    <div>
+                      Your one stop solution to all your financial requirements,
+                      From insurance, loans , to portfolio management services
+                      etc.{" "}
+                    </div>
                   </ListGroup.Item>
-                  <ListGroup.Item>
-                    Get access to Finest advisors in the industry and take your
-                    investment journey to a next level
+                  <ListGroup.Item style={{ display: "flex" }}>
+                    <i class="ri-check-line mr-2"></i>
+                    <div>
+                      Get access to Finest advisors in the industry and take
+                      your investment journey to a next level
+                    </div>
                   </ListGroup.Item>
                 </ListGroup>
               </Card.Body>

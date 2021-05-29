@@ -45,8 +45,7 @@ export const AdvisorCategories = () => {
       <SectionTitle
         title="DISCOVER ADVISORS"
         breadcrumbs={[
-          { link: "/", name: "Home" },
-          { link: "/advisors", name: "Advisors", active: true },
+          { link: "/categories", name: "Discover Advisors", active: true },
         ]}
       />
       <Container>
@@ -105,8 +104,12 @@ export const AllAdvisors = ({ match }) => {
       <SectionTitle
         title="DISCOVER ADVISORS"
         breadcrumbs={[
-          { link: "/", name: "Home" },
-          { link: "/advisors", name: "Advisors", active: true },
+          { link: "/categories", name: "Discover Advisors", active: true },
+          {
+            link: "/categories",
+            name: match.params.slug,
+            active: true,
+          },
         ]}
       />
       <Container>
