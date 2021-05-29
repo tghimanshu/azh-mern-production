@@ -5,14 +5,11 @@ import http from "../../utils/http";
 import { dangerAlert, successAlert } from "../../utils/alerts";
 import "react-quill/dist/quill.snow.css";
 
-// react-bootstrap components
 import { Button, Card, Form, Container, Row, Col } from "react-bootstrap";
 import config from "../../utils/config";
 import { RequestAmtModal } from "../../utils/model";
 
 function Profile({ history }) {
-  // const [haveBlogs, setHaveBlogs] = useState(false);
-  // const [haveSocials, setHaveSocials] = useState(false);
   const [alert, setalert] = useState("");
   const [summary, setSummary] = useState("");
   const [user, setUser] = useState({
@@ -264,57 +261,6 @@ function Profile({ history }) {
                     </Form.Group>
                   </Col>
                 </Row>
-                <Row>
-                  <Col className="px-1" md="6">
-                    <Form.Group>
-                      <label>First Working Day of Week</label>
-                      <Form.Control
-                        value={days.from ? days.from : ""}
-                        onChange={(e) => {
-                          const demo = { ...days };
-                          demo.from = e.target.value;
-                          setDays(demo);
-                        }}
-                        placeholder="Contact"
-                        as="select"
-                      >
-                        <option value="">Select</option>
-                        <option value="monday">Monday</option>
-                        <option value="tuesday">Tuesday</option>
-                        <option value="wednesday">Wednesday</option>
-                        <option value="thursday">Thursday</option>
-                        <option value="friday">Friday</option>
-                        <option value="saturday">Saturday</option>
-                        <option value="sunday">Sunday</option>
-                      </Form.Control>
-                    </Form.Group>
-                  </Col>
-                  <Col className="px-1" md="6">
-                    <Form.Group>
-                      <label>Last Working Day of Week</label>
-                      <Form.Control
-                        value={days.to ? days.to : "monday"}
-                        onChange={(e) => {
-                          const demo = { ...days };
-                          demo.to = e.target.value;
-                          setDays(demo);
-                        }}
-                        placeholder="Contact"
-                        as="select"
-                      >
-                        <option value="">Select</option>
-                        <option value="monday">Monday</option>
-                        <option value="tuesday">Tuesday</option>
-                        <option value="wednesday">Wednesday</option>
-                        <option value="thursday">Thursday</option>
-                        <option value="friday">Friday</option>
-                        <option value="saturday">Saturday</option>
-                        <option value="sunday">Sunday</option>
-                      </Form.Control>
-                    </Form.Group>
-                  </Col>
-                </Row>
-
                 <Row>
                   <Col className="pr-1" md="6">
                     <Form.Group>

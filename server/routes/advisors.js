@@ -106,32 +106,6 @@ router.post("/login", async (req, res) => {
   res.header("x-auth-token", token).send(token);
 });
 
-router.put("/reccamtchange/:id", advisorAuth, async (req, res) => {
-  const advisor = await Advisor.findById(req.params.id);
-  if (!advisor) res.status(400).send("Cannot locate the Advisor!");
-  /* validation logic */
-
-  const data = [...advisor.recc_change];
-  data.push(req.body);
-  advisor.recc_change = data;
-
-  const result = await advisor.save();
-  res.send(result);
-});
-
-router.put("/recccancel/:id", advisorAuth, async (req, res) => {
-  const advisor = await Advisor.findById(req.params.id);
-  if (!advisor) res.status(400).send("Cannot locate the Advisor!");
-  /* validation logic */
-
-  const data = [...advisor.recc_change];
-  data[req.body.index].isApproved = "cancelled";
-  advisor.recc_change = data;
-
-  const result = await advisor.save();
-  res.send(result);
-});
-
 router.post("/forgot-password", async (req, res) => {
   const advisor = await Advisor.findOne({ email: req.body.email });
   if (!advisor)
@@ -225,6 +199,7 @@ router.delete("/:id", advisorAuth, async (req, res) => {
   const result = await Advisor.findByIdAndRemove(req.params.id);
   res.send(result);
 });
+
 router.get("/", async (req, res) => {
   try {
     const advisors = await Advisor.find().select(["-_v", "-password"]);

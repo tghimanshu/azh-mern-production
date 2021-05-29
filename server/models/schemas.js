@@ -61,6 +61,9 @@ const advisorSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  organization: {
+    type: String,
+  },
   contact: {
     type: Number,
     required: true,
@@ -68,37 +71,6 @@ const advisorSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-  },
-  noOfClients: { type: Number },
-  timings: {
-    from: String,
-    to: String,
-  },
-  days: {
-    from: {
-      type: String,
-      enum: [
-        "monday",
-        "tuesday",
-        "wednesday",
-        "thursday",
-        "friday",
-        "saturday",
-        "sunday",
-      ],
-    },
-    to: {
-      type: String,
-      enum: [
-        "monday",
-        "tuesday",
-        "wednesday",
-        "thursday",
-        "friday",
-        "saturday",
-        "sunday",
-      ],
-    },
   },
   summary: { type: String, default: "" },
   blogs: Array,
@@ -117,44 +89,11 @@ const advisorSchema = new mongoose.Schema({
   },
   sebi_no: {
     type: String,
-    required: true,
   },
-  recc_amt: {
-    type: Number,
-    default: 999,
-  },
-  recc_change: [
-    {
-      isApproved: {
-        type: String,
-        enum: ["pending", "approved", "rejected", "cancelled"],
-        defualt: "pending",
-      },
-      amount: Number,
-      date: {
-        type: Date,
-        default: Date.now(),
-      },
-    },
-  ],
-  balance: {
-    type: Number,
-    default: 0,
-  },
-
   isApproved: {
     type: Boolean,
     default: false,
   },
-  feedbacks: [
-    {
-      client_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Client",
-      },
-      text: String,
-    },
-  ],
   assignedLeads: [Object],
   profileCompleted: {
     type: Boolean,
@@ -389,10 +328,6 @@ const bookingSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
-  bookingAmt: {
-    type: Number,
-    required: true,
-  },
 });
 
 const adminSchema = new mongoose.Schema({
@@ -453,7 +388,7 @@ const Elearning = mongoose.model(
 
 clientSchema.methods.generateAuthToken = function () {
   const token = jwt.sign(
-    { _id: this._id, role: "client" },
+    { _id: this._id, name: this.name, email: this.email, role: "client" },
     config.get("jwt_secret")
   );
   return token;
@@ -461,7 +396,7 @@ clientSchema.methods.generateAuthToken = function () {
 
 advisorSchema.methods.generateAuthToken = function () {
   const token = jwt.sign(
-    { _id: this._id, role: "advisor" },
+    { _id: this._id, name: this.name, email: this.email, role: "advisor" },
     config.get("jwt_secret")
   );
   return token;

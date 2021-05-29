@@ -128,41 +128,31 @@ router.get("/sheet/:id", async (req, res) => {
   res.send("Generated!");
 });
 
-router.get("/:id", async (req, res) => {
-  const clients = await Client.findById(req.params.id).select([
-    "-password",
-    "-__v",
-  ]);
-  res.send(clients);
-  res.end();
+router.post("/forgot-password", async (req, res) => {
+  try {
+    const client = await Client.findOne({ email: req.body.email });
+    if (!client)
+      return res.status(400).send("User Doesn't Exist, Please Register!");
+    const token = jwt.sign({ email: req.body.email }, config.get("resetPass"), {
+      expiresIn: "30m",
+    });
+
+    clientForgotPassword(req.body.email, token);
+
+    res.send("Reset Link Sent Successfully!");
+  } catch (error) {}
 });
 
-router.get("/", async (req, res) => {
-  const clients = await Client.find().select(["name", "email"]);
-  res.send(clients);
-  res.end();
-});
+router.post("/reset-password", async (req, res) => {
+  const client = await Client.findOne({ email: req.body.email });
+  if (!client)
+    return res.status(400).send("User Doesn't Exist, Please Register!");
 
-router.post("/", async (req, res) => {
-  const { error } = clientValidate(req.body);
-  if (error) return res.status(400).send(error.details);
-
-  if (await Client.findOne({ email: req.body.email }))
-    return res.status(400).send("Email Already Registered!");
-
-  if (await Client.findOne({ username: req.body.username }))
-    return res.status(400).send("Username Taken!");
-
-  req.body.password = await hash_password(req.body.password);
+  client.password = await hash_password(req.body.password);
 
   try {
-    const client = new Client(req.body);
-
     const result = await client.save();
-
-    clientRegistration(req.body.name, req.body.email);
-
-    res.send(result);
+    if (result) res.send(result);
   } catch (error) {
     // console.log(error);
   }
@@ -219,6 +209,15 @@ router.post("/login", async (req, res) => {
   res.header("x-auth-token", token).send(token);
 });
 
+router.get("/:id", async (req, res) => {
+  const clients = await Client.findById(req.params.id).select([
+    "-password",
+    "-__v",
+  ]);
+  res.send(clients);
+  res.end();
+});
+
 router.put("/:id", async (req, res) => {
   const client = await Client.findById(req.params.id);
   if (!client) res.status(400).send("Cannot locate the Client!");
@@ -234,34 +233,34 @@ router.delete("/:id", async (req, res) => {
   res.send(result);
 });
 
-router.post("/forgot-password", async (req, res) => {
-  try {
-    const client = await Client.findOne({ email: req.body.email });
-    if (!client)
-      return res.status(400).send("User Doesn't Exist, Please Register!");
-    const token = jwt.sign({ email: req.body.email }, config.get("resetPass"), {
-      expiresIn: "30m",
-    });
-
-    clientForgotPassword(req.body.email, token);
-
-    res.send("Reset Link Sent Successfully!");
-  } catch (error) {}
+router.get("/", async (req, res) => {
+  const clients = await Client.find().select(["name", "email"]);
+  res.send(clients);
+  res.end();
 });
 
-router.post("/reset-password", async (req, res) => {
-  const client = await Client.findOne({ email: req.body.email });
-  if (!client)
-    return res.status(400).send("User Doesn't Exist, Please Register!");
+router.post("/", async (req, res) => {
+  const { error } = clientValidate(req.body);
+  if (error) return res.status(400).send(error.details);
 
-  client.password = await hash_password(req.body.password);
+  if (await Client.findOne({ email: req.body.email }))
+    return res.status(400).send("Email Already Registered!");
+
+  if (await Client.findOne({ username: req.body.username }))
+    return res.status(400).send("Username Taken!");
+
+  req.body.password = await hash_password(req.body.password);
 
   try {
+    const client = new Client(req.body);
+
     const result = await client.save();
-    if (result) res.send(result);
+
+    clientRegistration(req.body.name, req.body.email);
+
+    res.send(result);
   } catch (error) {
     // console.log(error);
   }
 });
-
 module.exports = router;
