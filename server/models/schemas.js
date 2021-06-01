@@ -99,6 +99,9 @@ const advisorSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  categories: {
+    type: Array,
+  },
 });
 
 const clientSchema = new mongoose.Schema({

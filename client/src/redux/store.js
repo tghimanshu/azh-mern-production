@@ -6,6 +6,8 @@ import {
   categoriesReducer,
   pageReducer,
   elearingReducer,
+  adminCategoriesReducer,
+  updateAdvisorsReducer,
 } from "./reducers/reducers";
 
 const reducers = combineReducers({
@@ -13,6 +15,8 @@ const reducers = combineReducers({
   categories: categoriesReducer,
   advisors: categoriesAdvisorsReducer,
   elearning: elearingReducer,
+  adminCategories: adminCategoriesReducer,
+  updateAdvisor: updateAdvisorsReducer,
 });
 
 const initialState = {};

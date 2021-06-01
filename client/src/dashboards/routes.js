@@ -36,6 +36,7 @@ import ClientSheet from "./clientPages/sheet";
 import ClientDashboard from "./clientPages/dashboard";
 import ClientLiability from "./clientPages/liabilities";
 import ClientAsset from "./clientPages/assets";
+import { AdminCategories, AdminSingleCategory } from "./adminPages/categories";
 
 export const routes = {
   admin: [
@@ -43,6 +44,18 @@ export const routes = {
       path: "/admin/advisors",
       name: "Advisors",
       component: Advisors,
+      onMenu: true,
+    },
+    {
+      path: "/admin/categories/:slug",
+      name: "Single Categories",
+      component: AdminSingleCategory,
+      onMenu: false,
+    },
+    {
+      path: "/admin/categories",
+      name: "Advisor Categories",
+      component: AdminCategories,
       onMenu: true,
     },
     {

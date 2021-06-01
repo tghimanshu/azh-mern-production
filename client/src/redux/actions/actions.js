@@ -1,4 +1,7 @@
 import {
+  ADMIN_CATEGORIES_FAIL,
+  ADMIN_CATEGORIES_REQUEST,
+  ADMIN_CATEGORIES_SUCCESS,
   CATEGORIES_ADV_FAIL,
   CATEGORIES_ADV_REQUEST,
   CATEGORIES_ADV_SUCCESS,
@@ -11,6 +14,9 @@ import {
   PAGE_FAIL,
   PAGE_REQUEST,
   PAGE_SUCCESS,
+  UPDATE_ADVISOR_FAIL,
+  UPDATE_ADVISOR_REQUEST,
+  UPDATE_ADVISOR_SUCCESS,
   USER_FAIL,
   USER_REQUEST,
   USER_SUCCESS,
@@ -114,6 +120,49 @@ export const listELearningAction = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: ELEARNING_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const adminCategoriesAction = () => async (dispatch) => {
+  try {
+    dispatch({
+      type: ADMIN_CATEGORIES_REQUEST,
+    });
+    const { data } = await http.get("/category");
+    dispatch({
+      type: ADMIN_CATEGORIES_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: ADMIN_CATEGORIES_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const updateAdvisorsAction = (body) => async (dispatch) => {
+  try {
+    dispatch({
+      type: UPDATE_ADVISOR_REQUEST,
+    });
+    const { data } = await http.put(`/advisor/${body._id}`, body);
+    dispatch({
+      type: UPDATE_ADVISOR_SUCCESS,
+      payload: data,
+    });
+    dispatch(listAdvisorsAction());
+  } catch (error) {
+    dispatch({
+      type: UPDATE_ADVISOR_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
