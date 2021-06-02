@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import http from "../../utils/http";
 import { Link } from "react-router-dom";
+import SectionTitle from "../../advisor/sectionTitle";
 
 export const ClientLogin = ({ history }) => {
   const [error, seterror] = useState("");
@@ -67,5 +68,22 @@ export const ClientLogin = ({ history }) => {
         Forgot Password? <Link to="/forgot-password/client">Click Here.</Link>
       </div>
     </form>
+  );
+};
+
+export const FPClientLogin = ({ history }) => {
+  return (
+    <>
+      <SectionTitle
+        title="Client Login"
+        breadcrumbs={[
+          { link: "/", name: "Home", active: true },
+          { link: "/clientlogin", name: "Client Login", active: true },
+        ]}
+      />
+      <div className="container px-5">
+        <ClientLogin history={history} />
+      </div>
+    </>
   );
 };

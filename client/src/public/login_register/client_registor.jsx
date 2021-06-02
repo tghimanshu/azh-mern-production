@@ -4,6 +4,7 @@ import { dangerAlert, successAlert } from "../../utils/alerts";
 // import { Alert } from "react-bootstrap";
 import ReCAPTCHA from "react-google-recaptcha";
 import { Link } from "react-router-dom";
+import SectionTitle from "../../advisor/sectionTitle";
 
 export const ClientRegistor = ({ history }) => {
   const [error, seterror] = useState("");
@@ -202,14 +203,13 @@ export const ClientRegistor = ({ history }) => {
 export const FPClientRegister = ({ history }) => {
   return (
     <>
-      <div className="p-title">
-        <section className="p-title-inner py-5">
-          <div className="container d-flex justify-content-center">
-            <h1>Client Register</h1>
-          </div>
-        </section>
-      </div>
-      ;
+      <SectionTitle
+        title="Client Register"
+        breadcrumbs={[
+          { link: "/", name: "Home", active: true },
+          { link: "/clientregister", name: "Client Register", active: true },
+        ]}
+      />
       <div className="container px-5">
         <ClientRegistor history={history} />
       </div>

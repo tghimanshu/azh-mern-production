@@ -15,6 +15,8 @@ import AdminLogin from "./dashboards/adminLogin";
 import Feedback from "./public/feedback";
 import { FPAdvisorRegister } from "./public/login_register/advisorRegistor";
 import { FPAdvisorLogin } from "./public/login_register/advisor_login";
+import { FPClientRegister } from "./public/login_register/client_registor";
+import { FPClientLogin } from "./public/login_register/client_login";
 // import VideoCall from "./public/videoCall";
 
 const PublicRoutes = () => {
@@ -27,6 +29,8 @@ const PublicRoutes = () => {
         {/* <Route exact path="/videocall" component={VideoCall} /> */}
         {/* <Route exact path="/videocall/:id" component={VideoCall} /> */}
         <Route exact path="/adminLogin" component={AdminLogin} />
+        <Route exact path="/clientLogin" component={FPClientLogin} />
+        <Route exact path="/clientRegister" component={FPClientRegister} />
         <Route exact path="/advisorLogin" component={FPAdvisorLogin} />
         <Route exact path="/advisorRegister" component={FPAdvisorRegister} />
         <Route exact path="/knowledge-base" component={Knowledge} />

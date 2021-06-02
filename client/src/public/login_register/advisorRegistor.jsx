@@ -4,6 +4,7 @@ import http from "../../utils/http";
 import { successAlert, dangerAlert } from "../../utils/alerts";
 import ReCAPTCHA from "react-google-recaptcha";
 import { CropModel } from "../../utils/model";
+import SectionTitle from "../../advisor/sectionTitle";
 
 export const AdvisorRegistor = ({ history }) => {
   const [error, seterror] = useState("");
@@ -421,13 +422,13 @@ export const AdvisorRegistor = ({ history }) => {
 export const FPAdvisorRegister = ({ history }) => {
   return (
     <>
-      <div className="p-title">
-        <section className="p-title-inner py-5">
-          <div className="container d-flex justify-content-center">
-            <h1>Advisor Register</h1>
-          </div>
-        </section>
-      </div>
+      <SectionTitle
+        title="Advisor Register"
+        breadcrumbs={[
+          { link: "/", name: "Home", active: true },
+          { link: "/advisorregister", name: "Advisor Register", active: true },
+        ]}
+      />
       <div className="container px-5">
         <AdvisorRegistor history={history} />
       </div>

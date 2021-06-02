@@ -3,6 +3,7 @@ import http from "../../utils/http";
 import { Link } from "react-router-dom";
 import { dangerAlert } from "../../utils/alerts";
 import { Container } from "react-bootstrap";
+import SectionTitle from "../../advisor/sectionTitle";
 
 export const AdvisorLogin = ({ history }) => {
   const [error, seterror] = useState("");
@@ -99,13 +100,13 @@ export const FPAdvisorLogin = ({ history }) => {
 
   return (
     <>
-      <div className="p-title">
-        <section className="p-title-inner py-5">
-          <div className="container d-flex justify-content-center">
-            <h1>Advisor Login</h1>
-          </div>
-        </section>
-      </div>
+      <SectionTitle
+        title="Advisor Login"
+        breadcrumbs={[
+          { link: "/", name: "Home", active: true },
+          { link: "/advisorlogin", name: "Advisor Login", active: true },
+        ]}
+      />
       <Container className="px-md-5">
         <form method="POST" className="container pt-3" onSubmit={handleSubmit}>
           {error === "" ? (
