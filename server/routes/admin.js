@@ -79,6 +79,33 @@ router.delete("/:id", adminAuth, async (req, res) => {
 });
 
 // * ASSIGNED LEADS TO ADVISORS
+router.put("/called/:type/:id", async (req, res) => {
+  try {
+    switch (req.params.type) {
+      case "client":
+        const client = await Client.findById(req.params.id);
+        client.called = {
+          value: true,
+          message: req.body.message,
+        };
+        await client.save();
+        break;
+      case "feedback":
+        const feedback = await Feedback.findById(req.params.id);
+        feedback.called = {
+          value: true,
+          message: req.body.message,
+        };
+        await feedback.save();
+        break;
+      default:
+        break;
+    }
+    res.send("call message added successfully");
+  } catch (err) {
+    res.status(500).send("something went wrong!");
+  }
+});
 
 router.put("/assign/:advId/:type/:id", async (req, res) => {
   try {

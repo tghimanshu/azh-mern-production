@@ -40,6 +40,39 @@ export const AdminFeedbacks = () => {
       console.log(error);
     }
   };
+
+  const handleCalled = async (e, id) => {
+    try {
+      e.preventDefault();
+      const opts = {
+        "did not connect": "did not connect",
+        interested: "interested",
+        uninterested: "uninterested",
+      };
+      const { value } = await Swal.fire({
+        title: "Assign Advisor",
+        input: "select",
+        inputOptions: opts,
+        inputPlaceholder: "Select an Advisor",
+        showCancelButton: true,
+        inputValidator: (value) => {
+          return new Promise((resolve) => {
+            if (value === "") {
+              resolve("You need to select a response :)");
+            } else {
+              resolve();
+            }
+          });
+        },
+      });
+      if (value && value !== "") {
+        await http.put(`/admin/called/feedback/${id}`, { message: value });
+        e.target.setAttribute("disabled", true);
+        e.target.innerText = opts[value];
+      }
+    } catch (err) {}
+  };
+
   const handleAssignment = async (e, id) => {
     try {
       e.preventDefault();
@@ -125,7 +158,6 @@ export const AdminFeedbacks = () => {
                   creationDate.getMonth() + 1
                 }-${creationDate.getFullYear()}`}</td>
                 <td>
-                  {console.log(feedback.assigned)}
                   {(feedback.assigned === undefined ||
                     feedback.assigned === false) && (
                     <Button
@@ -151,6 +183,15 @@ export const AdminFeedbacks = () => {
                   >
                     View
                   </Link>
+                  {(feedback.called === undefined ||
+                    feedback.called.value === false) && (
+                    <Button
+                      variant="success mr-2"
+                      onClick={(e) => handleCalled(e, feedback._id)}
+                    >
+                      Called?
+                    </Button>
+                  )}
                 </td>
               </tr>
             );

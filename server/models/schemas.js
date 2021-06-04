@@ -361,6 +361,7 @@ const feedbackSchema = new mongoose.Schema(
     },
     answers: Array,
     assigned: Object,
+    called: Object,
   },
   { strict: false }
 );
