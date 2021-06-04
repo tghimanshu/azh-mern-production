@@ -293,10 +293,7 @@ const clientSchema = new mongoose.Schema({
     type: Boolean,
     default: true,
   },
-  assigned: {
-    type: Boolean,
-    default: false,
-  },
+  assigned: Object,
 });
 
 const bookingSchema = new mongoose.Schema({
@@ -363,7 +360,7 @@ const feedbackSchema = new mongoose.Schema(
       ref: "FeedbackForm",
     },
     answers: Array,
-    assigned: { type: Boolean, default: false },
+    assigned: Object,
   },
   { strict: false }
 );

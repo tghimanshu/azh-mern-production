@@ -25,6 +25,18 @@ const adminAuth = (req, res, next) => {
   }
 };
 
+router.get("/feedbacks", async (req, res) => {
+  try {
+    const data = await (await Feedback.find()).reverse();
+    res.json(
+      data.map((feedback) => ({
+        ...feedback.toObject(),
+        creationDate: feedback._id.getTimestamp(),
+      }))
+    );
+  } catch (err) {}
+});
+
 router.post("/single", async (req, res) => {
   const feedback = new Feedback(req.body);
   const result = await feedback.save();

@@ -11,6 +11,9 @@ import {
   ELEARNING_FAIL,
   ELEARNING_REQUEST,
   ELEARNING_SUCCESS,
+  FEEDBACKS_FAIL,
+  FEEDBACKS_REQUEST,
+  FEEDBACKS_SUCCESS,
   PAGE_FAIL,
   PAGE_REQUEST,
   PAGE_SUCCESS,
@@ -107,6 +110,19 @@ export const updateAdvisorsReducer = (state = { advisors: [] }, action) => {
     case UPDATE_ADVISOR_SUCCESS:
       return { loading: false, advisors: action.payload };
     case UPDATE_ADVISOR_FAIL:
+      return { lading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const listFeedbacksReducer = (state = { feedbacks: [] }, action) => {
+  switch (action.type) {
+    case FEEDBACKS_REQUEST:
+      return { loading: true, feedbacks: [] };
+    case FEEDBACKS_SUCCESS:
+      return { loading: false, feedbacks: action.payload };
+    case FEEDBACKS_FAIL:
       return { lading: false, error: action.payload };
     default:
       return state;

@@ -8,6 +8,7 @@ import AdminAdvisor from "./adminPages/advisor";
 import { AddFeedbackForm, FeedbackForms } from "./adminPages/addFeedbackForm";
 import {
   AllFeedbacks,
+  AdminFeedbacks,
   SingleFeedback as AdminSingleFeedback,
 } from "./adminPages/allFeedbacks";
 import HomePageEdit from "./adminPages/homepage";
@@ -51,6 +52,12 @@ export const routes = {
       name: "Single Categories",
       component: AdminSingleCategory,
       onMenu: false,
+    },
+    {
+      path: "/admin/feedbacks",
+      name: "All Feedbacks",
+      component: AdminFeedbacks,
+      onMenu: true,
     },
     {
       path: "/admin/categories",

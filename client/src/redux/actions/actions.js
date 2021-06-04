@@ -11,6 +11,9 @@ import {
   ELEARNING_FAIL,
   ELEARNING_REQUEST,
   ELEARNING_SUCCESS,
+  FEEDBACKS_FAIL,
+  FEEDBACKS_REQUEST,
+  FEEDBACKS_SUCCESS,
   PAGE_FAIL,
   PAGE_REQUEST,
   PAGE_SUCCESS,
@@ -163,6 +166,27 @@ export const updateAdvisorsAction = (body) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: UPDATE_ADVISOR_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const listFeedbacksAction = () => async (dispatch) => {
+  try {
+    dispatch({
+      type: FEEDBACKS_REQUEST,
+    });
+    const { data } = await http.get("/feedback/feedbacks");
+    dispatch({
+      type: FEEDBACKS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: FEEDBACKS_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

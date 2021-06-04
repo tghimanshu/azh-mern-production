@@ -82,37 +82,43 @@ router.delete("/:id", adminAuth, async (req, res) => {
 
 router.put("/assign/:advId/:type/:id", async (req, res) => {
   try {
-    const leadSave = async (name) => {
-      const adv = await Advisor.findById(req.params.advId);
-      const data = [...adv.assignedLeads];
-      data.push({
-        type: req.params.type,
-        id: req.params.id,
-        name: name,
-      });
-      adv.assignedLeads = data;
-
-      await adv.save();
-    };
+    const adv = await Advisor.findById(req.params.advId);
+    const data = [...adv.assignedLeads];
     switch (req.params.type) {
       case "client":
         const client = await Client.findById(req.params.id);
-        client.assigned = true;
+        client.assigned = {
+          value: true,
+          name: adv.name,
+        };
         await client.save();
-        leadSave(client.name);
+        data.push({
+          type: req.params.type,
+          id: req.params.id,
+          name: client.name,
+        });
         break;
       case "feedback":
         const feedback = await Feedback.findById(req.params.id);
-        feedback.assigned = true;
+        feedback.assigned = {
+          value: true,
+          name: adv.name,
+        };
         await feedback.save();
-        leadSave(feedback.answers[0].value);
+        data.push({
+          type: req.params.type,
+          id: req.params.id,
+          name: feedback.answers[0].value,
+        });
         break;
       default:
         break;
     }
+    adv.assignedLeads = data;
+
+    await adv.save();
     res.send("lead assigned successfully");
   } catch (err) {
-    console.log(err);
     res.status(500).send("something went wrong!");
   }
 });
@@ -216,6 +222,30 @@ router.get("/feedbacks/:id", async (req, res) => {
     console.log("err");
   }
 });
+router.get("/feedbacks/export", async (req, res) => {
+  try {
+    const result = await Feedback.find();
+    if (!result) res.status(404).send("Feedbacks Doesn't Exist");
+    const myJson = [];
+    result.map((feedback) => {
+      const anss = {};
+      feedback.answers.map((ans) => {
+        anss[ans.text] = ans.value;
+        return;
+      });
+      myJson.push(anss);
+    });
+    const data = await converter.json2csvAsync(myJson);
+    res.setHeader(
+      "Content-disposition",
+      "attachment; filename=exportedData.csv"
+    );
+    res.set("Content-Type", "text/csv");
+    res.status(200).send(data);
+  } catch (err) {
+    console.log("err");
+  }
+});
 
 router.get("/feedbacks/export/:id", async (req, res) => {
   try {
@@ -271,6 +301,15 @@ router.post("/bulkmail/:type", async (req, res) => {
           bulkMail(emails3.splice(0, 20), req.body.subject, req.body.content);
         }
         res.send(emails3);
+        break;
+      case "feedbacks":
+        const results5 = await Feedback.find();
+        const emails5 = results5.map((r) => r.answers[1].value);
+        // let chunk = [];
+        while (emails5.length > 0) {
+          bulkMail(emails5.splice(0, 20), req.body.subject, req.body.content);
+        }
+        res.send(emails5);
         break;
       case "custom":
         bulkMail(req.body.emails, req.body.subject, req.body.content);
