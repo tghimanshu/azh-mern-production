@@ -142,60 +142,83 @@ export const AdminFeedbacks = () => {
         <thead>
           <tr>
             <th>#</th>
-            <th>Form Title</th>
+            <th>Name</th>
+            <th>email</th>
+            <th>contact</th>
             <th>Creation Date</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {feedbacks.map((feedback, index) => {
-            const creationDate = new Date(feedback.creationDate);
-            return (
-              <tr key={feedback._id}>
-                <td>{index + 1}</td>
-                <td>{feedback.formId.title}</td>
-                <td>{`${creationDate.getDate()}-${
-                  creationDate.getMonth() + 1
-                }-${creationDate.getFullYear()}`}</td>
-                <td>
-                  {(feedback.assigned === undefined ||
-                    feedback.assigned === false) && (
-                    <Button
-                      variant="success mr-2"
-                      onClick={(e) => handleAssignment(e, feedback._id)}
-                    >
-                      Assign
-                    </Button>
-                  )}
-                  {feedback.assigned !== undefined &&
-                    feedback.assigned === true && (
-                      <Badge variant="success mr-2">Assigned</Badge>
+          {feedbacks &&
+            feedbacks.length !== 0 &&
+            feedbacks.map((feedback, index) => {
+              const creationDate = new Date(feedback.creationDate);
+              return (
+                <tr key={feedback._id}>
+                  <td>{index + 1}</td>
+                  <td>
+                    {feedback.answers[0].value !== undefined &&
+                      feedback.answers[0].value}
+                  </td>
+                  <td>
+                    {feedback.answers[1] &&
+                      feedback.answers[1].value !== undefined &&
+                      feedback.answers[1].value}
+                  </td>
+                  <td>
+                    {feedback.answers[2] &&
+                      feedback.answers[2].value !== undefined &&
+                      feedback.answers[2].value}
+                  </td>
+                  <td>{`${creationDate.getDate()}-${
+                    creationDate.getMonth() + 1
+                  }-${creationDate.getFullYear()}`}</td>
+                  <td>
+                    {(feedback.assigned === undefined ||
+                      feedback.assigned === false) && (
+                      <Button
+                        variant="success mr-2"
+                        onClick={(e) => handleAssignment(e, feedback._id)}
+                      >
+                        Assign
+                      </Button>
                     )}
-                  {feedback.assigned !== undefined &&
-                    feedback.assigned.value === true && (
-                      <Badge variant="success mr-2">
-                        {feedback.assigned.name}
-                      </Badge>
+                    {feedback.assigned !== undefined &&
+                      feedback.assigned === true && (
+                        <Badge variant="success mr-2">Assigned</Badge>
+                      )}
+                    {feedback.assigned !== undefined &&
+                      feedback.assigned.value === true && (
+                        <Badge variant="success mr-2">
+                          {feedback.assigned.name}
+                        </Badge>
+                      )}
+                    {(feedback.called === undefined ||
+                      feedback.called.value === false) && (
+                      <Button
+                        variant="info mr-2"
+                        onClick={(e) => handleCalled(e, feedback._id)}
+                      >
+                        Called?
+                      </Button>
                     )}
-                  <Link
-                    to={"/admin/feedback/" + feedback._id}
-                    className="btn btn-success"
-                  >
-                    View
-                  </Link>
-                  {(feedback.called === undefined ||
-                    feedback.called.value === false) && (
-                    <Button
-                      variant="success mr-2"
-                      onClick={(e) => handleCalled(e, feedback._id)}
+                    {feedback.called !== undefined &&
+                      feedback.called.value === true && (
+                        <Badge variant="info mr-2">
+                          {feedback.called.message}
+                        </Badge>
+                      )}
+                    <Link
+                      to={"/admin/feedback/" + feedback._id}
+                      className="btn btn-success"
                     >
-                      Called?
-                    </Button>
-                  )}
-                </td>
-              </tr>
-            );
-          })}
+                      View
+                    </Link>
+                  </td>
+                </tr>
+              );
+            })}
         </tbody>
       </table>
     </>
