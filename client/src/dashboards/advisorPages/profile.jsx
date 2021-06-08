@@ -3,7 +3,7 @@ import jwtDecode from "jwt-decode";
 import ReactQuill from "react-quill";
 import http from "../../utils/http";
 import { dangerAlert, successAlert } from "../../utils/alerts";
-import "react-quill/dist/quill.snow.css";
+// import "react-quill/dist/quill.snow.css";
 
 import { Button, Card, Form, Container, Row, Col } from "react-bootstrap";
 import config from "../../utils/config";

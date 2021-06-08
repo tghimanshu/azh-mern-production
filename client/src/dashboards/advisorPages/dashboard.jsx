@@ -4,7 +4,7 @@ import jwtDecode from "jwt-decode";
 import http from "../../utils/http";
 import { Link } from "react-router-dom";
 import { dangerAlert } from "../../utils/alerts";
-import "react-quill/dist/quill.snow.css";
+// import "react-quill/dist/quill.snow.css";
 
 // react-bootstrap components
 import { Card, Container, Row, Col } from "react-bootstrap";

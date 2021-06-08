@@ -12,7 +12,7 @@ import {
 } from "react-bootstrap";
 import ReactQuill from "react-quill";
 import { dangerAlert, successAlert } from "../../utils/alerts";
-import "react-quill/dist/quill.snow.css";
+// import "react-quill/dist/quill.snow.css";
 
 const ClientProfile = ({ match, history, location }) => {
   const [alert, setAlert] = useState("");
