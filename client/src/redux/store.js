@@ -9,6 +9,10 @@ import {
   adminCategoriesReducer,
   updateAdvisorsReducer,
   listFeedbacksReducer,
+  singleFeedbackReducer,
+  listFormFeedbacksReducer,
+  adminAdvisorsReducer,
+  adminClientsReducer,
 } from "./reducers/reducers";
 
 const reducers = combineReducers({
@@ -17,8 +21,12 @@ const reducers = combineReducers({
   advisors: categoriesAdvisorsReducer,
   elearning: elearingReducer,
   adminCategories: adminCategoriesReducer,
+  adminAdvisors: adminAdvisorsReducer,
+  adminClients: adminClientsReducer,
   updateAdvisor: updateAdvisorsReducer,
   feedbacks: listFeedbacksReducer,
+  singleFeedback: singleFeedbackReducer,
+  formFeedbacks: listFormFeedbacksReducer,
 });
 
 const initialState = {};

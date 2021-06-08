@@ -6,14 +6,19 @@ import { dangerAlert, successAlert } from "../../utils/alerts";
 import http from "../../utils/http";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
-import { listFeedbacksAction } from "../../redux/actions/actions";
+import {
+  listFeedbacksAction,
+  listFormFeedbacksAction,
+  singleFeedbackAction,
+} from "../../redux/actions/actions";
+import DataTable from "react-bs-datatable";
 
 export const AdminFeedbacks = () => {
+  const dispatch = useDispatch();
   const [showMail, setShowMail] = useState(false);
   const [subject, setSubject] = useState("");
   const [content, setContent] = useState("");
   const [error, setError] = useState("");
-  const dispatch = useDispatch();
   const allFbs = useSelector((state) => state.feedbacks);
   const { loading, feedbacks } = allFbs;
   useEffect(() => {
@@ -106,8 +111,84 @@ export const AdminFeedbacks = () => {
     } catch (err) {}
   };
 
+  const tableHeaders = [
+    { title: "#", prop: "index", sortable: true },
+    { title: "name", prop: "name", sortable: true, filterable: true },
+    { title: "contact", prop: "contact" },
+    { title: "creation date", prop: "creationDate", sortable: true },
+    { title: "actions", prop: "actions" },
+  ];
+  const tableBody =
+    feedbacks &&
+    feedbacks.map((feedback, i) => {
+      const creationDate = new Date(feedback.creationDate);
+      return {
+        index: i + 1,
+        name:
+          feedback.answers[0] &&
+          feedback.answers[0].value !== undefined &&
+          feedback.answers[0].value,
+        contact:
+          feedback.answers[2] && feedback.answers[2].value !== undefined
+            ? feedback.answers[2].value
+            : "dat",
+        creationDate: `${creationDate.getDate()}-${
+          creationDate.getMonth() + 1
+        }-${creationDate.getFullYear()}`,
+        actions: (
+          <div>
+            {(feedback.assigned === undefined ||
+              feedback.assigned === false) && (
+              <Button
+                variant="success mr-2"
+                onClick={(e) => handleAssignment(e, feedback._id)}
+              >
+                Assign
+              </Button>
+            )}
+            {feedback.assigned !== undefined && feedback.assigned === true && (
+              <Badge variant="success mr-2">Assigned</Badge>
+            )}
+            {feedback.assigned !== undefined &&
+              feedback.assigned.value === true && (
+                <Badge variant="success mr-2">{feedback.assigned.name}</Badge>
+              )}
+            {(feedback.called === undefined ||
+              feedback.called.value === false) && (
+              <Button
+                variant="info mr-2"
+                onClick={(e) => handleCalled(e, feedback._id)}
+              >
+                Called?
+              </Button>
+            )}
+            {feedback.called !== undefined &&
+              feedback.called.value === true && (
+                <Badge variant="info mr-2">{feedback.called.message}</Badge>
+              )}
+            <Link
+              to={"/admin/feedback/" + feedback._id}
+              className="btn btn-success"
+            >
+              View
+            </Link>
+          </div>
+        ),
+      };
+    });
+
+  const onSortFunction = {
+    creationDate(value) {
+      return new Date(value);
+    },
+    name(value) {
+      return value.toLowerCase();
+    },
+  };
+
   return (
     <>
+      {loading && <h1>Loading</h1>}
       <a
         href={process.env.REACT_APP_API_END_POINT + "/admin/feedbacks/export"}
         className="btn btn-success mb-3 mr-2"
@@ -138,106 +219,31 @@ export const AdminFeedbacks = () => {
           </Button>
         </>
       )}
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>email</th>
-            <th>contact</th>
-            <th>Creation Date</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {feedbacks &&
-            feedbacks.length !== 0 &&
-            feedbacks.map((feedback, index) => {
-              const creationDate = new Date(feedback.creationDate);
-              return (
-                <tr key={feedback._id}>
-                  <td>{index + 1}</td>
-                  <td>
-                    {feedback.answers[0].value !== undefined &&
-                      feedback.answers[0].value}
-                  </td>
-                  <td>
-                    {feedback.answers[1] &&
-                      feedback.answers[1].value !== undefined &&
-                      feedback.answers[1].value}
-                  </td>
-                  <td>
-                    {feedback.answers[2] &&
-                      feedback.answers[2].value !== undefined &&
-                      feedback.answers[2].value}
-                  </td>
-                  <td>{`${creationDate.getDate()}-${
-                    creationDate.getMonth() + 1
-                  }-${creationDate.getFullYear()}`}</td>
-                  <td>
-                    {(feedback.assigned === undefined ||
-                      feedback.assigned === false) && (
-                      <Button
-                        variant="success mr-2"
-                        onClick={(e) => handleAssignment(e, feedback._id)}
-                      >
-                        Assign
-                      </Button>
-                    )}
-                    {feedback.assigned !== undefined &&
-                      feedback.assigned === true && (
-                        <Badge variant="success mr-2">Assigned</Badge>
-                      )}
-                    {feedback.assigned !== undefined &&
-                      feedback.assigned.value === true && (
-                        <Badge variant="success mr-2">
-                          {feedback.assigned.name}
-                        </Badge>
-                      )}
-                    {(feedback.called === undefined ||
-                      feedback.called.value === false) && (
-                      <Button
-                        variant="info mr-2"
-                        onClick={(e) => handleCalled(e, feedback._id)}
-                      >
-                        Called?
-                      </Button>
-                    )}
-                    {feedback.called !== undefined &&
-                      feedback.called.value === true && (
-                        <Badge variant="info mr-2">
-                          {feedback.called.message}
-                        </Badge>
-                      )}
-                    <Link
-                      to={"/admin/feedback/" + feedback._id}
-                      className="btn btn-success"
-                    >
-                      View
-                    </Link>
-                  </td>
-                </tr>
-              );
-            })}
-        </tbody>
-      </table>
+      <DataTable
+        tableHeaders={tableHeaders}
+        tableBody={tableBody}
+        initialSort={{ prop: "username", isAscending: true }}
+        onSort={onSortFunction}
+        rowsPerPage={10}
+        rowsPerPageOption={[5, 10, 15, 20, 50]}
+      />
     </>
   );
 };
 
-export const AllFeedbacks = ({ match }) => {
-  const [feedbacks, setFeedbacks] = useState([]);
+export const FormFeedbacks = ({ match }) => {
+  const dispatch = useDispatch();
   const [showMail, setShowMail] = useState(false);
   const [subject, setSubject] = useState("");
   const [content, setContent] = useState("");
   const [error, setError] = useState("");
+
+  const formfb = useSelector((state) => state.formFeedbacks);
+  const { loading, feedbacks } = formfb;
+
   useEffect(() => {
-    const getClients = async () => {
-      const details = await http.get(`/admin/feedbacks/` + match.params.id);
-      setFeedbacks(details.data);
-    };
-    getClients();
-  }, [match]);
+    dispatch(listFormFeedbacksAction(match.params.id));
+  }, [dispatch, match]);
 
   const handleMail = async () => {
     try {
@@ -292,9 +298,116 @@ export const AllFeedbacks = ({ match }) => {
     e.target.setAttribute("disabled", true);
     e.target.innerText = "Assigned";
   };
+  const handleCalled = async (e, id) => {
+    try {
+      e.preventDefault();
+      const opts = {
+        "did not connect": "did not connect",
+        interested: "interested",
+        uninterested: "uninterested",
+      };
+      const { value } = await Swal.fire({
+        title: "Assign Advisor",
+        input: "select",
+        inputOptions: opts,
+        inputPlaceholder: "Select an Advisor",
+        showCancelButton: true,
+        inputValidator: (value) => {
+          return new Promise((resolve) => {
+            if (value === "") {
+              resolve("You need to select a response :)");
+            } else {
+              resolve();
+            }
+          });
+        },
+      });
+      if (value && value !== "") {
+        await http.put(`/admin/called/feedback/${id}`, { message: value });
+        e.target.setAttribute("disabled", true);
+        e.target.innerText = opts[value];
+      }
+    } catch (err) {}
+  };
+
+  const tableHeaders = [
+    { title: "#", prop: "index", sortable: true },
+    { title: "name", prop: "name", sortable: true, filterable: true },
+    { title: "contact", prop: "contact" },
+    { title: "creation date", prop: "creationDate", sortable: true },
+    { title: "actions", prop: "actions" },
+  ];
+  const tableBody =
+    feedbacks &&
+    feedbacks.map((feedback, i) => {
+      const creationDate = new Date(feedback.creationDate);
+      return {
+        index: i + 1,
+        name:
+          feedback.answers[0] &&
+          feedback.answers[0].value !== undefined &&
+          feedback.answers[0].value,
+        contact:
+          feedback.answers[2] && feedback.answers[2].value !== undefined
+            ? feedback.answers[2].value
+            : "dat",
+        creationDate: `${creationDate.getDate()}-${
+          creationDate.getMonth() + 1
+        }-${creationDate.getFullYear()}`,
+        actions: (
+          <div>
+            {(feedback.assigned === undefined ||
+              feedback.assigned === false) && (
+              <Button
+                variant="success mr-2"
+                onClick={(e) => handleAssignment(e, feedback._id)}
+              >
+                Assign
+              </Button>
+            )}
+            {feedback.assigned !== undefined && feedback.assigned === true && (
+              <Badge variant="success mr-2">Assigned</Badge>
+            )}
+            {feedback.assigned !== undefined &&
+              feedback.assigned.value === true && (
+                <Badge variant="success mr-2">{feedback.assigned.name}</Badge>
+              )}
+            {(feedback.called === undefined ||
+              feedback.called.value === false) && (
+              <Button
+                variant="info mr-2"
+                onClick={(e) => handleCalled(e, feedback._id)}
+              >
+                Called?
+              </Button>
+            )}
+            {feedback.called !== undefined &&
+              feedback.called.value === true && (
+                <Badge variant="info mr-2">{feedback.called.message}</Badge>
+              )}
+            <Link
+              to={"/admin/feedback/" + feedback._id}
+              className="btn btn-success"
+            >
+              View
+            </Link>
+          </div>
+        ),
+      };
+    });
+
+  const onSortFunction = {
+    creationDate(value) {
+      return new Date(value);
+    },
+    name(value) {
+      return value.toLowerCase();
+    },
+  };
 
   return (
     <>
+      {loading && <h1>Loading</h1>}
       <a
         href={
           process.env.REACT_APP_API_END_POINT +
@@ -329,75 +442,35 @@ export const AllFeedbacks = ({ match }) => {
           </Button>
         </>
       )}
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Form Title</th>
-            <th>Creation Date</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {feedbacks.map((feedback, index) => {
-            const creationDate = new Date(feedback.creationDate);
-            return (
-              <tr key={feedback._id}>
-                <td>{index + 1}</td>
-                <td>{feedback.formId.title}</td>
-                <td>{`${creationDate.getDate()}-${
-                  creationDate.getMonth() + 1
-                }-${creationDate.getFullYear()}`}</td>
-                <td>
-                  {(feedback.assigned === undefined ||
-                    feedback.assigned === false) && (
-                    <Button
-                      variant="success mr-2"
-                      onClick={(e) => handleAssignment(e, feedback._id)}
-                    >
-                      Assign
-                    </Button>
-                  )}
-                  {feedback.assigned !== undefined &&
-                    feedback.assigned === true && (
-                      <Button variant="success mr-2" disabled>
-                        Assigned
-                      </Button>
-                    )}
-                  <Link
-                    to={"/admin/feedback/" + feedback._id}
-                    className="btn btn-success"
-                  >
-                    View
-                  </Link>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      <DataTable
+        tableHeaders={tableHeaders}
+        tableBody={tableBody}
+        initialSort={{ prop: "username", isAscending: true }}
+        onSort={onSortFunction}
+        rowsPerPage={10}
+        rowsPerPageOption={[5, 10, 15, 20, 50]}
+      />
     </>
   );
 };
 
 export const SingleFeedback = ({ match }) => {
-  const [feedback, setFeedback] = useState(null);
+  const dispatch = useDispatch();
+
+  const singleFb = useSelector((state) => state.singleFeedback);
+  const { loading, feedback } = singleFb;
+
   useEffect(() => {
-    const getFeedback = async () => {
-      //   console.log("/feedback/single/" + match.params.id);
-      const { data } = await http.get("/feedback/single/" + match.params.id);
-      setFeedback(data);
-    };
-    getFeedback();
-    return () => {
-      setFeedback(null);
-    };
-  }, [match]);
+    dispatch(singleFeedbackAction(match.params.id));
+  }, [dispatch, match]);
+
   return (
     <>
       <h2>Your Response</h2>
       <hr />
+      {loading && <h4>Loading</h4>}
       {feedback &&
+        feedback.answers &&
         feedback.answers.map((fb, i) => (
           <dl className="mt-2" key={i}>
             <dt className="font-weight-bold">{fb.text}</dt>

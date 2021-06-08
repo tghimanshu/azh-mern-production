@@ -366,12 +366,15 @@ a.e-learning-a:hover {
 
 .consultAdvBtn {
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 0;
   font-family: Poppins;
   font-style: normal;
   font-weight: 600;
-  font-size: 0.9em;
+  font-size: 0.8em;
   line-height: 1em;
+}
+.consultAdvBtnH4 {
+  border-radius: 0;
 }
 
 .pf_playlist {
@@ -601,6 +604,7 @@ a.e-learning-a:hover {
   }
   .consultAdvBtnH4 {
     margin-bottom: 1.5rem;
+    border-radius: 0;
   }
   .blogs-grid {
     display: grid;

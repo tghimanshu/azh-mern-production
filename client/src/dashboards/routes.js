@@ -7,7 +7,7 @@ import AdminClientProfile from "./adminPages/clientProfile";
 import AdminAdvisor from "./adminPages/advisor";
 import { AddFeedbackForm, FeedbackForms } from "./adminPages/addFeedbackForm";
 import {
-  AllFeedbacks,
+  FormFeedbacks,
   AdminFeedbacks,
   SingleFeedback as AdminSingleFeedback,
 } from "./adminPages/allFeedbacks";
@@ -98,7 +98,7 @@ export const routes = {
     {
       path: "/admin/allfeedbacks/:id",
       name: "All Feedbacks",
-      component: AllFeedbacks,
+      component: FormFeedbacks,
       onMenu: false,
     },
     {

@@ -1,24 +1,25 @@
 import http from "../../utils/http";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Button, Container, FormControl } from "react-bootstrap";
 import ReactQuill from "react-quill";
 import { successAlert, dangerAlert } from "../../utils/alerts";
+import { adminAdvisorsAction } from "../../redux/actions/actions";
 
 const Advisors = () => {
-  const [advisors, setAdvisor] = useState(null);
+  const dispatch = useDispatch();
   const [showMail, setShowMail] = useState(false);
   const [subject, setSubject] = useState("");
   const [content, setContent] = useState("");
   const [error, setError] = useState("");
-  const getAdvisors = async () => {
-    const advisors = await http.get("/admin/advisors");
 
-    setAdvisor(advisors.data);
-  };
+  const adminAdvisors = useSelector((state) => state.adminAdvisors);
+  const { loading, advisors } = adminAdvisors;
+
   useEffect(() => {
-    getAdvisors();
-  }, []);
+    dispatch(adminAdvisorsAction());
+  }, [dispatch]);
 
   const handleMail = async () => {
     try {
@@ -43,17 +44,10 @@ const Advisors = () => {
   };
 
   const approveAdv = async (approved, id) => {
-    const { data } = await http.put("/admin/advisors/approve/" + id, {
+    await http.put("/admin/advisors/approve/" + id, {
       isApproved: approved,
     });
-    const newAdv = advisors.map((adv) => {
-      if (adv._id === data._id) {
-        return data;
-      } else {
-        return adv;
-      }
-    });
-    setAdvisor(newAdv);
+    dispatch(adminAdvisorsAction());
   };
 
   return (

@@ -1,24 +1,24 @@
 import http from "../../utils/http";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Button, Container, FormControl } from "react-bootstrap";
 import ReactQuill from "react-quill";
 import Swal from "sweetalert2";
 import { successAlert, dangerAlert } from "../../utils/alerts";
+import { adminClientsAction } from "../../redux/actions/actions";
 
 const Clients = () => {
-  const [clients, setClients] = useState([]);
+  const dispatch = useDispatch();
   const [showMail, setShowMail] = useState(false);
   const [subject, setSubject] = useState("");
   const [content, setContent] = useState("");
   const [error, setError] = useState("");
+  const adminClients = useSelector((state) => state.adminClients);
+  const { clients } = adminClients;
   useEffect(() => {
-    const getClients = async () => {
-      const clients = await http.get("/admin/clients");
-      setClients(clients.data);
-    };
-    getClients();
-  }, []);
+    dispatch(adminClientsAction());
+  }, [dispatch]);
   const handleMail = async () => {
     try {
       if (subject === "") {

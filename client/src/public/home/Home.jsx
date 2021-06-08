@@ -10,13 +10,13 @@ import {
 } from "./HomePage";
 
 function Home() {
-  const loadScript = (src) => {
-    console.log("object");
-    var script = document.createElement("script");
-    script.src = src;
-    script.async = true;
-    window.document.getElementsByTagName("body")[0].appendChild(script);
-  };
+  // const loadScript = (src) => {
+  //   console.log("object");
+  //   var script = document.createElement("script");
+  //   script.src = src;
+  //   script.async = true;
+  //   window.document.getElementsByTagName("body")[0].appendChild(script);
+  // };
   return (
     <Fragment>
       <HeroSection />

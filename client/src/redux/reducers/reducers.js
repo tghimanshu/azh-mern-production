@@ -1,7 +1,13 @@
 import {
+  ADMIN_ADVISORS_FAIL,
+  ADMIN_ADVISORS_REQUEST,
+  ADMIN_ADVISORS_SUCCESS,
   ADMIN_CATEGORIES_FAIL,
   ADMIN_CATEGORIES_REQUEST,
   ADMIN_CATEGORIES_SUCCESS,
+  ADMIN_CLIENTS_FAIL,
+  ADMIN_CLIENTS_REQUEST,
+  ADMIN_CLIENTS_SUCCESS,
   CATEGORIES_ADV_FAIL,
   CATEGORIES_ADV_REQUEST,
   CATEGORIES_ADV_SUCCESS,
@@ -14,9 +20,15 @@ import {
   FEEDBACKS_FAIL,
   FEEDBACKS_REQUEST,
   FEEDBACKS_SUCCESS,
+  FORM_FEEDBACKS_FAIL,
+  FORM_FEEDBACKS_REQUEST,
+  FORM_FEEDBACKS_SUCCESS,
   PAGE_FAIL,
   PAGE_REQUEST,
   PAGE_SUCCESS,
+  SINGLE_FEEDBACK_FAIL,
+  SINGLE_FEEDBACK_REQUEST,
+  SINGLE_FEEDBACK_SUCCESS,
   UPDATE_ADVISOR_FAIL,
   UPDATE_ADVISOR_REQUEST,
   UPDATE_ADVISOR_SUCCESS,
@@ -32,7 +44,7 @@ export const categoriesReducer = (state = { categories: [] }, action) => {
     case CATEGORIES_SUCCESS:
       return { loading: false, categories: action.payload };
     case CATEGORIES_FAIL:
-      return { lading: false, error: action.payload };
+      return { loading: false, error: action.payload };
     default:
       return state;
   }
@@ -97,7 +109,7 @@ export const adminCategoriesReducer = (state = { categories: [] }, action) => {
     case ADMIN_CATEGORIES_SUCCESS:
       return { loading: false, categories: action.payload };
     case ADMIN_CATEGORIES_FAIL:
-      return { lading: false, error: action.payload };
+      return { loading: false, error: action.payload };
     default:
       return state;
   }
@@ -110,7 +122,7 @@ export const updateAdvisorsReducer = (state = { advisors: [] }, action) => {
     case UPDATE_ADVISOR_SUCCESS:
       return { loading: false, advisors: action.payload };
     case UPDATE_ADVISOR_FAIL:
-      return { lading: false, error: action.payload };
+      return { loading: false, error: action.payload };
     default:
       return state;
   }
@@ -123,7 +135,59 @@ export const listFeedbacksReducer = (state = { feedbacks: [] }, action) => {
     case FEEDBACKS_SUCCESS:
       return { loading: false, feedbacks: action.payload };
     case FEEDBACKS_FAIL:
-      return { lading: false, error: action.payload };
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const listFormFeedbacksReducer = (state = { feedbacks: [] }, action) => {
+  switch (action.type) {
+    case FORM_FEEDBACKS_REQUEST:
+      return { loading: true, feedbacks: [] };
+    case FORM_FEEDBACKS_SUCCESS:
+      return { loading: false, feedbacks: action.payload };
+    case FORM_FEEDBACKS_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const singleFeedbackReducer = (state = { feedback: [] }, action) => {
+  switch (action.type) {
+    case SINGLE_FEEDBACK_REQUEST:
+      return { loading: true, feedback: [] };
+    case SINGLE_FEEDBACK_SUCCESS:
+      return { loading: false, feedback: action.payload };
+    case SINGLE_FEEDBACK_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const adminAdvisorsReducer = (state = { advisors: [] }, action) => {
+  switch (action.type) {
+    case ADMIN_ADVISORS_REQUEST:
+      return { loading: true, advisors: [] };
+    case ADMIN_ADVISORS_SUCCESS:
+      return { loading: false, advisors: action.payload };
+    case ADMIN_ADVISORS_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const adminClientsReducer = (state = { clients: [] }, action) => {
+  switch (action.type) {
+    case ADMIN_CLIENTS_REQUEST:
+      return { loading: true, clients: [] };
+    case ADMIN_CLIENTS_SUCCESS:
+      return { loading: false, clients: action.payload };
+    case ADMIN_CLIENTS_FAIL:
+      return { loading: false, error: action.payload };
     default:
       return state;
   }

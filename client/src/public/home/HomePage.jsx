@@ -140,7 +140,10 @@ export function Blogs() {
   return (
     <div className="py-2 bg-fa">
       <Container className="mt-5">
-        <h3 className="text-white d-inline-block blue-section-title">BLOGS</h3>
+        <div>
+          <h2 className="d-block monsterrat-40-700 text-center mb-4">Blogs</h2>
+        </div>
+        {/* <h3 className="text-white d-inline-block blue-section-title">BLOGS</h3> */}
         <div className="blogs-grid">
           <div className="data1">
             <img
@@ -342,9 +345,12 @@ export function Blogs() {
 export function Events() {
   return (
     <Container className="mt-5">
-      <h3 className="text-white mb-4 d-inline-block blue-section-title">
+      <div>
+        <h2 className="d-block monsterrat-40-700 text-center">Events</h2>
+      </div>
+      {/* <h3 className="text-white mb-4 d-inline-block blue-section-title">
         EVENTS
-      </h3>
+      </h3> */}
       <p className="mt-2 mb-4 monsterrat-24-500">
         The underlying objective is to educate working professionals on a
         plethora of investment avenues so that they can reap maximum benefits of
