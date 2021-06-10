@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { logout } from "../../utils/logout";
-import { getRole } from "../../utils/jwt";
-import http from "../../utils/http";
+import { logout } from "utils/logout";
+import { getRole } from "utils/jwt";
+import http from "utils/http";
 
 const Navbar = (props) => {
   const [available, setAvailable] = useState(null);

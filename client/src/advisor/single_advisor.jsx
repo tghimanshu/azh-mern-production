@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
-import config from "../utils/config";
-import http from "../utils/http";
+import config from "utils/config";
+import http from "utils/http";
 import parse from "html-react-parser";
-import { BookingModal } from "../utils/model";
-import { getRole } from "../utils/jwt";
+import { BookingModal } from "utils/model";
+import { getRole } from "utils/jwt";
 import Swal from "sweetalert2";
 import SectionTitle from "./sectionTitle";
 
@@ -59,47 +59,15 @@ const SingleAdvisor = ({ match, history }) => {
             confirmButtonText: "Login/Register",
           }).then((res) => res.isConfirmed && history.push("/login"));
         }
-        const { data } = await http.get("/client/" + userJwt._id);
-        let status = 0;
-        status += data.name !== 0 ? 10 : 0;
-        status += data.personal_details.self.name !== "" ? 15 : 0;
-
-        status += data.goals.length !== 0 && data.goals[0].goal !== "" ? 15 : 0;
-        status +=
-          data.investments.length !== 0 &&
-          !data.haveInvestments &&
-          data.investments[0].goal !== 0
-            ? 15
-            : 0;
-
-        status +=
-          data.insurances.length !== 0 &&
-          !data.haveInsurances &&
-          data.insurances[0].goal !== 0
-            ? 15
-            : 0;
-
-        status += data.income.inc_self !== 0 ? 15 : 0;
-        status += data.expenses.monthly.groceries !== 0 ? 15 : 0;
-        return status;
-      } catch (error) {
-        // console.log(error);
-      }
+      } catch (error) {}
     };
-    const status = await getUser();
-    if (status > 60) {
-      setAppointment({
-        adv_id: id,
-        remarks: appointment.remarks,
-        client_id: appointment.client_id,
-      });
-      setShowModel(true);
-    } else {
-      Swal.fire({
-        icon: "info",
-        text: "you need to complete atleast 60% of your profile to ask for recommendation!",
-      });
-    }
+    getUser();
+    setAppointment({
+      adv_id: id,
+      remarks: appointment.remarks,
+      client_id: appointment.client_id,
+    });
+    setShowModel(true);
   };
 
   const handleBRemarks = (e) =>
@@ -123,6 +91,7 @@ const SingleAdvisor = ({ match, history }) => {
         client_id: appointment.client_id,
       });
       setShowModel(false);
+      setDisableBooking(true);
     } catch (error) {
       setShowModel(false);
     }
@@ -193,7 +162,7 @@ const SingleAdvisor = ({ match, history }) => {
             >
               {appointment.client_id !== "" && disableBooking
                 ? "Requested"
-                : "Get Recommendation"}
+                : "Get Started"}
             </button>
           )}
           <BookingModal

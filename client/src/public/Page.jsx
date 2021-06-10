@@ -1,9 +1,9 @@
 import { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import parse from "html-react-parser";
-import LoadingScreen from "../utils/loadingScreen";
-import SectionTitle from "../advisor/sectionTitle";
-import { getSinglePageAction } from "../redux/actions/actions";
+import LoadingScreen from "utils/loadingScreen";
+import SectionTitle from "advisor/sectionTitle";
+import { getSinglePageAction } from "redux/actions/actions";
 
 function Page({ match }) {
   const dispatch = useDispatch();

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Button, Col, Container, ListGroup, Row } from "react-bootstrap";
 import ContentEditable from "react-contenteditable";
 import { Link } from "react-router-dom";
-import { dangerAlert, successAlert } from "../../utils/alerts";
-import http from "../../utils/http";
+import { dangerAlert, successAlert } from "utils/alerts";
+import http from "utils/http";
 
 import "./feedbackform.css";
 

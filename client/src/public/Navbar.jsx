@@ -43,7 +43,7 @@ function Navbar(props) {
             >
               <Link to="/e-learning">E-Learning</Link>
             </li>
-            <li
+            {/* <li
               className={
                 window.location.pathname.includes("knowledge-base")
                   ? "active"
@@ -51,7 +51,7 @@ function Navbar(props) {
               }
             >
               <Link to="/knowledge-base">Knowledge Base</Link>
-            </li>
+            </li> */}
             <li className="get-started">
               {localStorage.getItem("auth-token") ? (
                 <Link to="/client">My Account</Link>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import http from "../../utils/http";
-import { getRole } from "../../utils/jwt";
+import http from "utils/http";
+import { getRole } from "utils/jwt";
 
 export const Feedbacks = () => {
   const [feedbacks, setFeedbacks] = useState([]);

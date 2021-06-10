@@ -3,7 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Plyr from "plyr-react";
 import { useDispatch, useSelector } from "react-redux";
-import { listELearningAction } from "../../redux/actions/actions";
+import { listELearningAction } from "redux/actions/actions";
 import "plyr-react/dist/plyr.css";
 
 export function HeroSection() {
@@ -115,17 +115,19 @@ export function News() {
                   lg={6}
                   className="position-relative mb-3"
                 >
-                  <img
-                    // src={process.env.PUBLIC_URL + "/assets/img/news/news1.png"}
-                    src={`${process.env.PUBLIC_URL}/assets/img/news/news${
-                      (i + 1) % 6 === 0 ? "6" : (i + 1) % 6
-                    }.png`}
-                    alt=""
-                  />
-                  <div className="newsDiv">
-                    <a href={elearning.link}>
-                      <h3 className="text-white">{elearning.title}</h3>
-                    </a>
+                  <div className="position-relative news-container">
+                    <img
+                      // src={process.env.PUBLIC_URL + "/assets/img/news/news1.png"}
+                      src={`${process.env.PUBLIC_URL}/assets/img/news/news${
+                        (i + 1) % 6 === 0 ? "6" : (i + 1) % 6
+                      }.svg`}
+                      alt=""
+                    />
+                    <div className="newsDiv">
+                      <a href={elearning.link}>
+                        <h3 className="text-white">{elearning.title}</h3>
+                      </a>
+                    </div>
                   </div>
                 </Col>
               ))}

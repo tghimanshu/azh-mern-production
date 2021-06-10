@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import http from "../../utils/http";
+import http from "utils/http";
 
 const Bookings = () => {
   const [bookings, setBookings] = useState([]);

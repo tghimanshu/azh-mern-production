@@ -1,6 +1,6 @@
-import http from "../../utils/http";
+import http from "utils/http";
 import React, { useEffect, useState } from "react";
-import { getRole } from "../../utils/jwt";
+import { getRole } from "utils/jwt";
 import { Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
 

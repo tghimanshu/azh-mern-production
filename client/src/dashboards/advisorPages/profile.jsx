@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import jwtDecode from "jwt-decode";
 import ReactQuill from "react-quill";
-import http from "../../utils/http";
-import { dangerAlert, successAlert } from "../../utils/alerts";
+import http from "utils/http";
+import { dangerAlert, successAlert } from "utils/alerts";
 // import "react-quill/dist/quill.snow.css";
 
 import { Button, Card, Form, Container, Row, Col } from "react-bootstrap";
-import config from "../../utils/config";
-import { RequestAmtModal } from "../../utils/model";
+import config from "utils/config";
+import { RequestAmtModal } from "utils/model";
 
 function Profile({ history }) {
   const [alert, setalert] = useState("");

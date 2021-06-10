@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import http from "../../utils/http";
+import http from "utils/http";
 import {
   Accordion,
   Button,
@@ -10,7 +10,7 @@ import {
   Row,
   Table,
 } from "react-bootstrap";
-import { dangerAlert, successAlert } from "../../utils/alerts";
+import { dangerAlert, successAlert } from "utils/alerts";
 import ReactQuill from "react-quill";
 
 const ClientProfile = ({ match, history }) => {

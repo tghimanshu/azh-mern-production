@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import http from "../../utils/http";
-import { getRole } from "../../utils/jwt";
+import http from "utils/http";
+import { getRole } from "utils/jwt";
 import {
   Accordion,
   Card,
@@ -10,7 +10,7 @@ import {
   Form,
   Row,
 } from "react-bootstrap";
-import { dangerAlert, successAlert } from "../../utils/alerts";
+import { dangerAlert, successAlert } from "utils/alerts";
 import StepsNav from "./steps_nav";
 
 const Personal = ({ history }) => {

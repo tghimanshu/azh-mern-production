@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import http from "../../utils/http";
+import http from "utils/http";
 import { Link } from "react-router-dom";
-import { dangerAlert } from "../../utils/alerts";
+import { dangerAlert } from "utils/alerts";
 import { Container } from "react-bootstrap";
-import SectionTitle from "../../advisor/sectionTitle";
+import SectionTitle from "advisor/sectionTitle";
 
 export const AdvisorLogin = ({ history }) => {
   const [error, seterror] = useState("");

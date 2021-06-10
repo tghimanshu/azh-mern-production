@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import http from "../../utils/http";
-import { getRole } from "../../utils/jwt";
+import http from "utils/http";
+import { getRole } from "utils/jwt";
 import { Col, Container, Row, Table } from "react-bootstrap";
 
 const Sheet = ({ match, history }) => {

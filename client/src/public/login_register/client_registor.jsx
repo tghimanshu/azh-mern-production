@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import http from "../../utils/http";
-import { dangerAlert, successAlert } from "../../utils/alerts";
+import http from "utils/http";
+import { dangerAlert, successAlert } from "utils/alerts";
 // import { Alert } from "react-bootstrap";
 import ReCAPTCHA from "react-google-recaptcha";
 import { Link } from "react-router-dom";
-import SectionTitle from "../../advisor/sectionTitle";
+import SectionTitle from "advisor/sectionTitle";
 
 export const ClientRegistor = ({ history }) => {
   const [error, seterror] = useState("");

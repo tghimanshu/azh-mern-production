@@ -1,9 +1,9 @@
-import http from "../../utils/http";
+import http from "utils/http";
 import { useState, useEffect } from "react";
 import { Card, Form } from "react-bootstrap";
 import { Link as button, Link } from "react-router-dom";
-import { successAlert } from "../../utils/alerts";
-import { getRole } from "../../utils/jwt";
+import { successAlert } from "utils/alerts";
+import { getRole } from "utils/jwt";
 import StepsNav from "./steps_nav";
 
 const Income = ({ history }) => {

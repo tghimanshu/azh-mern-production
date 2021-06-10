@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Button, Card, Container, Form } from "react-bootstrap";
-import http from "../../utils/http";
-import { dangerAlert, successAlert } from "../../utils/alerts";
+import http from "utils/http";
+import { dangerAlert, successAlert } from "utils/alerts";
+
 function HomePageEdit() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);

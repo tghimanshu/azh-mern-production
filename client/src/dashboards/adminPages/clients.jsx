@@ -1,12 +1,13 @@
-import http from "../../utils/http";
+import http from "utils/http";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Button, Container, FormControl } from "react-bootstrap";
 import ReactQuill from "react-quill";
 import Swal from "sweetalert2";
-import { successAlert, dangerAlert } from "../../utils/alerts";
-import { adminClientsAction } from "../../redux/actions/actions";
+import { successAlert, dangerAlert } from "utils/alerts";
+import { adminClientsAction } from "redux/actions/actions";
+import DataTable from "react-bs-datatable";
 
 const Clients = () => {
   const dispatch = useDispatch();
@@ -74,6 +75,75 @@ const Clients = () => {
     e.target.innerText = "Assigned";
   };
 
+  const tableHeaders = [
+    { title: "#", prop: "index", sortable: true },
+    { title: "name", prop: "name", sortable: true, filterable: true },
+    { title: "E Mail", prop: "email", sortable: true, filterable: true },
+    { title: "Phone", prop: "contact", sortable: true, filterable: true },
+    {
+      title: "Registration Date",
+      prop: "regDate",
+      sortable: true,
+      filterable: true,
+    },
+    { title: "actions", prop: "actions" },
+  ];
+
+  const onSortFunction = {
+    name(value) {
+      return value.toLowerCase();
+    },
+  };
+
+  const tableBody =
+    clients &&
+    clients.map((client, i) => {
+      const creationDate = new Date(client.creationDate);
+      return {
+        index: i + 1,
+        name: client.name,
+        email: client.email,
+        contact: client.contact,
+        regDate: `${creationDate.getDate()}-${
+          creationDate.getMonth() + 1
+        }-${creationDate.getFullYear()}`,
+        actions: (
+          <div>
+            {(client.assigned === undefined || client.assigned === false) && (
+              <Button
+                variant="success mr-2"
+                onClick={(e) => handleAssignment(e, client._id)}
+              >
+                Assign
+              </Button>
+            )}
+            {client.assigned !== undefined && client.assigned === true && (
+              <Button variant="success mr-2" disabled>
+                Assigned
+              </Button>
+            )}
+            <Link to={"/admin/client/" + client._id}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="feather feather-eye align-middle mr-2"
+              >
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </Link>
+          </div>
+        ),
+      };
+    });
+
   return (
     <>
       <Container>
@@ -100,70 +170,14 @@ const Clients = () => {
           </>
         )}
       </Container>
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>User Name</th>
-            <th>Name</th>
-            <th>Phone Number</th>
-            <th>Email ID</th>
-            <th>Creation Date</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {clients.map((client, index) => {
-            const creationDate = new Date(client.creationDate);
-            return (
-              <tr key={client._id}>
-                <td>{index + 1}</td>
-                <td>{client.username}</td>
-                <td>{client.name}</td>
-                <td>{client.contact}</td>
-                <td>{client.email}</td>
-                <td>{`${creationDate.getDate()}-${
-                  creationDate.getMonth() + 1
-                }-${creationDate.getFullYear()}`}</td>
-                <td className="table-action d-flex justify-content-between align-items-center">
-                  {console.log(client.assigned === undefined)}
-                  {(client.assigned === undefined ||
-                    client.assigned === false) && (
-                    <Button
-                      variant="success mr-2"
-                      onClick={(e) => handleAssignment(e, client._id)}
-                    >
-                      Assign
-                    </Button>
-                  )}
-                  {client.assigned !== undefined && client.assigned === true && (
-                    <Button variant="success mr-2" disabled>
-                      Assigned
-                    </Button>
-                  )}
-                  <Link to={"/admin/client/" + client._id}>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="feather feather-eye align-middle mr-2"
-                    >
-                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                      <circle cx="12" cy="12" r="3"></circle>
-                    </svg>
-                  </Link>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      <DataTable
+        tableHeaders={tableHeaders}
+        tableBody={tableBody}
+        initialSort={{ prop: "username", isAscending: true }}
+        onSort={onSortFunction}
+        rowsPerPage={10}
+        rowsPerPageOption={[5, 10, 15, 20, 50]}
+      />
     </>
   );
 };

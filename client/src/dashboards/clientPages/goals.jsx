@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import React from "react";
 import { Accordion, Card, Col, Form, Row } from "react-bootstrap";
-import { getRole } from "../../utils/jwt";
-import http from "../../utils/http";
-import { successAlert } from "../../utils/alerts";
+import { getRole } from "utils/jwt";
+import http from "utils/http";
+import { successAlert } from "utils/alerts";
 import { Link } from "react-router-dom";
 import StepsNav from "./steps_nav";
 

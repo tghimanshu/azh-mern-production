@@ -1,14 +1,14 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import jwtDecode from "jwt-decode";
-import http from "../../utils/http";
+import http from "utils/http";
 import { Link } from "react-router-dom";
-import { dangerAlert } from "../../utils/alerts";
+import { dangerAlert } from "utils/alerts";
 // import "react-quill/dist/quill.snow.css";
 
 // react-bootstrap components
 import { Card, Container, Row, Col } from "react-bootstrap";
-import config from "../../utils/config";
+import config from "utils/config";
 import Recommendation from "./bookings";
 
 function AdvisorDashboard({ history }) {

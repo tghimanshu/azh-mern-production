@@ -1,8 +1,8 @@
-import http from "../../utils/http";
+import http from "utils/http";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getRole } from "../../utils/jwt";
-import { logout } from "../../utils/logout";
+import { getRole } from "utils/jwt";
+import { logout } from "utils/logout";
 
 const Sidebar = ({ routes, type }) => {
   const [username, Setusername] = useState("User");

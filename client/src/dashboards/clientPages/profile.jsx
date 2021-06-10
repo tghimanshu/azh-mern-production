@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 // import jwtDecode from "jwt-decode";
-import http from "../../utils/http";
-import { getRole } from "../../utils/jwt";
+import http from "utils/http";
+import { getRole } from "utils/jwt";
 
 // react-bootstrap components
 import {
@@ -14,8 +14,8 @@ import {
   Col,
   ProgressBar,
 } from "react-bootstrap";
-import { successAlert } from "../../utils/alerts";
-import { getCompletionStatus } from "../../utils/logout";
+import { successAlert } from "utils/alerts";
+import { getCompletionStatus } from "utils/logout";
 
 function Profile() {
   const [alert, setalert] = useState("");

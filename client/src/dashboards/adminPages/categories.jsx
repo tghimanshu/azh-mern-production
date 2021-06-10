@@ -5,7 +5,9 @@ import {
   adminCategoriesAction,
   listAdvisorsAction,
   updateAdvisorsAction,
-} from "../../redux/actions/actions";
+} from "redux/actions/actions";
+import DataTable from "react-bs-datatable";
+
 export const AdminCategories = () => {
   const dispatch = useDispatch();
   const adminCat = useSelector((state) => state.adminCategories);
@@ -13,37 +15,49 @@ export const AdminCategories = () => {
   useEffect(() => {
     dispatch(adminCategoriesAction());
   }, [dispatch]);
+
+  const tableHeaders = [
+    { title: "#", prop: "index", sortable: true },
+    { title: "name", prop: "name", sortable: true, filterable: true },
+    { title: "actions", prop: "actions" },
+  ];
+
+  const onSortFunction = {
+    name(value) {
+      return value.toLowerCase();
+    },
+  };
+
+  const tableBody =
+    categories &&
+    categories.map((category, i) => {
+      return {
+        index: i + 1,
+        name: category.title,
+        actions: (
+          <div>
+            <Link
+              to={"/admin/categories/" + category.slug}
+              className="btn btn-success"
+            >
+              Edit
+            </Link>
+          </div>
+        ),
+      };
+    });
+
   return (
     <div>
       {loading && <h1>Loading</h1>}
-      <div className="table-responsive">
-        <table className="table">
-          <thead>
-            <tr>
-              <td>#</td>
-              <td>Name</td>
-              <td>Actions</td>
-            </tr>
-          </thead>
-          <tbody>
-            {categories.length !== 0 &&
-              categories.map((category, i) => (
-                <tr>
-                  <td>{i}</td>
-                  <td>{category.title}</td>
-                  <td>
-                    <Link
-                      to={"/admin/categories/" + category.slug}
-                      className="btn btn-success"
-                    >
-                      Edit
-                    </Link>
-                  </td>
-                </tr>
-              ))}
-          </tbody>
-        </table>
-      </div>
+      <DataTable
+        tableHeaders={tableHeaders}
+        tableBody={tableBody}
+        initialSort={{ prop: "username", isAscending: true }}
+        onSort={onSortFunction}
+        rowsPerPage={10}
+        rowsPerPageOption={[5, 10, 15, 20, 50]}
+      />
     </div>
   );
 };
@@ -69,47 +83,58 @@ export const AdminSingleCategory = ({ match }) => {
     dispatch(updateAdvisorsAction(adv));
   };
 
+  const tableHeaders = [
+    { title: "#", prop: "index", sortable: true },
+    { title: "name", prop: "name", sortable: true, filterable: true },
+    { title: "actions", prop: "actions" },
+  ];
+
+  const onSortFunction = {
+    name(value) {
+      return value.toLowerCase();
+    },
+  };
+
+  const tableBody =
+    advisors &&
+    advisors.map((advisor, i) => {
+      return {
+        index: i + 1,
+        name: advisor.name,
+        actions: (
+          <div>
+            {advisor.categories &&
+            advisor.categories.includes(match.params.slug) ? (
+              <button
+                onClick={() => handleCategory(advisor)}
+                className="btn btn-danger"
+              >
+                Remove
+              </button>
+            ) : (
+              <button
+                onClick={() => handleCategory(advisor)}
+                className="btn btn-success"
+              >
+                Add
+              </button>
+            )}
+          </div>
+        ),
+      };
+    });
+
   return (
     <div>
       {loading && <h1>Loading</h1>}
-      <div className="table-responsive">
-        <table className="table">
-          <thead>
-            <tr>
-              <td>#</td>
-              <td>Name</td>
-              <td>Actions</td>
-            </tr>
-          </thead>
-          <tbody>
-            {advisors.length !== 0 &&
-              advisors.map((advisor, i) => (
-                <tr key={i}>
-                  <td>{i + 1}</td>
-                  <td>{advisor.name}</td>
-                  <td>
-                    {advisor.categories &&
-                    advisor.categories.includes(match.params.slug) ? (
-                      <button
-                        onClick={() => handleCategory(advisor)}
-                        className="btn btn-danger"
-                      >
-                        Remove
-                      </button>
-                    ) : (
-                      <button
-                        onClick={() => handleCategory(advisor)}
-                        className="btn btn-success"
-                      >
-                        Add
-                      </button>
-                    )}
-                  </td>
-                </tr>
-              ))}
-          </tbody>
-        </table>
-      </div>
+      <DataTable
+        tableHeaders={tableHeaders}
+        tableBody={tableBody}
+        initialSort={{ prop: "username", isAscending: true }}
+        onSort={onSortFunction}
+        rowsPerPage={10}
+        rowsPerPageOption={[5, 10, 15, 20, 50]}
+      />
     </div>
   );
 };

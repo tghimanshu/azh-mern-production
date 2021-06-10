@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import http from "../../utils/http";
-import { getRole } from "../../utils/jwt";
+import http from "utils/http";
+import { getRole } from "utils/jwt";
 import { Card, Form } from "react-bootstrap";
-import { successAlert } from "../../utils/alerts";
+import { successAlert } from "utils/alerts";
 import { Link } from "react-router-dom";
 import StepsNav from "./steps_nav";
 

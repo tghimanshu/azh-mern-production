@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import { Badge, Button, FormControl } from "react-bootstrap";
 import ReactQuill from "react-quill";
 import { Link } from "react-router-dom";
-import { dangerAlert, successAlert } from "../../utils/alerts";
-import http from "../../utils/http";
+import { dangerAlert, successAlert } from "utils/alerts";
+import http from "utils/http";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import {
   listFeedbacksAction,
   listFormFeedbacksAction,
   singleFeedbackAction,
-} from "../../redux/actions/actions";
+} from "redux/actions/actions";
 import DataTable from "react-bs-datatable";
 
 export const AdminFeedbacks = () => {

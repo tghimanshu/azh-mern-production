@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Fragment } from "react";
-import SectionTitle from "../../advisor/sectionTitle";
+import SectionTitle from "advisor/sectionTitle";
 
 function Knowledge() {
   return (

@@ -1,10 +1,10 @@
 import React, { useState, useCallback } from "react";
 // import { Redirect } from "react-router-dom";
-import http from "../../utils/http";
-import { successAlert, dangerAlert } from "../../utils/alerts";
+import http from "utils/http";
+import { successAlert, dangerAlert } from "utils/alerts";
 import ReCAPTCHA from "react-google-recaptcha";
-import { CropModel } from "../../utils/model";
-import SectionTitle from "../../advisor/sectionTitle";
+import { CropModel } from "utils/model";
+import SectionTitle from "advisor/sectionTitle";
 
 export const AdvisorRegistor = ({ history }) => {
   const [error, seterror] = useState("");

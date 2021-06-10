@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import jwtDecode from "jwt-decode";
-import http from "../../utils/http";
+import http from "utils/http";
 
 // react-bootstrap components
 import {
@@ -14,8 +14,8 @@ import {
   Row,
   Col,
 } from "react-bootstrap";
-import { dangerAlert, successAlert } from "../../utils/alerts";
-import config from "../../utils/config";
+import { dangerAlert, successAlert } from "utils/alerts";
+import config from "utils/config";
 
 function Profile() {
   const [alert, setalert] = useState("");

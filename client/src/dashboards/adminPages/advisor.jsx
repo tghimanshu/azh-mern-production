@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import http from "../../utils/http";
+import http from "utils/http";
 
 const Advisor = ({ match }) => {
   const [requests, setRequests] = useState(null);

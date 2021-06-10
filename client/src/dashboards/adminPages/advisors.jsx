@@ -1,11 +1,11 @@
-import http from "../../utils/http";
+import http from "utils/http";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Button, Container, FormControl } from "react-bootstrap";
 import ReactQuill from "react-quill";
-import { successAlert, dangerAlert } from "../../utils/alerts";
-import { adminAdvisorsAction } from "../../redux/actions/actions";
+import { successAlert, dangerAlert } from "utils/alerts";
+import { adminAdvisorsAction } from "redux/actions/actions";
 
 const Advisors = () => {
   const dispatch = useDispatch();
@@ -52,6 +52,7 @@ const Advisors = () => {
 
   return (
     <>
+      {loading && <h1>Loading</h1>}
       <Container>
         <Button variant="info mb-3" onClick={() => setShowMail(!showMail)}>
           Mail

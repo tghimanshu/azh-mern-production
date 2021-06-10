@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import http from "../../utils/http";
+import http from "utils/http";
 import { Link } from "react-router-dom";
-import SectionTitle from "../../advisor/sectionTitle";
+import SectionTitle from "advisor/sectionTitle";
 
 export const ClientLogin = ({ history }) => {
   const [error, seterror] = useState("");
