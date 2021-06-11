@@ -13,6 +13,7 @@ import {
   listFormFeedbacksReducer,
   adminAdvisorsReducer,
   adminClientsReducer,
+  blogsReducer,
 } from "./reducers/reducers";
 
 const reducers = combineReducers({
@@ -20,6 +21,7 @@ const reducers = combineReducers({
   categories: categoriesReducer,
   advisors: categoriesAdvisorsReducer,
   elearning: elearingReducer,
+  blog: blogsReducer,
   adminCategories: adminCategoriesReducer,
   adminAdvisors: adminAdvisorsReducer,
   adminClients: adminClientsReducer,

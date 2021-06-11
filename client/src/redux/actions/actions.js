@@ -8,6 +8,9 @@ import {
   ADMIN_CLIENTS_FAIL,
   ADMIN_CLIENTS_REQUEST,
   ADMIN_CLIENTS_SUCCESS,
+  BLOG_FAIL,
+  BLOG_REQUEST,
+  BLOG_SUCCESS,
   CATEGORIES_ADV_FAIL,
   CATEGORIES_ADV_REQUEST,
   CATEGORIES_ADV_SUCCESS,
@@ -167,6 +170,29 @@ export const listELearningAction = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: ELEARNING_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+// * BLOG
+
+export const listBlogAction = () => async (dispatch) => {
+  try {
+    dispatch({
+      type: BLOG_REQUEST,
+    });
+    const { data } = await http.get("/blog");
+    dispatch({
+      type: BLOG_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: BLOG_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

@@ -385,6 +385,19 @@ const Elearning = mongoose.model(
   })
 );
 
+const Blog = mongoose.model(
+  "Blog",
+  new mongoose.Schema({
+    title: String,
+    link: String,
+    content: String,
+    slug: String,
+    category: String,
+    image: String,
+    author: String,
+  })
+);
+
 // * GENERATING TOKENS
 
 clientSchema.methods.generateAuthToken = function () {
@@ -502,6 +515,7 @@ module.exports = {
   Page,
   Booking,
   Elearning,
+  Blog,
   FeedbackForm,
   Feedback,
   adminValidate,

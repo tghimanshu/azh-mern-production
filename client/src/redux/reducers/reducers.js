@@ -8,6 +8,9 @@ import {
   ADMIN_CLIENTS_FAIL,
   ADMIN_CLIENTS_REQUEST,
   ADMIN_CLIENTS_SUCCESS,
+  BLOG_FAIL,
+  BLOG_REQUEST,
+  BLOG_SUCCESS,
   CATEGORIES_ADV_FAIL,
   CATEGORIES_ADV_REQUEST,
   CATEGORIES_ADV_SUCCESS,
@@ -96,6 +99,19 @@ export const elearingReducer = (state = { elearnings: [] }, action) => {
     case ELEARNING_SUCCESS:
       return { loading: false, elearnings: action.payload };
     case ELEARNING_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const blogsReducer = (state = { blogs: [] }, action) => {
+  switch (action.type) {
+    case BLOG_REQUEST:
+      return { loading: true, blogs: [] };
+    case BLOG_SUCCESS:
+      return { loading: false, blogs: action.payload };
+    case BLOG_FAIL:
       return { loading: false, error: action.payload };
     default:
       return state;
