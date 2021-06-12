@@ -29,6 +29,9 @@ import {
   PAGE_FAIL,
   PAGE_REQUEST,
   PAGE_SUCCESS,
+  SINGLE_BLOG_FAIL,
+  SINGLE_BLOG_REQUEST,
+  SINGLE_BLOG_SUCCESS,
   SINGLE_FEEDBACK_FAIL,
   SINGLE_FEEDBACK_REQUEST,
   SINGLE_FEEDBACK_SUCCESS,
@@ -193,6 +196,27 @@ export const listBlogAction = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: BLOG_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const singleBlogAction = (slug) => async (dispatch) => {
+  try {
+    dispatch({
+      type: SINGLE_BLOG_REQUEST,
+    });
+    const { data } = await http.get("/blog/" + slug);
+    dispatch({
+      type: SINGLE_BLOG_SUCCESS,
+      payload: data[0],
+    });
+  } catch (error) {
+    dispatch({
+      type: SINGLE_BLOG_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

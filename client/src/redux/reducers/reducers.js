@@ -29,6 +29,9 @@ import {
   PAGE_FAIL,
   PAGE_REQUEST,
   PAGE_SUCCESS,
+  SINGLE_BLOG_FAIL,
+  SINGLE_BLOG_REQUEST,
+  SINGLE_BLOG_SUCCESS,
   SINGLE_FEEDBACK_FAIL,
   SINGLE_FEEDBACK_REQUEST,
   SINGLE_FEEDBACK_SUCCESS,
@@ -112,6 +115,19 @@ export const blogsReducer = (state = { blogs: [] }, action) => {
     case BLOG_SUCCESS:
       return { loading: false, blogs: action.payload };
     case BLOG_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const singleBlogReducer = (state = { post: null }, action) => {
+  switch (action.type) {
+    case SINGLE_BLOG_REQUEST:
+      return { loading: true, post: null };
+    case SINGLE_BLOG_SUCCESS:
+      return { loading: false, post: action.payload };
+    case SINGLE_BLOG_FAIL:
       return { loading: false, error: action.payload };
     default:
       return state;

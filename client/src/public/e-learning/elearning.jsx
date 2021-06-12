@@ -1,9 +1,15 @@
 import { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import config from "utils/config";
 import LoadingScreen from "utils/loadingScreen";
 import SectionTitle from "advisor/sectionTitle";
-import { listBlogAction, listELearningAction } from "redux/actions/actions";
+import parse from "html-react-parser";
+import {
+  listBlogAction,
+  listELearningAction,
+  singleBlogAction,
+} from "redux/actions/actions";
 import { Nav, Tab } from "react-bootstrap";
 
 const Blogs = () => {
@@ -30,12 +36,7 @@ const Blogs = () => {
                   zIndex: -2,
                 }}
               />
-              <a
-                href={elearning.link}
-                className="e-learning-a"
-                target="_blank"
-                rel="noreferrer"
-              >
+              <Link to={`/post/${elearning.slug}`} className="e-learning-a">
                 <div className="e-learning-div" style={{ height: "100%" }}>
                   <div className="row" style={{ height: "100%" }}>
                     <div
@@ -51,7 +52,7 @@ const Blogs = () => {
                     </div>
                   </div>
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
         ))}
@@ -224,6 +225,47 @@ const ELearningTab = () => {
           </Tab.Content>
         </Tab.Container>
       </div>
+    </Fragment>
+  );
+};
+
+export const SinglePost = ({ match }) => {
+  const dispatch = useDispatch();
+  const singlePost = useSelector((state) => state.singlePost);
+  const { loading, post, error } = singlePost;
+
+  useEffect(() => {
+    dispatch(singleBlogAction(match.params.slug));
+  }, [dispatch, match]);
+
+  return (
+    <Fragment>
+      {loading && <LoadingScreen />}
+      {error && console.log(error)}
+      {post && (
+        <Fragment>
+          {console.log(post)}
+          <SectionTitle
+            title="one Single Post"
+            breadcrumbs={[
+              { link: "/", name: "Home" },
+              {
+                link: `/post/${match.params.slug}`,
+                name: post.title,
+                active: true,
+              },
+            ]}
+          />
+          <div className="container px-md-5 mb-4">
+            <img
+              src={post.image}
+              alt=""
+              className="img-responsive img-thumbnail mb-4"
+            />
+            {parse(post.content)}
+          </div>
+        </Fragment>
+      )}
     </Fragment>
   );
 };

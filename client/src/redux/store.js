@@ -14,6 +14,7 @@ import {
   adminAdvisorsReducer,
   adminClientsReducer,
   blogsReducer,
+  singleBlogReducer,
 } from "./reducers/reducers";
 
 const reducers = combineReducers({
@@ -22,6 +23,7 @@ const reducers = combineReducers({
   advisors: categoriesAdvisorsReducer,
   elearning: elearingReducer,
   blog: blogsReducer,
+  singlePost: singleBlogReducer,
   adminCategories: adminCategoriesReducer,
   adminAdvisors: adminAdvisorsReducer,
   adminClients: adminClientsReducer,

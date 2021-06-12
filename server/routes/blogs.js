@@ -27,8 +27,8 @@ const adminAuth = (req, res, next) => {
   }
 };
 
-router.get("/:id", async (req, res) => {
-  const result = await Blog.findById(req.params.id);
+router.get("/:slug", async (req, res) => {
+  const result = await Blog.find({ slug: req.params.slug });
   res.send(result);
   res.end();
 });

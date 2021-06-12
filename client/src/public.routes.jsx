@@ -17,6 +17,7 @@ import { FPAdvisorRegister } from "./public/login_register/advisorRegistor";
 import { FPAdvisorLogin } from "./public/login_register/advisor_login";
 import { FPClientRegister } from "./public/login_register/client_registor";
 import { FPClientLogin } from "./public/login_register/client_login";
+import { SinglePost } from "public/e-learning/elearning";
 // import VideoCall from "./public/videoCall";
 
 const PublicRoutes = () => {
@@ -35,6 +36,7 @@ const PublicRoutes = () => {
         <Route exact path="/advisorRegister" component={FPAdvisorRegister} />
         <Route exact path="/knowledge-base" component={Knowledge} />
         <Route exact path="/e-learning" component={ELearning} />
+        <Route exact path="/post/:slug" component={SinglePost} />
         <Route exact path="/feedback/:id" component={Feedback} />
         <Route exact path="/page/:slug" component={Page} />
         <Route exact path="/advisors/:username" component={SingleAdvisor} />
