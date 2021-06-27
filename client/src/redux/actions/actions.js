@@ -8,6 +8,9 @@ import {
   ADMIN_CLIENTS_FAIL,
   ADMIN_CLIENTS_REQUEST,
   ADMIN_CLIENTS_SUCCESS,
+  ALTER_USER_FAIL,
+  ALTER_USER_REQUEST,
+  ALTER_USER_SUCCESS,
   BLOG_FAIL,
   BLOG_REQUEST,
   BLOG_SUCCESS,
@@ -150,6 +153,27 @@ export const getUserAction = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: USER_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const alterUserAction = (id, body) => async (dispatch) => {
+  try {
+    dispatch({
+      type: ALTER_USER_REQUEST,
+    });
+    const { data } = await http.put("/client/" + id, body);
+    dispatch({
+      type: ALTER_USER_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: ALTER_USER_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

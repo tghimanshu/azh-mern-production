@@ -94,6 +94,14 @@ const Clients = () => {
       return value.toLowerCase();
     },
   };
+  const handleMiniSheetRequest = async (e, id) => {
+    try {
+      e.target.disabled = true;
+      await http.get(`/admin/client/incminisheets/${id}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const tableBody =
     clients &&
@@ -121,6 +129,17 @@ const Clients = () => {
               <Button variant="success mr-2" disabled>
                 Assigned
               </Button>
+            )}
+            {!client.miniSheet ? (
+              <Button
+                variant="info mr-2"
+                onClick={(e) => handleMiniSheetRequest(e, client._id)}
+              >
+                Send MS{" "}
+                {client.miniSheetRequests && `(${client.miniSheetRequests})`}
+              </Button>
+            ) : (
+              <Button variant="info mr-2">View MS</Button>
             )}
             <Link to={"/admin/client/" + client._id}>
               <svg

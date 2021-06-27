@@ -1,5 +1,5 @@
 import { Switch, Route } from "react-router-dom";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import Footer from "./public/Footer";
 import Navbar from "./public/Navbar";
 import Home from "./public/home/Home";
@@ -18,6 +18,9 @@ import { FPAdvisorLogin } from "./public/login_register/advisor_login";
 import { FPClientRegister } from "./public/login_register/client_registor";
 import { FPClientLogin } from "./public/login_register/client_login";
 import { SinglePost } from "public/e-learning/elearning";
+import { userReducer } from "redux/reducers/reducers";
+import { getRole } from "utils/jwt";
+import Swal from "sweetalert2";
 // import VideoCall from "./public/videoCall";
 
 const PublicRoutes = () => {
@@ -25,6 +28,7 @@ const PublicRoutes = () => {
     <Fragment>
       <Navbar />
       <Switch>
+        <Route exact path="/checkminisheet" component={CheckMS} />
         <Route exact path="/categories/:slug" component={AllAdvisors} />
         <Route exact path="/categories" component={AdvisorCategories} />
         {/* <Route exact path="/videocall" component={VideoCall} /> */}
@@ -51,6 +55,20 @@ const PublicRoutes = () => {
       <Footer />
     </Fragment>
   );
+};
+
+const CheckMS = ({ history }) => {
+  useEffect(() => {
+    const user = getRole();
+    !user &&
+      Swal.fire({
+        icon: "error",
+        title: "Lgoin Required",
+        confirmButtonText: "Ok",
+      }).then((value) => history.push("/login"));
+    user && history.push("/client/minisheet");
+  });
+  return <div>check minisheet</div>;
 };
 
 export default PublicRoutes;

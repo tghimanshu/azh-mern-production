@@ -27,6 +27,7 @@
     "react-scripts": "^4.0.3",
     "react-share": "^4.3.1",
     "react-step-wizard": "^5.3.5",
+    "react-xml-parser": "^1.1.8",
     "redux": "^4.1.0",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.3.0",

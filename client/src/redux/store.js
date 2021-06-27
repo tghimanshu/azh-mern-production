@@ -15,6 +15,8 @@ import {
   adminClientsReducer,
   blogsReducer,
   singleBlogReducer,
+  userReducer,
+  AlterUserReducer,
 } from "./reducers/reducers";
 
 const reducers = combineReducers({
@@ -31,6 +33,8 @@ const reducers = combineReducers({
   feedbacks: listFeedbacksReducer,
   singleFeedback: singleFeedbackReducer,
   formFeedbacks: listFormFeedbacksReducer,
+  user: userReducer,
+  alteredUser: AlterUserReducer,
 });
 
 const initialState = {};

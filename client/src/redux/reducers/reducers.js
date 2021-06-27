@@ -8,6 +8,9 @@ import {
   ADMIN_CLIENTS_FAIL,
   ADMIN_CLIENTS_REQUEST,
   ADMIN_CLIENTS_SUCCESS,
+  ALTER_USER_FAIL,
+  ALTER_USER_REQUEST,
+  ALTER_USER_SUCCESS,
   BLOG_FAIL,
   BLOG_REQUEST,
   BLOG_SUCCESS,
@@ -89,6 +92,19 @@ export const userReducer = (state = { user: null }, action) => {
     case USER_SUCCESS:
       return { loading: false, user: action.payload };
     case USER_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const AlterUserReducer = (state = { user: null }, action) => {
+  switch (action.type) {
+    case ALTER_USER_REQUEST:
+      return { loading: true, user: null };
+    case ALTER_USER_SUCCESS:
+      return { loading: false, user: action.payload };
+    case ALTER_USER_FAIL:
       return { loading: false, error: action.payload };
     default:
       return state;

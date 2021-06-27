@@ -15,7 +15,11 @@ const jwt = require("jsonwebtoken");
 const config = require("config");
 const converter = require("json-2-csv");
 const fs = require("fs");
-const { bulkMail } = require("../mail");
+const {
+  bulkMail,
+  clientMiniSheetRequest,
+  feedbackMiniSheetRequest,
+} = require("../mail");
 const { userInfo } = require("os");
 
 const adminAuth = (req, res, next) => {
@@ -214,24 +218,29 @@ router.put("/advisors/approve/:id", adminAuth, async (req, res) => {
   }
 });
 
-router.put("/:status/:id", adminAuth, async () => {
-  const advisor = await Advisor.findById(req.params.id);
-  if (!advisor)
-    return res.status(400).send("User Doesn't Exist, Please Register!");
-  switch (req.params.satus) {
-    case "approve":
-      advisor.recc_amt = req.body.request.amount;
-      advisor.recc_change[req.body.index].isApproved = "approved";
-      return res.send("Approved!");
-    case "reject":
-      advisor.recc_change[req.body.index].isApproved = "rejected";
-      return res.send("Rejected!");
-    default:
-      break;
+// * FEEDBACKS
+
+router.get("/feedbacks/checkRegistrations", async (req, res) => {
+  try {
+    const fbs = await Feedback.find();
+    console.log("started");
+    fbs.map(async (feedback) => {
+      const client = await Client.findOne({
+        email: feedback.answers.length > 1 && feedback.answers[1].value,
+      });
+      if (!client) return;
+      feedback.registered = {
+        value: true,
+        id: client._id,
+      };
+      await feedback.save();
+      return;
+    });
+    res.send("done");
+  } catch (error) {
+    console.log(error);
   }
 });
-
-// * FEEDBACKS
 
 router.get("/feedbacks/:id", async (req, res) => {
   try {
@@ -297,6 +306,46 @@ router.get("/feedbacks/export/:id", async (req, res) => {
   } catch (err) {
     console.log("err");
   }
+});
+
+router.get("/feedback/incminisheets/:id", async (req, res) => {
+  try {
+    const client = await Feedback.findById(req.params.id);
+    if (!client) return res.status(404).send("Feedback not found");
+    !client.miniSheetRequests
+      ? (client.miniSheetRequests = 1)
+      : (client.miniSheetRequests += 1);
+    await client.save();
+    feedbackMiniSheetRequest(client.answers[1].value, client.answers[0].value);
+    return res.send("done");
+  } catch (error) {}
+});
+
+router.get("/client/incminisheets/:id", async (req, res) => {
+  try {
+    const client = await Client.findById(req.params.id);
+    if (!client) return res.status(404).send("Feedback not found");
+    !client.miniSheetRequests
+      ? (client.miniSheetRequests = 1)
+      : (client.miniSheetRequests += 1);
+    clientMiniSheetRequest(client.email, client.name);
+    await client.save();
+    return res.send("done");
+  } catch (error) {}
+});
+
+router.get("/feedback/incminisheets/;id", async (req, res) => {
+  try {
+    const fb = await Feedback.findById(req.params.id);
+    if (!fb) return res.status(404).send("Feedback not found");
+    console.log("prev", fb.miniSheetRequests);
+    !fb.miniSheetRequests
+      ? (fb.miniSheetRequests = 0)
+      : (fb.miniSheetRequests += 1);
+    console.log("new", fb.miniSheetRequests);
+    fb.save();
+    return res.send("done");
+  } catch (error) {}
 });
 
 //  * BULK MAILS
@@ -380,6 +429,23 @@ router.put("/hpdata", (req, res) => {
     );
   } catch (err) {
     res.send("error");
+  }
+});
+
+router.put("/:status/:id", adminAuth, async () => {
+  const advisor = await Advisor.findById(req.params.id);
+  if (!advisor)
+    return res.status(400).send("User Doesn't Exist, Please Register!");
+  switch (req.params.satus) {
+    case "approve":
+      advisor.recc_amt = req.body.request.amount;
+      advisor.recc_change[req.body.index].isApproved = "approved";
+      return res.send("Approved!");
+    case "reject":
+      advisor.recc_change[req.body.index].isApproved = "rejected";
+      return res.send("Rejected!");
+    default:
+      break;
   }
 });
 

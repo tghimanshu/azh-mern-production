@@ -46,6 +46,15 @@ export const AdminFeedbacks = () => {
     }
   };
 
+  const handleMiniSheetRequest = async (e, id) => {
+    try {
+      e.target.disabled = true;
+      await http.get(`/admin/feedback/incminisheets/${id}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleCalled = async (e, id) => {
     try {
       e.preventDefault();
@@ -76,6 +85,15 @@ export const AdminFeedbacks = () => {
         e.target.innerText = opts[value];
       }
     } catch (err) {}
+  };
+
+  const handleUpdateList = async () => {
+    try {
+      const data = await http.get("/admin/feedbacks/checkRegistrations");
+      data && dispatch(listFeedbacksAction());
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleAssignment = async (e, id) => {
@@ -166,6 +184,21 @@ export const AdminFeedbacks = () => {
               feedback.called.value === true && (
                 <Badge variant="info mr-2">{feedback.called.message}</Badge>
               )}
+            {feedback.registered && (
+              <Link
+                to={"/admin/client/" + feedback.registered.id}
+                className="btn btn-info mr-2"
+              >
+                Profile
+              </Link>
+            )}
+            <Button
+              variant="info mr-2"
+              onClick={(e) => handleMiniSheetRequest(e, feedback._id)}
+            >
+              Send MS
+              {feedback.miniSheetRequests && `(${feedback.miniSheetRequests})`}
+            </Button>
             <Link
               to={"/admin/feedback/" + feedback._id}
               className="btn btn-success"
@@ -227,6 +260,9 @@ export const AdminFeedbacks = () => {
         rowsPerPage={10}
         rowsPerPageOption={[5, 10, 15, 20, 50]}
       />
+      <Button variant="warning" onClick={handleUpdateList}>
+        Update List
+      </Button>
     </>
   );
 };

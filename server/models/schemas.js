@@ -294,6 +294,8 @@ const clientSchema = new mongoose.Schema({
     default: true,
   },
   assigned: Object,
+  miniSheet: Object,
+  miniSheetRequests: Number,
 });
 
 const bookingSchema = new mongoose.Schema({
@@ -362,6 +364,8 @@ const feedbackSchema = new mongoose.Schema(
     answers: Array,
     assigned: Object,
     called: Object,
+    registered: Object,
+    miniSheetRequests: Number,
   },
   { strict: false }
 );

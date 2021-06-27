@@ -324,6 +324,60 @@ const bulkMail = (emails, subject, body) => {
   }
 };
 
+const clientMiniSheetRequest = (email, name) => {
+  if (config.get("mailing")) {
+    const mailData = {
+      from: config.get("mailingData.mail"),
+      to: email,
+      subject: `${name}, Your Mini Financial Sheet is Here!`,
+      html: `<h1>Get Advised by the Professional Advisors.</h1>
+      <p> Please Follow the below link to fill out the provided sheet.</p>
+      <a href="https://advisorzaroorihai.com/checkminisheet">Get MiniSheet</a>
+      <br />
+      <br />
+      Regards,<br />
+      Advisor Zaroori Hai`,
+    };
+
+    transporter.sendMail(mailData, function (err, info) {
+      if (err) {
+        console.log(err);
+        return Error("Mail Send Error!");
+      }
+      if (info) {
+        console.log(info);
+      }
+    });
+  }
+};
+
+const feedbackMiniSheetRequest = (email, name) => {
+  if (config.get("mailing")) {
+    const mailData = {
+      from: config.get("mailingData.mail"),
+      to: email,
+      subject: `${name}, Your Mini Financial Sheet is Here!`,
+      html: `<h1>Get Advised by the Professional Advisors.</h1>
+      <p> Please Follow the below link to fill out the provided sheet.</p>
+      <a href="https://advisorzaroorihai.com/checkminisheet">Get MiniSheet</a>
+      <br />
+      <br />
+      Regards,<br />
+      Advisor Zaroori Hai`,
+    };
+
+    transporter.sendMail(mailData, function (err, info) {
+      if (err) {
+        console.log(err);
+        return Error("Mail Send Error!");
+      }
+      if (info) {
+        console.log(info);
+      }
+    });
+  }
+};
+
 module.exports = {
   clientRegistration,
   clientForgotPassword,
@@ -333,4 +387,6 @@ module.exports = {
   advisorReccMadeMail,
   bulkMail,
   feedbackCertificate,
+  clientMiniSheetRequest,
+  feedbackMiniSheetRequest,
 };
