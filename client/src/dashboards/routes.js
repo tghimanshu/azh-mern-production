@@ -33,7 +33,7 @@ import ClientSheet from "./clientPages/sheet";
 import ClientDashboard from "./clientPages/dashboard";
 import ClientLiability from "./clientPages/liabilities";
 import ClientAsset from "./clientPages/assets";
-import { MiniSheet } from "./clientPages/MiniSheet";
+import { MiniSheet } from "./adminPages/MiniSheet";
 import { AdminCategories, AdminSingleCategory } from "./adminPages/categories";
 
 export const routes = {
@@ -66,6 +66,12 @@ export const routes = {
       path: "/admin/advisor/:id",
       name: "Advisor",
       component: AdminAdvisor,
+      onMenu: false,
+    },
+    {
+      path: "/admin/client/:id/minisheet",
+      name: "Mini Sheet",
+      component: MiniSheet,
       onMenu: false,
     },
     {

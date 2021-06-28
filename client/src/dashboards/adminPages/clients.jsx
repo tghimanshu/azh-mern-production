@@ -139,7 +139,12 @@ const Clients = () => {
                 {client.miniSheetRequests && `(${client.miniSheetRequests})`}
               </Button>
             ) : (
-              <Button variant="info mr-2">View MS</Button>
+              <Link
+                to={`/admin/client/${client._id}/minisheet`}
+                className="btn btn-info mr-2"
+              >
+                View MS
+              </Link>
             )}
             <Link to={"/admin/client/" + client._id}>
               <svg
