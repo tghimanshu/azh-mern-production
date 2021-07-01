@@ -5,14 +5,18 @@ import "./sectionTitle.css";
 
 const SectionTitle = (props) => {
   const capitalize = (input) => {
-    var words = input.split("-");
-    var CapitalizedWords = [];
-    words.forEach((element) => {
-      CapitalizedWords.push(
-        element[0].toUpperCase() + element.slice(1, element.length)
-      );
-    });
-    return CapitalizedWords.join(" ");
+    try {
+      var words = input.split("-");
+      var CapitalizedWords = [];
+      words.forEach((element) => {
+        CapitalizedWords.push(
+          element[0].toUpperCase() + element.slice(1, element.length)
+        );
+      });
+      return CapitalizedWords.join(" ");
+    } catch (error) {
+      return input;
+    }
   };
 
   return (

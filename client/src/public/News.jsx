@@ -1,10 +1,10 @@
-// import SectionTitle from "advisor/sectionTitle";
+import SectionTitle from "advisor/sectionTitle";
 import parse from "html-react-parser";
 import axios from "axios";
 import { Fragment, useEffect, useState } from "react";
 import XMLParser from "react-xml-parser";
 
-export const Singlexml = ({ match }) => {
+export const SingleNews = ({ match }) => {
   const [xml, setXml] = useState(null);
   useEffect(() => {
     const getNewsXML = async () => {
@@ -19,7 +19,7 @@ export const Singlexml = ({ match }) => {
         );
 
         const data = new XMLParser().parseFromString(res.data);
-
+        console.log(data);
         const mydata = data.getElementsByTagName("item").map((item) => {
           const title = item.getElementsByTagName("title")[0].value;
           const link = item.getElementsByTagName("link")[0].value;
@@ -27,6 +27,7 @@ export const Singlexml = ({ match }) => {
           const guid = item.getElementsByTagName("guid")[0].value;
           const category = item.getElementsByTagName("category")[0].value;
           const author = item.getElementsByTagName("atom:name")[0].value;
+          const content = item.getElementsByTagName("content:encoded")[0].value;
           return {
             title: title,
             link: link,
@@ -34,6 +35,7 @@ export const Singlexml = ({ match }) => {
             guid: guid,
             category: category,
             author: author,
+            content: content,
           };
         });
         setXml(mydata.filter((i) => i.guid === match.params.guid)[0]);
@@ -48,24 +50,24 @@ export const Singlexml = ({ match }) => {
     <Fragment>
       {xml && (
         <Fragment>
-          {/* <SectionTitle
+          <SectionTitle
             title="one Single xml"
             breadcrumbs={[
               { link: "/", name: "Home" },
               {
                 link: `/news/${match.params.guid}`,
-                name: xml.guid,
+                name: xml.title,
                 active: true,
               },
             ]}
-          /> */}
+          />
           <div className="container px-md-5 mb-4">
             <img
               src={xml.image}
               alt=""
-              className="img-responsive img-thumbnail mb-4"
+              className="img-responsive img-thumbnail mb-4 mx-4"
             />
-            {parse(xml.title)}
+            {parse(xml.content)}
           </div>
         </Fragment>
       )}

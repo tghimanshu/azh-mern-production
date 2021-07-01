@@ -21,6 +21,7 @@ import { SinglePost } from "public/e-learning/elearning";
 import { userReducer } from "redux/reducers/reducers";
 import { getRole } from "utils/jwt";
 import Swal from "sweetalert2";
+import { SingleNews } from "public/News";
 // import VideoCall from "./public/videoCall";
 
 const PublicRoutes = () => {
@@ -29,7 +30,7 @@ const PublicRoutes = () => {
       <Navbar />
       <Switch>
         <Route exact path="/checkminisheet" component={CheckMS} />
-        <Route exact path="/news/:guid" component={AllAdvisors} />
+        <Route exact path="/news/:guid" component={SingleNews} />
         <Route exact path="/categories/:slug" component={AllAdvisors} />
         <Route exact path="/categories" component={AdvisorCategories} />
         {/* <Route exact path="/videocall" component={VideoCall} /> */}
