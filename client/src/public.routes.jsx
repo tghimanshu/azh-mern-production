@@ -29,6 +29,7 @@ const PublicRoutes = () => {
       <Navbar />
       <Switch>
         <Route exact path="/checkminisheet" component={CheckMS} />
+        <Route exact path="/news/:guid" component={AllAdvisors} />
         <Route exact path="/categories/:slug" component={AllAdvisors} />
         <Route exact path="/categories" component={AdvisorCategories} />
         {/* <Route exact path="/videocall" component={VideoCall} /> */}

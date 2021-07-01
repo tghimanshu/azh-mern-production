@@ -1,10 +1,14 @@
-import { Fragment, useEffect } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Fragment, useEffect, useState } from "react";
+import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Plyr from "plyr-react";
 import { useDispatch, useSelector } from "react-redux";
 import { listELearningAction } from "redux/actions/actions";
+import Carousel from "react-multi-carousel";
+import XMLParser from "react-xml-parser";
+import axios from "axios";
 import "plyr-react/dist/plyr.css";
+import "react-multi-carousel/lib/styles.css";
 
 export function HeroSection() {
   return (
@@ -71,7 +75,7 @@ export function WhoAreWe() {
   );
 }
 
-export function News() {
+export function HPElearning() {
   const dispatch = useDispatch();
 
   const eLearningList = useSelector((state) => state.elearning);
@@ -136,6 +140,116 @@ export function News() {
       </Row>
     </Container>
   );
+}
+
+export function News() {
+  const [xml, setXml] = useState([]);
+  useEffect(() => {
+    const getNewsXML = async () => {
+      try {
+        const res = await axios.get(
+          "https://www.freepressjournal.in/stories.rss?section-id=9759&format=jio-news",
+          {
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+            },
+          }
+        );
+
+        const data = new XMLParser().parseFromString(res.data);
+        console.log(data);
+
+        const mydata = data.getElementsByTagName("item").map((item) => {
+          const title = item.getElementsByTagName("title")[0].value;
+          const link = item.getElementsByTagName("link")[0].value;
+          const image = item.getElementsByTagName("image")[0].value;
+          const guid = item.getElementsByTagName("guid")[0].value;
+          const category = item.getElementsByTagName("category")[0].value;
+          const author = item.getElementsByTagName("atom:name")[0].value;
+          return {
+            title: title,
+            link: link,
+            image: image,
+            guid: guid,
+            category: category,
+            author: author,
+          };
+        });
+        setXml(mydata);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getNewsXML();
+  }, []);
+  if (xml.length !== 0) {
+    return (
+      <div className="py-2 bg-fa">
+        <Container className="mt-5">
+          <div>
+            <h2 className="d-block monsterrat-40-700 text-center mb-5">News</h2>
+          </div>
+          <div className="news-carousel">
+            <Carousel
+              responsive={{
+                desktop: {
+                  breakpoint: { max: 13000, min: 1024 },
+                  items: 4,
+                },
+              }}
+              pauseOnHover={true}
+              infinite={true}
+              arrows={true}
+              swipeable={true}
+              autoPlay={true}
+              draggable={true}
+            >
+              {xml.length !== 0 &&
+                xml.map((item, i) => {
+                  return (
+                    <Card className="mx-2" key={i} style={{ height: "340px" }}>
+                      {/* <Card.Img variant="top" src={item.image} /> */}
+                      <div
+                        style={{
+                          width: "100%",
+                          height: "200px",
+                          background: `url('${item.image}') no-repeat top center/cover`,
+                          position: "relative",
+                        }}
+                      >
+                        <div
+                          className="px-3 py-1 bg-light"
+                          style={{
+                            position: "absolute",
+                            right: "15px",
+                            bottom: "15px",
+                          }}
+                        >
+                          {item.category}
+                        </div>
+                      </div>
+                      <Card.Body className="d-flex align-items-center">
+                        <Card.Text className="monsterrat-20 text-center">
+                          <Link
+                            class="a-unstyled"
+                            to={`/news/${item.guid}`}
+                            unselectable={true}
+                          >
+                            {item.title}
+                          </Link>
+                        </Card.Text>
+                      </Card.Body>
+                    </Card>
+                  );
+                })}
+            </Carousel>
+          </div>
+        </Container>
+      </div>
+    );
+  } else {
+    return <div></div>;
+  }
 }
 
 export function Blogs() {
