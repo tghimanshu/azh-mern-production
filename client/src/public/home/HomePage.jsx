@@ -230,13 +230,13 @@ export function News() {
                       </div>
                       <Card.Body className="d-flex align-items-center">
                         <Card.Text className="monsterrat-20 text-center">
-                          <Link
+                          <a
                             class="a-unstyled"
-                            to={`/news/${item.guid}`}
-                            unselectable={true}
+                            href={item.link}
+                            ref="noreferrer"
                           >
                             {item.title}
-                          </Link>
+                          </a>
                         </Card.Text>
                       </Card.Body>
                     </Card>
