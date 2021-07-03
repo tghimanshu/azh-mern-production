@@ -18,6 +18,12 @@ const category = require("./routes/category");
 const cors = require("cors");
 const fs = require("fs");
 const { config } = require("exceljs");
+let Parser = require("rss-parser");
+let parser = new Parser({
+  customFields: {
+    item: ["image"],
+  },
+});
 
 app.use(express.json());
 
@@ -37,9 +43,19 @@ app.use("/api/blog", blog);
 app.use("/api/helpers", helpers);
 app.use("/api/payment", payment);
 app.use("/api/feedback", feedback);
+app.get("/api/news", async (req, res) => {
+  try {
+    let feed = await parser.parseURL(
+      "https://www.freepressjournal.in/stories.rss?section-id=9759&format=jio-news"
+    );
+    res.json(feed.items);
+  } catch (error) {
+    console.log(error);
+  }
+});
 app.get("/", (req, res) => {
   res.json({
-    status: "Ok",
+    status: "OK",
   });
 });
 // socket(io);

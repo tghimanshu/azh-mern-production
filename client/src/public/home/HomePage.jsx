@@ -1,14 +1,13 @@
 import { Fragment, useEffect, useState } from "react";
-import { Button, Card, Col, Container, Row } from "react-bootstrap";
+import { Card, Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Plyr from "plyr-react";
 import { useDispatch, useSelector } from "react-redux";
 import { listELearningAction } from "redux/actions/actions";
 import Carousel from "react-multi-carousel";
-import XMLParser from "react-xml-parser";
-import axios from "axios";
 import "plyr-react/dist/plyr.css";
 import "react-multi-carousel/lib/styles.css";
+import http from "utils/http";
 
 export function HeroSection() {
   return (
@@ -147,35 +146,9 @@ export function News() {
   useEffect(() => {
     const getNewsXML = async () => {
       try {
-        const res = await axios.get(
-          "https://www.freepressjournal.in/stories.rss?section-id=9759&format=jio-news",
-          {
-            headers: {
-              "Access-Control-Allow-Origin": "*",
-            },
-          }
-        );
-
-        const data = new XMLParser().parseFromString(res.data);
+        const data = await http.get("/news");
         console.log(data);
-
-        const mydata = data.getElementsByTagName("item").map((item) => {
-          const title = item.getElementsByTagName("title")[0].value;
-          const link = item.getElementsByTagName("link")[0].value;
-          const image = item.getElementsByTagName("image")[0].value;
-          const guid = item.getElementsByTagName("guid")[0].value;
-          const category = item.getElementsByTagName("category")[0].value;
-          const author = item.getElementsByTagName("atom:name")[0].value;
-          return {
-            title: title,
-            link: link,
-            image: image,
-            guid: guid,
-            category: category,
-            author: author,
-          };
-        });
-        setXml(mydata);
+        setXml(data.data);
       } catch (error) {
         console.log(error);
       }
@@ -207,8 +180,12 @@ export function News() {
               {xml.length !== 0 &&
                 xml.map((item, i) => {
                   return (
-                    <Card className="mx-2" key={i} style={{ height: "340px" }}>
-                      {/* <Card.Img variant="top" src={item.image} /> */}
+                    <Card
+                      className="mx-2"
+                      key={i}
+                      style={{ height: "340px", cursor: "pointer" }}
+                      onClick={() => (window.location = item.link)}
+                    >
                       <div
                         style={{
                           width: "100%",
@@ -225,18 +202,18 @@ export function News() {
                             bottom: "15px",
                           }}
                         >
-                          {item.category}
+                          {item.categories[0]}
                         </div>
                       </div>
                       <Card.Body className="d-flex align-items-center">
                         <Card.Text className="monsterrat-20 text-center">
-                          <a
+                          {/* <a
                             class="a-unstyled"
-                            href={item.link}
+                            href={"" + item.link}
                             ref="noreferrer"
-                          >
-                            {item.title}
-                          </a>
+                          > */}
+                          {item.title}
+                          {/* </a> */}
                         </Card.Text>
                       </Card.Body>
                     </Card>
