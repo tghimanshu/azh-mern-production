@@ -200,6 +200,8 @@ export function News() {
                             position: "absolute",
                             right: "15px",
                             bottom: "15px",
+                            background: "linear-gradient(#fff, #CFEFE4)",
+                            border: "2px solid #CFEFE4",
                           }}
                         >
                           {item.categories[0]}
@@ -220,6 +222,15 @@ export function News() {
                   );
                 })}
             </Carousel>
+            <div className="text-right">
+              Powered by -{" "}
+              <a
+                className="text-danger"
+                href="https://www.freepressjournal.in/"
+              >
+                Free Press
+              </a>
+            </div>
           </div>
         </Container>
       </div>
