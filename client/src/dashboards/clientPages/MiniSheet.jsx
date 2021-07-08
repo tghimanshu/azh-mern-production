@@ -37,7 +37,7 @@ export function MiniSheet() {
   return (
     <>
       {alert}
-      {user && user.miniSheet && (
+      {user && (
         <Form onSubmit={handleSubmit(onDataSubmit)}>
           <Card>
             <Card.Header>
