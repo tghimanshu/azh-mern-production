@@ -59,7 +59,9 @@ export function MiniSheet() {
                       <FormControl
                         placeholder="Enter Name *"
                         defaultValue={
-                          user.miniSheet.name_1 && user.miniSheet.name_1
+                          user.miniSheet &&
+                          user.miniSheet.name_1 &&
+                          user.miniSheet.name_1
                         }
                         {...register("name_1", { required: true })}
                       />
@@ -72,7 +74,9 @@ export function MiniSheet() {
                         placeholder="Enter Age *"
                         type="number"
                         defaultValue={
-                          user.miniSheet.age_1 && user.miniSheet.age_1
+                          user.miniSheet &&
+                          user.miniSheet.age_1 &&
+                          user.miniSheet.age_1
                         }
                         {...register("age_1", { required: true })}
                       />
@@ -87,7 +91,9 @@ export function MiniSheet() {
                       <FormControl
                         placeholder="Enter Name"
                         defaultValue={
-                          user.miniSheet.name_2 && user.miniSheet.name_2
+                          user.miniSheet &&
+                          user.miniSheet.name_2 &&
+                          user.miniSheet.name_2
                         }
                         {...register("name_2")}
                       />
@@ -97,7 +103,9 @@ export function MiniSheet() {
                         placeholder="Enter Age"
                         type="number"
                         defaultValue={
-                          user.miniSheet.age_2 && user.miniSheet.age_2
+                          user.miniSheet &&
+                          user.miniSheet.age_2 &&
+                          user.miniSheet.age_2
                         }
                         {...register("age_2")}
                       />
@@ -109,7 +117,9 @@ export function MiniSheet() {
                       <FormControl
                         placeholder="Enter Name"
                         defaultValue={
-                          user.miniSheet.name_3 && user.miniSheet.name_3
+                          user.miniSheet &&
+                          user.miniSheet.name_3 &&
+                          user.miniSheet.name_3
                         }
                         {...register("name_3")}
                       />
@@ -119,7 +129,9 @@ export function MiniSheet() {
                         placeholder="Enter Age"
                         type="number"
                         defaultValue={
-                          user.miniSheet.age_3 && user.miniSheet.age_3
+                          user.miniSheet &&
+                          user.miniSheet.age_3 &&
+                          user.miniSheet.age_3
                         }
                         {...register("age_3")}
                       />
@@ -131,7 +143,9 @@ export function MiniSheet() {
                       <FormControl
                         placeholder="Enter Name"
                         defaultValue={
-                          user.miniSheet.name_4 && user.miniSheet.name_4
+                          user.miniSheet &&
+                          user.miniSheet.name_4 &&
+                          user.miniSheet.name_4
                         }
                         {...register("name_4")}
                       />
@@ -141,7 +155,9 @@ export function MiniSheet() {
                         placeholder="Enter Age"
                         type="number"
                         defaultValue={
-                          user.miniSheet.age_4 && user.miniSheet.age_4
+                          user.miniSheet &&
+                          user.miniSheet.age_4 &&
+                          user.miniSheet.age_4
                         }
                         {...register("age_4")}
                       />
@@ -173,6 +189,7 @@ export function MiniSheet() {
                         placeholder="Enter Amount"
                         type="number"
                         defaultValue={
+                          user.miniSheet &&
                           user.miniSheet.annual_income &&
                           user.miniSheet.annual_income
                         }
@@ -188,6 +205,7 @@ export function MiniSheet() {
                         placeholder="Enter Amount"
                         type="number"
                         defaultValue={
+                          user.miniSheet &&
                           user.miniSheet.wife_salary &&
                           user.miniSheet.wife_salary
                         }
@@ -203,6 +221,7 @@ export function MiniSheet() {
                         placeholder="Enter Amount"
                         type="number"
                         defaultValue={
+                          user.miniSheet &&
                           user.miniSheet.rental_income &&
                           user.miniSheet.rental_income
                         }
@@ -218,6 +237,7 @@ export function MiniSheet() {
                         placeholder="Enter Amount"
                         type="number"
                         defaultValue={
+                          user.miniSheet &&
                           user.miniSheet.sons_income &&
                           user.miniSheet.sons_income
                         }
@@ -233,6 +253,7 @@ export function MiniSheet() {
                         placeholder="Enter Amount"
                         type="number"
                         defaultValue={
+                          user.miniSheet &&
                           user.miniSheet.other_income &&
                           user.miniSheet.other_income
                         }
@@ -259,6 +280,7 @@ export function MiniSheet() {
                         placeholder="Enter Amount"
                         type="number"
                         defaultValue={
+                          user.miniSheet &&
                           user.miniSheet.annual_expenses &&
                           user.miniSheet.annual_expenses
                         }
@@ -274,6 +296,7 @@ export function MiniSheet() {
                         type="number"
                         placeholder="Enter Amount"
                         defaultValue={
+                          user.miniSheet &&
                           user.miniSheet.life_style_expenses &&
                           user.miniSheet.life_style_expenses
                         }
@@ -289,6 +312,7 @@ export function MiniSheet() {
                         placeholder="Enter Amount"
                         type="number"
                         defaultValue={
+                          user.miniSheet &&
                           user.miniSheet.dependent_expenses &&
                           user.miniSheet.dependent_expenses
                         }
@@ -304,6 +328,7 @@ export function MiniSheet() {
                         placeholder="Enter Amount"
                         type="number"
                         defaultValue={
+                          user.miniSheet &&
                           user.miniSheet.insurance_premiums &&
                           user.miniSheet.insurance_premiums
                         }
@@ -319,7 +344,9 @@ export function MiniSheet() {
                         placeholder="Enter Amount"
                         type="number"
                         defaultValue={
-                          user.miniSheet.loan_emis && user.miniSheet.loan_emis
+                          user.miniSheet &&
+                          user.miniSheet.loan_emis &&
+                          user.miniSheet.loan_emis
                         }
                         {...register("loan_emis")}
                       />
@@ -333,6 +360,7 @@ export function MiniSheet() {
                         placeholder="Enter Amount"
                         type="number"
                         defaultValue={
+                          user.miniSheet &&
                           user.miniSheet.ongoing_expenses &&
                           user.miniSheet.ongoing_expenses
                         }
@@ -366,6 +394,7 @@ export function MiniSheet() {
                         placeholder="Enter Amount"
                         type="number"
                         defaultValue={
+                          user.miniSheet &&
                           user.miniSheet.saving_bank_balance &&
                           user.miniSheet.saving_bank_balance
                         }
@@ -381,6 +410,7 @@ export function MiniSheet() {
                         placeholder="Enter Amount"
                         type="number"
                         defaultValue={
+                          user.miniSheet &&
                           user.miniSheet.fixed_deposits &&
                           user.miniSheet.fixed_deposits
                         }
@@ -396,6 +426,7 @@ export function MiniSheet() {
                         placeholder="Enter Amount"
                         type="number"
                         defaultValue={
+                          user.miniSheet &&
                           user.miniSheet.epf_ppf_balance &&
                           user.miniSheet.epf_ppf_balance
                         }
@@ -411,6 +442,7 @@ export function MiniSheet() {
                         placeholder="Enter Amount"
                         type="number"
                         defaultValue={
+                          user.miniSheet &&
                           user.miniSheet.nsc_pomis_sukanya &&
                           user.miniSheet.nsc_pomis_sukanya
                         }
@@ -426,6 +458,7 @@ export function MiniSheet() {
                         placeholder="Enter Amount"
                         type="number"
                         defaultValue={
+                          user.miniSheet &&
                           user.miniSheet.insurance_policies &&
                           user.miniSheet.insurance_policies
                         }
@@ -441,7 +474,9 @@ export function MiniSheet() {
                         placeholder="Enter Amount"
                         type="number"
                         defaultValue={
-                          user.miniSheet.policy && user.miniSheet.policy
+                          user.miniSheet &&
+                          user.miniSheet.policy &&
+                          user.miniSheet.policy
                         }
                         {...register("policy")}
                       />
@@ -455,6 +490,7 @@ export function MiniSheet() {
                         placeholder="Enter Amount"
                         type="number"
                         defaultValue={
+                          user.miniSheet &&
                           user.miniSheet.mutual_funds &&
                           user.miniSheet.mutual_funds
                         }
@@ -470,7 +506,9 @@ export function MiniSheet() {
                         placeholder="Enter Amount"
                         type="number"
                         defaultValue={
-                          user.miniSheet.gold_etfs && user.miniSheet.gold_etfs
+                          user.miniSheet &&
+                          user.miniSheet.gold_etfs &&
+                          user.miniSheet.gold_etfs
                         }
                         {...register("gold_etfs")}
                       />
@@ -484,6 +522,7 @@ export function MiniSheet() {
                         placeholder="Enter Amount"
                         type="number"
                         defaultValue={
+                          user.miniSheet &&
                           user.miniSheet.direct_equity &&
                           user.miniSheet.direct_equity
                         }
@@ -499,6 +538,7 @@ export function MiniSheet() {
                         placeholder="Enter Amount"
                         type="number"
                         defaultValue={
+                          user.miniSheet &&
                           user.miniSheet.house_where_residing &&
                           user.miniSheet.house_where_residing
                         }
@@ -514,6 +554,7 @@ export function MiniSheet() {
                         placeholder="Enter Amount"
                         type="number"
                         defaultValue={
+                          user.miniSheet &&
                           user.miniSheet.loans_recievable_chit_funds &&
                           user.miniSheet.loans_recievable_chit_funds
                         }
@@ -529,6 +570,7 @@ export function MiniSheet() {
                         placeholder="Enter Amount"
                         type="number"
                         defaultValue={
+                          user.miniSheet &&
                           user.miniSheet.other_investments &&
                           user.miniSheet.other_investments
                         }
@@ -556,7 +598,9 @@ export function MiniSheet() {
                         placeholder="Enter Amount"
                         type="number"
                         defaultValue={
-                          user.miniSheet.home_loan && user.miniSheet.home_loan
+                          user.miniSheet &&
+                          user.miniSheet.home_loan &&
+                          user.miniSheet.home_loan
                         }
                         {...register("home_loan")}
                       />
@@ -570,7 +614,9 @@ export function MiniSheet() {
                         placeholder="Enter Amount"
                         type="number"
                         defaultValue={
-                          user.miniSheet.car_loan && user.miniSheet.car_loan
+                          user.miniSheet &&
+                          user.miniSheet.car_loan &&
+                          user.miniSheet.car_loan
                         }
                         {...register("car_loan")}
                       />
@@ -584,6 +630,7 @@ export function MiniSheet() {
                         placeholder="Enter Amount"
                         type="number"
                         defaultValue={
+                          user.miniSheet &&
                           user.miniSheet.other_loans &&
                           user.miniSheet.other_loans
                         }
@@ -624,6 +671,7 @@ export function MiniSheet() {
                         placeholder="Enter Amount"
                         type="number"
                         defaultValue={
+                          user.miniSheet &&
                           user.miniSheet.goal_1_present_value &&
                           user.miniSheet.goal_1_present_value
                         }
@@ -635,6 +683,7 @@ export function MiniSheet() {
                         placeholder="Enter Value"
                         type="number"
                         defaultValue={
+                          user.miniSheet &&
                           user.miniSheet.goal_1_remaining_years &&
                           user.miniSheet.goal_1_remaining_years
                         }
@@ -656,6 +705,7 @@ export function MiniSheet() {
                         placeholder="Enter Amount"
                         type="number"
                         defaultValue={
+                          user.miniSheet &&
                           user.miniSheet.goal_2_present_value &&
                           user.miniSheet.goal_2_present_value
                         }
@@ -667,6 +717,7 @@ export function MiniSheet() {
                         placeholder="Enter Value"
                         type="number"
                         defaultValue={
+                          user.miniSheet &&
                           user.miniSheet.goal_2_remaining_years &&
                           user.miniSheet.goal_2_remaining_years
                         }
@@ -688,6 +739,7 @@ export function MiniSheet() {
                         placeholder="Enter Amount"
                         type="number"
                         defaultValue={
+                          user.miniSheet &&
                           user.miniSheet.goal_3_present_value &&
                           user.miniSheet.goal_3_present_value
                         }
@@ -699,6 +751,7 @@ export function MiniSheet() {
                         placeholder="Enter Value"
                         type="number"
                         defaultValue={
+                          user.miniSheet &&
                           user.miniSheet.goal_3_remaining_years &&
                           user.miniSheet.goal_3_remaining_years
                         }
@@ -712,6 +765,7 @@ export function MiniSheet() {
                       <FormControl
                         placeholder="Enter Name of Goal"
                         defaultValue={
+                          user.miniSheet &&
                           user.miniSheet.goal_4_name &&
                           user.miniSheet.goal_4_name
                         }
@@ -723,6 +777,7 @@ export function MiniSheet() {
                         placeholder="Enter Amount"
                         type="number"
                         defaultValue={
+                          user.miniSheet &&
                           user.miniSheet.goal_4_present_value &&
                           user.miniSheet.goal_4_present_value
                         }
@@ -734,6 +789,7 @@ export function MiniSheet() {
                         placeholder="Enter Value"
                         type="number"
                         defaultValue={
+                          user.miniSheet &&
                           user.miniSheet.goal_4_remaining_years &&
                           user.miniSheet.goal_4_remaining_years
                         }
