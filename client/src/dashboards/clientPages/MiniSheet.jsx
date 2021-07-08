@@ -20,24 +20,25 @@ export function MiniSheet() {
   useEffect(() => {
     dispatch(getUserAction(getRole()._id));
   }, [dispatch]);
-  useEffect(() => {
-    altered &&
-      setAlert(successAlert("Minisheet updated SuccessFully", setAlert));
-    window.scrollTo({ top: 0 });
-  }, [altered]);
-  const onSubmit = (data) => {
-    return dispatch(
+  const onDataSubmit = (data) => {
+    dispatch(
       alterUserAction(user._id, {
         ...user,
         miniSheet: data,
       })
     );
+    setAlert(successAlert("Minisheet updated SuccessFully", setAlert));
+    return window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
+  console.log("works");
   return (
     <>
       {alert}
-      {user && (
-        <Form onSubmit={handleSubmit(onSubmit)}>
+      {user && user.miniSheet && (
+        <Form onSubmit={handleSubmit(onDataSubmit)}>
           <Card>
             <Card.Header>
               <Card.Title>Family Details</Card.Title>
@@ -76,7 +77,7 @@ export function MiniSheet() {
                         {...register("age_1", { required: true })}
                       />
                       <small className="text-danger">
-                        {errors.name_1 && "Age is Required"}
+                        {errors.age_1 && "Age is Required"}
                       </small>
                     </td>
                   </tr>
@@ -746,7 +747,7 @@ export function MiniSheet() {
           </Card>
           <Card>
             <Card.Body>
-              <Button variant="success" type="submit">
+              <Button type="submit" variant="success">
                 Submit
               </Button>
             </Card.Body>
