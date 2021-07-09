@@ -15,7 +15,7 @@ export function MiniSheet() {
     formState: { errors },
   } = useForm();
   const { user } = useSelector((state) => state.user);
-  const { user: altered } = useSelector((state) => state.alteredUser);
+  useSelector((state) => state.alteredUser);
 
   useEffect(() => {
     dispatch(getUserAction(getRole()._id));

@@ -41,26 +41,55 @@ export const AdvisorCategories = () => {
           {categories.length !== 0 &&
             categories.map((category, i) => (
               <Col xs={12} md={6} key={i} className="mb-3">
-                <Link to={"categories/" + category.slug} className="a-unstyled">
-                  <Card className="adv-category">
-                    <Card.Img
-                      src={
-                        config.apiEndPoint +
-                        "/uploads/categories/" +
-                        category.imageUrl
-                      }
-                    />
-                    <Card.Body className="adv-category-details">
-                      <Card.Title as="h1" className="title">
-                        <div>{category.title}</div>
-                        <Card.Subtitle as="small">
-                          {category.shortDesc}
-                        </Card.Subtitle>
-                      </Card.Title>
-                      <p className="description">{category.description}</p>
-                    </Card.Body>
-                  </Card>
-                </Link>
+                {category.slug === "loans" ? (
+                  <a
+                    href="https://www.rupeeboss.com/advisorzaroorihai"
+                    className="a-unstyled"
+                  >
+                    <Card className="adv-category">
+                      <Card.Img
+                        src={
+                          config.apiEndPoint +
+                          "/uploads/categories/" +
+                          category.imageUrl
+                        }
+                      />
+                      <Card.Body className="adv-category-details">
+                        <Card.Title as="h1" className="title">
+                          <div>{category.title}</div>
+                          <Card.Subtitle as="small">
+                            {category.shortDesc}
+                          </Card.Subtitle>
+                        </Card.Title>
+                        <p className="description">{category.description}</p>
+                      </Card.Body>
+                    </Card>
+                  </a>
+                ) : (
+                  <Link
+                    to={"categories/" + category.slug}
+                    className="a-unstyled"
+                  >
+                    <Card className="adv-category">
+                      <Card.Img
+                        src={
+                          config.apiEndPoint +
+                          "/uploads/categories/" +
+                          category.imageUrl
+                        }
+                      />
+                      <Card.Body className="adv-category-details">
+                        <Card.Title as="h1" className="title">
+                          <div>{category.title}</div>
+                          <Card.Subtitle as="small">
+                            {category.shortDesc}
+                          </Card.Subtitle>
+                        </Card.Title>
+                        <p className="description">{category.description}</p>
+                      </Card.Body>
+                    </Card>
+                  </Link>
+                )}
               </Col>
             ))}
         </Row>

@@ -18,7 +18,6 @@ import { FPAdvisorLogin } from "./public/login_register/advisor_login";
 import { FPClientRegister } from "./public/login_register/client_registor";
 import { FPClientLogin } from "./public/login_register/client_login";
 import { SinglePost } from "public/e-learning/elearning";
-import { userReducer } from "redux/reducers/reducers";
 import { getRole } from "utils/jwt";
 import Swal from "sweetalert2";
 import { SingleNews } from "public/News";
