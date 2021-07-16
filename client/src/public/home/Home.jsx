@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 // import http from "utils/http";
 
 import {
@@ -20,6 +20,25 @@ function Home() {
   //   script.async = true;
   //   window.document.getElementsByTagName("body")[0].appendChild(script);
   // };
+  function reloadAnimation() {
+    const [head] = document.getElementsByTagName("head");
+    const script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = process.env.PUBLIC_URL + "assets/js/main.js";
+    const script3 = document.createElement("script");
+    script3.type = "text/javascript";
+    script3.src = process.env.PUBLIC_URL + "assets/js/main2.js";
+    const script2 = document.createElement("script");
+    script2.type = "text/javascript";
+    script2.src = process.env.PUBLIC_URL + "assets/js/typewriter.js";
+    head.appendChild(script);
+    head.appendChild(script3);
+    head.appendChild(script2);
+  }
+  useEffect(() => {
+    reloadAnimation();
+  });
+
   return (
     <Fragment>
       <HeroSection />

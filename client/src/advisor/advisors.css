@@ -49,6 +49,7 @@
 .adv-category {
   box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, 0.2);
   margin-bottom: 0 !important;
+  position: relative;
 }
 .adv-category:hover {
   box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
@@ -169,4 +170,12 @@
     font-size: 7.2px;
     font-weight: 400;
   }
+}
+
+.right-arrow {
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  font-weight: 900;
+  font-size: 25px;
 }

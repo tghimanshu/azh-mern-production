@@ -51,23 +51,24 @@ const SingleAdvisor = ({ match, history }) => {
   const handleBClick = async (e, id) => {
     const getUser = async () => {
       try {
-        const userJwt = getRole();
-        if (!userJwt) {
+        const user = getRole();
+        if (user.role !== "client") {
           Swal.fire({
             icon: "info",
             text: "You Need To Be Logged In to access the Advisors",
             confirmButtonText: "Login/Register",
           }).then((res) => res.isConfirmed && history.push("/login"));
+        } else {
+          setAppointment({
+            adv_id: id,
+            remarks: appointment.remarks,
+            client_id: appointment.client_id,
+          });
+          setShowModel(true);
         }
       } catch (error) {}
     };
     getUser();
-    setAppointment({
-      adv_id: id,
-      remarks: appointment.remarks,
-      client_id: appointment.client_id,
-    });
-    setShowModel(true);
   };
 
   const handleBRemarks = (e) =>

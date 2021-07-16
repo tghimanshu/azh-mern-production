@@ -47,6 +47,7 @@ export const AdvisorCategories = () => {
                     className="a-unstyled"
                   >
                     <Card className="adv-category">
+                      <div className="right-arrow">&#8594;</div>
                       <Card.Img
                         src={
                           config.apiEndPoint +
@@ -71,6 +72,7 @@ export const AdvisorCategories = () => {
                     className="a-unstyled"
                   >
                     <Card className="adv-category">
+                      <div className="right-arrow">&#8594;</div>
                       <Card.Img
                         src={
                           config.apiEndPoint +

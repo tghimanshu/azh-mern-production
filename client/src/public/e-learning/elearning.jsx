@@ -45,8 +45,16 @@ const Blogs = () => {
                     >
                       <h5 className="title">
                         {elearning.title.length < 67
-                          ? elearning.title.substring(0, 65)
-                          : elearning.title.substring(0, 65) + " ..."}
+                          ? elearning.title
+                              .substring(0, 65)
+                              .split("")
+                              .map((a, i) => (i === 0 ? a.toUpperCase() : a))
+                              .join("")
+                          : elearning.title
+                              .substring(0, 65)
+                              .split("")
+                              .map((a, i) => (i === 0 ? a.toUpperCase() : a))
+                              .join("") + " ..."}
                       </h5>
                       <p className="bottom-title">by Credent Global</p>
                     </div>
@@ -123,7 +131,14 @@ const ELearningTab = () => {
                           <div className="e-learning-div">
                             <div className="row">
                               <div className="col-7">
-                                <h5 className="title">{elearning.title}</h5>
+                                <h5 className="title">
+                                  {elearning.title
+                                    .split("")
+                                    .map((a, i) =>
+                                      i === 0 ? a.toUpperCase() : a
+                                    )
+                                    .join("")}
+                                </h5>
                                 <p className="bottom-title">
                                   by {elearning.author}
                                 </p>
