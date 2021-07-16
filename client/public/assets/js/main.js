@@ -1,8 +1,5 @@
 (function ($) {
   $(document).ready(function () {
-
-    // This is the figure amt inner code
-
     var a = 0;
     var f = $("#figures");
     if (f.length) {
@@ -40,4 +37,5 @@
     $(".sidbar-toggle").on("click", function (e) {
       $("#sidebar").slideToggle();
     });
+  });
 })(jQuery);
