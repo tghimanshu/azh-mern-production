@@ -599,6 +599,10 @@ a.e-learning-a:hover {
 }
 
 @media only screen and (max-width: 812px) {
+  .pf_content {
+    min-height: min-content;
+    max-height: max-content;
+  }
   .rupeeboss-details-grid {
     display: grid;
     grid-template-columns: 1fr;
