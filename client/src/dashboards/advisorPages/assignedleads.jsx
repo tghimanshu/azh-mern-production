@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import http from "utils/http";
 import { getRole } from "utils/jwt";
 import { Link } from "react-router-dom";
@@ -33,7 +33,7 @@ export function AssignedLeads({ history }) {
   };
 
   return (
-    <>
+    <Fragment>
       {leads.length === 0 && (
         <Card>
           <Card.Body>
@@ -100,7 +100,7 @@ export function AssignedLeads({ history }) {
           </Card.Body>
         </Card>
       )}
-    </>
+    </Fragment>
   );
 }
 
@@ -118,7 +118,7 @@ export const AdvSingleFeedback = ({ match }) => {
     };
   }, [match]);
   return (
-    <>
+    <Fragment>
       <h2>Your Response</h2>
       <hr />
       {feedback &&
@@ -128,6 +128,6 @@ export const AdvSingleFeedback = ({ match }) => {
             <dd>{fb.value}</dd>
           </dl>
         ))}
-    </>
+    </Fragment>
   );
 };

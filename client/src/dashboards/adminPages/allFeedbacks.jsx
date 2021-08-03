@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import { Badge, Button, FormControl } from "react-bootstrap";
 import ReactQuill from "react-quill";
 import { Link } from "react-router-dom";
@@ -220,7 +220,7 @@ export const AdminFeedbacks = () => {
   };
 
   return (
-    <>
+    <Fragment>
       {loading && <h1>Loading</h1>}
       <a
         href={process.env.REACT_APP_API_END_POINT + "/admin/feedbacks/export"}
@@ -234,7 +234,7 @@ export const AdminFeedbacks = () => {
         Mail
       </Button>
       {showMail && (
-        <>
+        <Fragment>
           {error}
           <FormControl
             className="mb-2"
@@ -250,7 +250,7 @@ export const AdminFeedbacks = () => {
           <Button variant="success mb-4" onClick={handleMail}>
             Send
           </Button>
-        </>
+        </Fragment>
       )}
       <DataTable
         tableHeaders={tableHeaders}
@@ -263,7 +263,7 @@ export const AdminFeedbacks = () => {
       <Button variant="warning" onClick={handleUpdateList}>
         Update List
       </Button>
-    </>
+    </Fragment>
   );
 };
 
@@ -442,7 +442,7 @@ export const FormFeedbacks = ({ match }) => {
   };
 
   return (
-    <>
+    <Fragment>
       {loading && <h1>Loading</h1>}
       <a
         href={
@@ -460,7 +460,7 @@ export const FormFeedbacks = ({ match }) => {
         Mail
       </Button>
       {showMail && (
-        <>
+        <Fragment>
           {error}
           <FormControl
             className="mb-2"
@@ -476,7 +476,7 @@ export const FormFeedbacks = ({ match }) => {
           <Button variant="success mb-4" onClick={handleMail}>
             Send
           </Button>
-        </>
+        </Fragment>
       )}
       <DataTable
         tableHeaders={tableHeaders}
@@ -486,7 +486,7 @@ export const FormFeedbacks = ({ match }) => {
         rowsPerPage={10}
         rowsPerPageOption={[5, 10, 15, 20, 50]}
       />
-    </>
+    </Fragment>
   );
 };
 
@@ -501,7 +501,7 @@ export const SingleFeedback = ({ match }) => {
   }, [dispatch, match]);
 
   return (
-    <>
+    <Fragment>
       <h2>Your Response</h2>
       <hr />
       {loading && <h4>Loading</h4>}
@@ -513,6 +513,6 @@ export const SingleFeedback = ({ match }) => {
             <dd>{fb.value}</dd>
           </dl>
         ))}
-    </>
+    </Fragment>
   );
 };

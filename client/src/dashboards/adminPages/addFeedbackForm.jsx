@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import { Button, Col, Container, ListGroup, Row } from "react-bootstrap";
 import ContentEditable from "react-contenteditable";
 import { Link } from "react-router-dom";
@@ -319,7 +319,7 @@ export const FeedbackForms = () => {
     getClients();
   }, []);
   return (
-    <>
+    <Fragment>
       <table className="table table-striped">
         <thead>
           <tr>
@@ -358,7 +358,7 @@ export const FeedbackForms = () => {
           })}
         </tbody>
       </table>
-    </>
+    </Fragment>
   );
 };
 

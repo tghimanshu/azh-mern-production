@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Card, ListGroup } from "react-bootstrap";
 import SectionTitle from "../advisor/sectionTitle";
 import { getRole } from "../utils/jwt";
@@ -98,7 +98,7 @@ function Login(props) {
               </Card.Header>
               <Card.Body>
                 {!isRegister && (
-                  <>
+                  <Fragment>
                     <ClientLogin history={props.history} />
                     <button
                       onClick={() => setIsregister(true)}
@@ -106,10 +106,10 @@ function Login(props) {
                     >
                       New here, Sign Up Now.
                     </button>
-                  </>
+                  </Fragment>
                 )}
                 {isRegister && (
-                  <>
+                  <Fragment>
                     <ClientRegistor history={props.history} />
                     <button
                       onClick={() => setIsregister(false)}
@@ -117,7 +117,7 @@ function Login(props) {
                     >
                       Already Register, Login Now
                     </button>
-                  </>
+                  </Fragment>
                 )}
               </Card.Body>
             </Card>

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState, Fragment } from "react";
 import http from "utils/http";
 
 const Advisor = ({ match }) => {
@@ -14,7 +14,7 @@ const Advisor = ({ match }) => {
   }, [getRequests]);
 
   return (
-    <>
+    <Fragment>
       <table className="table table-striped">
         <thead>
           <tr>
@@ -48,7 +48,7 @@ const Advisor = ({ match }) => {
             })}
         </tbody>
       </table>
-    </>
+    </Fragment>
   );
 };
 

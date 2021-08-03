@@ -1,3 +1,4 @@
+import React from "react";
 import { Switch, Route } from "react-router-dom";
 import { Fragment, useEffect } from "react";
 import Footer from "./public/Footer";
@@ -21,6 +22,7 @@ import { SinglePost } from "public/e-learning/elearning";
 import { getRole } from "utils/jwt";
 import Swal from "sweetalert2";
 import { SingleNews } from "public/News";
+import { RupeeBoss } from "public/Pages/Rupeeboss";
 // import VideoCall from "./public/videoCall";
 
 const PublicRoutes = () => {
@@ -29,6 +31,7 @@ const PublicRoutes = () => {
       <Navbar />
       <Switch>
         <Route exact path="/checkminisheet" component={CheckMS} />
+        <Route exact path="/rupeeboss" component={RupeeBoss} />
         <Route exact path="/news/:guid" component={SingleNews} />
         <Route exact path="/categories/:slug" component={AllAdvisors} />
         <Route exact path="/categories" component={AdvisorCategories} />

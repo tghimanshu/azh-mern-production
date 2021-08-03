@@ -1,5 +1,5 @@
 import http from "utils/http";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import { getRole } from "utils/jwt";
 import { Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
@@ -20,7 +20,7 @@ function Bookings({ history }) {
   }, [history]);
 
   return (
-    <>
+    <Fragment>
       {bookings.length === 0 && (
         <Card>
           <Card.Body>
@@ -88,7 +88,7 @@ function Bookings({ history }) {
           </Card.Body>
         </Card>
       )}
-    </>
+    </Fragment>
   );
 }
 

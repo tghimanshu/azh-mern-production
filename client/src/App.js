@@ -1,3 +1,4 @@
+import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import PublicRoutes from "./public.routes";
 import Dashboard from "./dashboards/client";

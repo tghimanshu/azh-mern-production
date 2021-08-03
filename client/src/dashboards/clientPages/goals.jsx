@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import React from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { Accordion, Card, Col, Form, Row } from "react-bootstrap";
 import { getRole } from "utils/jwt";
 import http from "utils/http";
@@ -88,7 +87,7 @@ const Goal = ({ history }) => {
 
           <form className="panel-body p-3">
             {haveGoals && (
-              <>
+              <Fragment>
                 <Accordion defaultActiveKey="0">
                   {goals.map((goal, i) => {
                     return (
@@ -203,7 +202,7 @@ const Goal = ({ history }) => {
                     </button>
                   </Col>
                 </Row>
-              </>
+              </Fragment>
             )}
             <div className="row">
               <Col lg="6"></Col>

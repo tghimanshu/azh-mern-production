@@ -444,3 +444,17 @@ section {
 .section-title p {
   margin: 15px 0 0 0;
 }
+
+/* 
+RUPEEBOSS
+*/
+
+.rupeeboss-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.rupeeboss-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}

@@ -1,9 +1,9 @@
-import { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
+import SectionTitle from "advisor/sectionTitle";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import config from "utils/config";
 import LoadingScreen from "utils/loadingScreen";
-import SectionTitle from "advisor/sectionTitle";
 import parse from "html-react-parser";
 import {
   listBlogAction,

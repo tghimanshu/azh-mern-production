@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { getRole } from "../utils/jwt";
 import Sidebar from "./components/sidebar";

@@ -319,6 +319,16 @@ a.e-learning-a:hover {
 .bg-fa {
   background-color: #fafafa;
 }
+.monsterrat-48-700 {
+  font-size: 48px;
+  font-family: "Montserrat bold", sans-serif;
+  font-weight: 700;
+  margin-bottom: "5px";
+}
+.monsterrat-48-700.hero-title-blue {
+  margin-top: "80px";
+}
+
 .monsterrat-40-700 {
   font-size: 40px;
   font-family: "Montserrat bold", sans-serif;
@@ -516,7 +526,9 @@ a.e-learning-a:hover {
 .brands-hr {
   margin-top: 40px;
 }
-
+.blogs-grid-mobile {
+  display: none;
+}
 .brands-text {
   font-family: Poppins;
   font-style: normal;
@@ -538,6 +550,10 @@ a.e-learning-a:hover {
 }
 
 .blogs-grid > div {
+  position: relative;
+}
+
+.blogs-grid-mobile > div {
   position: relative;
 }
 
@@ -577,8 +593,16 @@ a.e-learning-a:hover {
   color: white;
   font-weight: bold;
 }
+.rupeeboss-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
 
 @media only screen and (max-width: 812px) {
+  .rupeeboss-details-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
   .roboto-90 {
     font-size: 2rem;
     font-family: "Roboto Slab", serif;
@@ -638,9 +662,24 @@ a.e-learning-a:hover {
     margin-bottom: 1.5rem;
     border-radius: 0;
   }
-  .blogs-grid {
+  .blogs-grid-mobile {
+    height: auto;
     display: grid;
     grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "data1"
+      "data2"
+      "data3"
+      "data4"
+      "data5"
+      "data6"
+      "data7";
+    grid-gap: 20px;
+  }
+  .blogs-grid {
+    display: none;
+    /* grid-template-columns: auto;
     grid-template-rows: auto;
     grid-template-areas:
       "data3"
@@ -649,7 +688,7 @@ a.e-learning-a:hover {
       "data6"
       "data2"
       "data4"
-      "data5";
+      "data5"; */
   }
   .monsterrat-24-500 {
     font-size: 1rem;
@@ -671,8 +710,4 @@ a.e-learning-a:hover {
     height: 100vh;
     padding-top: 20px;
   }
-}
-
-.ri-check-line {
-  font-weight: bold;
 }

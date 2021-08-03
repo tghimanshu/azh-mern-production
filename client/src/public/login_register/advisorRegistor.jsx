@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, Fragment } from "react";
 // import { Redirect } from "react-router-dom";
 import http from "utils/http";
 import { successAlert, dangerAlert } from "utils/alerts";
@@ -421,7 +421,7 @@ export const AdvisorRegistor = ({ history }) => {
 
 export const FPAdvisorRegister = ({ history }) => {
   return (
-    <>
+    <Fragment>
       <SectionTitle
         title="Advisor Register"
         breadcrumbs={[
@@ -432,6 +432,6 @@ export const FPAdvisorRegister = ({ history }) => {
       <div className="container px-5">
         <AdvisorRegistor history={history} />
       </div>
-    </>
+    </Fragment>
   );
 };

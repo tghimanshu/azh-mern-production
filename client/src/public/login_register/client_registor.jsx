@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import http from "utils/http";
 import { dangerAlert, successAlert } from "utils/alerts";
 // import { Alert } from "react-bootstrap";
@@ -202,7 +202,7 @@ export const ClientRegistor = ({ history }) => {
 
 export const FPClientRegister = ({ history }) => {
   return (
-    <>
+    <Fragment>
       <SectionTitle
         title="Client Register"
         breadcrumbs={[
@@ -213,6 +213,6 @@ export const FPClientRegister = ({ history }) => {
       <div className="container px-5">
         <ClientRegistor history={history} />
       </div>
-    </>
+    </Fragment>
   );
 };

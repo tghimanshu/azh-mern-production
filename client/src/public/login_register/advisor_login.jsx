@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import http from "utils/http";
 import { Link } from "react-router-dom";
 import { dangerAlert } from "utils/alerts";
@@ -99,7 +99,7 @@ export const FPAdvisorLogin = ({ history }) => {
   };
 
   return (
-    <>
+    <Fragment>
       <SectionTitle
         title="Advisor Login"
         breadcrumbs={[
@@ -153,6 +153,6 @@ export const FPAdvisorLogin = ({ history }) => {
           </div>
         </form>
       </Container>
-    </>
+    </Fragment>
   );
 };

@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Plyr from "plyr-react";
@@ -111,7 +111,7 @@ export function HPElearning() {
         <Col lg={6} className="playlist-container">
           <Row className="playlist">
             {elearnings &&
-              elearnings.map((elearning, i) => (
+              elearnings.map((elearning, i) => i < 12 && (
                 <Col
                   key={elearning._id}
                   xs={12}
@@ -121,9 +121,8 @@ export function HPElearning() {
                   <div className="position-relative news-container">
                     <img
                       // src={process.env.PUBLIC_URL + "/assets/img/news/news1.png"}
-                      src={`${process.env.PUBLIC_URL}/assets/img/news/news${
-                        (i + 1) % 6 === 0 ? "6" : (i + 1) % 6
-                      }.svg`}
+                      src={`${process.env.PUBLIC_URL}/assets/img/news/news${(i + 1) % 6 === 0 ? "6" : (i + 1) % 6
+                        }.svg`}
                       alt=""
                     />
                     <div className="newsDiv">
@@ -169,6 +168,14 @@ export function News() {
                   breakpoint: { max: 13000, min: 1024 },
                   items: 4,
                 },
+                tablet: {
+                  breakpoint: { max: 1024, min: 464 },
+                  items: 2
+                },
+                mobile: {
+                  breakpoint: { max: 464, min: 0 },
+                  items: 1
+                }
               }}
               pauseOnHover={true}
               infinite={true}
@@ -248,6 +255,198 @@ export function Blogs() {
           <h2 className="d-block monsterrat-40-700 text-center mb-4">Blogs</h2>
         </div>
         {/* <h3 className="text-white d-inline-block blue-section-title">BLOGS</h3> */}
+        <div className="blogs-grid-mobile">
+          <div className="data1">
+            <img
+              width="100%"
+              height="100%"
+              src={process.env.PUBLIC_URL + "/assets/img/fifth.svg"}
+              style={{ visibility: "hidden" }}
+              alt=""
+            />
+            <div
+              className="blogImg"
+              style={{
+                background:
+                  "url(https://credentglobal.com/wp-content/uploads/2021/05/2021-Money-Best-Robo-Advisors-1.jpg) center center/cover",
+              }}
+            ></div>
+            <a
+              href="https://credentglobal.com/sebi-guidance-makes-robo-advisors-jump-through-an-additional-loop/"
+              className="blog-content"
+            >
+              <h3>
+                SEBI Guidance makes Robo-Advisors jump through an additional
+                loop.
+              </h3>
+              <div className="d-flex justify-content-between">
+                <span>5 min read</span>
+                <span>Credent Global</span>
+              </div>
+            </a>
+          </div>
+          <div className="data2">
+            <img
+              width="100%"
+              height="100%"
+              src={process.env.PUBLIC_URL + "/assets/img/fifth.svg"}
+              style={{ visibility: "hidden" }}
+              alt=""
+            />
+            <div
+              className="blogImg"
+              style={{
+                background:
+                  "url(https://credentglobal.com/wp-content/uploads/2021/05/EggsOneBasket_Header.jpg) center center/cover",
+              }}
+            ></div>
+            <a
+              href="https://credentglobal.com/covid-19-calls-for-more-diversification-not-less/"
+              className="blog-content"
+            >
+              <h3>Covid-19 Calls for more diversification, not less.</h3>
+              <div className="d-flex justify-content-between">
+                <span>5 min read</span>
+                <span>Credent Global</span>
+              </div>
+            </a>
+          </div>
+          <div className="data3">
+            <img
+              width="100%"
+              height="100%"
+              src={process.env.PUBLIC_URL + "/assets/img/fifth.svg"}
+              style={{ visibility: "hidden" }}
+              alt=""
+            />
+            <div
+              className="blogImg"
+              style={{
+                background:
+                  "url(https://credentglobal.com/wp-content/uploads/2019/08/6aug.jpg) center center/cover",
+              }}
+            ></div>
+            <a
+              href="https://credentglobal.com/is-this-the-time-to-buy-or-sell/"
+              className="blog-content"
+            >
+              <h3>Is this the time to Buy or Sell?</h3>
+              <div className="d-flex justify-content-between">
+                <span>5 min read</span>
+                <span>Credent Global</span>
+              </div>
+            </a>
+          </div>
+          <div className="data4">
+            <img
+              width="100%"
+              height="100%"
+              src={process.env.PUBLIC_URL + "/assets/img/fifth.svg"}
+              style={{ visibility: "hidden" }}
+              alt=""
+            />
+            <div
+              className="blogImg"
+              style={{
+                background:
+                  "url(https://credentglobal.com/wp-content/uploads/2020/06/24621.jpg) center center/cover",
+              }}
+            ></div>
+            <a
+              href="https://credentglobal.com/covid-19-a-real-life-stress-test-for-your-business/"
+              className="blog-content"
+            >
+              <h3>Covid-19: A real-life stress test for your business</h3>
+              <div className="d-flex justify-content-between">
+                <span>5 min read</span>
+                <span>Credent Global</span>
+              </div>
+            </a>
+          </div>
+          <div className="data5">
+            <img
+              width="100%"
+              height="100%"
+              src={process.env.PUBLIC_URL + "/assets/img/fifth.svg"}
+              style={{ visibility: "hidden" }}
+              alt=""
+            />
+            <div
+              className="blogImg"
+              style={{
+                background:
+                  "url(https://credentglobal.com/wp-content/uploads/2021/05/dogecoin-litecoin-etheteum-and-bitcoin-PS98VLU-scaled.jpg) center center/cover",
+              }}
+            ></div>
+            <a
+              href="https://credentglobal.com/crypto-exchanges-prefer-sebi-or-a-new-entity-as-regulator-not-rbi/"
+              className="blog-content"
+            >
+              <h3>
+                Crypto Exchanges prefer SEBI or a New Entity as Regulator, Not
+                RBI.
+              </h3>
+              <div className="d-flex justify-content-between">
+                <span>5 min read</span>
+                <span>Credent Global</span>
+              </div>
+            </a>
+          </div>
+          <div className="data6">
+            <img
+              width="100%"
+              height="100%"
+              src={process.env.PUBLIC_URL + "/assets/img/fifth.svg"}
+              style={{ visibility: "hidden" }}
+              alt=""
+            />
+            <div
+              className="blogImg"
+              style={{
+                background:
+                  "url(https://credentglobal.com/wp-content/uploads/2019/07/8july.jpg) center center/cover",
+              }}
+            ></div>
+            <a
+              href="https://credentglobal.com/why-the-stock-market-gave-a-thumbs-down-to-budget/"
+              className="blog-content"
+            >
+              <h3>Why the stock market gave a ‘Thumbs down’ to Budget?</h3>
+              <div className="d-flex justify-content-between">
+                <span>5 min read</span>
+                <span>Credent Global</span>
+              </div>
+            </a>
+          </div>
+          <div className="data7">
+            <img
+              width="100%"
+              height="100%"
+              src={process.env.PUBLIC_URL + "/assets/img/fifth.svg"}
+              style={{ visibility: "hidden" }}
+              alt=""
+            />
+            <div
+              className="blogImg"
+              style={{
+                background:
+                  "url(https://credentglobal.com/wp-content/uploads/2019/02/Blog_15th.jpg) center center/cover",
+              }}
+            ></div>
+            <a
+              href="https://credentglobal.com/the-best-time-to-exit-from-a-stock/"
+              className="blog-content"
+            >
+              <h3>The Best time to exit from a stock?</h3>
+              <div className="d-flex justify-content-between">
+                <span>5 min read</span>
+                <span>Credent Global</span>
+              </div>
+            </a>
+          </div>
+        </div>
+        
+       
         <div className="blogs-grid">
           <div className="data1">
             <img

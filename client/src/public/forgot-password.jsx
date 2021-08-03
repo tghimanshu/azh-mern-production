@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState, Fragment } from "react";
 import http from "../utils/http";
 import jwtDecode from "jwt-decode";
 import Swal from "sweetalert2";
@@ -13,7 +13,7 @@ const ForgotPassword = ({ match }) => {
     // console.log(result);
   };
   return (
-    <>
+    <Fragment>
       <div className="p-title">
         <section className="p-title-inner py-5">
           <div className="container d-flex justify-content-center">
@@ -43,7 +43,7 @@ const ForgotPassword = ({ match }) => {
           </div>
         </div>
       </div>
-    </>
+    </Fragment>
   );
 };
 
@@ -78,7 +78,7 @@ const ResetPssword = ({ match, history }) => {
     }
   };
   return (
-    <>
+    <Fragment>
       <div className="p-title">
         <section className="p-title-inner py-5">
           <div className="container d-flex justify-content-center">
@@ -117,7 +117,7 @@ const ResetPssword = ({ match, history }) => {
           </div>
         </div>
       </div>
-    </>
+    </Fragment>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import { Link } from "react-router-dom";
 import http from "utils/http";
 import { getRole } from "utils/jwt";
@@ -59,7 +59,7 @@ export const SingleFeedback = ({ match }) => {
     };
   }, [match]);
   return (
-    <>
+    <Fragment>
       <h2>Your Response</h2>
       <hr />
       {feedback &&
@@ -69,6 +69,6 @@ export const SingleFeedback = ({ match }) => {
             <dd>{fb.value}</dd>
           </dl>
         ))}
-    </>
+    </Fragment>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import http from "utils/http";
 import {
   Accordion,
@@ -119,7 +119,7 @@ const ClientProfile = ({ match, history, location }) => {
               Mail
             </Button>
             {showMail && (
-              <>
+              <Fragment>
                 {error}
                 <FormControl
                   className="mb-2"
@@ -135,7 +135,7 @@ const ClientProfile = ({ match, history, location }) => {
                 <Button variant="success mb-4" onClick={handleMail}>
                   Send
                 </Button>
-              </>
+              </Fragment>
             )}
             {showRecommendation && (
               <div>

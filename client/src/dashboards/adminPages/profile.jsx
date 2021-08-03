@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import jwtDecode from "jwt-decode";
 import http from "utils/http";
 
@@ -55,7 +55,7 @@ function Profile() {
   };
 
   return (
-    <>
+    <Fragment>
       <Container fluid>
         {!user.isApproved
           ? dangerAlert("Your Profile is yet to be approved!")
@@ -258,7 +258,7 @@ function Profile() {
           </Col>
         </Row>
       </Container>
-    </>
+    </Fragment>
   );
 }
 

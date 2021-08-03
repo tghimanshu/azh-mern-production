@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import { Link } from "react-router-dom";
 // import jwtDecode from "jwt-decode";
 import http from "utils/http";
@@ -72,7 +72,7 @@ function Profile() {
   //   } catch (error) {}
   // };
   return (
-    <>
+    <Fragment>
       <Container fluid>
         <Row>
           <Col md="8">
@@ -272,7 +272,7 @@ function Profile() {
           </Col>
         </Row>
       </Container>
-    </>
+    </Fragment>
   );
 }
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import http from "utils/http";
 import { Link } from "react-router-dom";
 import SectionTitle from "advisor/sectionTitle";
@@ -73,7 +73,7 @@ export const ClientLogin = ({ history }) => {
 
 export const FPClientLogin = ({ history }) => {
   return (
-    <>
+    <Fragment>
       <SectionTitle
         title="Client Login"
         breadcrumbs={[
@@ -84,6 +84,6 @@ export const FPClientLogin = ({ history }) => {
       <div className="container px-5">
         <ClientLogin history={history} />
       </div>
-    </>
+    </Fragment>
   );
 };

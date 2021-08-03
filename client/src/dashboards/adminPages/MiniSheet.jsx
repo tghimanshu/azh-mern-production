@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import { Button, Card, Form, FormControl, Table } from "react-bootstrap";
 import http from "utils/http";
 
@@ -16,7 +16,7 @@ export function MiniSheet({ match }) {
     getUserData();
   }, [match]);
   return (
-    <>
+    <Fragment>
       {user && (
         <Form>
           <Card>
@@ -718,6 +718,6 @@ export function MiniSheet({ match }) {
           </Card>
         </Form>
       )}
-    </>
+    </Fragment>
   );
 }

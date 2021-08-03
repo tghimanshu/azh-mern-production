@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, Fragment } from "react";
 import { Fragment } from "react";
 import { Button, Col, Container, FormControl, Row } from "react-bootstrap";
 import SectionTitle from "../advisor/sectionTitle";
@@ -16,9 +16,8 @@ const VideoPlayer = () => {
 };
 
 const VideoCall = ({ match }) => {
-  const { callAccepted, myVideo, userVideo, callEnded, stream } = useContext(
-    SocketContext
-  );
+  const { callAccepted, myVideo, userVideo, callEnded, stream } =
+    useContext(SocketContext);
 
   return (
     <Fragment>
@@ -63,15 +62,8 @@ const VideoCall = ({ match }) => {
 };
 
 const Sidebar = ({ children }) => {
-  const {
-    me,
-    callAccepted,
-    name,
-    setName,
-    callEnded,
-    leaveCall,
-    callUser,
-  } = useContext(SocketContext);
+  const { me, callAccepted, name, setName, callEnded, leaveCall, callUser } =
+    useContext(SocketContext);
   const [idToCall, setIdToCall] = useState("");
 
   return (
@@ -111,7 +103,7 @@ const Notifications = () => {
   const { answerCall, call, callAccepted } = useContext(SocketContext);
 
   return (
-    <>
+    <Fragment>
       {call.isReceivingCall && !callAccepted && (
         <div style={{ display: "flex", justifyContent: "space-around" }}>
           <h1>{call.name} is calling:</h1>
@@ -120,7 +112,7 @@ const Notifications = () => {
           </Button>
         </div>
       )}
-    </>
+    </Fragment>
   );
 };
 

@@ -1,5 +1,5 @@
+import React, { useEffect, useState, Fragment } from "react";
 import http from "utils/http";
-import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Button, Container, FormControl } from "react-bootstrap";
@@ -169,13 +169,13 @@ const Clients = () => {
     });
 
   return (
-    <>
+    <Fragment>
       <Container>
         <Button variant="info mb-3" onClick={() => setShowMail(!showMail)}>
           Mail
         </Button>
         {showMail && (
-          <>
+          <Fragment>
             {error}
             <FormControl
               className="mb-2"
@@ -191,7 +191,7 @@ const Clients = () => {
             <Button variant="success mb-4" onClick={handleMail}>
               Send
             </Button>
-          </>
+          </Fragment>
         )}
       </Container>
       <DataTable
@@ -202,7 +202,7 @@ const Clients = () => {
         rowsPerPage={10}
         rowsPerPageOption={[5, 10, 15, 20, 50]}
       />
-    </>
+    </Fragment>
   );
 };
 

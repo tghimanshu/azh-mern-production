@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import parse from "html-react-parser";
 import LoadingScreen from "utils/loadingScreen";
@@ -20,7 +20,7 @@ function Page({ match }) {
       {loading && <LoadingScreen />}
       {error && <p>{error}</p>}
       {page && (
-        <>
+        <Fragment>
           <SectionTitle
             title={page.name}
             breadcrumbs={[
@@ -29,7 +29,7 @@ function Page({ match }) {
             ]}
           />
           <div className="container mt-2">{parse(String(page.content))}</div>
-        </>
+        </Fragment>
       )}
     </Fragment>
   );

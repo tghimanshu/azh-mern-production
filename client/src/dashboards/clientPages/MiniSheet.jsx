@@ -1,8 +1,8 @@
+import React, { useEffect, useState, Fragment } from "react";
 import { Button, Card, Form, FormControl, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { alterUserAction, getUserAction } from "redux/actions/actions";
 import { useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
 import { getRole } from "utils/jwt";
 import { successAlert } from "utils/alerts";
 
@@ -35,7 +35,7 @@ export function MiniSheet() {
   };
   console.log("works");
   return (
-    <>
+    <Fragment>
       {alert}
       {user && (
         <Form onSubmit={handleSubmit(onDataSubmit)}>
@@ -810,6 +810,6 @@ export function MiniSheet() {
           </Card>
         </Form>
       )}
-    </>
+    </Fragment>
   );
 }
