@@ -42,10 +42,7 @@ export const AdvisorCategories = () => {
             categories.map((category, i) => (
               <Col xs={12} md={6} key={i} className="mb-3">
                 {category.slug === "loans" ? (
-                  <a
-                    href="https://www.rupeeboss.com/advisorzaroorihai"
-                    className="a-unstyled"
-                  >
+                  <Link href="/rupeeboss" className="a-unstyled">
                     <Card className="adv-category">
                       <div className="right-arrow">&#8594;</div>
                       <Card.Img
@@ -65,7 +62,7 @@ export const AdvisorCategories = () => {
                         <p className="description">{category.description}</p>
                       </Card.Body>
                     </Card>
-                  </a>
+                  </Link>
                 ) : (
                   <Link
                     to={"categories/" + category.slug}

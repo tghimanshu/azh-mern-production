@@ -605,7 +605,21 @@ a.e-learning-a:hover {
   }
   .rupeeboss-details-grid {
     display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 20px;
+  }
+
+  .rupeeboss-hero-grid {
+    display: grid;
     grid-template-columns: 1fr;
+    margin-left: 20px;
+    margin-bottom: 20px;
+  }
+  .rupeeboss-details-grid > div {
+    margin-bottom: 15px;
+  }
+  .monsterrat-48-700 {
+    font-size: 1.7em;
   }
   .roboto-90 {
     font-size: 2rem;
