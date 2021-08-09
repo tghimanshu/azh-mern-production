@@ -11,15 +11,16 @@ import {
   Figures,
   Brands,
 } from "./HomePage";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 function Home() {
-  // const loadScript = (src) => {
-  //   console.log("object");
-  //   var script = document.createElement("script");
-  //   script.src = src;
-  //   script.async = true;
-  //   window.document.getElementsByTagName("body")[0].appendChild(script);
-  // };
+  useEffect(() => {
+    Aos.init({
+      duration: 1000,
+      delay: 100,
+    });
+  }, []);
   function reloadAnimation() {
     const [head] = document.getElementsByTagName("head");
     const script = document.createElement("script");

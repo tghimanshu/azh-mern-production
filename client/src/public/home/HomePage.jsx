@@ -8,10 +8,12 @@ import Carousel from "react-multi-carousel";
 import "plyr-react/dist/plyr.css";
 import "react-multi-carousel/lib/styles.css";
 import http from "utils/http";
+// import "aos/dist/aos.css";
 
 export function HeroSection() {
   return (
     <section
+      data-aos="fade"
       id="azhHero"
       className="m-0 d-flex justify-content-center align-items-center"
     >
@@ -35,7 +37,7 @@ export function HeroSection() {
 
 export function WhoAreWe() {
   return (
-    <section id="whoWeAre" className="bg-fa">
+    <section id="whoWeAre" className="bg-fa" data-aos="fade-down">
       <div>
         <h2 className="d-block monsterrat-40-700 text-center">Who are we?</h2>
         <p className="text-center monsterrat-400">
@@ -87,7 +89,7 @@ export function HPElearning() {
     <Container className="pf_playlist">
       {/* <Container className="py-100"> */}
       <Row>
-        <Col lg={6} className="pf_content">
+        <Col lg={6} className="pf_content" data-aos="fade-right">
           <h1 className="monsterrat-80-600">
             Your
             <br />
@@ -108,31 +110,35 @@ export function HPElearning() {
             </Link>
           </h4>
         </Col>
-        <Col lg={6} className="playlist-container">
+        <Col lg={6} className="playlist-container" data-aos="fade-left">
           <Row className="playlist">
             {elearnings &&
-              elearnings.map((elearning, i) => i < 12 && (
-                <Col
-                  key={elearning._id}
-                  xs={12}
-                  lg={6}
-                  className="position-relative mb-3"
-                >
-                  <div className="position-relative news-container">
-                    <img
-                      // src={process.env.PUBLIC_URL + "/assets/img/news/news1.png"}
-                      src={`${process.env.PUBLIC_URL}/assets/img/news/news${(i + 1) % 6 === 0 ? "6" : (i + 1) % 6
-                        }.svg`}
-                      alt=""
-                    />
-                    <div className="newsDiv">
-                      <a href={elearning.link}>
-                        <h3 className="text-white">{elearning.title}</h3>
-                      </a>
-                    </div>
-                  </div>
-                </Col>
-              ))}
+              elearnings.map(
+                (elearning, i) =>
+                  i < 12 && (
+                    <Col
+                      key={elearning._id}
+                      xs={12}
+                      lg={6}
+                      className="position-relative mb-3"
+                    >
+                      <div className="position-relative news-container">
+                        <img
+                          // src={process.env.PUBLIC_URL + "/assets/img/news/news1.png"}
+                          src={`${process.env.PUBLIC_URL}/assets/img/news/news${
+                            (i + 1) % 6 === 0 ? "6" : (i + 1) % 6
+                          }.svg`}
+                          alt=""
+                        />
+                        <div className="newsDiv">
+                          <a href={elearning.link}>
+                            <h3 className="text-white">{elearning.title}</h3>
+                          </a>
+                        </div>
+                      </div>
+                    </Col>
+                  )
+              )}
           </Row>
         </Col>
       </Row>
@@ -157,7 +163,7 @@ export function News() {
   if (xml.length !== 0) {
     return (
       <div className="py-2 bg-fa">
-        <Container className="mt-5">
+        <Container className="mt-5" data-aos="zoom">
           <div>
             <h2 className="d-block monsterrat-40-700 text-center mb-5">News</h2>
           </div>
@@ -170,12 +176,12 @@ export function News() {
                 },
                 tablet: {
                   breakpoint: { max: 1024, min: 464 },
-                  items: 2
+                  items: 2,
                 },
                 mobile: {
                   breakpoint: { max: 464, min: 0 },
-                  items: 1
-                }
+                  items: 1,
+                },
               }}
               pauseOnHover={true}
               infinite={true}
@@ -250,7 +256,7 @@ export function News() {
 export function Blogs() {
   return (
     <div className="py-2 bg-fa">
-      <Container className="mt-5">
+      <Container className="mt-5" data-aos="zoom-in-up">
         <div>
           <h2 className="d-block monsterrat-40-700 text-center mb-4">Blogs</h2>
         </div>
@@ -445,8 +451,7 @@ export function Blogs() {
             </a>
           </div>
         </div>
-        
-       
+
         <div className="blogs-grid">
           <div className="data1">
             <img
@@ -647,7 +652,7 @@ export function Blogs() {
 
 export function Events() {
   return (
-    <Container className="mt-5">
+    <Container className="mt-5" data-aos="zoom-right">
       <div>
         <h2 className="d-block monsterrat-40-700 text-center">Events</h2>
       </div>
@@ -676,7 +681,11 @@ export function Events() {
 export function Figures() {
   return (
     <Fragment>
-      <section id="figures" className="p-4 font-weight-bolder">
+      <section
+        id="figures"
+        className="p-4 font-weight-bolder"
+        data-aos="fade-down"
+      >
         <div className="container px-md-5">
           <div className="row justify-content-between">
             <div className="col-12 col-lg-3 text-center">
@@ -733,7 +742,7 @@ export function Figures() {
 
 export function Brands() {
   return (
-    <Container className="mt-5">
+    <Container className="mt-5" data-aos="zoom">
       <hr className="brands-hr" />
       <p className="brands-text text-center">
         Brands that have taken the steps towards Financial swatantrata with us
