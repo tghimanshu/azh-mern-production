@@ -4,7 +4,6 @@ import thunk from "redux-thunk";
 import {
   categoriesAdvisorsReducer,
   categoriesReducer,
-  pageReducer,
   elearingReducer,
   adminCategoriesReducer,
   updateAdvisorsReducer,
@@ -20,7 +19,6 @@ import {
 } from "./reducers/reducers";
 
 const reducers = combineReducers({
-  page: pageReducer,
   categories: categoriesReducer,
   advisors: categoriesAdvisorsReducer,
   elearning: elearingReducer,

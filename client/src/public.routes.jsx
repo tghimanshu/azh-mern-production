@@ -4,10 +4,8 @@ import { Fragment, useEffect } from "react";
 import Footer from "./public/Footer";
 import Navbar from "./public/Navbar";
 import Home from "./public/home/Home";
-import Page from "./public/Page";
 import Knowledge from "./public/knowledge-base/knowledge";
 import ELearning from "./public/e-learning/elearning";
-// import Advisors from "./advisor/kno";
 import Login from "./public/Login";
 import { ForgotPassword, ResetPssword } from "./public/forgot-password";
 import { AdvisorCategories, AllAdvisors } from "./advisor/advisors";
@@ -46,7 +44,6 @@ const PublicRoutes = () => {
         <Route exact path="/e-learning" component={ELearning} />
         <Route exact path="/post/:slug" component={SinglePost} />
         <Route exact path="/feedback/:id" component={Feedback} />
-        <Route exact path="/page/:slug" component={Page} />
         <Route exact path="/advisors/:username" component={SingleAdvisor} />
         {/* <Route exact path="/advisors" component={Advisors} /> */}
         <Route exact path="/forgot-password/:role" component={ForgotPassword} />

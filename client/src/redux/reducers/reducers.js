@@ -29,9 +29,6 @@ import {
   FORM_FEEDBACKS_FAIL,
   FORM_FEEDBACKS_REQUEST,
   FORM_FEEDBACKS_SUCCESS,
-  PAGE_FAIL,
-  PAGE_REQUEST,
-  PAGE_SUCCESS,
   SINGLE_BLOG_FAIL,
   SINGLE_BLOG_REQUEST,
   SINGLE_BLOG_SUCCESS,
@@ -67,19 +64,6 @@ export const categoriesAdvisorsReducer = (state = { advisors: [] }, action) => {
       return { loading: false, advisors: action.payload };
     case CATEGORIES_ADV_FAIL:
       return { loading: false, advisors: action.payload };
-    default:
-      return state;
-  }
-};
-
-export const pageReducer = (state = { page: null }, action) => {
-  switch (action.type) {
-    case PAGE_REQUEST:
-      return { loading: true, page: null };
-    case PAGE_SUCCESS:
-      return { loading: false, page: action.payload };
-    case PAGE_FAIL:
-      return { loading: false, error: action.payload };
     default:
       return state;
   }

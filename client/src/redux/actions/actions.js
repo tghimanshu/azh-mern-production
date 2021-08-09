@@ -29,9 +29,6 @@ import {
   FORM_FEEDBACKS_FAIL,
   FORM_FEEDBACKS_REQUEST,
   FORM_FEEDBACKS_SUCCESS,
-  PAGE_FAIL,
-  PAGE_REQUEST,
-  PAGE_SUCCESS,
   SINGLE_BLOG_FAIL,
   SINGLE_BLOG_REQUEST,
   SINGLE_BLOG_SUCCESS,
@@ -107,29 +104,6 @@ export const updateAdvisorsAction = (body) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: UPDATE_ADVISOR_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
-  }
-};
-
-// * PAGES
-
-export const getSinglePageAction = (slug) => async (dispatch) => {
-  try {
-    dispatch({
-      type: PAGE_REQUEST,
-    });
-    const { data } = await http.get("/page/" + slug);
-    dispatch({
-      type: PAGE_SUCCESS,
-      payload: data,
-    });
-  } catch (error) {
-    dispatch({
-      type: PAGE_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
