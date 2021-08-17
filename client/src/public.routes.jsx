@@ -21,6 +21,7 @@ import { getRole } from "utils/jwt";
 import Swal from "sweetalert2";
 import { SingleNews } from "public/News";
 import { RupeeBoss } from "public/Pages/Rupeeboss";
+import { About } from "public/Pages/About";
 // import VideoCall from "./public/videoCall";
 
 const PublicRoutes = () => {
@@ -28,6 +29,7 @@ const PublicRoutes = () => {
     <Fragment>
       <Navbar />
       <Switch>
+        <Route exact path="/about" component={About} />
         <Route exact path="/checkminisheet" component={CheckMS} />
         <Route exact path="/rupeeboss" component={RupeeBoss} />
         <Route exact path="/news/:guid" component={SingleNews} />

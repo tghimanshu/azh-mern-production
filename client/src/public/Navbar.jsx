@@ -27,12 +27,12 @@ function Navbar(props) {
             </li>
             <li
               className={
-                window.location.pathname.includes("about-us")
+                window.location.pathname.includes("about")
                   ? "active"
                   : undefined
               }
             >
-              <Link to="/page/about-us">About Us</Link>
+              <Link to="/about">About Us</Link>
             </li>
             <li
               className={
