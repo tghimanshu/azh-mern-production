@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 function Footer() {
   return (
     <footer className="p-0 container">
-      <hr className="ml-0 mb-4 footer-left-hr" />
+      <hr className="ml-0 mb-5 footer-left-hr" />
 
-      <div className="row mr-3 mt-3 ml-3 justify-content-between">
+      <div className="row mr-3 mt-5 mb-3 ml-3 justify-content-between">
         <div className="row col-12 col-lg-8">
           <div className="col-12 col-lg-7">
             {/* <iframe

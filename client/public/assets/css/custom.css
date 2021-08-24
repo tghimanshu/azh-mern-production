@@ -1,3 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
+
+@font-face {
+  font-family: "Baloo-Da";
+  src: url("Baloo-Da.ttf.woff") format("woff"),
+    url("Baloo-Da.ttf.svg#Baloo-Da") format("svg"), url("Baloo-Da.ttf.eot"),
+    url("Baloo-Da.ttf.eot?#iefix") format("embedded-opentype");
+  font-weight: normal;
+  font-style: normal;
+}
 body,
 html {
   font-size: 18px;
@@ -65,6 +75,43 @@ button.btn-outline-blue {
 button.btn-outline-blue:hover {
   background: #2b32b2;
   color: white;
+}
+
+button.btn-light-blue {
+  font-family: "Montserrat bold", sans-serif;
+  font-weight: bold;
+  background: #2091f9;
+  color: white;
+  font-size: 20px;
+  padding: 8px 24px;
+  font-weight: bold;
+  border-radius: 60px;
+}
+button.btn-light-blue:hover {
+  background: transparent;
+  border: 1px solid #2091f9;
+  color: #2091f9;
+}
+button.btn-light-blue.btn-submit {
+  border-radius: 0;
+  padding: 9px 44px;
+}
+
+button.btn-green {
+  display: block;
+  margin: 0 auto;
+  font-family: "Montserrat bold", sans-serif;
+  font-weight: 700;
+  background: #27bc94;
+  color: white;
+  font-size: 14px;
+  padding: 8px 14px;
+  /* width: 40%; */
+}
+button.btn-green:hover {
+  background: transparent;
+  border: 1px solid #27bc94;
+  color: #27bc94;
 }
 
 /************************************
@@ -819,8 +866,169 @@ a.e-learning-a:hover {
 }
 
 /* FINANCIAL LITERACY */
-#fl-main {
+/* #fl-main {
   width: 100%;
   height: 100%;
   background: url("../svg/financial-bg.svg") no-repeat top center/cover;
+} */
+
+.baloo-48-400 {
+  font-family: "Baloo-Da", cursive;
+  font-weight: 400;
+  font-size: 48px;
+}
+
+.baloo-28-400 {
+  font-family: "Baloo-Da", cursive;
+  font-weight: 400;
+  font-size: 28px;
+  color: #374754;
+}
+
+.baloo-40-400 {
+  font-family: "Baloo-Da", cursive;
+  font-weight: 400;
+  font-size: 40px;
+}
+
+.baloo-20-400 {
+  font-family: "Baloo-Da", cursive;
+  font-weight: 400;
+  font-size: 20px;
+  color: #374754;
+}
+
+.baloo-16-400 {
+  font-family: "Baloo-Da", cursive;
+  font-weight: 400;
+  font-size: 16px;
+  color: #374754;
+}
+
+.poppins-18-500 {
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 25px;
+}
+
+.poppins-36-600 {
+  font-family: "Poppins", sans-serif;
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 55px;
+}
+
+.testinomial-user .details h6 {
+  font-family: "Baloo-Da", cursive;
+  font-weight: 400;
+  color: #374754;
+}
+.testinomial-user .details h6:first-child {
+  font-size: 16px;
+}
+.testinomial-user .details h6:last-child {
+  font-size: 15px;
+}
+
+.fl-contact-form > input,
+.fl-contact-form > textarea {
+  padding: 19px 20px;
+  background-color: #f5f5f5;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  color: #18171d;
+}
+
+.fl-contact-form > input::-moz-placeholder,
+.fl-contact-form > textarea::-moz-placeholder,
+.fl-contact-form > input:-ms-input-placeholder,
+.fl-contact-form > textarea:-ms-input-placeholder,
+.fl-contact-form > input::placeholder,
+.fl-contact-form > textarea::placeholder {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  color: #18171d;
+}
+
+.monsterrat-20-500 {
+  font-size: 20px;
+  font-family: "Montserrat bold", sans-serif;
+  font-weight: 500;
+  color: #737373;
+}
+
+.monsterrat-20-bold {
+  font-size: 20px;
+  font-family: "Montserrat bold", sans-serif;
+  font-weight: bold;
+  color: #e5ebff;
+}
+
+.monsterrat-40-700 {
+  font-size: 40px;
+  font-family: "Montserrat bold", sans-serif;
+  font-weight: 700;
+  color: #252842;
+}
+
+.monsterrat-14-500 {
+  font-size: 14px;
+  font-family: "Montserrat bold", sans-serif;
+  font-weight: 500;
+  color: #737373;
+}
+
+.monsterrat-14-700 {
+  font-size: 14px;
+  font-family: "Montserrat bold", sans-serif;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.monsterrat-16-700 {
+  font-size: 16px;
+  font-family: "Montserrat bold", sans-serif;
+  font-weight: 700;
+  color: #252b42;
+}
+
+.monsterrat-16-bold {
+  font-size: 16px;
+  font-family: "Montserrat bold", sans-serif;
+  font-weight: bold;
+  color: #737373;
+}
+
+.monsterrat-12-700 {
+  font-size: 12px;
+  font-family: "Montserrat bold", sans-serif;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.5);
+}
+#fl-main {
+  position: relative;
+}
+
+.fl-hero-image {
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  animation-name: myAnim;
+  animation-delay: 10s;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+@keyframes myAnim {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

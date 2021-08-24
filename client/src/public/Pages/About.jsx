@@ -15,11 +15,11 @@ export function About() {
         className="m-0 d-flex flex-column justify-content-center align-items-center bg-fa"
       >
         <div className="text-center">
-          <h1 className="monsterrat-48-700">MORE THAN JUST A</h1>
+          <h1 className="monsterrat-58-800">MORE THAN JUST A</h1>
           <br />
-          <h1 className="monsterrat-48-700">PHRASE</h1>
+          <h1 className="monsterrat-58-800">PHRASE</h1>
         </div>
-        <p className="text-center">
+        <p className="text-center monsterrat-20-500">
           A comprehensive platform to help you make
           <br />
           informed and timely financial decisions connect with expert
@@ -34,9 +34,10 @@ export function About() {
         <h2 className="d-block monsterrat-40-700 text-center">
           All of this but......More Effectively
         </h2>
-        <p className="text-center monsterrat-400">
+        <p className="text-center monsterrat-14-500">
           A platform which brings back what Investors and advisers are missing
-          and unite them in the most humanily way possible
+          and unite them in the most humanily way
+          <br /> possible
         </p>
         <div className="container">
           <div className="row">
@@ -45,10 +46,10 @@ export function About() {
                 <div className="card-body d-flex align-items-center">
                   <Icon
                     icon={bxBriefcase}
-                    style={{ width: "80px", height: "80px", color: "#2B32B2" }}
+                    style={{ width: "48px", height: "48px", color: "#2B32B2" }}
                     className="mr-2"
                   />
-                  <h4 className="font-weight-bold m-0">Thorough Assessment</h4>
+                  <h4 className="monsterrat-16-700 m-0">Thorough Assessment</h4>
                 </div>
               </div>
             </div>
@@ -57,10 +58,10 @@ export function About() {
                 <div className="card-body d-flex align-items-center">
                   <Icon
                     icon={shopTwotone}
-                    style={{ width: "80px", height: "80px", color: "#2B32B2" }}
+                    style={{ width: "48px", height: "48px", color: "#2B32B2" }}
                     className="mr-2"
                   />
-                  <h4 className="font-weight-bold m-0">
+                  <h4 className="monsterrat-16-700  m-0">
                     An Intricate yet simple Goal Setting
                   </h4>
                 </div>
@@ -71,10 +72,10 @@ export function About() {
                 <div className="card-body d-flex align-items-center">
                   <Icon
                     icon={notebookIcon}
-                    style={{ width: "80px", height: "80px", color: "#2B32B2" }}
+                    style={{ width: "48px", height: "48px", color: "#2B32B2" }}
                     className="mr-2"
                   />
-                  <h4 className="font-weight-bold m-0">
+                  <h4 className="monsterrat-16-700 m-0">
                     Personalised Suggestions
                   </h4>
                 </div>
@@ -85,10 +86,10 @@ export function About() {
                 <div className="card-body d-flex align-items-center">
                   <Icon
                     icon={usersLine}
-                    style={{ width: "80px", height: "80px", color: "#2B32B2" }}
+                    style={{ width: "48px", height: "48px", color: "#2B32B2" }}
                     className="mr-2"
                   />
-                  <h4 className="font-weight-bold m-0">Creation of plan</h4>
+                  <h4 className="monsterrat-16-700 m-0">Creation of plan</h4>
                 </div>
               </div>
             </div>
@@ -97,10 +98,10 @@ export function About() {
                 <div className="card-body d-flex align-items-center">
                   <Icon
                     icon={statsIcon}
-                    style={{ width: "80px", height: "80px", color: "#2B32B2" }}
+                    style={{ width: "48px", height: "48px", color: "#2B32B2" }}
                     className="mr-2"
                   />
-                  <h4 className="font-weight-bold m-0">Seamless Execution</h4>
+                  <h4 className="monsterrat-16-700 m-0">Seamless Execution</h4>
                 </div>
               </div>
             </div>
@@ -109,10 +110,10 @@ export function About() {
                 <div className="card-body d-flex align-items-center">
                   <Icon
                     icon={awardIcon}
-                    style={{ width: "80px", height: "80px", color: "#2B32B2" }}
+                    style={{ width: "48px", height: "48px", color: "#2B32B2" }}
                     className="mr-2"
                   />
-                  <h4 className="font-weight-bold m-0">
+                  <h4 className="monsterrat-16-700 m-0">
                     360 degree monitering
                   </h4>
                 </div>
@@ -123,7 +124,7 @@ export function About() {
       </section>
       <section id="investinresearch">
         <div class="container pt-5">
-          <h1 class=" d-block monsterrat-40-700 font-weight-bold text-center mt-3 mb-5">
+          <h1 class=" d-block monsterrat-40-700 text-center mt-3 mb-5">
             INVEST IN RESEARCH
           </h1>
           <div class="row mb-5 steps justify-content-around">
@@ -134,10 +135,13 @@ export function About() {
                     src="https:/www.tghimanshu.com/narnolia/assets/images/investment/screening.svg"
                     alt=""
                     class="mb-3"
-                    style={{ width: "45px", height: "auto" }}
+                    style={{ width: "40px", height: "40px" }}
                   />
                   <h5 className="text-center">
-                    360° view to monitor your finance
+                    360° view to
+                    <br /> monitor your
+                    <br />
+                    finance
                   </h5>
                 </div>
               </div>
@@ -149,10 +153,14 @@ export function About() {
                     src="https:/www.tghimanshu.com/narnolia/assets/images/investment/recommendation.svg"
                     alt=""
                     class="mb-3"
-                    style={{ width: "45px", height: "auto" }}
+                    style={{ width: "40px", height: "40px" }}
                   />
                   <h5 className="text-center">
-                    Execution on Whatever platform one chooses
+                    Execution on
+                    <br />
+                    Whatever platform
+                    <br />
+                    one chooses
                   </h5>
                 </div>
               </div>
@@ -164,9 +172,15 @@ export function About() {
                     src="https:/www.tghimanshu.com/narnolia/assets/images/investment/diagnosis.svg"
                     alt=""
                     class="mb-3"
-                    style={{ width: "45px", height: "auto" }}
+                    style={{ width: "40px", height: "40px" }}
                   />
-                  <h5 className="text-center">SEBI Registered Advisors</h5>
+                  <h5 className="text-center">
+                    SEBI
+                    <br />
+                    Registered
+                    <br />
+                    Advisors
+                  </h5>
                 </div>
               </div>
             </div>
@@ -181,13 +195,15 @@ export function About() {
                     width="100%"
                   />
                   <div class="card-img-content">
-                    <h4 className="text-white font-weight-bold">
-                      A one-for-all Investors Platform
+                    <h4 className="text-white mosnterrat-20-bold">
+                      A one-for-all
+                      <br />
+                      Investors Platform
                     </h4>
                   </div>
                 </div>
                 <div class="card-body">
-                  <p class="py-4">
+                  <p class="py-4 mosterrat-16-bold">
                     The plethora of information available can at most times be
                     confusing and over whelming.
                     <br />
@@ -197,24 +213,12 @@ export function About() {
                     the customers to move towards a more risk-free
                     decision-making process by taking guidance from the experts.
                   </p>
-                  <button
-                    className="btn btn-success"
-                    style={{
-                      width: "40%",
-                      display: "block",
-                      margin: "0 auto",
-                    }}
-                  >
-                    Let’s acheive financial Freedom
+                  <button className="btn btn-green">
+                    Let’s acheive financial
+                    <br />
+                    Freedom
                   </button>
-                  <div
-                    className="text-success font-weight-bold text-center mt-1"
-                    style={{
-                      width: "40%",
-                      display: "block",
-                      margin: "0 auto",
-                    }}
-                  >
+                  <div className="monsterrat-12-700 text-center mt-1">
                     SIGN UP TODAY!
                     <br />
                     &nbsp;
@@ -234,11 +238,13 @@ export function About() {
                     width="100%"
                   />
                   <div class="card-img-content font-weight-bold">
-                    <h4 className="text-white">Financial Literacy</h4>
+                    <h4 className="text-white mosnterrat-20-bold">
+                      Financial Literacy
+                    </h4>
                   </div>
                 </div>
                 <div class="card-body">
-                  <p class="py-4">
+                  <p class="py-4 mosterrat-16-bold">
                     Financial Literacy has always been considered as one of the
                     important aspects post Covid. We cover topics such as
                     Financial Planning, Goal Planning , Risk Planning, Tax
@@ -249,25 +255,14 @@ export function About() {
                     <br /> Making it fun, interesting and value packed at the
                     same time
                   </p>
-                  <button
-                    className="btn btn-success"
-                    style={{
-                      width: "40%",
-                      display: "block",
-                      margin: "0 auto",
-                    }}
-                  >
-                    Interesting in contributing to the cause?
+                  <button className="btn btn-green">
+                    Interesting in contributing
+                    <br /> to the cause?
                   </button>
-                  <div
-                    className="text-success font-weight-bold text-center mt-1"
-                    style={{
-                      width: "45%",
-                      display: "block",
-                      margin: "0 auto",
-                    }}
-                  >
-                    HOST A WORKSHOP TODAY! IT’S FREE
+                  <div className="monsterrat-12-700 text-center mt-1">
+                    HOST A WORKSHOP TODAY! IT’S
+                    <br />
+                    FREE
                   </div>
                 </div>
               </div>
