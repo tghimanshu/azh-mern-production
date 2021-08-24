@@ -285,7 +285,7 @@ export function FinancialLiteracy() {
       >
         <div className="container">
           <div className="row d-flex justify-content-center">
-            <div className="col-12 col-md-8">
+            <div className="col-12 col-md-7">
               <div className="card">
                 <div className="card-body">
                   <h3 className="baloo-40-400 text-center mt-2">Contact Us</h3>
