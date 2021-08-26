@@ -7,22 +7,29 @@ import brushIcon from "@iconify/icons-mdi/brush";
 import Plyr from "plyr-react";
 import Carousel from "react-multi-carousel";
 import Footer from "public/Footer";
+import Navbar from "public/Navbar";
 
-import HeroGif from "./financial-literacy.gif";
 import HeroImage from "./financial-literacy.png";
+import VideoImage from "./video-thumbnail.png";
 
 export function FinancialLiteracy() {
   return (
     <Fragment>
-      <section id="fl-main" className="m-0 p-0">
-        <img
-          src={HeroGif}
-          alt="Hero Img"
+      <section id="fl-main" className="m-0 p-0" style={{ zIndex: 998 }}>
+        {/* <img src={HeroGif} alt="Hero Img"
           style={{ width: "100vw", height: "auto" }}
           className="fl-hero-gif"
-        />
+        /> */}
+        <video
+          src={process.env.PUBLIC_URL + "/assets/videos/financial-literacy.mp4"}
+          style={{ width: "100vw", height: "auto" }}
+          className="fl-hero-gif"
+          autoPlay
+          onLoad={() => window.scrollTo(0, 0)}
+        ></video>
         <img src={HeroImage} alt="Hero Img" className="fl-hero-image" />
       </section>
+      <Navbar />
       <section id="fl-info" className="my-5 py-5">
         <div className="container">
           <h3 className="baloo-48-400 text-center">
@@ -142,12 +149,12 @@ export function FinancialLiteracy() {
       <section
         id="fl-video"
         className="d-flex justify-content-center align-items-center"
-        style={{ minHeight: "100vh" }}
       >
-        <div className="container px-5">
+        <div className="container px-3 px-md-5">
           <Plyr
             id="wvrvideo"
             source={{
+              poster: VideoImage,
               type: "video",
               sources: [
                 {
@@ -162,7 +169,6 @@ export function FinancialLiteracy() {
       <section
         id="fl-sign-up"
         className="d-flex justify-content-center align-items-center"
-        style={{ minHeight: "100vh" }}
       >
         <div className="container">
           <div className="row d-flex align-items-center">
@@ -192,7 +198,7 @@ export function FinancialLiteracy() {
           </div>
         </div>
       </section>
-      <div style={{ minHeight: "100vh" }}>
+      <div className="fl-events-brands">
         <section id="fl-events">
           <div className="container">
             <h3 className="baloo-48-400 text-center">Events</h3>
@@ -216,11 +222,11 @@ export function FinancialLiteracy() {
                   items: 4,
                 },
                 tablet: {
-                  breakpoint: { max: 1024, min: 464 },
+                  breakpoint: { max: 1024, min: 900 },
                   items: 2,
                 },
                 mobile: {
-                  breakpoint: { max: 464, min: 0 },
+                  breakpoint: { max: 900, min: 0 },
                   items: 1,
                 },
               }}
@@ -228,27 +234,30 @@ export function FinancialLiteracy() {
               infinite={true}
               arrows={true}
               swipeable={true}
-              autoPlay={true}
+              autoPlay={false}
               draggable={true}
             >
               {[...Array(16)].map((_, i) => (
-                <img
-                  src={
-                    process.env.PUBLIC_URL + `/assets/img/brands/${i + 1}.svg`
-                  }
-                  alt={"brand " + (i + 1)}
+                <div
                   key={i}
-                />
+                  className="d-flex jusify-content-center align-items-center px-2"
+                  style={{ height: "100%" }}
+                >
+                  <img
+                    src={
+                      process.env.PUBLIC_URL + `/assets/img/brands/${i + 1}.svg`
+                    }
+                    alt={"brand " + (i + 1)}
+                    style={{ width: "100%" }}
+                  />
+                </div>
               ))}
             </Carousel>
           </div>
         </section>
       </div>
       <section id="fl-testinomials">
-        <div
-          className="container d-flex flex-column justify-content-center align-items-center"
-          style={{ minHeight: "100vh" }}
-        >
+        <div className="container d-flex flex-column justify-content-center align-items-center">
           <h3 className="baloo-48-400 text-center mb-5">Testinomials</h3>
           <div className="testinomial d-flex flex-column align-items-center">
             <div className="testinomial-logo mb-5">
@@ -281,7 +290,6 @@ export function FinancialLiteracy() {
       <section
         id="fl-contact"
         className="d-flex justify-content-center align-items-center"
-        style={{ minHeight: "100vh" }}
       >
         <div className="container">
           <div className="row d-flex justify-content-center">
