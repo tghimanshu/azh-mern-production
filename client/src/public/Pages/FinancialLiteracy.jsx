@@ -15,7 +15,7 @@ import VideoImage from "./video-thumbnail.png";
 export function FinancialLiteracy() {
   return (
     <Fragment>
-      <section id="fl-main" className="m-0 p-0" style={{ zIndex: 998 }}>
+      <section id="fl-main" className="m-0 p-0">
         {/* <img src={HeroGif} alt="Hero Img"
           style={{ width: "100vw", height: "auto" }}
           className="fl-hero-gif"

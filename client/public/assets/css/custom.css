@@ -1179,3 +1179,7 @@ a.e-learning-a:hover {
     height: max-content;
   }
 }
+
+#fl-main {
+  z-index: 9999;
+}

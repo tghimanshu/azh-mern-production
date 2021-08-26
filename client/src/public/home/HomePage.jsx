@@ -13,7 +13,7 @@ import http from "utils/http";
 export function HeroSection() {
   return (
     <section
-      data-aos="fade"
+      // data-aos="fade"
       id="azhHero"
       className="m-0 d-flex justify-content-center align-items-center"
     >
@@ -37,7 +37,11 @@ export function HeroSection() {
 
 export function WhoAreWe() {
   return (
-    <section id="whoWeAre" className="bg-fa" data-aos="fade-down">
+    <section
+      id="whoWeAre"
+      className="bg-fa"
+      // data-aos="fade-down"
+    >
       <div>
         <h2 className="d-block monsterrat-40-700 text-center">Who are we?</h2>
         <p className="text-center monsterrat-400">
@@ -110,7 +114,7 @@ export function HPElearning() {
             </Link>
           </h4>
         </Col>
-        <Col lg={6} className="playlist-container" data-aos="fade-left">
+        <Col lg={6} className="playlist-container">
           <Row className="playlist">
             {elearnings &&
               elearnings.map(

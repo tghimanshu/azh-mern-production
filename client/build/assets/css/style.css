@@ -63,7 +63,7 @@ h6 {
 # Header
 --------------------------------------------------------------*/
 #header {
-  z-index: 997;
+  z-index: 957;
   transition: all 0.5s;
   padding: 0;
   /* padding: 22px 0; */
@@ -252,7 +252,7 @@ h6 {
   right: 15px;
   top: 45px;
   transform: translateY(-50%);
-  z-index: 9998;
+  z-index: 9997;
   border: 0;
   background: none;
   font-size: 34px;
@@ -266,14 +266,13 @@ h6 {
 .mobile-nav-toggle i {
   color: #222222;
 }
-
 .mobile-nav {
   position: fixed;
   top: 55px;
   right: 15px;
   bottom: 15px;
   left: 15px;
-  z-index: 9999;
+  z-index: 999;
   overflow-y: auto;
   background: #fff;
   transition: ease-in-out 0.2s;
