@@ -17,6 +17,21 @@ mongoose
 
 // * SCHEMAS
 
+const contactUsSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  message: {
+    type: String,
+    required: true,
+  },
+});
+
 const categorySchema = new mongoose.Schema({
   title: {
     type: String,
@@ -430,6 +445,8 @@ adminSchema.methods.generateAuthToken = function () {
 
 // * MODELS
 
+const ContactUs = mongoose.model("ContactUs", contactUsSchema);
+
 const Category = mongoose.model("Category", categorySchema);
 
 const Advisor = mongoose.model("Advisor", advisorSchema);
@@ -522,6 +539,7 @@ module.exports = {
   Blog,
   FeedbackForm,
   Feedback,
+  ContactUs,
   adminValidate,
   categoryValidate,
   advisorValidate,

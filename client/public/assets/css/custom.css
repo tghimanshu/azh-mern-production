@@ -49,6 +49,7 @@ section h1 hr {
   background: linear-gradient(#2b32b2, #1488cc);
 }
 
+a.btn-blue,
 button.btn-blue {
   font-family: "Montserrat bold", sans-serif;
   font-weight: 700;
@@ -58,11 +59,13 @@ button.btn-blue {
   padding: 8px 14px;
   border-radius: 60px;
 }
+a.btn-blue:hover,
 button.btn-blue:hover {
   background: transparent;
   border: 1px solid #2b32b2;
   color: #2b32b2;
 }
+a.btn-outline-blue,
 button.btn-outline-blue {
   font-family: "Montserrat bold", sans-serif;
   font-weight: 700;
@@ -72,11 +75,12 @@ button.btn-outline-blue {
   padding: 8px 16px;
   border-radius: 60px;
 }
+a.btn-outline-blue:hover,
 button.btn-outline-blue:hover {
   background: #2b32b2;
   color: white;
 }
-
+a.btn-light-blue,
 button.btn-light-blue {
   font-family: "Montserrat bold", sans-serif;
   font-weight: bold;
@@ -87,16 +91,19 @@ button.btn-light-blue {
   font-weight: bold;
   border-radius: 60px;
 }
+a.btn-light-blue:hover,
 button.btn-light-blue:hover {
   background: transparent;
   border: 1px solid #2091f9;
   color: #2091f9;
 }
+a.btn-light-blue.btn-submit,
 button.btn-light-blue.btn-submit {
   border-radius: 0;
   padding: 9px 44px;
 }
 
+a.btn-green,
 button.btn-green {
   display: block;
   margin: 0 auto;
@@ -106,8 +113,9 @@ button.btn-green {
   color: white;
   font-size: 14px;
   padding: 8px 14px;
-  /* width: 40%; */
+  width: max-content;
 }
+a.btn-green:hover,
 button.btn-green:hover {
   background: transparent;
   border: 1px solid #27bc94;

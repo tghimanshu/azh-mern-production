@@ -26,6 +26,9 @@ import {
   FEEDBACKS_FAIL,
   FEEDBACKS_REQUEST,
   FEEDBACKS_SUCCESS,
+  FORM_CONTACT_FAIL,
+  FORM_CONTACT_REQUEST,
+  FORM_CONTACT_SUCCESS,
   FORM_FEEDBACKS_FAIL,
   FORM_FEEDBACKS_REQUEST,
   FORM_FEEDBACKS_SUCCESS,
@@ -219,6 +222,19 @@ export const adminClientsReducer = (state = { clients: [] }, action) => {
     case ADMIN_CLIENTS_SUCCESS:
       return { loading: false, clients: action.payload };
     case ADMIN_CLIENTS_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const contactFormReducers = (state = { contact: null }, action) => {
+  switch (action.type) {
+    case FORM_CONTACT_REQUEST:
+      return { loading: true, contact: null };
+    case FORM_CONTACT_SUCCESS:
+      return { loading: false, contact: action.payload };
+    case FORM_CONTACT_FAIL:
       return { loading: false, error: action.payload };
     default:
       return state;

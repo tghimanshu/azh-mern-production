@@ -20,6 +20,7 @@ export function MiniSheet() {
   useEffect(() => {
     dispatch(getUserAction(getRole()._id));
   }, [dispatch]);
+
   const onDataSubmit = (data) => {
     dispatch(
       alterUserAction(user._id, {
@@ -33,7 +34,7 @@ export function MiniSheet() {
       behavior: "smooth",
     });
   };
-  console.log("works");
+
   return (
     <Fragment>
       {alert}

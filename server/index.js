@@ -14,6 +14,7 @@ const helpers = require("./routes/helpers");
 const payment = require("./routes/razorpay");
 const feedback = require("./routes/feedback");
 const category = require("./routes/category");
+const contactus = require("./routes/contactus");
 // const socket = require("./routes/socket");
 const cors = require("cors");
 const fs = require("fs");
@@ -43,6 +44,7 @@ app.use("/api/blog", blog);
 app.use("/api/helpers", helpers);
 app.use("/api/payment", payment);
 app.use("/api/feedback", feedback);
+app.use("/api/contactus", contactus);
 app.get("/api/news", async (req, res) => {
   try {
     let feed = await parser.parseURL(

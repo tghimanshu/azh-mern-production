@@ -26,6 +26,9 @@ import {
   FEEDBACKS_FAIL,
   FEEDBACKS_REQUEST,
   FEEDBACKS_SUCCESS,
+  FORM_CONTACT_FAIL,
+  FORM_CONTACT_REQUEST,
+  FORM_CONTACT_SUCCESS,
   FORM_FEEDBACKS_FAIL,
   FORM_FEEDBACKS_REQUEST,
   FORM_FEEDBACKS_SUCCESS,
@@ -343,6 +346,27 @@ export const singleFeedbackAction = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: SINGLE_FEEDBACK_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const addContactUsAction = (body) => async (dispatch) => {
+  try {
+    dispatch({
+      type: FORM_CONTACT_REQUEST,
+    });
+    const { data } = await http.post("/contactus", body);
+    dispatch({
+      type: FORM_CONTACT_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: FORM_CONTACT_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

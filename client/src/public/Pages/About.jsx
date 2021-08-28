@@ -6,6 +6,7 @@ import statsIcon from "@iconify-icons/bx/bx-stats";
 import usersLine from "@iconify/icons-clarity/users-line";
 import awardIcon from "@iconify/icons-fa-solid/award";
 import bxBriefcase from "@iconify-icons/bx/bx-briefcase";
+import { Link as button } from "react-router-dom";
 
 export function About() {
   return (
@@ -26,8 +27,20 @@ export function About() {
           <br /> advisors from across the country
         </p>
         <div>
-          <button className="btn btn-blue mr-3">GET IN TOUCH</button>
-          <button className="btn btn-outline-blue">SIGN UP</button>
+          <button
+            onClick={() =>
+              window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: "smooth",
+              })
+            }
+            className="btn btn-blue mr-3"
+          >
+            GET IN TOUCH
+          </button>
+          <button to="/clientRegister" className="btn btn-outline-blue">
+            SIGN UP
+          </button>
         </div>
       </section>
       <section>
@@ -132,7 +145,10 @@ export function About() {
               <div class="card">
                 <div class="card-body d-flex flex-column justify-content-center align-items-center">
                   <img
-                    src="https:/www.tghimanshu.com/narnolia/assets/images/investment/screening.svg"
+                    src={
+                      process.env.PUBLIC_URL +
+                      "/assets/img/investment/screening.svg"
+                    }
                     alt=""
                     class="mb-3"
                     style={{ width: "40px", height: "40px" }}
@@ -150,7 +166,10 @@ export function About() {
               <div class="card">
                 <div class="card-body d-flex flex-column justify-content-center align-items-center">
                   <img
-                    src="https:/www.tghimanshu.com/narnolia/assets/images/investment/recommendation.svg"
+                    src={
+                      process.env.PUBLIC_URL +
+                      "/assets/img/investment/recommendation.svg"
+                    }
                     alt=""
                     class="mb-3"
                     style={{ width: "40px", height: "40px" }}
@@ -213,7 +232,7 @@ export function About() {
                     the customers to move towards a more risk-free
                     decision-making process by taking guidance from the experts.
                   </p>
-                  <button className="btn btn-green">
+                  <button className="btn btn-green" to="/clientRegister">
                     Let’s acheive financial
                     <br />
                     Freedom
@@ -255,7 +274,7 @@ export function About() {
                     <br /> Making it fun, interesting and value packed at the
                     same time
                   </p>
-                  <button className="btn btn-green">
+                  <button className="btn btn-green" to="/financial-literacy">
                     Interesting in contributing
                     <br /> to the cause?
                   </button>

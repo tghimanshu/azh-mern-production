@@ -91,13 +91,13 @@ function Footer() {
             <h4 className="font-weight-bold text-uppercase mb-4">ABOUT US</h4>
             <ul className="list-unstyled details">
               <li className="mt-2">
-                <Link to="/page/about-us">Solutions</Link>
+                <Link to="/about">Solutions</Link>
               </li>
               <li className="mt-2">
-                <Link to="/page/about-us">Events</Link>
+                <Link to="/about">Events</Link>
               </li>
               <li className="mt-2">
-                <Link to="/page/about-us">Company</Link>
+                <Link to="/about">Company</Link>
               </li>
             </ul>
           </div>
@@ -117,6 +117,9 @@ function Footer() {
               </li>
               <li className="mt-2">
                 <Link to="/page/privacy-policy">Privacy Policy</Link>
+              </li>
+              <li className="mt-2">
+                <Link to="/financial-literacy">Financial Literacy</Link>
               </li>
             </ul>
           </div>

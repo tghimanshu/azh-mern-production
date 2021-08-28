@@ -1,18 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { Fragment } from "react";
 import { Icon } from "@iconify/react";
 import drawingIcon from "@iconify/icons-mdi/drawing";
 import drawIcon from "@iconify/icons-mdi/draw";
 import brushIcon from "@iconify/icons-mdi/brush";
 import Plyr from "plyr-react";
+import { useForm } from "react-hook-form";
 import Carousel from "react-multi-carousel";
 import Footer from "public/Footer";
 import Navbar from "public/Navbar";
 
 import HeroImage from "./financial-literacy.png";
 import VideoImage from "./video-thumbnail.png";
+import { useDispatch } from "react-redux";
+import { successAlert } from "utils/alerts";
+import { addContactUsAction } from "redux/actions/actions";
 
 export function FinancialLiteracy() {
+  const dispatch = useDispatch();
+  const [alert, setAlert] = useState("");
+  const { register, handleSubmit } = useForm();
+
+  const onDataSubmit = (data) => {
+    dispatch(addContactUsAction(data));
+    setAlert(successAlert("Form Submitted Successful", setAlert));
+  };
+
   return (
     <Fragment>
       <section id="fl-main" className="m-0 p-0">
@@ -268,7 +281,7 @@ export function FinancialLiteracy() {
               />
             </div>
             <h5 className="baloo-28-400 text-center mb-5">
-              Thanks Alot, Session was super inforamtive and I look Forwarded to
+              Thanks Alot, Session was super inforamtive and I look Forward to
               <br />
               future ones
             </h5>
@@ -302,21 +315,31 @@ export function FinancialLiteracy() {
                     <br />
                     Get in touch!
                   </h5>
-                  <form className="fl-contact-form">
+                  {alert}
+                  <form
+                    className="fl-contact-form"
+                    onSubmit={handleSubmit(onDataSubmit)}
+                  >
                     <input
                       type="text"
                       className="form-control mb-4"
                       placeholder="Your Name"
+                      required
+                      {...register("name")}
                     />
                     <input
-                      type="text"
+                      type="email"
                       className="form-control mb-4"
                       placeholder="Your Email"
+                      required
+                      {...register("email")}
                     />
                     <textarea
                       placeholder="Your Message"
                       className="form-control mb-4"
                       rows="5"
+                      required
+                      {...register("message")}
                     ></textarea>
                     <div className="d-flex justify-content-center mb-3">
                       <button

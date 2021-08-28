@@ -35,6 +35,7 @@ import ClientLiability from "./clientPages/liabilities";
 import ClientAsset from "./clientPages/assets";
 import { MiniSheet } from "./clientPages/MiniSheet";
 import { AdminCategories, AdminSingleCategory } from "./adminPages/categories";
+import { AdminContactUs } from "./adminPages/contactus";
 
 export const routes = {
   admin: [
@@ -114,6 +115,12 @@ export const routes = {
       path: "/admin/pages",
       name: "Pages",
       component: Pages,
+      onMenu: false,
+    },
+    {
+      path: "/admin/contactus",
+      name: "Contact Us",
+      component: AdminContactUs,
       onMenu: true,
     },
     {
