@@ -749,9 +749,11 @@ export function Brands() {
     <Container className="mt-5" data-aos="zoom">
       <hr className="brands-hr" />
       <p className="brands-text text-center">
-        Brands that have taken the steps towards Financial swatantrata with us
+        A glimpse of places where our humble attempt to spread financial
+        literacy has take place.
+        {/* Brands that have taken the steps towards Financial swatantrata with us */}
       </p>
-      <div className="allBrands mt-4">
+      {/* <div className="allBrands mt-4">
         <img src={process.env.PUBLIC_URL + "/assets/img/news/jio.svg"} alt="" />
         <img
           src={process.env.PUBLIC_URL + "/assets/img/news/nmims.svg"}
@@ -762,7 +764,43 @@ export function Brands() {
           alt=""
         />
         <img src={process.env.PUBLIC_URL + "/assets/img/news/ibs.svg"} alt="" />
-      </div>
+      </div> */}
+      <Carousel
+        responsive={{
+          desktop: {
+            breakpoint: { max: 13000, min: 1024 },
+            items: 4,
+          },
+          tablet: {
+            breakpoint: { max: 1024, min: 900 },
+            items: 2,
+          },
+          mobile: {
+            breakpoint: { max: 900, min: 0 },
+            items: 1,
+          },
+        }}
+        pauseOnHover={true}
+        infinite={true}
+        arrows={true}
+        swipeable={true}
+        autoPlay={true}
+        draggable={true}
+      >
+        {[...Array(16)].map((_, i) => (
+          <div
+            key={i}
+            className="d-flex jusify-content-center align-items-center px-2"
+            style={{ height: "100%" }}
+          >
+            <img
+              src={process.env.PUBLIC_URL + `/assets/img/brands/${i + 1}.svg`}
+              alt={"brand " + (i + 1)}
+              style={{ width: "100%" }}
+            />
+          </div>
+        ))}
+      </Carousel>
       <hr style={{ marginTop: "60px", marginBottom: "80px" }} />
     </Container>
   );

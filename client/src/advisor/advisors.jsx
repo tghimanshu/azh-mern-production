@@ -42,7 +42,7 @@ export const AdvisorCategories = () => {
             categories.map((category, i) => (
               <Col xs={12} md={6} key={i} className="mb-3">
                 {category.slug === "loans" ? (
-                  <Link href="/rupeeboss" className="a-unstyled">
+                  <Link to="/rupeeboss" className="a-unstyled">
                     <Card className="adv-category">
                       <div className="right-arrow">&#8594;</div>
                       <Card.Img

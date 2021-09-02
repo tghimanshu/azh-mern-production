@@ -22,6 +22,8 @@ import Swal from "sweetalert2";
 import { SingleNews } from "public/News";
 import { RupeeBoss } from "public/Pages/Rupeeboss";
 import { About } from "public/Pages/About";
+import { PrivacyPolicy } from "public/Pages/Privacy";
+import { TermsAndConditions } from "public/Pages/Terms-and-conditions";
 // import VideoCall from "./public/videoCall";
 
 const PublicRoutes = () => {
@@ -29,6 +31,8 @@ const PublicRoutes = () => {
     <Fragment>
       <Navbar />
       <Switch>
+        <Route exact path="/privacy-policy" component={PrivacyPolicy} />
+        <Route exact path="/terms-conditions" component={TermsAndConditions} />
         <Route exact path="/about" component={About} />
         <Route exact path="/checkminisheet" component={CheckMS} />
         <Route exact path="/rupeeboss" component={RupeeBoss} />

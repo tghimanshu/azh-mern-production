@@ -7,8 +7,12 @@ import usersLine from "@iconify/icons-clarity/users-line";
 import awardIcon from "@iconify/icons-fa-solid/award";
 import bxBriefcase from "@iconify-icons/bx/bx-briefcase";
 import { Link as button } from "react-router-dom";
+import { useEffect } from "react";
 
 export function About() {
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, []);
   return (
     <Fragment>
       <section

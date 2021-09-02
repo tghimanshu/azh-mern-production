@@ -99,6 +99,9 @@ function Footer() {
               <li className="mt-2">
                 <Link to="/about">Company</Link>
               </li>
+              <li className="mt-2">
+                <Link to="/financial-literacy">Financial Literacy</Link>
+              </li>
             </ul>
           </div>
           <div className="col-12 col-lg-6 quick-links">
@@ -113,13 +116,10 @@ function Footer() {
                 <Link to="/advisorRegister">Register - Advisor</Link>
               </li>
               <li className="mt-2">
-                <Link to="/page/terms-conditions">Terms &amp; Conditions</Link>
+                <Link to="/terms-conditions">Terms &amp; Conditions</Link>
               </li>
               <li className="mt-2">
-                <Link to="/page/privacy-policy">Privacy Policy</Link>
-              </li>
-              <li className="mt-2">
-                <Link to="/financial-literacy">Financial Literacy</Link>
+                <Link to="/privacy-policy">Privacy Policy</Link>
               </li>
             </ul>
           </div>
