@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Fragment } from "react";
 import { Icon } from "@iconify/react";
 import drawingIcon from "@iconify/icons-mdi/drawing";
@@ -16,12 +16,20 @@ import { useDispatch } from "react-redux";
 import { successAlert } from "utils/alerts";
 import { addContactUsAction } from "redux/actions/actions";
 import { Link } from "react-router-dom";
+import Aos from "aos";
 
 export function FinancialLiteracy() {
   const [animate, setAnimate] = useState(false);
   const dispatch = useDispatch();
   const [alert, setAlert] = useState("");
   const { register, handleSubmit } = useForm();
+
+  useEffect(() => {
+    Aos.init({
+      duration: 1000,
+      delay: 100,
+    });
+  }, []);
 
   const onDataSubmit = (data) => {
     dispatch(addContactUsAction(data));
@@ -52,7 +60,7 @@ export function FinancialLiteracy() {
           />
         </section>
         <Navbar />
-        <section id="fl-info" className="my-5 py-5">
+        <section data-aos="fade" id="fl-info" className="my-5 py-5">
           <div className="container">
             <h3 className="baloo-48-400 text-center">
               What makes our Sessions
@@ -193,6 +201,7 @@ export function FinancialLiteracy() {
           </div>
         </section>
         <section
+          data-aos="fade"
           id="fl-video"
           className="d-flex justify-content-center align-items-center"
         >
@@ -213,6 +222,7 @@ export function FinancialLiteracy() {
           </div>
         </section>
         <section
+          data-aos="fade-down"
           id="fl-sign-up"
           className="d-flex justify-content-center align-items-center"
         >
@@ -246,7 +256,7 @@ export function FinancialLiteracy() {
             </div>
           </div>
         </section>
-        <div className="fl-events-brands">
+        <div className="fl-events-brands" data-aos="fade-left">
           <section id="fl-events">
             <div className="container">
               <h3 className="baloo-48-400 text-center">Events</h3>
@@ -290,6 +300,7 @@ export function FinancialLiteracy() {
                 arrows={true}
                 swipeable={true}
                 autoPlay={true}
+                autoPlaySpeed={1000}
                 draggable={true}
               >
                 {[...Array(16)].map((_, i) => (
@@ -312,7 +323,7 @@ export function FinancialLiteracy() {
             </div>
           </section>
         </div>
-        <section id="fl-testinomials">
+        <section id="fl-testinomials" data-aos="fade-right">
           <div className="container d-flex flex-column justify-content-center align-items-center">
             <h3 className="baloo-48-400 text-center mb-5">Testinomials</h3>
             <div className="testinomial d-flex flex-column align-items-center">
@@ -344,6 +355,7 @@ export function FinancialLiteracy() {
           </div>
         </section>
         <section
+          data-aos="fade-up"
           id="fl-contact"
           className="d-flex justify-content-center align-items-center"
         >

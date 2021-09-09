@@ -8,14 +8,20 @@ import awardIcon from "@iconify/icons-fa-solid/award";
 import bxBriefcase from "@iconify-icons/bx/bx-briefcase";
 import { Link as button } from "react-router-dom";
 import { useEffect } from "react";
+import Aos from "aos";
 
 export function About() {
   useEffect(() => {
     window.scrollTo({ top: 0 });
+    Aos.init({
+      duration: 1000,
+      delay: 100,
+    });
   }, []);
   return (
     <Fragment>
       <section
+        data-aos="fade"
         id="azhHero"
         className="m-0 d-flex flex-column justify-content-center align-items-center bg-fa"
       >
@@ -47,7 +53,7 @@ export function About() {
           </button>
         </div>
       </section>
-      <section>
+      <section data-aos="fade-down">
         <h2 className="d-block monsterrat-40-700 text-center">
           All of this but......More Effectively
         </h2>
@@ -139,7 +145,7 @@ export function About() {
           </div>
         </div>
       </section>
-      <section id="investinresearch">
+      <section id="investinresearch" data-aos="fade-left">
         <div class="container pt-5">
           <h1 class=" d-block monsterrat-40-700 text-center mt-3 mb-5">
             INVEST IN RESEARCH

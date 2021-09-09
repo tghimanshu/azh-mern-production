@@ -18,6 +18,7 @@ const contactus = require("./routes/contactus");
 // const socket = require("./routes/socket");
 const cors = require("cors");
 const fs = require("fs");
+const axios = require("axios");
 const { config } = require("exceljs");
 let Parser = require("rss-parser");
 let parser = new Parser({
@@ -51,6 +52,17 @@ app.get("/api/news", async (req, res) => {
       "https://www.freepressjournal.in/stories.rss?section-id=9759&format=jio-news"
     );
     res.json(feed.items);
+  } catch (error) {
+    console.log(error);
+  }
+});
+app.get("/api/rupeeboss", async (req, res) => {
+  try {
+    let data = await axios.post(
+      "http://uat.api.rupeeboss.com/BankAPIService.svc/CustomerLoanRequest",
+      req.body
+    );
+    res.send(data);
   } catch (error) {
     console.log(error);
   }

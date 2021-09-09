@@ -15,6 +15,7 @@ import creditCardFill from "@iconify-icons/bi/credit-card-fill";
 import checkmarkFilledError from "@iconify-icons/carbon/checkmark-filled-error";
 import ionBusiness from "@iconify-icons/ion/business";
 import axios from "axios";
+import http from "utils/http";
 
 export function RupeeBoss() {
   const handleClick = (pId) => {
@@ -94,23 +95,20 @@ export function RupeeBoss() {
         today = `${yyyy}-${mm}-${dd}`;
         return today;
       };
-      await axios
-        .post(
-          "http://uat.api.rupeeboss.com/BankAPIService.svc/CustomerLoanRequest",
-          {
-            Name: result.name,
-            Email: result.email,
-            Mobile: result.mobile,
-            Gender: result.gender,
-            DOB: formatDate(result.dob),
-            Employment_Type: result.empType,
-            PAN: result.panNo,
-            Product_Id: result.ProductId,
-            Type: result.type,
-            CampaignName: result.campaign,
-            client_source: result.client,
-          }
-        )
+      await http
+        .post("/rupeeboss", {
+          Name: result.name,
+          Email: result.email,
+          Mobile: result.mobile,
+          Gender: result.gender,
+          DOB: formatDate(result.dob),
+          Employment_Type: result.empType,
+          PAN: result.panNo,
+          Product_Id: result.ProductId,
+          Type: result.type,
+          CampaignName: result.campaign,
+          client_source: result.client,
+        })
         .then((res) => {
           Swal.fire({
             icon: "success",
