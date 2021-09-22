@@ -1011,9 +1011,6 @@ a.e-learning-a:hover {
   font-weight: 700;
   color: rgba(0, 0, 0, 0.5);
 }
-#fl-main {
-  position: relative;
-}
 
 .fl-hero-image {
   position: absolute;
@@ -1189,5 +1186,11 @@ a.e-learning-a:hover {
 }
 
 #fl-main {
+  /* position: relative; */
+  position: fixed;
   z-index: 9999;
+  background-attachment: fixed;
+  width: 100vw;
+  height: min-content;
+  top: 0;
 }
