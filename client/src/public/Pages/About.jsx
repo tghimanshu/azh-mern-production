@@ -198,7 +198,11 @@ export function About() {
               <div class="card">
                 <div class="card-body d-flex flex-column justify-content-center align-items-center">
                   <img
-                    src="https:/www.tghimanshu.com/narnolia/assets/images/investment/diagnosis.svg"
+                    src={
+                      process.env.PUBLIC_URL +
+                      "/assets/img/investment/diagnosis.svg"
+                    }
+                    // src="https:/www.tghimanshu.com/narnolia/assets/images/investment/diagnosis.svg"
                     alt=""
                     class="mb-3"
                     style={{ width: "40px", height: "40px" }}

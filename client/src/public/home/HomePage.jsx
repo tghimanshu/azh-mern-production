@@ -750,7 +750,7 @@ export function Brands() {
       <hr className="brands-hr" />
       <p className="brands-text text-center">
         A glimpse of places where our humble attempt to spread financial
-        literacy has take place.
+        literacy has taken place.
         {/* Brands that have taken the steps towards Financial swatantrata with us */}
       </p>
       {/* <div className="allBrands mt-4">
