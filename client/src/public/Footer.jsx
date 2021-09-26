@@ -79,8 +79,9 @@ function Footer() {
                 46214
               </li>
               <li>
-                <i className="ri-map-pin-line mb-1"></i> 203, 2nd Floor, Ackruti
-                Star, MIDC Central Rd, Andheri East, Mumbai, Maharashtra 400093
+                <i className="ri-map-pin-line mb-1"></i> One BKC, G- Block, C
+                Wing, 6th Floor, Unit No.609, Bandra Kurla Complex, Bandra East,
+                Mumbai -400051
               </li>
             </ul>
           </div>
