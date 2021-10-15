@@ -14,7 +14,6 @@ import cashIcon from "@iconify-icons/bi/cash";
 import creditCardFill from "@iconify-icons/bi/credit-card-fill";
 import checkmarkFilledError from "@iconify-icons/carbon/checkmark-filled-error";
 import ionBusiness from "@iconify-icons/ion/business";
-import axios from "axios";
 import http from "utils/http";
 
 export function RupeeBoss() {

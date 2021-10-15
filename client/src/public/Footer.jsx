@@ -92,7 +92,7 @@ function Footer() {
             <h4 className="font-weight-bold text-uppercase mb-4">ABOUT US</h4>
             <ul className="list-unstyled details">
               <li className="mt-2">
-                <Link to="/about">Solutions</Link>
+                <Link to="/categories">Solutions</Link>
               </li>
               <li className="mt-2">
                 <Link to="/about">Events</Link>
@@ -110,6 +110,9 @@ function Footer() {
               QUICK LINKS
             </h4>
             <ul className="list-unstyled details">
+              <li className="mt-2">
+                <Link to="/">Home</Link>
+              </li>
               <li className="mt-2">
                 <Link to="/advisorLogin">Login - Advisor</Link>
               </li>

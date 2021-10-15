@@ -14,9 +14,9 @@ const razorpay = new Razorpay({
 
 router.post("/", async (req, res) => {
   try {
-    const booking = await Booking.findById(req.body.b_id);
+    // const booking = await Booking.findById(req.body.b_id);
     const payment_capture = 1;
-    const amount = booking.bookingAmt;
+    const amount = 999;
     const currency = "INR";
     const receipt = shortid.generate();
     const options = {

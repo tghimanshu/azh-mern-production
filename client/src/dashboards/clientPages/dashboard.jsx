@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import http from "utils/http";
 import { Link } from "react-router-dom";
 // import { dangerAlert } from "utils/alerts";
 // import "react-quill/dist/quill.snow.css";
+import ReactCanvasConfetti from "react-canvas-confetti";
+import Swal from "sweetalert2";
 
 // react-bootstrap components
 import { Card, Container, Row, Col, ProgressBar } from "react-bootstrap";
@@ -10,7 +12,7 @@ import Recommendation from "./bookings";
 import { getRole } from "utils/jwt";
 import { getCompletionStatus } from "utils/logout";
 
-function ClientDashboard({ history }) {
+function ClientDashboard({ history, location }) {
   const [user, setUser] = useState({
     address: "",
     city: "",
@@ -23,10 +25,16 @@ function ClientDashboard({ history }) {
     email: "",
     contact: 0,
   });
-  // const [recc, setRecc] = useState(null);
+  const [confetti, setConfetti] = useState(false);
   const [completionState, setCompletionState] = useState([]);
 
   useEffect(() => {
+    setConfetti(true);
+    location.search === "?accreated=true" &&
+      Swal.fire({
+        icon: "success",
+        text: "Look at you Taking wise decisions for your money, Welcome to Advisor Zaroori Hai Family",
+      });
     const getUser = async () => {
       try {
         const userJwt = getRole();
@@ -40,10 +48,26 @@ function ClientDashboard({ history }) {
     getUser();
   }, []);
 
-  console.log(completionState);
-
+  const style = {
+    position: "fixed",
+    width: "100vw",
+    height: "100vh",
+    zIndex: 1000,
+    top: 0,
+    left: 0,
+  };
   return (
     <Container fluid>
+      {location.search === "?accreated=true" && (
+        <ReactCanvasConfetti
+          style={style}
+          className={"yourClassName"}
+          fire={confetti}
+          onFire={() => console.log("wow")}
+          particleCount={800}
+          spread={400}
+        />
+      )}
       <Row>
         <Col md="8">
           <Card>

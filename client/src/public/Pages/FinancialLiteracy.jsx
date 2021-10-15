@@ -27,6 +27,7 @@ export function FinancialLiteracy() {
   const ref = useRef(null);
 
   useEffect(() => {
+    window.scrollTo({ top: 0 });
     Aos.init({
       duration: 1000,
       delay: 100,

@@ -1,8 +1,11 @@
-import React from "react";
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../images/site-logo.png";
+import { LoginModal } from "../utils/model";
 
 function Navbar(props) {
+  const [show, setShow] = useState(false);
   return (
     <header
       id="header"
@@ -36,6 +39,15 @@ function Navbar(props) {
             </li>
             <li
               className={
+                window.location.pathname.includes("financial-literacy")
+                  ? "active"
+                  : undefined
+              }
+            >
+              <Link to="/financial-literacy">Financial Literacy</Link>
+            </li>
+            <li
+              className={
                 window.location.pathname.includes("e-learning")
                   ? "active"
                   : undefined
@@ -43,25 +55,26 @@ function Navbar(props) {
             >
               <Link to="/e-learning">E-Learning</Link>
             </li>
-            {/* <li
+            <li
               className={
                 window.location.pathname.includes("knowledge-base")
                   ? "active"
                   : undefined
               }
             >
-              <Link to="/knowledge-base">Knowledge Base</Link>
-            </li> */}
+              {/* <a onClick={() => setShow(true)}>Login/Register</a> */}
+            </li>
             <li className="get-started">
               {localStorage.getItem("auth-token") ? (
                 <Link to="/client">My Account</Link>
               ) : (
-                <Link to="/login">Login/Register</Link>
+                <a onClick={() => setShow(true)}>Login/Register</a>
               )}
             </li>
           </ul>
         </nav>
       </div>
+      <LoginModal show={show} handleClose={() => setShow(false)} />
     </header>
   );
 }
