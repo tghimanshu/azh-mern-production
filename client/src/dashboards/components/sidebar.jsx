@@ -26,7 +26,7 @@ const Sidebar = ({ routes, type }) => {
         </Link>
 
         <ul className="sidebar-nav">
-          <li className="sidebar-header">Main</li>
+          {/* <li className="sidebar-header">Main</li> */}
           {routes[type] &&
             routes[type].map(
               (route) =>

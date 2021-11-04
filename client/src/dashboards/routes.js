@@ -201,9 +201,9 @@ export const routes = {
   client: [
     {
       path: "/client",
-      name: "Dashboard",
+      name: "Overview",
       component: ClientDashboard,
-      onMenu: true,
+      onMenu: false,
     },
     {
       path: "/client/minisheet",
@@ -227,7 +227,7 @@ export const routes = {
       path: "/client/booking",
       name: "Booking",
       component: ClientBookings,
-      onMenu: true,
+      onMenu: false,
     },
     // {
     //   path: "/client/feedback",
@@ -243,7 +243,7 @@ export const routes = {
     // },
     {
       path: "/client/personal",
-      name: "Personal",
+      name: "Financial Sheet",
       component: ClientPersonal,
       onMenu: true,
     },
@@ -251,43 +251,43 @@ export const routes = {
       path: "/client/investment",
       name: "Investments",
       component: ClientInvestment,
-      onMenu: true,
+      onMenu: false,
     },
     {
       path: "/client/insurance",
       name: "Insurance",
       component: ClientInsurances,
-      onMenu: true,
+      onMenu: false,
     },
     {
       path: "/client/income",
       name: "Income",
       component: ClientIncome,
-      onMenu: true,
+      onMenu: false,
     },
     {
       path: "/client/expense",
       name: "Expenses",
       component: ClientExpense,
-      onMenu: true,
+      onMenu: false,
     },
     {
       path: "/client/asset",
       name: "Asset",
       component: ClientAsset,
-      onMenu: true,
+      onMenu: false,
     },
     {
       path: "/client/liability",
       name: "Liability",
       component: ClientLiability,
-      onMenu: true,
+      onMenu: false,
     },
     {
       path: "/client/goal",
       name: "Goal",
       component: ClientGoal,
-      onMenu: true,
+      onMenu: false,
     },
   ],
 };

@@ -68,7 +68,15 @@ function Navbar(props) {
               {localStorage.getItem("auth-token") ? (
                 <Link to="/client">My Account</Link>
               ) : (
-                <a onClick={() => setShow(true)}>Login/Register</a>
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setShow(true);
+                  }}
+                >
+                  Login/Register
+                </a>
               )}
             </li>
           </ul>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import http from "utils/http";
 import { Link } from "react-router-dom";
 // import { dangerAlert } from "utils/alerts";
@@ -46,7 +46,7 @@ function ClientDashboard({ history, location }) {
       } catch (error) {}
     };
     getUser();
-  }, []);
+  }, [location]);
 
   const style = {
     position: "fixed",

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import http from "utils/http";
 import { Modal } from "react-bootstrap";
@@ -9,7 +9,8 @@ import {
 } from "react-share";
 import Cropper from "react-easy-crop";
 import { dangerAlert, successAlert } from "./alerts";
-import ReactCanvasConfetti from "react-canvas-confetti";
+import { Icon } from "@iconify/react";
+import circleCheck from "@iconify-icons/akar-icons/circle-check";
 
 export const RequestAmtModal = (props) => {
   return (
@@ -547,9 +548,9 @@ const Register = (props) => {
             </div>
             <div
               style={{
-                width: "70%",
+                width: "90%",
                 margin: "0 auto",
-                fontFamily: "Baloo Da",
+                fontFamily: "Baloo Da 2",
                 fontStyle: "normal",
                 fontWeight: "normal",
                 fontSize: "15px",
@@ -558,20 +559,55 @@ const Register = (props) => {
                 color: "#FFFFFF",
               }}
             >
-              <div className="mb-2">
+              <div className="mb-2 d-flex align-items-center">
+                <Icon
+                  icon={circleCheck}
+                  className="mr-2 text-success"
+                  style={{
+                    fontSize: "22px",
+                  }}
+                />
                 Right Advisors just a click away- without hassle
               </div>
-              <div className="mb-2">
+              <div className="mb-2 d-flex align-items-center">
+                <Icon
+                  icon={circleCheck}
+                  className="mr-2 text-success"
+                  style={{
+                    fontSize: "22px",
+                  }}
+                />
                 Just a call away to settle your Grievances
               </div>
-              <div className="mb-2">
+              <div className="mb-2 d-flex align-items-center">
+                <Icon
+                  icon={circleCheck}
+                  className="mr-2 text-success"
+                  style={{
+                    fontSize: "22px",
+                  }}
+                />
                 Save tons to time in researching a right Advisor for any
                 Product; Real estate, Loans, Finanical planning etc.
               </div>
-              <div className="mb-2">
+              <div className="mb-2 d-flex align-items-center">
+                <Icon
+                  icon={circleCheck}
+                  className="mr-2 text-success"
+                  style={{
+                    fontSize: "22px",
+                  }}
+                />
                 Access to Advance dashboard to help you in financial Planning
               </div>
-              <div className="mb-2">
+              <div className="mb-2 d-flex align-items-center">
+                <Icon
+                  icon={circleCheck}
+                  className="mr-2 text-success"
+                  style={{
+                    fontSize: "22px",
+                  }}
+                />
                 10hrs Personal Finance Live sessions for you and your family
               </div>
             </div>

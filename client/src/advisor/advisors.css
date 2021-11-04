@@ -155,20 +155,26 @@
     align-items: center;
   }
 
+  .adv-category {
+    grid-template-columns: 1fr;
+    margin: 4% 8%;
+  }
   .adv-category-details > h1.title {
     font-family: "Poppins";
-    font-size: 12px;
+    font-size: 26px;
+    padding-bottom: 10px;
     font-weight: 600;
   }
   .adv-category-details > .title > small {
     font-family: "Poppins";
-    font-size: 6.2px;
+    font-size: 12px;
     font-weight: 400;
   }
   .adv-category-details > p.description {
     font-family: "Poppins";
-    font-size: 7.2px;
+    font-size: 16px;
     font-weight: 400;
+    padding-bottom: 35px;
   }
 }
 
