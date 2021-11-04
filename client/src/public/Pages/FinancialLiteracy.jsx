@@ -235,7 +235,7 @@ export function FinancialLiteracy() {
               />
             </div>
           </section>
-          <section
+          {/* <section
             data-aos="fade-down"
             id="fl-sign-up"
             className="d-flex justify-content-center align-items-center"
@@ -269,7 +269,7 @@ export function FinancialLiteracy() {
                 </div>
               </div>
             </div>
-          </section>
+          </section> */}
           <div className="fl-events-brands" data-aos="fade-left">
             <section id="fl-events">
               <div className="container">
@@ -339,7 +339,7 @@ export function FinancialLiteracy() {
           </div>
           <section id="fl-testinomials" data-aos="fade-right">
             <div className="container d-flex flex-column justify-content-center align-items-center">
-              <h3 className="baloo-48-400 text-center mb-5">Testinomials</h3>
+              <h3 className="baloo-48-400 text-center mb-5">Testimonials</h3>
               <div className="testinomial d-flex flex-column align-items-center">
                 <div className="testinomial-logo mb-5">
                   <img
