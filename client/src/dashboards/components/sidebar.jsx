@@ -22,7 +22,11 @@ const Sidebar = ({ routes, type }) => {
     <nav id="sidebar" className="sidebar">
       <div className="sidebar-content ">
         <Link className="sidebar-brand" to="/">
-          <span className="align-middle">Advisor Zaroori Hai</span>
+          <span className="align-middle">
+            Advisor Zaroori Hai
+            <br />
+            <small className="text-center d-block">Back to Site →</small>
+          </span>
         </Link>
 
         <ul className="sidebar-nav">

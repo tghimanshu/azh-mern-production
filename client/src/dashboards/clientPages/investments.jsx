@@ -147,7 +147,7 @@ const Investment = ({ history }) => {
 
   return (
     <div className="container mt-4 wizard wizard-success mb-4 sw-main sw-theme-arrows">
-      <StepsNav stepNo={2} />
+      <StepsNav stepNo={5} />
       <Card>
         <Card.Header>
           <Card.Title as="h1" className="font-weight-bold">
@@ -156,7 +156,7 @@ const Investment = ({ history }) => {
         </Card.Header>
         {alert}
         <div className="panel-body p-3">
-          <div className="form-check form-check-lg">
+          {/* <div className="form-check form-check-lg">
             <input
               type="checkbox"
               checked={!haveInvestments}
@@ -167,7 +167,7 @@ const Investment = ({ history }) => {
             <label className="form-check-label" htmlFor="haveInvestments">
               I Don't Have Any Investments
             </label>
-          </div>
+          </div> */}
 
           {haveInvestments && (
             <form>

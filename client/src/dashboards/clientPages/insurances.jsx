@@ -68,14 +68,14 @@ const Insurances = ({ history }) => {
   };
   return (
     <div className="container mt-4 wizard wizard-success mb-4 sw-main sw-theme-arrows">
-      <StepsNav stepNo={3} />
+      <StepsNav stepNo={4} />
       <Card>
         <Card.Header>
           <Card.Title className="font-weight-bold">Insurances</Card.Title>
         </Card.Header>
         {alert}
         <div className="panel-body p-3">
-          <div className="form-check form-check-lg">
+          {/* <div className="form-check form-check-lg">
             <input
               type="checkbox"
               checked={!haveInsurances}
@@ -86,7 +86,7 @@ const Insurances = ({ history }) => {
             <label className="form-check-label" htmlFor="haveInvestments">
               I Don't Have Any Insurance
             </label>
-          </div>
+          </div> */}
           {haveInsurances && (
             <form>
               <Accordion defaultActiveKey="0">

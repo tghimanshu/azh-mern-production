@@ -388,6 +388,14 @@ const Register = (props) => {
   const [contact, setcontact] = useState(null);
   const [pass, setpass] = useState("");
   const [isChecked, setisChecked] = useState(false);
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [pincode, setPincode] = useState("");
+  const [professionalDetails, setProfessionalDetails] = useState("");
+  const [dob, setDob] = useState("");
+  const [investorType, setInvestorType] = useState("");
+  const [loookingFor, setLookingFor] = useState([]);
+  const [isNext, setIsNext] = useState(false);
 
   const displayRazorPay = async (b_id, adv_id) => {
     console.log(process.env.REACT_APP_RAZORPAY_CLIENT_KEY);
@@ -419,6 +427,12 @@ const Register = (props) => {
             email: email,
             contact: contact,
             password: pass,
+            city: city,
+            state: state,
+            pincode: pincode,
+            professionalDetails: professionalDetails,
+            dob: dob,
+            investorType: investorType,
           });
           seterror(
             successAlert("Registration SuccessFul, Please Login!", seterror)
@@ -619,157 +633,418 @@ const Register = (props) => {
               onSubmit={handleSubmit}
             >
               {error}
-              <div className="row">
-                <div className="form-group col-6">
-                  <input
-                    value={name}
-                    onChange={(e) => setname(e.target.value)}
-                    required={true}
-                    className="form-control"
-                    type="text"
-                    name="cli-name"
-                    id="cli-name"
-                    placeholder="Name"
-                    style={inputStyles}
-                  />
-                </div>
-                <div className="form-group col-6">
-                  <input
-                    value={contact}
-                    onChange={(e) =>
-                      setcontact(
-                        parseInt(e.target.value) === 0
-                          ? null
-                          : parseInt(e.target.value)
-                      )
-                    }
-                    required={true}
-                    className="form-control"
-                    type="number"
-                    name="cli-contact"
-                    id="cli-contact"
-                    placeholder="Contact"
-                    style={inputStyles}
-                  />
-                </div>
-              </div>
-              <div className="form-group">
-                <input
-                  value={username}
-                  onChange={(e) => setusername(e.target.value)}
-                  required={true}
-                  className="form-control"
-                  type="text"
-                  name="cli-username"
-                  id="cli-username"
-                  placeholder="Username"
-                  style={inputStyles}
-                />
-              </div>
-              <div className="form-group">
-                <input
-                  value={email}
-                  onChange={(e) => setemail(e.target.value)}
-                  required={true}
-                  className="form-control"
-                  type="text"
-                  name="cli-email"
-                  id="cli-email"
-                  placeholder="Email"
-                  style={inputStyles}
-                />
-              </div>
-              <div className="form-group">
-                <input
-                  value={pass}
-                  onChange={(e) => setpass(e.target.value)}
-                  required={true}
-                  className="form-control"
-                  type="password"
-                  name="cli-pass"
-                  placeholder="Password"
-                  style={inputStyles}
-                />
-              </div>
-              <div className="custom-control custom-checkbox">
-                <input
-                  onChange={(e) => setisChecked(!Boolean(isChecked))}
-                  checked={isChecked}
-                  type="checkbox"
-                  name="cli-terms"
-                  id="cli-terms"
-                  className="custom-control-input"
-                />
-                <label
-                  htmlFor="cli-terms"
-                  className="custom-control-label"
-                  //   style={to th{ fontSize: "1.24rem" }}
-                  style={{
-                    fontFamily: "Poppins",
-                    fontStyle: "normal",
-                    fontWeight: 500,
-                    fontSize: "12px",
-                    lineHeight: "18px",
-                    color: "#737373",
-                  }}
-                >
-                  I Agree with{" "}
-                  <Link
-                    to="/page/terms-conditions"
+              {!isNext && (
+                <div>
+                  <div className="row">
+                    <div className="form-group col-6">
+                      <input
+                        value={name}
+                        onChange={(e) => setname(e.target.value)}
+                        required={true}
+                        className="form-control"
+                        type="text"
+                        name="cli-name"
+                        id="cli-name"
+                        placeholder="Name"
+                        style={inputStyles}
+                      />
+                    </div>
+                    <div className="form-group col-6">
+                      <input
+                        value={contact}
+                        onChange={(e) =>
+                          setcontact(
+                            parseInt(e.target.value) === 0
+                              ? null
+                              : parseInt(e.target.value)
+                          )
+                        }
+                        required={true}
+                        className="form-control"
+                        type="number"
+                        name="cli-contact"
+                        id="cli-contact"
+                        placeholder="Contact"
+                        style={inputStyles}
+                      />
+                    </div>
+                  </div>
+                  <div className="form-group">
+                    <input
+                      value={username}
+                      onChange={(e) => setusername(e.target.value)}
+                      required={true}
+                      className="form-control"
+                      type="text"
+                      name="cli-username"
+                      id="cli-username"
+                      placeholder="Username"
+                      style={inputStyles}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <input
+                      value={email}
+                      onChange={(e) => setemail(e.target.value)}
+                      required={true}
+                      className="form-control"
+                      type="text"
+                      name="cli-email"
+                      id="cli-email"
+                      placeholder="Email"
+                      style={inputStyles}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <input
+                      value={pass}
+                      onChange={(e) => setpass(e.target.value)}
+                      required={true}
+                      className="form-control"
+                      type="password"
+                      name="cli-pass"
+                      placeholder="Password"
+                      style={inputStyles}
+                    />
+                  </div>
+                  <div className="custom-control custom-checkbox">
+                    <input
+                      onChange={(e) => setisChecked(!Boolean(isChecked))}
+                      checked={isChecked}
+                      type="checkbox"
+                      name="cli-terms"
+                      id="cli-terms"
+                      className="custom-control-input"
+                    />
+                    <label
+                      htmlFor="cli-terms"
+                      className="custom-control-label"
+                      //   style={to th{ fontSize: "1.24rem" }}
+                      style={{
+                        fontFamily: "Poppins",
+                        fontStyle: "normal",
+                        fontWeight: 500,
+                        fontSize: "12px",
+                        lineHeight: "18px",
+                        color: "#737373",
+                      }}
+                    >
+                      I Agree with{" "}
+                      <Link
+                        to="/page/terms-conditions"
+                        style={{
+                          color: "#737373",
+                          textDecorationLine: "underline",
+                        }}
+                      >
+                        Terms &amp; Conditions.
+                      </Link>
+                      <span className="text-danger">*</span>
+                    </label>
+                  </div>
+                  <div className="d-flex justify-content-center">
+                    <button
+                      onClick={() => setIsNext(true)}
+                      type="button"
+                      name="l-cli-submit"
+                      className="btn btn-success mt-4"
+                      style={{
+                        padding: "12px 50px",
+                        background: "#2B32B2",
+                      }}
+                    >
+                      Sign up
+                    </button>
+                  </div>
+                  <div
+                    className="text-center mt-2 mb-3"
                     style={{
-                      color: "#737373",
-                      textDecorationLine: "underline",
+                      fontFamily: "Poppins",
+                      fontStyle: "normal",
+                      fontWeight: 500,
+                      fontSize: "14px",
+                      lineHeight: "27px",
+                      textAlign: "center",
+                      color: "rgba(0, 0, 0, 0.75)",
                     }}
                   >
-                    Terms &amp; Conditions.
-                  </Link>
-                  <span className="text-danger">*</span>
-                </label>
-              </div>
-              <div className="d-flex justify-content-center">
-                <button
-                  type="submit"
-                  name="l-cli-submit"
-                  className="btn btn-success mt-4"
-                  style={{
-                    padding: "12px 50px",
-                    background: "#2B32B2",
-                  }}
-                >
-                  Sign up
-                </button>
-              </div>
-              <div
-                className="text-center mt-2 mb-3"
-                style={{
-                  fontFamily: "Poppins",
-                  fontStyle: "normal",
-                  fontWeight: 500,
-                  fontSize: "14px",
-                  lineHeight: "27px",
-                  textAlign: "center",
-                  color: "rgba(0, 0, 0, 0.75)",
-                }}
-              >
-                Have an Account?
-                <br />
-                <div
-                  onClick={() => props.setSignUp(true)}
-                  style={{
-                    fontFamily: "Poppins",
-                    fontStyle: "normal",
-                    fontWeight: 500,
-                    fontSize: "14px",
-                    lineHeight: "27px",
-                    textAlign: "center",
-                    color: "rgba(0, 0, 0, 0.75)",
-                    textDecorationLine: "underline",
-                    cursor: "pointer",
-                  }}
-                >
-                  Login In here
+                    Have an Account?
+                    <br />
+                    <div
+                      onClick={() => props.setSignUp(true)}
+                      style={{
+                        fontFamily: "Poppins",
+                        fontStyle: "normal",
+                        fontWeight: 500,
+                        fontSize: "14px",
+                        lineHeight: "27px",
+                        textAlign: "center",
+                        color: "rgba(0, 0, 0, 0.75)",
+                        textDecorationLine: "underline",
+                        cursor: "pointer",
+                      }}
+                    >
+                      Login In here
+                    </div>
+                  </div>
                 </div>
-              </div>
+              )}
+              {isNext && (
+                <div>
+                  <div className="row">
+                    <div className="form-group col-6">
+                      <input
+                        value={city}
+                        onChange={(e) => setCity(e.target.value)}
+                        required={true}
+                        className="form-control"
+                        type="text"
+                        placeholder="City"
+                        style={inputStyles}
+                      />
+                    </div>
+                    <div className="form-group col-6">
+                      <input
+                        value={state}
+                        onChange={(e) => setState(e.target.value)}
+                        required={true}
+                        className="form-control"
+                        type="text"
+                        placeholder="State"
+                        style={inputStyles}
+                      />
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="form-group col-6">
+                      <input
+                        value={pincode}
+                        onChange={(e) => setPincode(e.target.value)}
+                        required={true}
+                        className="form-control"
+                        type="text"
+                        placeholder="Pin Code"
+                        style={inputStyles}
+                      />
+                    </div>
+                    <div className="form-group col-6">
+                      <select
+                        value={professionalDetails}
+                        onChange={(e) => setProfessionalDetails(e.target.value)}
+                        required={true}
+                        className="form-control"
+                        placeholder="Professional Details"
+                        style={inputStyles}
+                      >
+                        <option value="business">Business</option>
+                        <option value="Self Employed">Self Employed</option>
+                        <option value="Salaried">Salaried</option>
+                        <option value="About To Start">About To Start</option>
+                      </select>
+                    </div>
+                    <div className="form-group col-6">
+                      <select
+                        value={investorType}
+                        onChange={(e) => setInvestorType(e.target.value)}
+                        required={true}
+                        className="form-control"
+                        placeholder="Professional Details"
+                        style={inputStyles}
+                      >
+                        <option value="First Time Investor?">
+                          First Time Investor?
+                        </option>
+                        <option value="Already An Advisor?">
+                          Already An Advisor?
+                        </option>
+                      </select>
+                    </div>
+                    <div className="form-group col-6">
+                      <input
+                        value={dob}
+                        onChange={(e) => setDob(e.target.value)}
+                        required={true}
+                        type="date"
+                        className="form-control"
+                        placeholder="Date of Birth"
+                        style={inputStyles}
+                      />
+                    </div>
+                  </div>
+                  {/* <div>
+                    <h6>Looking For</h6>
+                    <div className="row">
+                      <div className="custom-control custom-checkbox col-6">
+                        <input
+                          onChange={(e) => {
+                            if (loookingFor.includes("Financial Planning")) {
+                              let index =
+                                loookingFor.indexOf("Financial Planning");
+                              loookingFor.splice(index, 1);
+                            } else {
+                              loookingFor.push("Financial Planning");
+                            }
+                          }}
+                          checked={loookingFor.includes("Financial Planning")}
+                          type="checkbox"
+                          className="custom-control-input"
+                        />
+                        <label
+                          htmlFor="cli-terms"
+                          className="custom-control-label"
+                          style={{
+                            fontFamily: "Poppins",
+                            fontStyle: "normal",
+                            fontWeight: 500,
+                            fontSize: "12px",
+                            lineHeight: "18px",
+                            color: "#737373",
+                          }}
+                        >
+                          Financial Planning
+                        </label>
+                      </div>
+                      <div className="custom-control custom-checkbox col-6">
+                        <input
+                          onChange={(e) => {
+                            if (loookingFor.includes("Retirement Planning")) {
+                              let index = loookingFor.indexOf(
+                                "Retirement Planning"
+                              );
+                              loookingFor.splice(index, 1);
+                            } else {
+                              loookingFor.push("Retirement Planning");
+                            }
+                          }}
+                          checked={loookingFor.includes("Financial Planning")}
+                          type="checkbox"
+                          className="custom-control-input"
+                        />
+                        <label
+                          htmlFor="cli-terms"
+                          className="custom-control-label"
+                          style={{
+                            fontFamily: "Poppins",
+                            fontStyle: "normal",
+                            fontWeight: 500,
+                            fontSize: "12px",
+                            lineHeight: "18px",
+                            color: "#737373",
+                          }}
+                        >
+                          Retirement Planning
+                        </label>
+                      </div>
+                      <div className="custom-control custom-checkbox col-6">
+                        <input
+                          onChange={(e) => {
+                            if (loookingFor.includes("Tax Planning")) {
+                              let index = loookingFor.indexOf("Tax Planning");
+                              loookingFor.splice(index, 1);
+                            } else {
+                              loookingFor.push("Tax Planning");
+                            }
+                          }}
+                          checked={loookingFor.includes("Tax Planning")}
+                          type="checkbox"
+                          className="custom-control-input"
+                        />
+                        <label
+                          htmlFor="cli-terms"
+                          className="custom-control-label"
+                          style={{
+                            fontFamily: "Poppins",
+                            fontStyle: "normal",
+                            fontWeight: 500,
+                            fontSize: "12px",
+                            lineHeight: "18px",
+                            color: "#737373",
+                          }}
+                        >
+                          Tax Planning
+                        </label>
+                      </div>
+                      <div className="custom-control custom-checkbox col-6">
+                        <input
+                          onChange={(e) => {
+                            if (loookingFor.includes("Estate Planning")) {
+                              let index =
+                                loookingFor.indexOf("Estate Planning");
+                              loookingFor.splice(index, 1);
+                            } else {
+                              loookingFor.push("Estate Planning");
+                            }
+                          }}
+                          checked={loookingFor.includes("Estate Planning")}
+                          type="checkbox"
+                          className="custom-control-input"
+                        />
+                        <label
+                          htmlFor="cli-terms"
+                          className="custom-control-label"
+                          style={{
+                            fontFamily: "Poppins",
+                            fontStyle: "normal",
+                            fontWeight: 500,
+                            fontSize: "12px",
+                            lineHeight: "18px",
+                            color: "#737373",
+                          }}
+                        >
+                          Estate Planning
+                        </label>
+                      </div>
+                      <div className="custom-control custom-checkbox col-6">
+                        <input
+                          onClick={(e) => {
+                            console.log(loookingFor);
+                            if (loookingFor.includes("Mutual fund")) {
+                              // let index = loookingFor.indexOf("Mutual fund");
+                              // setLookingFor((loookingFor) =>
+                              //   loookingFor.splice(index, 1)
+                              // );
+                            } else {
+                              let l = [...loookingFor];
+                              l.push("Mutual Fund");
+                              setLookingFor(l);
+                            }
+                          }}
+                          checked={loookingFor.includes("Mutual fund")}
+                          type="checkbox"
+                          className="custom-control-input"
+                        />
+                        <label
+                          htmlFor="cli-terms"
+                          className="custom-control-label"
+                          style={{
+                            fontFamily: "Poppins",
+                            fontStyle: "normal",
+                            fontWeight: 500,
+                            fontSize: "12px",
+                            lineHeight: "18px",
+                            color: "#737373",
+                          }}
+                        >
+                          Mutual fund
+                        </label>
+                      </div>
+                    </div>
+                  </div> */}
+                  <div className="d-flex justify-content-center">
+                    <button
+                      type="submit"
+                      name="l-cli-submit"
+                      className="btn btn-success mt-4"
+                      style={{
+                        padding: "12px 50px",
+                        background: "#2B32B2",
+                      }}
+                    >
+                      Sign up
+                    </button>
+                  </div>
+                </div>
+              )}
             </form>
           </div>
         </div>

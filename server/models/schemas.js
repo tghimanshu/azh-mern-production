@@ -148,11 +148,31 @@ const clientSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
+  state: {
+    type: String,
+    default: "",
+  },
   country: {
     type: String,
     default: "",
   },
   postalCode: {
+    type: String,
+    default: "",
+  },
+  dob: {
+    type: String,
+    default: "",
+  },
+  professionalDetails: {
+    type: String,
+    default: "",
+  },
+  lookingFor: {
+    type: String,
+    default: "",
+  },
+  investorType: {
     type: String,
     default: "",
   },
@@ -482,6 +502,12 @@ const clientValidate = (data) => {
     email: Joi.string().required().email(),
     contact: Joi.number().min(8).required(),
     password: Joi.string().min(5).max(255).required(),
+    city: Joi.string().min(2).max(255).required(),
+    state: Joi.string().min(2).max(255).required(),
+    pincode: Joi.string().required(),
+    investorType: Joi.string().min(5).max(255).required(),
+    professionalDetails: Joi.string().required(),
+    dob: Joi.string().min(5).max(255).required(),
   }).validate(data);
 };
 

@@ -248,6 +248,12 @@ export const routes = {
       onMenu: true,
     },
     {
+      path: "/elearning",
+      name: "E Learning",
+      component: ClientDashboard,
+      onMenu: true,
+    },
+    {
       path: "/client/investment",
       name: "Investments",
       component: ClientInvestment,

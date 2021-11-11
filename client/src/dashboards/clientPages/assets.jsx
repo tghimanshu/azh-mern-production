@@ -58,12 +58,12 @@ const Asset = ({ history }) => {
       <Card>
         <Card.Header>
           <Card.Title as="h1" className="font-weight-bold">
-            Current Assets
+            Assets
           </Card.Title>
         </Card.Header>
         {alert}
         <div className="panel-body p-3">
-          <div className="form-check form-check-lg">
+          {/* <div className="form-check form-check-lg">
             <input
               type="checkbox"
               checked={!haveAssets}
@@ -74,7 +74,7 @@ const Asset = ({ history }) => {
             <label className="form-check-label" htmlFor="haveInvestments">
               I Don't Have Any Assets
             </label>
-          </div>
+          </div> */}
           {haveAssets && (
             <form>
               <Accordion defaultActiveKey="0">
@@ -109,8 +109,12 @@ const Asset = ({ history }) => {
                                 <option value="Savings Account">
                                   Savings Account
                                 </option>
-                                <option value="FD">FD</option>
-                                <option value="RD">RD</option>
+                                <option value="Fixed Deposit">
+                                  Fixed Deposit
+                                </option>
+                                <option value="Recurring Deposit">
+                                  Recurring Deposit
+                                </option>
                                 <option value="Gold">Gold</option>
                                 <option value="Mutual Fund">Mutual Fund</option>
                                 <option value="Shares/Equities">
@@ -140,7 +144,7 @@ const Asset = ({ history }) => {
                           </Col>
                           <Col md="4">
                             <Form.Group>
-                              <label>Remarks</label>
+                              <label>Date of Purchase</label>
                               <Form.Control
                                 value={assets[i].remark}
                                 onChange={(e) => {

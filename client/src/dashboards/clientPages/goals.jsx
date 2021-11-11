@@ -72,7 +72,7 @@ const Goal = ({ history }) => {
         </Card.Header>
         <Card.Body>
           {alert}
-          <div className="form-check form-check-lg">
+          {/* <div className="form-check form-check-lg">
             <input
               type="checkbox"
               checked={!haveGoals}
@@ -83,7 +83,7 @@ const Goal = ({ history }) => {
             <label className="form-check-label" htmlFor="haveGoals">
               I Don't Have Any Goals
             </label>
-          </div>
+          </div> */}
 
           <form className="panel-body p-3">
             {haveGoals && (
@@ -102,7 +102,7 @@ const Goal = ({ history }) => {
                           <Card.Body className="row">
                             <Col md="6">
                               <Form.Group>
-                                <label>Goal</label>
+                                <label>Goal Name</label>
                                 <Form.Control
                                   value={goals[i].goal}
                                   onChange={(e) => {
@@ -114,12 +114,26 @@ const Goal = ({ history }) => {
                                   }}
                                   type="text"
                                   placeholder="Enter Goal"
+                                  list="goal_name"
                                 />
+                                <datalist id="goal_name">
+                                  <option value="Retirement">Retirement</option>
+                                  <option value="Travelling">Travelling</option>
+                                  <option value="Purchse of Car">
+                                    Purchse of Car
+                                  </option>
+                                  <option value="Child's Education">
+                                    Child's Education
+                                  </option>
+                                  <option value="Marriage(own)">
+                                    Marriage(own)
+                                  </option>
+                                </datalist>
                               </Form.Group>
                             </Col>
                             <Col lg="6">
                               <Form.Group>
-                                <label>Amount Needed as of Today</label>
+                                <label>Expected Goal Amount</label>
                                 <Form.Control
                                   value={goals[i].amtNeededToday}
                                   onChange={(e) => {
@@ -131,23 +145,6 @@ const Goal = ({ history }) => {
                                   }}
                                   type="text"
                                   placeholder="Enter Amount"
-                                />
-                              </Form.Group>
-                            </Col>
-                            <Col md="6">
-                              <Form.Group>
-                                <label>Achievement Year</label>
-                                <Form.Control
-                                  value={goals[i].achievementYear}
-                                  onChange={(e) => {
-                                    const myGoal = goals[i];
-                                    myGoal.achievementYear = e.target.value;
-                                    const demo = [...goals];
-                                    demo[i] = myGoal;
-                                    setGoals(demo);
-                                  }}
-                                  type="date"
-                                  placeholder="Enter Achievement Year"
                                 />
                               </Form.Group>
                             </Col>
@@ -168,9 +165,26 @@ const Goal = ({ history }) => {
                                 />
                               </Form.Group>
                             </Col>
+                            <Col md="6">
+                              <Form.Group>
+                                <label>End Year</label>
+                                <Form.Control
+                                  value={goals[i].achievementYear}
+                                  onChange={(e) => {
+                                    const myGoal = goals[i];
+                                    myGoal.achievementYear = e.target.value;
+                                    const demo = [...goals];
+                                    demo[i] = myGoal;
+                                    setGoals(demo);
+                                  }}
+                                  type="date"
+                                  placeholder="Enter Achievement Year"
+                                />
+                              </Form.Group>
+                            </Col>
                             <Col lg="6">
                               <Form.Group>
-                                <label>Amount Saved</label>
+                                <label>Current amout saved for the Goal</label>
                                 <Form.Control
                                   value={goals[i].amtSaved}
                                   onChange={(e) => {

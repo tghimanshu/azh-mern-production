@@ -31,6 +31,18 @@ const SingleAdvisor = ({ match, history }) => {
     },
     [match]
   );
+
+  useEffect(() => {
+    if (!localStorage.getItem("auth-token")) {
+      Swal.fire({
+        icon: "error",
+        title: "You need to be a member",
+      }).then(() => {
+        history.push("/");
+      });
+    }
+  });
+
   useEffect(() => {
     const user = getRole();
     if (user.role === "advisor") {

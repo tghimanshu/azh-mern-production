@@ -87,16 +87,16 @@ const Expense = ({ history }) => {
   console.log(expenses);
   return (
     <div className="container mt-4 wizard wizard-success mb-4 sw-main sw-theme-arrows">
-      <StepsNav stepNo={5} />
+      <StepsNav stepNo={3} />
       <Card>
         <Card.Header>
           <Card.Title as="h1" className="font-weight-bold">
-            Debts &amp; Expenses of Whole Family
+            Expenditure of Whole Family
           </Card.Title>
         </Card.Header>
         {alert}
         <form className="panel-body row p-3">
-          <h5 className="font-italic col-12">Monthly Cyclic Expenses</h5>
+          <h5 className="font-italic col-12">A- Montly Cyclic Expenditure</h5>
           <div className="form-group col-12 col-lg-6">
             <label className="exp-groceries">Groceries</label>
             <Form.Control
@@ -350,7 +350,7 @@ const Expense = ({ history }) => {
             />
           </div>
 
-          <h5 className="font-italic col-12">Irregular Expenses</h5>
+          <h5 className="font-italic col-12">Irregular(Yearly) Expenditure</h5>
 
           <div className="form-group col-12 col-lg-6">
             <label className="aexp-travel">Annual Travel</label>

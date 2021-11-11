@@ -21,15 +21,6 @@ function Navbar(props) {
           <ul>
             <li
               className={
-                window.location.pathname.includes("categories")
-                  ? "active"
-                  : undefined
-              }
-            >
-              <Link to="/categories">Advisors</Link>
-            </li>
-            <li
-              className={
                 window.location.pathname.includes("about")
                   ? "active"
                   : undefined
@@ -54,6 +45,15 @@ function Navbar(props) {
               }
             >
               <Link to="/e-learning">E-Learning</Link>
+            </li>
+            <li
+              className={
+                window.location.pathname.includes("categories")
+                  ? "active"
+                  : undefined
+              }
+            >
+              <Link to="/categories">Advisors</Link>
             </li>
             <li
               className={

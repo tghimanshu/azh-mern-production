@@ -86,7 +86,7 @@ const Liability = ({ history }) => {
         </Card.Header>
         {alert}
         <div className="panel-body p-3">
-          <div className="form-check form-check-lg">
+          {/* <div className="form-check form-check-lg">
             <input
               type="checkbox"
               checked={!haveLiabilities}
@@ -97,7 +97,7 @@ const Liability = ({ history }) => {
             <label className="form-check-label" htmlFor="haveInvestments">
               I Don't Have Any Liabilities
             </label>
-          </div>
+          </div> */}
           {haveLiabilities && (
             <form>
               <Accordion defaultActiveKey="0">
@@ -137,8 +137,12 @@ const Liability = ({ history }) => {
                                 <option value="Society Loan">
                                   Society Loan
                                 </option>
-                                <option value="LAP">LAP</option>
-                                <option value="LAS">LAS</option>
+                                <option value="Loan Against Property">
+                                  Loan Against Property
+                                </option>
+                                <option value="Loan Against Shares">
+                                  Loan Against Shares
+                                </option>
                               </datalist>
                             </Form.Group>
                           </Col>

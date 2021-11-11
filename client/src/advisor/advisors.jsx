@@ -14,8 +14,9 @@ import {
   listAdvisorsAction,
   listCategoriesAction,
 } from "redux/actions/actions";
+import Swal from "sweetalert2";
 
-export const AdvisorCategories = () => {
+export const AdvisorCategories = ({ history }) => {
   const dispatch = useDispatch();
 
   const catList = useSelector((state) => state.categories);
@@ -24,6 +25,17 @@ export const AdvisorCategories = () => {
   useEffect(() => {
     dispatch(listCategoriesAction());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (!localStorage.getItem("auth-token")) {
+      Swal.fire({
+        icon: "error",
+        title: "You need to be a member",
+      }).then(() => {
+        history.push("/");
+      });
+    }
+  });
 
   return (
     <Fragment>
@@ -97,7 +109,7 @@ export const AdvisorCategories = () => {
   );
 };
 
-export const AllAdvisors = ({ match }) => {
+export const AllAdvisors = ({ match, history }) => {
   const dispatch = useDispatch();
   const advList = useSelector((state) => state.advisors);
   const { loading, advisors, error } = advList;
@@ -111,6 +123,17 @@ export const AllAdvisors = ({ match }) => {
   useEffect(() => {
     dispatch(listAdvisorsAction());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (!localStorage.getItem("auth-token")) {
+      Swal.fire({
+        icon: "error",
+        title: "You need to be a member",
+      }).then(() => {
+        history.push("/");
+      });
+    }
+  });
 
   return (
     <Fragment>

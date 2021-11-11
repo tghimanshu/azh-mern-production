@@ -48,7 +48,7 @@ const Income = ({ history }) => {
   };
   return (
     <div className="container mt-4 wizard wizard-success mb-4 sw-main sw-theme-arrows">
-      <StepsNav stepNo={4} />
+      <StepsNav stepNo={2} />
       <Card>
         <Card.Header>
           <Card.Title as="h1" className="font-weight-bold">
