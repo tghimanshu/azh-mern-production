@@ -44,7 +44,7 @@ function Home() {
     <Fragment>
       <HeroSection />
       <WhoAreWe />
-      {/* <HPElearning /> */}
+      <HPElearning />
       <News />
       <Blogs />
       <Events />
