@@ -44,7 +44,7 @@
     "react-responsive-carousel": "^3.2.20",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^4.0.3",
+    "react-scripts": "^5.0.1",
     "react-share": "^4.4.0",
     "react-step-wizard": "^5.3.9",
     "react-xml-parser": "^1.1.8",
